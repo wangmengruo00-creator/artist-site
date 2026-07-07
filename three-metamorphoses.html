@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Three Metamorphoses - Mengruo Wang</title>
+    <meta
+      name="description"
+      content="Project page for The Three Metamorphoses, an interactive research project by Mengruo Wang."
+    >
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="metamorphoses-body">
+    <main class="field-main">
+      <section class="metamorphoses-field-page" aria-labelledby="metamorphoses-title">
+        <section class="field-entry" aria-labelledby="metamorphoses-title">
+          <a class="field-entry-back" href="works.html">Back to Works</a>
+          <div class="field-entry-grid">
+            <div class="field-entry-copy">
+              <p class="eyebrow">Interactive perceptual field</p>
+              <h1 id="metamorphoses-title">The Three Metamorphoses / 精神三变</h1>
+              <p class="field-entry-meta">A perceptual field of burden, rupture, and becoming.</p>
+              <p class="field-entry-lede">
+                An interactive web field about how inner states transform through body,
+                perception, and time.
+              </p>
+              <p>
+                The work begins from Nietzsche's camel, lion, and child, but it does not
+                explain the philosophical text or visualize the three figures directly.
+                Instead, it translates them into recurring forces: burden, rupture, and becoming.
+              </p>
+              <p class="field-entry-cn">
+                《精神三变》是一个关于精神状态如何在身体、感知与时间中变形的互动网页场域。
+                作品从尼采的“骆驼、狮子、孩童”出发，但并不将它们作为具象符号呈现，
+                而是转译为三种反复出现的精神力量：负重、冲破与生成。
+              </p>
+              <p class="field-entry-cn">
+                鼠标移动留下记忆般的痕迹，摄像头感应身体带来的扰动，
+                静止则让残留缓慢沉积、扩散和呼吸。
+              </p>
+              <ul class="field-entry-guidance" aria-label="Field interaction guidance">
+                <li>Move to write memory.</li>
+                <li>Stay to let the field breathe.</li>
+                <li>Let your presence disturb what remains.</li>
+              </ul>
+              <a class="field-entry-link" href="#interactive-field">Enter field</a>
+            </div>
+            <figure class="field-entry-visual" aria-label="A quiet abstract residue field preview">
+              <span class="entry-residue entry-residue-a"></span>
+              <span class="entry-residue entry-residue-b"></span>
+              <span class="entry-residue entry-residue-c"></span>
+              <span class="entry-grain entry-grain-a"></span>
+              <span class="entry-grain entry-grain-b"></span>
+              <figcaption>movement / stillness / presence</figcaption>
+            </figure>
+          </div>
+        </section>
+        <div class="prototype-field" id="interactive-field" data-residue-field>
+          <a class="field-exit" href="works.html" data-field-exit>Exit field</a>
+          <canvas class="residue-canvas" aria-hidden="true"></canvas>
+          <p class="field-caption">Presence leaves residue.</p>
+        </div>
+        <aside class="field-project-note" aria-labelledby="field-project-note-title">
+          <p class="eyebrow" id="field-project-note-title">Project Note</p>
+          <div>
+            <p>
+              The Three Metamorphoses does not function as a test, a stage-selection
+              system, or an explanation of Nietzsche. It uses the idea of metamorphosis
+              as a method of self-translation, turning responsibility, expectation,
+              resistance, and regeneration into a field that can be entered and disturbed.
+            </p>
+            <p>
+              Mouse movement leaves directional memory traces; bodily presence sensed
+              through the camera introduces vibration, rupture, and slight disturbance;
+              stillness allows residues to accumulate, diffuse, and fade. The viewer
+              does not receive a result. Transformation appears as residue, density,
+              breathing, and fading traces.
+            </p>
+            <p class="field-entry-cn">
+              《精神三变》不是我对尼采的解释，而是我借由“精神三变”找到的一种自我转译方法，
+              并将这种转译开放为一个他人可以进入的感知场。
+            </p>
+            <p class="related-study-link">
+              Related printed study:
+              <a href="projects/three-transformations.html">Three Transformations</a>
+            </p>
+          </div>
+        </aside>
+      </section>
+    </main>
+    <script src="field-residue.js"></script>
+  </body>
+</html>
