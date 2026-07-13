@@ -8,6 +8,7 @@
   const ctx = canvas.getContext("2d", { alpha: true });
   const residues = [];
   const cameraDebug = document.createElement("span");
+  const debugEnabled = new URLSearchParams(window.location.search).get("debug") === "true";
   const textResidues = {
     weight: ["沉", "weight"],
     rupture: ["断", "refuse"],
@@ -62,6 +63,7 @@
     "color:rgba(220,218,208,0.34)",
     "pointer-events:none",
     "user-select:none",
+    `display:${debugEnabled ? "block" : "none"}`,
   ].join(";");
   field.appendChild(cameraDebug);
 
