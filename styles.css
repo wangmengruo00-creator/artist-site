@@ -2002,6 +2002,24 @@ h2 {
   text-transform: uppercase;
 }
 
+.skin-image-slot.has-image,
+.skin-process-slot.has-image {
+  display: block;
+  min-height: 0;
+  aspect-ratio: auto;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.skin-image-slot.has-image img,
+.skin-process-slot.has-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: transparent;
+}
+
 .skin-image-slot-hero {
   width: min(100%, 900px);
   min-height: clamp(380px, 58vw, 700px);
@@ -2093,11 +2111,26 @@ h2 {
 }
 
 .skin-object-grid .skin-image-slot {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 3;
 }
 
 .skin-detail-grid .skin-image-slot {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 16 / 9;
+}
+
+.skin-object-grid .skin-image-slot.has-image,
+.skin-detail-grid .skin-image-slot.has-image,
+.skin-interior-grid .skin-image-slot.has-image {
+  overflow: hidden;
+  background: #efeee9;
+}
+
+.skin-object-grid .skin-image-slot.has-image img,
+.skin-detail-grid .skin-image-slot.has-image img,
+.skin-interior-grid .skin-image-slot.has-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .skin-object-grid figcaption,
@@ -2172,14 +2205,26 @@ h2 {
 
 .skin-process-strip {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
   margin-left: min(20vw, 220px);
 }
 
 .skin-process-slot {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   font-size: 8px;
+}
+
+.skin-process-slot.has-image {
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: #efeee9;
+}
+
+.skin-process-slot.has-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .skin-closing-image {
@@ -2189,6 +2234,12 @@ h2 {
 .skin-image-slot-closing {
   min-height: clamp(280px, 45vw, 560px);
   aspect-ratio: 16 / 9;
+}
+
+.skin-image-slot-hero.has-image,
+.skin-image-slot-closing.has-image {
+  min-height: 0;
+  aspect-ratio: auto;
 }
 
 @media (max-width: 760px) {
@@ -2242,10 +2293,126 @@ h2 {
   }
 
   .skin-process-strip {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .skin-metadata div {
     grid-template-columns: 70px minmax(0, 1fr);
+  }
+}
+
+/* Beijing Order follows the quieter image-led rhythm of the book pages. */
+.order-project .skin-heading {
+  max-width: 760px;
+}
+
+.order-project .skin-hero {
+  width: min(100%, 980px);
+}
+
+.order-overview-image {
+  width: min(calc(100% - min(20vw, 220px)), 980px);
+  margin: 0 0 0 min(20vw, 220px);
+}
+
+.order-overview-image img,
+.order-volume img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.order-overview-image figcaption,
+.order-volume figcaption {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.order-volume-list {
+  display: grid;
+  gap: clamp(58px, 9vw, 120px);
+  margin-left: min(20vw, 220px);
+}
+
+.order-volume {
+  display: grid;
+  grid-template-columns: minmax(130px, 190px) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 72px);
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.order-volume-label h3 {
+  margin: 9px 0 14px;
+  color: var(--text);
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 340;
+  line-height: 1.08;
+}
+
+.order-volume-source {
+  margin: 0 0 10px;
+  color: #4a4944;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.order-volume-label > p:last-child,
+.order-note-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.order-volume-main,
+.order-volume-details figure {
+  margin: 0;
+}
+
+.order-volume-main {
+  background: #efeee9;
+}
+
+.order-volume-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2.6vw, 30px);
+  margin-top: clamp(16px, 2.8vw, 34px);
+}
+
+.order-volume-details.single-detail {
+  grid-template-columns: minmax(0, 0.72fr);
+}
+
+.order-note-copy {
+  width: min(100%, 640px);
+  margin-left: min(20vw, 220px);
+}
+
+@media (max-width: 760px) {
+  .order-overview-image,
+  .order-volume-list,
+  .order-note-copy {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .order-volume {
+    grid-template-columns: 1fr;
+  }
+
+  .order-volume-details,
+  .order-volume-details.single-detail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .order-volume-details,
+  .order-volume-details.single-detail {
+    grid-template-columns: 1fr;
   }
 }
