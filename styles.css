@@ -77,11 +77,33 @@ a[aria-current="page"] {
   margin: 0 auto;
   display: grid;
   align-items: center;
-  padding: clamp(56px, 9vw, 120px) 0;
+  padding: clamp(60px, 10vw, 132px) 0;
 }
 
 .home-panel {
-  max-width: 680px;
+  max-width: 720px;
+}
+
+.home-copy {
+  max-width: 620px;
+}
+
+.home-copy h1 {
+  margin-bottom: 30px;
+  font-size: clamp(40px, 5vw, 64px);
+}
+
+.home-copy .role {
+  max-width: 520px;
+  font-size: clamp(17px, 1.65vw, 21px);
+  font-weight: 340;
+  line-height: 1.56;
+}
+
+.home-copy .intro {
+  max-width: 520px;
+  font-size: 14px;
+  line-height: 1.78;
 }
 
 .eyebrow {
@@ -1771,6 +1793,7 @@ h2 {
     grid-template-columns: 1fr;
     gap: 4px;
   }
+
 }
 
 @media (max-width: 520px) {
@@ -1791,6 +1814,10 @@ h2 {
   .home-main,
   .section {
     width: min(100% - 28px, var(--max));
+  }
+
+  .home-copy h1 {
+    font-size: clamp(38px, 13vw, 56px);
   }
 
   .work-row {
