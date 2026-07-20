@@ -1579,6 +1579,95 @@ h2 {
   content: none;
 }
 
+.field-interface-prototype {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) minmax(0, 680px);
+  gap: clamp(24px, 5vw, 72px);
+  width: min(88vw, 980px);
+  margin: clamp(64px, 10vw, 132px) auto clamp(76px, 11vw, 148px);
+  padding-top: 22px;
+  border-top: 1px solid rgba(238, 236, 226, 0.2);
+}
+
+.field-interface-prototype .eyebrow {
+  margin: 0;
+}
+
+.field-interface-prototype h2,
+.installation-proposal-heading h2 {
+  margin: 0 0 16px;
+  color: rgba(248, 248, 246, 0.92);
+  font-size: clamp(19px, 2vw, 26px);
+  font-weight: 350;
+  line-height: 1.28;
+}
+
+.field-interface-prototype p,
+.installation-proposal-heading p {
+  max-width: 680px;
+  margin: 0;
+  color: rgba(232, 230, 220, 0.72);
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+.installation-proposal {
+  width: min(88vw, 1180px);
+  margin: 0 auto clamp(84px, 12vw, 164px);
+}
+
+.installation-proposal-heading {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) minmax(0, 680px);
+  gap: clamp(24px, 5vw, 72px);
+  padding-top: 22px;
+  border-top: 1px solid rgba(238, 236, 226, 0.2);
+}
+
+.installation-proposal-heading .eyebrow {
+  margin: 0;
+}
+
+.installation-proposal-heading .installation-proposal-meta {
+  margin: -8px 0 18px;
+  color: rgba(232, 230, 220, 0.48);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+}
+
+.installation-figure {
+  margin: 0;
+}
+
+.installation-figure img {
+  width: 100%;
+  background: #1b1b19;
+}
+
+.installation-figure figcaption {
+  margin-top: 10px;
+  color: rgba(232, 230, 220, 0.48);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.installation-figure-hero {
+  margin-top: clamp(48px, 8vw, 104px);
+}
+
+.installation-figure-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 36px);
+  align-items: start;
+  margin-top: clamp(38px, 6vw, 76px);
+}
+
+.installation-figure-field {
+  width: min(86%, 980px);
+  margin: clamp(42px, 7vw, 88px) 0 0 auto;
+}
+
 .field-project-note {
   display: grid;
   grid-template-columns: minmax(140px, 220px) minmax(0, 680px);
@@ -1719,6 +1808,8 @@ h2 {
     .order-image-pair,
     .field-project-note,
     .field-documentation,
+    .field-interface-prototype,
+    .installation-proposal-heading,
     .field-entry-grid,
     .metamorphoses-statement,
     .metamorphoses-section,
@@ -1728,6 +1819,14 @@ h2 {
 
   .documentation-grid {
     grid-template-columns: 1fr;
+  }
+
+  .installation-figure-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .installation-figure-field {
+    width: 100%;
   }
 
   .order-system-main,
