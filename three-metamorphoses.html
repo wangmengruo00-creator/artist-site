@@ -8,7 +8,7 @@
       name="description"
       content="Project page for The Three Metamorphoses, an interactive research project by Mengruo Wang."
     >
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260721-1">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
   </head>
   <body class="metamorphoses-body">
@@ -60,14 +60,26 @@
 
         <section class="field-interface-prototype" aria-labelledby="interface-prototype-title">
           <p class="eyebrow">Physical Interface Prototype</p>
-          <div>
-            <h2 id="interface-prototype-title">A handheld point of entry</h2>
-            <p>
-              The M5Stack Cardputer ADV functions as a handheld interface prototype.
-              A name or brief input becomes a small act of entry—not identification or
-              diagnosis, but a way of establishing a personal and physical relationship
-              with the field.
-            </p>
+          <div class="field-interface-prototype-content">
+            <div class="field-interface-prototype-copy">
+              <h2 id="interface-prototype-title">A handheld point of entry</h2>
+              <p>
+                The M5Stack Cardputer ADV functions as a handheld interface prototype.
+                A name or brief input becomes a small act of entry—not identification or
+                diagnosis, but a way of establishing a personal and physical relationship
+                with the field.
+              </p>
+            </div>
+            <figure class="field-interface-prototype-figure">
+              <button class="installation-image-button" type="button" aria-label="Enlarge interface prototype test">
+                <img
+                  src="assets/three-metamorphoses/interface-prototype-test.jpg?v=20260721-1"
+                  alt="The active M5Stack Cardputer ADV interface prototype held in front of the responsive visual field."
+                  loading="lazy"
+                >
+              </button>
+              <figcaption>Interface prototype test with responsive field, 2026</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -86,61 +98,84 @@
             </div>
           </header>
 
-          <figure class="installation-figure installation-figure-hero">
-            <img
-              src="assets/three-metamorphoses/installation-proposal/installation-overview.jpg"
-              alt="Concept visualization showing the full proposed Three Metamorphoses installation."
-              loading="lazy"
-            >
-            <figcaption>Overall view of the proposed spatial installation.</figcaption>
-          </figure>
-
-          <div class="installation-figure-pair">
+          <div class="installation-gallery">
             <figure class="installation-figure">
-              <img
-                src="assets/three-metamorphoses/installation-proposal/installation-entry.jpg"
-                alt="Concept visualization showing a viewer approaching the proposed installation entrance."
-                loading="lazy"
-              >
-              <figcaption>Proposed threshold and point of entry.</figcaption>
+              <button class="installation-image-button" type="button" aria-label="Enlarge overall installation view">
+                <img
+                  src="assets/three-metamorphoses/installation-proposal/installation-overview.jpg"
+                  alt="Concept visualization showing the full proposed Three Metamorphoses installation."
+                  loading="lazy"
+                >
+              </button>
+              <figcaption>Overall view</figcaption>
             </figure>
             <figure class="installation-figure">
-              <img
-                src="assets/three-metamorphoses/installation-proposal/interface-detail.jpg"
-                alt="Concept visualization showing an M5Stack interface within the installation structure."
-                loading="lazy"
-              >
-              <figcaption>M5Stack interface imagined within the installation structure.</figcaption>
+              <button class="installation-image-button" type="button" aria-label="Enlarge proposed threshold view">
+                <img
+                  src="assets/three-metamorphoses/installation-proposal/installation-entry.jpg"
+                  alt="Concept visualization showing a viewer approaching the proposed installation entrance."
+                  loading="lazy"
+                >
+              </button>
+              <figcaption>Proposed threshold</figcaption>
+            </figure>
+            <figure class="installation-figure">
+              <button class="installation-image-button" type="button" aria-label="Enlarge interface detail">
+                <img
+                  src="assets/three-metamorphoses/installation-proposal/interface-detail.jpg"
+                  alt="Concept visualization showing an M5Stack interface within the installation structure."
+                  loading="lazy"
+                >
+              </button>
+              <figcaption>Interface detail</figcaption>
+            </figure>
+            <figure class="installation-figure">
+              <button class="installation-image-button" type="button" aria-label="Enlarge projected field view">
+                <img
+                  src="assets/three-metamorphoses/installation-proposal/projected-field.jpg"
+                  alt="Concept visualization showing layered projected traces inside the proposed installation."
+                  loading="lazy"
+                >
+              </button>
+              <figcaption>Projected field</figcaption>
             </figure>
           </div>
-
-          <figure class="installation-figure installation-figure-field">
-            <img
-              src="assets/three-metamorphoses/installation-proposal/projected-field.jpg"
-              alt="Concept visualization showing layered projected traces inside the proposed installation."
-              loading="lazy"
-            >
-            <figcaption>Layered projection field inside the installation proposal.</figcaption>
-          </figure>
         </section>
 
-        <aside class="field-project-note" aria-labelledby="field-project-note-title">
-          <p class="eyebrow" id="field-project-note-title">Project Note</p>
-          <div>
-            <p>
-              The work does not ask the viewer to identify or complete three distinct
-              stages. It offers a field that can be entered, disturbed, and marked—a
-              temporary reflection of one's own state rather than an explanation of
-              spiritual transformation.
-            </p>
-            <p class="related-study-link">
-              Related printed study:
-              <a href="projects/three-transformations.html">Three Transformations</a>
-            </p>
-          </div>
-        </aside>
+        <dialog class="installation-lightbox" data-installation-lightbox aria-label="Project image viewer">
+          <button class="installation-lightbox-close" type="button" data-installation-lightbox-close>Close</button>
+          <figure>
+            <img src="" alt="" data-installation-lightbox-image>
+            <figcaption data-installation-lightbox-caption></figcaption>
+          </figure>
+        </dialog>
+
       </section>
     </main>
     <script src="field-residue.js"></script>
+    <script>
+      const installationLightbox = document.querySelector("[data-installation-lightbox]");
+      const installationLightboxImage = installationLightbox.querySelector("[data-installation-lightbox-image]");
+      const installationLightboxCaption = installationLightbox.querySelector("[data-installation-lightbox-caption]");
+      const installationLightboxClose = installationLightbox.querySelector("[data-installation-lightbox-close]");
+
+      document.querySelectorAll(".installation-image-button").forEach((button) => {
+        button.addEventListener("click", () => {
+          const image = button.querySelector("img");
+          const caption = button.closest("figure").querySelector("figcaption");
+          installationLightboxImage.src = image.src;
+          installationLightboxImage.alt = image.alt;
+          installationLightboxCaption.textContent = caption.textContent;
+          installationLightbox.showModal();
+        });
+      });
+
+      installationLightboxClose.addEventListener("click", () => installationLightbox.close());
+      installationLightbox.addEventListener("click", (event) => {
+        if (event.target === installationLightbox) {
+          installationLightbox.close();
+        }
+      });
+    </script>
   </body>
 </html>

@@ -1550,7 +1550,7 @@ h2 {
 }
 
 .field-exit {
-  position: fixed;
+  position: absolute;
   top: clamp(18px, 3vw, 32px);
   left: clamp(18px, 3vw, 32px);
   z-index: 3;
@@ -1584,9 +1584,40 @@ h2 {
   grid-template-columns: minmax(140px, 220px) minmax(0, 680px);
   gap: clamp(24px, 5vw, 72px);
   width: min(88vw, 980px);
-  margin: clamp(64px, 10vw, 132px) auto clamp(76px, 11vw, 148px);
+  margin: clamp(64px, 10vw, 132px) auto clamp(60px, 7vw, 96px);
   padding-top: 22px;
   border-top: 1px solid rgba(238, 236, 226, 0.2);
+}
+
+.field-interface-prototype-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 240px);
+  gap: clamp(28px, 4vw, 52px);
+  align-items: start;
+}
+
+.field-interface-prototype-copy {
+  max-width: 400px;
+}
+
+.field-interface-prototype-figure {
+  width: 100%;
+  margin: 0;
+}
+
+.field-interface-prototype-figure img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center 75%;
+  filter: saturate(0.38) brightness(0.78) contrast(1.04);
+}
+
+.field-interface-prototype-figure figcaption {
+  margin-top: 9px;
+  color: rgba(232, 230, 220, 0.48);
+  font-size: 11px;
+  line-height: 1.55;
 }
 
 .field-interface-prototype .eyebrow {
@@ -1651,21 +1682,93 @@ h2 {
   line-height: 1.55;
 }
 
-.installation-figure-hero {
-  margin-top: clamp(48px, 8vw, 104px);
-}
-
-.installation-figure-pair {
+.installation-gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(18px, 3vw, 36px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(8px, 1.4vw, 16px);
   align-items: start;
-  margin-top: clamp(38px, 6vw, 76px);
+  width: min(100%, 1000px);
+  margin: clamp(32px, 4vw, 52px) 0 0 auto;
 }
 
-.installation-figure-field {
-  width: min(86%, 980px);
-  margin: clamp(42px, 7vw, 88px) 0 0 auto;
+.installation-image-button {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  cursor: zoom-in;
+}
+
+.installation-image-button:focus-visible {
+  outline: 1px solid rgba(248, 248, 246, 0.72);
+  outline-offset: 4px;
+}
+
+.installation-gallery .installation-figure img {
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
+  transition: opacity 220ms ease;
+}
+
+.installation-image-button:hover img {
+  opacity: 0.82;
+}
+
+.installation-lightbox {
+  position: relative;
+  width: min(92vw, 1280px);
+  max-width: none;
+  max-height: 92vh;
+  margin: auto;
+  padding: clamp(34px, 5vw, 64px);
+  color: rgba(248, 248, 246, 0.86);
+  background: #171715;
+  border: 0;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+}
+
+.installation-lightbox::backdrop {
+  background: rgba(12, 12, 11, 0.84);
+  backdrop-filter: blur(6px);
+}
+
+.installation-lightbox figure {
+  display: grid;
+  place-items: center;
+  margin: 0;
+}
+
+.installation-lightbox img {
+  width: auto;
+  max-width: 100%;
+  max-height: 76vh;
+  object-fit: contain;
+  background: transparent;
+}
+
+.installation-lightbox figcaption {
+  margin-top: 12px;
+  color: rgba(232, 230, 220, 0.52);
+  font-size: 11px;
+}
+
+.installation-lightbox-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  padding: 6px 0;
+  color: rgba(248, 248, 246, 0.7);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
 }
 
 .field-project-note {
@@ -1809,6 +1912,7 @@ h2 {
     .field-project-note,
     .field-documentation,
     .field-interface-prototype,
+    .field-interface-prototype-content,
     .installation-proposal-heading,
     .field-entry-grid,
     .metamorphoses-statement,
@@ -1821,12 +1925,8 @@ h2 {
     grid-template-columns: 1fr;
   }
 
-  .installation-figure-pair {
-    grid-template-columns: 1fr;
-  }
-
-  .installation-figure-field {
-    width: 100%;
+  .field-interface-prototype-figure {
+    width: min(100%, 260px);
   }
 
   .order-system-main,
