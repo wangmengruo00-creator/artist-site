@@ -6,38 +6,38 @@
     <title>Mengruo Wang</title>
     <meta
       name="description"
-      content="A minimal artist portfolio website for practice-based art and design research."
+      content="Mengruo Wang, artist and practice-based researcher."
     >
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
   </head>
-  <body>
-    <header class="site-header" aria-label="Primary navigation">
-      <a class="brand" href="index.html" aria-label="Portfolio home">Mengruo Wang</a>
-      <nav class="nav">
+  <body class="landing-page">
+    <header class="landing-header" aria-label="Primary navigation">
+      <a class="landing-brand" href="index.html" aria-current="page">Mengruo Wang</a>
+      <nav class="landing-nav">
         <a href="works.html">Works</a>
         <a href="about.html">About</a>
       </nav>
     </header>
 
-    <main class="home-main">
-      <section class="home-panel" aria-labelledby="home-title">
-        <div class="home-copy">
-          <h1 id="home-title">Mengruo Wang</h1>
-          <p class="role">
-            Artist working across book structures, printed matter, material memory,
-            and perceptual fields.
-          </p>
-          <p class="intro">
-            The practice moves between hand-bound books, image-based research,
-            obsolete printed systems, embodied writing, and interactive prototypes.
-          </p>
-          <nav class="home-links" aria-label="Main entry points">
-            <a href="works.html">Works</a>
-            <a href="about.html">About</a>
-          </nav>
-        </div>
+    <main class="landing-main">
+      <div class="landing-light" aria-hidden="true"></div>
+      <section class="landing-copy" aria-labelledby="home-title">
+        <h1 id="home-title">MENGRUO WANG</h1>
+        <p>Artist &amp; practice-based researcher</p>
       </section>
     </main>
+    <script>
+      const root = document.documentElement;
+
+      window.addEventListener(
+        "pointermove",
+        (event) => {
+          root.style.setProperty("--mx", (event.clientX / window.innerWidth).toFixed(3));
+          root.style.setProperty("--my", (event.clientY / window.innerHeight).toFixed(3));
+        },
+        { passive: true }
+      );
+    </script>
   </body>
 </html>
