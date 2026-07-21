@@ -24,20 +24,32 @@
       <div class="landing-light" aria-hidden="true"></div>
       <section class="landing-copy" aria-labelledby="home-title">
         <h1 id="home-title">MENGRUO WANG</h1>
-        <p>Artist &amp; practice-based researcher</p>
+        <p class="landing-role">Practice-based artist and researcher</p>
+        <p class="landing-statement">
+          Working across artist books, material traces, embodied writing, and
+          perceptual systems, exploring how memory, space, and interfaces are
+          transformed into contemporary artistic forms.
+        </p>
+        <a class="landing-enter" href="works.html">Enter selected works <span aria-hidden="true">→</span></a>
       </section>
+      <footer class="landing-footer">
+        <span>Shenzhen / Hong Kong</span>
+        <span>Selected practice · 2016—2026</span>
+      </footer>
     </main>
     <script>
       const root = document.documentElement;
 
-      window.addEventListener(
-        "pointermove",
-        (event) => {
-          root.style.setProperty("--mx", (event.clientX / window.innerWidth).toFixed(3));
-          root.style.setProperty("--my", (event.clientY / window.innerHeight).toFixed(3));
-        },
-        { passive: true }
-      );
+      if (window.matchMedia("(pointer: fine)").matches) {
+        window.addEventListener(
+          "pointermove",
+          (event) => {
+            root.style.setProperty("--mx", (event.clientX / window.innerWidth).toFixed(3));
+            root.style.setProperty("--my", (event.clientY / window.innerHeight).toFixed(3));
+          },
+          { passive: true }
+        );
+      }
     </script>
   </body>
 </html>
