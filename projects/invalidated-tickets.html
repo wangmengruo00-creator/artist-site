@@ -78,6 +78,28 @@
               <div><dt>Methods</dt><dd>Collecting, sorting, photographing, grouping, filming, writing</dd></div>
               <div><dt>Outputs</dt><dd>Moving-image study, research sheets, provisional archive</dd></div>
             </dl>
+            <div class="tickets-archive-index" aria-label="Archive index">
+              <article>
+                <span>Field 01</span>
+                <strong>Tickets</strong>
+                <p>Access, quantity, eligibility, value and stamps.</p>
+              </article>
+              <article>
+                <span>Field 02</span>
+                <strong>Wrappers</strong>
+                <p>Colour, desire, commodity image and touch.</p>
+              </article>
+              <article>
+                <span>Field 03</span>
+                <strong>Sorting</strong>
+                <p>Region, repetition, circulation and comparison.</p>
+              </article>
+              <article>
+                <span>Field 04</span>
+                <strong>Notes</strong>
+                <p>Questions, provisional readings and next tests.</p>
+              </article>
+            </div>
           </div>
         </section>
 
@@ -114,7 +136,8 @@
               <div class="tickets-video-subtitle" id="tickets-documentary-subtitle" aria-live="polite"></div>
             </div>
             <figcaption>
-              <em>The Bureau of Invalidated Tickets</em>, moving-image study, silent captioned web cut.
+              <em>The Bureau of Invalidated Tickets</em>, moving-image study. A quiet research cut
+              without live sound.
             </figcaption>
           </figure>
         </section>
@@ -210,19 +233,19 @@
           <div class="tickets-observation-grid">
             <figure>
               <img
-                src="../assets/invalidated-tickets/curated/observation-page-ticket.jpg"
-                alt="Observation page analysing a Chaohu grain ticket."
+                src="../assets/invalidated-tickets/curated/ticket-single-group.png"
+                alt="Collected tickets arranged in a transparent archival sleeve."
                 loading="lazy"
               >
-              <figcaption>Entry Ticket 001: a grain ticket as a small landscape of place and system.</figcaption>
+              <figcaption>Collected ticket groups arranged by value, region and circulation.</figcaption>
             </figure>
             <figure>
               <img
-                src="../assets/invalidated-tickets/curated/observation-page-wrapper.jpg"
-                alt="Observation page comparing wrappers, labels and their visual systems."
+                src="../assets/invalidated-tickets/curated/wrapper-desire-archive.jpg"
+                alt="Wrappers and labels arranged in an archival binder."
                 loading="lazy"
               >
-              <figcaption>Wrappers and labels are read as image systems rather than decorative extras.</figcaption>
+              <figcaption>Wrappers and labels are read as image systems, not decorative extras.</figcaption>
             </figure>
           </div>
         </section>
@@ -254,19 +277,32 @@
         if (!video || !subtitle) return;
 
         const captions = [
-          [0.6, 7, 'Bureau of Invalidated Tickets\\nmaterial archive · research in progress'],
-          [13, 24, 'I am not collecting rare objects.\\nI am reading small systems of everyday life.'],
-          [29, 42, 'Tickets and vouchers once managed daily life:\\naccess, rationing, permission and movement.'],
-          [48, 61, 'Wrappers and labels worked differently:\\ndesire, colour, persuasion and memory.'],
-          [67, 80, 'A single ticket is often cold.\\nPlaced with other traces, it begins to speak.'],
-          [87, 101, 'A single wrapper can feel alive.\\nTogether, they reveal a visual economy of care and longing.'],
-          [107, 116, 'This bureau is still in progress:\\na method for reading obsolete everyday paper.']
+          [0.6, 7, ['The Bureau of Invalidated Tickets', 'a working archive of everyday paper']],
+          [13, 24, ['I am not collecting rare objects.', 'I am reading small systems once used in daily life.']],
+          [29, 42, ['Tickets once organised access, quantity and movement.', 'They made ordinary life measurable.']],
+          [48, 61, ['Wrappers worked through colour and promise.', 'They carried desire into everyday materials.']],
+          [67, 80, ['One ticket can seem cold and administrative.', 'In groups, it begins to reveal place, value and use.']],
+          [87, 101, ['One wrapper can feel bright and intimate.', 'Together, these papers show how images shaped daily desire.']],
+          [107, 116, ['The bureau remains unfinished.', 'It is a method for reading obsolete paper as living evidence.']]
         ];
+
+        const renderCaption = (lines) => {
+          subtitle.replaceChildren(...lines.map((line) => {
+            const span = document.createElement('span');
+            span.className = 'tickets-video-line';
+            span.textContent = line;
+            return span;
+          }));
+        };
 
         const syncSubtitle = () => {
           video.muted = true;
           const active = captions.find(([start, end]) => video.currentTime >= start && video.currentTime <= end);
-          subtitle.textContent = active ? active[2] : '';
+          if (active) {
+            renderCaption(active[2]);
+          } else {
+            subtitle.replaceChildren();
+          }
           subtitle.classList.toggle('is-visible', Boolean(active));
         };
 
