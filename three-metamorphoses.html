@@ -6,145 +6,594 @@
     <title>The Three Metamorphoses - Mengruo Wang</title>
     <meta
       name="description"
-      content="Project page for The Three Metamorphoses, an interactive research project by Mengruo Wang."
+      content="The Three Metamorphoses, an ongoing research project by Mengruo Wang developed through sketchbook studies, early visual tests, and two separate technical prototypes."
     >
     <link rel="stylesheet" href="styles.css?v=20260721-1">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+      .tm-research-body {
+        overflow-x: hidden;
+        background: #22221f;
+      }
+
+      .tm-page {
+        width: 100%;
+        min-height: 100svh;
+        color: rgba(238, 236, 226, 0.78);
+      }
+
+      .tm-shell {
+        width: min(88vw, 1180px);
+        margin: 0 auto;
+      }
+
+      .tm-intro {
+        min-height: 100svh;
+        padding: clamp(28px, 5vw, 76px) 0 clamp(72px, 10vw, 136px);
+        display: grid;
+        align-content: center;
+      }
+
+      .tm-back {
+        width: fit-content;
+        margin-bottom: clamp(42px, 7vw, 92px);
+        color: rgba(238, 236, 226, 0.72);
+        border-bottom: 1px solid currentColor;
+        font-size: 12px;
+      }
+
+      .tm-title-block {
+        position: relative;
+        max-width: 850px;
+        padding-left: clamp(24px, 4vw, 52px);
+      }
+
+      .tm-title-block::before {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 1px;
+        content: "";
+        background: currentColor;
+        opacity: 0.72;
+      }
+
+      .tm-title-block .eyebrow {
+        margin-bottom: 26px;
+      }
+
+      .tm-title-block h1 {
+        max-width: 820px;
+        margin: 0 0 24px;
+        color: rgba(248, 248, 246, 0.98);
+        font-size: clamp(36px, 5.2vw, 68px);
+        font-weight: 350;
+        line-height: 1.02;
+        letter-spacing: -0.025em;
+      }
+
+      .tm-subtitle {
+        max-width: 620px;
+        margin: 0 0 34px;
+        color: rgba(238, 236, 226, 0.58);
+        font-size: 13px;
+        letter-spacing: 0.02em;
+      }
+
+      .tm-concept {
+        max-width: 720px;
+      }
+
+      .tm-concept p {
+        margin: 0;
+        color: rgba(238, 236, 226, 0.78);
+        font-size: 15px;
+        line-height: 1.82;
+      }
+
+      .tm-concept p + p {
+        margin-top: 18px;
+      }
+
+      .tm-section {
+        display: grid;
+        grid-template-columns: minmax(150px, 220px) minmax(0, 760px);
+        gap: clamp(28px, 5vw, 76px);
+        margin-bottom: clamp(84px, 12vw, 164px);
+        padding-top: 24px;
+        border-top: 1px solid rgba(238, 236, 226, 0.2);
+      }
+
+      .tm-section-heading .eyebrow {
+        margin: 0 0 10px;
+      }
+
+      .tm-section-heading h2 {
+        margin: 0;
+        color: rgba(248, 248, 246, 0.92);
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0.025em;
+        line-height: 1.45;
+      }
+
+      .tm-copy {
+        max-width: 680px;
+      }
+
+      .tm-copy p {
+        margin: 0;
+        color: rgba(238, 236, 226, 0.72);
+        font-size: 14px;
+        line-height: 1.85;
+      }
+
+      .tm-copy p + p {
+        margin-top: 18px;
+      }
+
+      .tm-process {
+        margin: 32px 0 0;
+        padding: 22px 0 0;
+        border-top: 1px solid rgba(238, 236, 226, 0.14);
+        color: rgba(238, 236, 226, 0.6);
+        font-size: 12px;
+        line-height: 1.9;
+      }
+
+      .tm-process span {
+        display: block;
+      }
+
+      .tm-sketchbook {
+        margin: 34px 0 0;
+      }
+
+      .tm-sketchbook img,
+      .tm-test img,
+      .tm-device-figure img,
+      .tm-future-figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: #1b1b19;
+      }
+
+      .tm-sketchbook img {
+        filter: saturate(0.35) brightness(0.84) contrast(1.03);
+      }
+
+      .tm-sketchbook figcaption,
+      .tm-test figcaption,
+      .tm-device-figure figcaption,
+      .tm-future-figure figcaption {
+        margin-top: 10px;
+        color: rgba(232, 230, 220, 0.48);
+        font-size: 11px;
+        line-height: 1.6;
+      }
+
+      .tm-tests {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(36px, 5vw, 62px) clamp(18px, 3vw, 32px);
+        margin-top: clamp(48px, 7vw, 82px);
+      }
+
+      .tm-test {
+        margin: 0;
+      }
+
+      .tm-test-label {
+        display: block;
+        margin-bottom: 12px;
+        color: rgba(248, 248, 246, 0.82);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+      }
+
+      .tm-test img {
+        object-fit: contain;
+      }
+
+      .tm-test-wide {
+        grid-column: 1 / -1;
+        width: min(100%, 560px);
+        margin-left: auto;
+      }
+
+      .tm-test-wide .field-entry-visual {
+        min-height: 360px;
+      }
+
+      .tm-prototype-section {
+        margin-bottom: clamp(84px, 12vw, 164px);
+      }
+
+      .tm-prototype-heading {
+        display: grid;
+        grid-template-columns: minmax(150px, 220px) minmax(0, 760px);
+        gap: clamp(28px, 5vw, 76px);
+        width: min(88vw, 1180px);
+        margin: 0 auto clamp(34px, 5vw, 58px);
+        padding-top: 24px;
+        border-top: 1px solid rgba(238, 236, 226, 0.2);
+      }
+
+      .tm-prototype-heading .eyebrow {
+        margin: 0 0 10px;
+      }
+
+      .tm-prototype-heading h2 {
+        margin: 0 0 16px;
+        color: rgba(248, 248, 246, 0.92);
+        font-size: clamp(20px, 2.2vw, 28px);
+        font-weight: 350;
+        line-height: 1.28;
+      }
+
+      .tm-prototype-heading p {
+        max-width: 680px;
+        margin: 0;
+        color: rgba(238, 236, 226, 0.72);
+        font-size: 14px;
+        line-height: 1.85;
+      }
+
+      .tm-prototype-status {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 6px 9px;
+        color: rgba(238, 236, 226, 0.62);
+        border: 1px solid rgba(238, 236, 226, 0.2);
+        font-size: 9px;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .tm-web-prototype {
+        min-height: min(76svh, 760px);
+        border-top: 1px solid rgba(238, 236, 226, 0.1);
+        border-bottom: 1px solid rgba(238, 236, 226, 0.1);
+      }
+
+      .tm-web-prototype .field-exit {
+        display: none;
+      }
+
+      .tm-web-prototype .field-caption {
+        color: rgba(232, 230, 220, 0.58);
+      }
+
+      .tm-device-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.68fr) minmax(300px, 1fr);
+        gap: clamp(34px, 6vw, 88px);
+        align-items: start;
+      }
+
+      .tm-device-figure {
+        margin: 0;
+      }
+
+      .tm-device-figure img {
+        filter: none;
+      }
+
+      .tm-separation-note {
+        margin-top: 18px !important;
+        color: rgba(238, 236, 226, 0.56) !important;
+      }
+
+      .tm-future {
+        margin-bottom: clamp(84px, 12vw, 164px);
+        padding: clamp(42px, 6vw, 72px) 0;
+        background: #191917;
+        border-top: 1px solid rgba(238, 236, 226, 0.14);
+        border-bottom: 1px solid rgba(238, 236, 226, 0.14);
+      }
+
+      .tm-future-label {
+        display: block;
+        margin-bottom: 20px;
+        color: rgba(238, 236, 226, 0.56);
+        font-size: 10px;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        line-height: 1.4;
+      }
+
+      .tm-future h2 {
+        max-width: 780px;
+        margin: 0 0 22px;
+        color: rgba(248, 248, 246, 0.94);
+        font-size: clamp(24px, 3vw, 38px);
+        font-weight: 350;
+        line-height: 1.18;
+      }
+
+      .tm-future-copy {
+        max-width: 680px;
+        margin: 0;
+        color: rgba(238, 236, 226, 0.68);
+        font-size: 14px;
+        line-height: 1.85;
+      }
+
+      .tm-future-gallery {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(34px, 5vw, 62px) clamp(16px, 3vw, 30px);
+        align-items: start;
+        margin-top: clamp(42px, 6vw, 72px);
+      }
+
+      .tm-future-figure {
+        margin: 0;
+      }
+
+      .tm-image-button {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        color: inherit;
+        background: transparent;
+        border: 0;
+        cursor: zoom-in;
+      }
+
+      .tm-image-button:focus-visible {
+        outline: 1px solid rgba(248, 248, 246, 0.72);
+        outline-offset: 4px;
+      }
+
+      .tm-image-button:hover img {
+        opacity: 0.84;
+      }
+
+      .tm-current-status {
+        margin-bottom: clamp(84px, 11vw, 144px);
+      }
+
+      .tm-status-text {
+        max-width: 740px;
+        margin: 0;
+        color: rgba(248, 248, 246, 0.82);
+        font-size: clamp(20px, 2.4vw, 30px);
+        font-weight: 350;
+        line-height: 1.5;
+      }
+
+      .tm-page .field-footer-nav {
+        margin-top: 0;
+      }
+
+      @media (max-width: 760px) {
+        .tm-section,
+        .tm-prototype-heading,
+        .tm-device-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .tm-tests {
+          grid-template-columns: 1fr;
+        }
+
+        .tm-test-wide {
+          grid-column: auto;
+          width: 100%;
+        }
+
+        .tm-future-gallery {
+          grid-template-columns: 1fr;
+        }
+
+        .tm-title-block h1 {
+          font-size: clamp(34px, 10vw, 52px);
+        }
+
+        .tm-web-prototype {
+          min-height: 70svh;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .tm-shell,
+        .tm-prototype-heading {
+          width: calc(100% - 40px);
+        }
+
+        .tm-title-block {
+          padding-left: 22px;
+        }
+
+        .tm-title-block h1 {
+          font-size: clamp(32px, 10.5vw, 44px);
+          line-height: 1.06;
+        }
+
+        .tm-concept p,
+        .tm-copy p,
+        .tm-prototype-heading p,
+        .tm-future-copy {
+          font-size: 13px;
+        }
+
+        .tm-test-wide .field-entry-visual {
+          min-height: 300px;
+        }
+
+        .tm-status-text {
+          font-size: 26px;
+        }
+      }
+    </style>
   </head>
-  <body class="metamorphoses-body">
+  <body class="metamorphoses-body tm-research-body">
     <main class="field-main">
-      <section class="metamorphoses-field-page" aria-labelledby="metamorphoses-title">
-        <section class="field-entry" aria-labelledby="metamorphoses-title">
-          <a class="field-entry-back" href="works.html">Back to Works</a>
-          <div class="field-entry-grid">
-            <div class="field-entry-copy">
-              <p class="eyebrow">Interactive perceptual field</p>
-              <h1 id="metamorphoses-title">The Three Metamorphoses / 精神三变</h1>
-              <p class="field-entry-meta">A responsive field of burden, rupture, and becoming.</p>
-              <p class="field-entry-lede">
-                <em>The Three Metamorphoses</em> draws on Nietzsche's metaphors of the
-                camel, lion, and child, as well as my own reflections on growth and
-                transformation. Rather than treating them as three successive stages,
-                the work understands burden, rupture, and becoming as forces that
-                continuously coexist and overlap.
+      <article class="tm-page" aria-labelledby="metamorphoses-title">
+        <header class="tm-intro tm-shell">
+          <a class="tm-back" href="works.html">Back to Works</a>
+          <div class="tm-title-block">
+            <p class="eyebrow">ONGOING RESEARCH PROJECT / 2026–</p>
+            <h1 id="metamorphoses-title">The Three Metamorphoses / 精神三变</h1>
+            <p class="tm-subtitle">
+              Ongoing research · Two separate technical prototypes
+            </p>
+            <div class="tm-concept">
+              <p>
+                Taking Nietzsche’s camel, lion and child as prompts rather than images to
+                illustrate, <em>The Three Metamorphoses</em> asks whether transformation can
+                be translated into movement, duration and response.
               </p>
               <p>
-                The project began as an interactive web field composed of blurred
-                traces, residual images, and shifting densities. Movement, stillness,
-                direction, and bodily presence disturb the field and leave temporary
-                visual residues. The system does not classify the viewer or offer a
-                conclusion; it reflects moments of action, hesitation, and pause.
+                Early studies shifted from symbolic figures towards accumulation, disturbance
+                and unstable fields. The project is now being tested through a responsive
+                webpage and a standalone M5Stack Cardputer prototype. They are not yet connected.
               </p>
-              <ul class="field-entry-guidance" aria-label="Field interaction guidance">
-                <li>Move to write memory.</li>
-                <li>Stay to let the field breathe.</li>
-                <li>Let your presence disturb what remains.</li>
-              </ul>
-              <a class="field-entry-link" href="#interactive-field">Enter interactive field</a>
             </div>
-            <figure class="field-entry-visual" aria-label="A quiet abstract residue field preview">
-              <span class="entry-residue entry-residue-a"></span>
-              <span class="entry-residue entry-residue-b"></span>
-              <span class="entry-residue entry-residue-c"></span>
-              <span class="entry-grain entry-grain-a"></span>
-              <span class="entry-grain entry-grain-b"></span>
-              <figcaption>movement / stillness / presence</figcaption>
-            </figure>
           </div>
-        </section>
-        <div class="prototype-field" id="interactive-field" data-residue-field>
-          <a class="field-exit" href="works.html" data-field-exit>Exit field</a>
-          <canvas class="residue-canvas" aria-hidden="true"></canvas>
-          <p class="field-caption">Move / pause / stay.</p>
-        </div>
+        </header>
 
-        <section class="field-interface-prototype" aria-labelledby="interface-prototype-title">
-          <p class="eyebrow">Physical Interface Prototype</p>
-          <div class="field-interface-prototype-content">
-            <div class="field-interface-prototype-copy">
-              <h2 id="interface-prototype-title">A handheld point of entry</h2>
-              <p>
-                The M5Stack Cardputer ADV functions as a handheld interface prototype.
-                A name or brief input becomes a small act of entry—not identification or
-                diagnosis, but a way of establishing a personal and physical relationship
-                with the field.
-              </p>
-            </div>
-            <figure class="field-interface-prototype-figure">
-              <button class="installation-image-button" type="button" aria-label="Enlarge interface prototype test">
-                <img
-                  src="assets/three-metamorphoses/interface-prototype-test.jpg?v=20260721-1"
-                  alt="The active M5Stack Cardputer ADV interface prototype held in front of the responsive visual field."
-                  loading="lazy"
-                >
-              </button>
-              <figcaption>Interface prototype test with responsive field, 2026</figcaption>
-            </figure>
+        <section class="tm-section tm-shell" aria-labelledby="inspiration-title">
+          <div class="tm-section-heading">
+            <p class="eyebrow">01</p>
+            <h2 id="inspiration-title">INSPIRATION AND PERSONAL REFLECTION</h2>
+          </div>
+          <div class="tm-copy">
+            <p>
+              Reading Nietzsche alongside personal reflection moved the project away from
+              illustrating three figures. Transformation is approached instead through traces
+              that accumulate, disturbances that alter a condition, and fields that remain
+              unresolved.
+            </p>
           </div>
         </section>
 
-        <section class="installation-proposal" aria-labelledby="installation-proposal-title">
-          <header class="installation-proposal-heading">
-            <p class="eyebrow">Installation Proposal</p>
+        <section class="tm-prototype-section" aria-labelledby="web-prototype-title">
+          <header class="tm-prototype-heading">
             <div>
-              <h2 id="installation-proposal-title">A spatial threshold</h2>
-              <p class="installation-proposal-meta">Concept visualization, 2026</p>
+              <p class="eyebrow">02 / PROTOTYPE A</p>
+              <h2 id="web-prototype-title">RESPONSIVE WEBPAGE PROTOTYPE</h2>
+            </div>
+            <div>
               <p>
-                The installation proposal translates the web-based field into a spatial
-                threshold. Movement, stillness, distance, and bodily presence become
-                forms of input, while layered projections, blurred traces, and residual
-                images respond to the viewer and remain briefly after their departure.
+                A browser-based study of how pointer movement, stillness and duration
+                leave temporary traces.
               </p>
             </div>
           </header>
+          <div class="prototype-field tm-web-prototype" data-residue-field>
+            <canvas class="residue-canvas" aria-hidden="true"></canvas>
+            <p class="field-caption">Move / pause / stay · Responsive webpage prototype</p>
+          </div>
+        </section>
 
-          <div class="installation-gallery">
-            <figure class="installation-figure">
-              <button class="installation-image-button" type="button" aria-label="Enlarge overall installation view">
+        <section class="tm-section tm-shell" aria-labelledby="cardputer-title">
+          <div class="tm-section-heading">
+            <p class="eyebrow">03 / PROTOTYPE B</p>
+            <h2 id="cardputer-title">STANDALONE M5STACK CARDPUTER PROTOTYPE</h2>
+          </div>
+          <div class="tm-device-grid">
+            <div class="tm-copy">
+              <p>
+                The standalone M5Stack Cardputer tests a small handheld interaction through
+                short inputs and returned messages. It was developed separately from the
+                responsive webpage and is not currently connected to it.
+              </p>
+              <p class="tm-separation-note">
+                The screen visible behind the device is part of the test documentation,
+                not a live connection.
+              </p>
+            </div>
+            <figure class="tm-device-figure">
+              <button class="tm-image-button" type="button" aria-label="Enlarge standalone M5Stack Cardputer prototype test">
                 <img
-                  src="assets/three-metamorphoses/installation-proposal/installation-overview.jpg"
-                  alt="Concept visualization showing the full proposed Three Metamorphoses installation."
+                  src="assets/three-metamorphoses/interface-prototype-test.jpg?v=20260721-1"
+                  alt="M5Stack Cardputer ADV held during a standalone device test."
                   loading="lazy"
                 >
               </button>
-              <figcaption>Overall view</figcaption>
-            </figure>
-            <figure class="installation-figure">
-              <button class="installation-image-button" type="button" aria-label="Enlarge proposed threshold view">
-                <img
-                  src="assets/three-metamorphoses/installation-proposal/installation-entry.jpg"
-                  alt="Concept visualization showing a viewer approaching the proposed installation entrance."
-                  loading="lazy"
-                >
-              </button>
-              <figcaption>Proposed threshold</figcaption>
-            </figure>
-            <figure class="installation-figure">
-              <button class="installation-image-button" type="button" aria-label="Enlarge interface detail">
-                <img
-                  src="assets/three-metamorphoses/installation-proposal/interface-detail.jpg"
-                  alt="Concept visualization showing an M5Stack interface within the installation structure."
-                  loading="lazy"
-                >
-              </button>
-              <figcaption>Interface detail</figcaption>
-            </figure>
-            <figure class="installation-figure">
-              <button class="installation-image-button" type="button" aria-label="Enlarge projected field view">
-                <img
-                  src="assets/three-metamorphoses/installation-proposal/projected-field.jpg"
-                  alt="Concept visualization showing layered projected traces inside the proposed installation."
-                  loading="lazy"
-                >
-              </button>
-              <figcaption>Projected field</figcaption>
+              <figcaption>
+                Standalone M5Stack Cardputer prototype test, 2026.
+              </figcaption>
             </figure>
           </div>
         </section>
 
+        <section class="tm-future" aria-labelledby="future-title">
+          <div class="tm-shell">
+            <span class="tm-future-label">PROPOSED INTEGRATION · FUTURE INTERACTION LOGIC</span>
+            <h2 id="future-title">A possible relationship between the two prototypes</h2>
+            <p class="tm-future-copy">
+              Concept visualisations for a possible future spatial integration.
+              The interaction logic and technical connection remain under development.
+            </p>
+
+            <div class="tm-future-gallery">
+              <figure class="tm-future-figure">
+                <button class="tm-image-button" type="button" aria-label="Enlarge future integration overview">
+                  <img
+                    src="assets/three-metamorphoses/installation-proposal/installation-overview.jpg"
+                    alt="Concept visualisation of a possible future spatial integration."
+                    loading="lazy"
+                  >
+                </button>
+                <figcaption>Possible spatial overview.</figcaption>
+              </figure>
+
+              <figure class="tm-future-figure">
+                <button class="tm-image-button" type="button" aria-label="Enlarge future threshold proposal">
+                  <img
+                    src="assets/three-metamorphoses/installation-proposal/installation-entry.jpg"
+                    alt="Concept visualisation of a possible future interaction threshold."
+                    loading="lazy"
+                  >
+                </button>
+                <figcaption>Possible interaction threshold.</figcaption>
+              </figure>
+
+              <figure class="tm-future-figure">
+                <button class="tm-image-button" type="button" aria-label="Enlarge future device integration detail">
+                  <img
+                    src="assets/three-metamorphoses/installation-proposal/interface-detail.jpg"
+                    alt="Concept visualisation of a possible future Cardputer integration."
+                    loading="lazy"
+                  >
+                </button>
+                <figcaption>Possible device integration.</figcaption>
+              </figure>
+
+              <figure class="tm-future-figure">
+                <button class="tm-image-button" type="button" aria-label="Enlarge future projected field proposal">
+                  <img
+                    src="assets/three-metamorphoses/installation-proposal/projected-field.jpg"
+                    alt="Concept visualisation of a possible future projected field."
+                    loading="lazy"
+                  >
+                </button>
+                <figcaption>Possible projected field.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="tm-section tm-shell tm-current-status" aria-labelledby="status-title">
+          <div class="tm-section-heading">
+            <p class="eyebrow">04</p>
+            <h2 id="status-title">CURRENT STATUS</h2>
+          </div>
+          <p class="tm-status-text">
+            Two separate technical prototypes are currently being tested. Their future
+            integration remains under development.
+          </p>
+        </section>
+
         <nav class="project-footer-nav field-footer-nav" aria-label="Related projects">
-          <a href="works.html"><span>Project index</span><strong>← All Works</strong></a>
-          <a href="projects/beijing-order-longlin-binding.html"><span>Related structure / 01</span><strong>Three States of Order →</strong></a>
+          <a href="projects/beijing-order-longlin-binding.html"><span>Previous project / 01</span><strong>← Beijing Orders</strong></a>
+          <a href="projects/invalidated-tickets.html"><span>Next project / 03</span><strong>The Bureau of Invalidated Tickets →</strong></a>
         </nav>
 
         <dialog class="installation-lightbox" data-installation-lightbox aria-label="Project image viewer">
@@ -154,9 +603,9 @@
             <figcaption data-installation-lightbox-caption></figcaption>
           </figure>
         </dialog>
-
-      </section>
+      </article>
     </main>
+
     <script src="field-residue.js"></script>
     <script>
       const installationLightbox = document.querySelector("[data-installation-lightbox]");
@@ -164,7 +613,7 @@
       const installationLightboxCaption = installationLightbox.querySelector("[data-installation-lightbox-caption]");
       const installationLightboxClose = installationLightbox.querySelector("[data-installation-lightbox-close]");
 
-      document.querySelectorAll(".installation-image-button").forEach((button) => {
+      document.querySelectorAll(".tm-image-button").forEach((button) => {
         button.addEventListener("click", () => {
           const image = button.querySelector("img");
           const caption = button.closest("figure").querySelector("figcaption");

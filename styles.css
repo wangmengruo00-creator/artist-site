@@ -3029,16 +3029,180 @@ body.landing-page {
   margin-left: min(20vw, 220px);
 }
 
+.order-text-body {
+  width: min(calc(100% - min(20vw, 220px)), 680px);
+  margin-left: min(20vw, 220px);
+}
+
+.order-text-body p {
+  margin: 0 0 22px;
+  color: #44433f;
+  font-size: 16px;
+  line-height: 1.78;
+}
+
+.order-sketchbook-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.8vw, 22px);
+  width: min(calc(100% - min(20vw, 220px)), 900px);
+  margin: clamp(30px, 5vw, 58px) 0 0 min(20vw, 220px);
+}
+
+.order-sketchbook-grid figure {
+  margin: 0;
+}
+
+.order-sketchbook-zoom {
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  cursor: zoom-in;
+}
+
+.order-sketchbook-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 180ms ease, transform 240ms ease;
+}
+
+.order-sketchbook-zoom:hover img {
+  opacity: 0.88;
+  transform: scale(1.012);
+}
+
+.order-sketchbook-zoom:focus-visible {
+  outline: 1px solid var(--text);
+  outline-offset: 4px;
+}
+
+.order-sketchbook-grid figcaption {
+  max-width: 34em;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.order-sketchbook-lightbox {
+  width: min(92vw, 1380px);
+  max-width: none;
+  max-height: 92vh;
+  margin: auto;
+  padding: 0;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+}
+
+.order-sketchbook-lightbox::backdrop {
+  background: rgba(24, 23, 21, 0.88);
+  backdrop-filter: blur(4px);
+}
+
+.order-sketchbook-lightbox figure {
+  display: grid;
+  place-items: center;
+  margin: 0;
+}
+
+.order-sketchbook-lightbox img {
+  display: block;
+  width: auto;
+  max-width: 92vw;
+  height: auto;
+  max-height: 84vh;
+  object-fit: contain;
+  box-shadow: 0 18px 70px rgba(0, 0, 0, 0.3);
+}
+
+.order-sketchbook-lightbox figcaption {
+  justify-self: start;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.order-lightbox-close {
+  position: absolute;
+  z-index: 1;
+  top: -42px;
+  right: 0;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  color: #fff;
+  font: 300 28px/1 sans-serif;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.order-lightbox-close:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 3px;
+}
+
+.order-binding-grid,
+.order-material-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2.8vw, 34px);
+  width: min(calc(100% - min(20vw, 220px)), 980px);
+  margin: clamp(30px, 5vw, 58px) 0 0 min(20vw, 220px);
+}
+
+.order-binding-grid figure,
+.order-material-grid figure {
+  margin: 0;
+}
+
+.order-binding-grid img,
+.order-material-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.order-binding-grid figcaption,
+.order-material-grid figcaption {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.order-material-main {
+  grid-column: 1 / -1;
+}
+
+.order-current-inquiry {
+  padding-bottom: clamp(18px, 3vw, 40px);
+}
+
 @media (max-width: 760px) {
   .order-overview-image,
   .order-volume-list,
-  .order-note-copy {
+  .order-note-copy,
+  .order-text-body,
+  .order-sketchbook-grid,
+  .order-binding-grid,
+  .order-material-grid {
     width: 100%;
     margin-left: 0;
   }
 
   .order-volume {
     grid-template-columns: 1fr;
+  }
+
+  .order-sketchbook-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .order-volume-details,
@@ -3048,6 +3212,16 @@ body.landing-page {
 }
 
 @media (max-width: 520px) {
+  .order-sketchbook-grid,
+  .order-binding-grid,
+  .order-material-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-material-main {
+    grid-column: auto;
+  }
+
   .order-volume-details,
   .order-volume-details.single-detail {
     grid-template-columns: 1fr;
@@ -3529,5 +3703,414 @@ body.landing-page {
   .works-index-page .current-work-row > .work-thumb-pair {
     width: 100%;
     max-width: 280px;
+  }
+}
+
+/* The Bureau of Invalidated Tickets */
+.tickets-project {
+  --tickets-offset: min(20vw, 220px);
+}
+
+.tickets-heading {
+  max-width: 980px;
+  margin-bottom: clamp(42px, 7vw, 88px);
+}
+
+.tickets-heading h1 {
+  max-width: 920px;
+  margin-bottom: 18px;
+  font-family: Inter, Helvetica, Arial, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: clamp(38px, 5.7vw, 72px);
+  font-weight: 300;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+}
+
+.tickets-title-cn {
+  margin: 0 0 28px;
+  color: #383632;
+  font-size: clamp(20px, 2.3vw, 29px);
+  font-weight: 350;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+}
+
+.tickets-project-meta,
+.tickets-project-summary {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.tickets-project-summary {
+  margin-top: 6px;
+}
+
+.tickets-video-frame {
+  position: relative;
+  overflow: hidden;
+  background: #ddd8cc;
+}
+
+.tickets-film video {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #ddd8cc;
+}
+
+.tickets-video-subtitle {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(18px, 4vw, 48px);
+  z-index: 2;
+  width: min(82%, 860px);
+  transform: translateX(-50%);
+  padding: clamp(12px, 2vw, 20px) clamp(18px, 3vw, 34px);
+  border-radius: 16px;
+  background: rgba(17, 16, 14, 0.72);
+  color: #f7f4ec;
+  font-size: clamp(13px, 1.55vw, 22px);
+  font-weight: 360;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  text-align: center;
+  white-space: pre-line;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.tickets-video-subtitle.is-visible {
+  opacity: 1;
+}
+
+.works-index-page .current-work-row > .ticket-work-thumb {
+  object-fit: cover;
+}
+
+.tickets-film figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.tickets-intro,
+.tickets-section {
+  display: grid;
+  grid-template-columns: minmax(150px, 220px) minmax(0, 680px);
+  gap: clamp(24px, 5vw, 72px);
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.tickets-intro {
+  margin-bottom: clamp(72px, 10vw, 136px);
+}
+
+.tickets-intro .eyebrow,
+.tickets-section-heading .eyebrow {
+  margin-bottom: 9px;
+}
+
+.tickets-intro h2,
+.tickets-section-heading h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 420;
+  letter-spacing: 0.035em;
+  line-height: 1.45;
+}
+
+.tickets-intro-copy p,
+.tickets-section-copy p {
+  margin: 0 0 20px;
+  color: #4b4944;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.tickets-intro-copy .tickets-lede {
+  color: var(--text);
+  font-family: var(--display);
+  font-size: clamp(24px, 2.8vw, 36px);
+  line-height: 1.34;
+  letter-spacing: -0.012em;
+}
+
+.tickets-metadata {
+  display: grid;
+  margin: 34px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.tickets-metadata > div {
+  display: grid;
+  grid-template-columns: minmax(92px, 130px) minmax(0, 1fr);
+  gap: 18px;
+  padding: 10px 0 11px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.tickets-metadata dt {
+  color: #34322f;
+}
+
+.tickets-metadata dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.tickets-section {
+  margin-bottom: clamp(72px, 10vw, 136px);
+}
+
+.tickets-film,
+.tickets-method-list {
+  grid-column: 2;
+}
+
+.tickets-film {
+  width: min(100%, 880px);
+  margin: clamp(18px, 3vw, 34px) 0 0;
+}
+
+.tickets-film video {
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #151412;
+}
+
+.tickets-method-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(24px, 4vw, 52px);
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.tickets-method-list li {
+  padding: 16px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tickets-method-list span {
+  display: block;
+  margin-bottom: 6px;
+  color: #6d2a20;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tickets-method-list p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.tickets-current-inquiry {
+  margin-bottom: clamp(54px, 8vw, 104px);
+}
+
+@media (max-width: 760px) {
+  .tickets-intro,
+  .tickets-section {
+    grid-template-columns: 1fr;
+  }
+
+  .tickets-film,
+  .tickets-method-list {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .tickets-heading h1 {
+    font-size: clamp(34px, 11vw, 48px);
+  }
+
+  .tickets-method-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Invalidated Tickets: research-page upgrade */
+.tickets-project {
+  --tickets-paper: #f5f1e8;
+  --tickets-rule: #d8d0c2;
+  --tickets-red: #8b3328;
+  --tickets-blue: #263f5e;
+}
+
+.tickets-hero {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.82fr) minmax(360px, 1.18fr);
+  gap: clamp(28px, 5vw, 74px);
+  align-items: end;
+  margin-bottom: clamp(64px, 9vw, 128px);
+}
+
+.tickets-hero-copy h1 {
+  max-width: 860px;
+  margin: 0 0 18px;
+  font-family: Inter, Helvetica, Arial, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: clamp(34px, 4.7vw, 62px);
+  font-weight: 340;
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+}
+
+.tickets-hero-statement {
+  margin: clamp(34px, 5vw, 62px) 0 0;
+  color: #2f2c28;
+  font-family: var(--display);
+  font-size: clamp(24px, 2.8vw, 38px);
+  line-height: 1.34;
+  letter-spacing: -0.012em;
+}
+
+.tickets-hero-figure {
+  margin: 0;
+}
+
+.tickets-hero-figure img,
+.tickets-system-card img,
+.tickets-figure-grid img,
+.tickets-observation-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #ded8cd;
+}
+
+.tickets-hero-figure img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.tickets-hero-figure figcaption,
+.tickets-system-card figcaption,
+.tickets-figure-grid figcaption,
+.tickets-observation-grid figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.tickets-film-notes {
+  display: grid;
+  gap: 8px;
+  margin: 26px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--tickets-rule);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.tickets-dual-system,
+.tickets-figure-grid,
+.tickets-observation-grid {
+  grid-column: 2;
+  display: grid;
+  gap: clamp(18px, 3vw, 32px);
+  margin-top: clamp(18px, 3vw, 34px);
+}
+
+.tickets-dual-system,
+.tickets-figure-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.tickets-observation-grid {
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: start;
+}
+
+.tickets-system-card,
+.tickets-figure-grid figure,
+.tickets-observation-grid figure {
+  margin: 0;
+}
+
+.tickets-system-card {
+  padding-top: 16px;
+  border-top: 1px solid var(--tickets-rule);
+}
+
+.tickets-system-card img {
+  aspect-ratio: 1 / 1.02;
+  object-fit: cover;
+}
+
+.tickets-system-card figcaption strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #2f2c28;
+  font-size: 12px;
+  font-weight: 520;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tickets-system-card figcaption span {
+  display: block;
+}
+
+.tickets-figure-grid img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.tickets-observation-grid img {
+  border: 1px solid rgba(216, 208, 194, 0.75);
+}
+
+.tickets-current-inquiry {
+  padding: clamp(28px, 4vw, 44px) 0 0;
+}
+
+.tickets-current-inquiry .tickets-section-copy {
+  max-width: 720px;
+}
+
+.tickets-current-inquiry .tickets-section-copy p {
+  color: #312e2a;
+  font-family: var(--display);
+  font-size: clamp(22px, 2.3vw, 31px);
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .tickets-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .tickets-dual-system,
+  .tickets-figure-grid,
+  .tickets-observation-grid {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .tickets-dual-system,
+  .tickets-figure-grid,
+  .tickets-observation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tickets-hero-copy h1 {
+    font-size: clamp(34px, 10vw, 48px);
   }
 }
