@@ -2,6 +2,8 @@
   const field = document.querySelector("[data-residue-field]");
   const canvas = field?.querySelector(".residue-canvas");
   const exitLink = field?.querySelector("[data-field-exit]");
+  const cameraToggle = field?.querySelector("[data-camera-toggle]");
+  const globalField = field?.hasAttribute("data-tm-global-field") || false;
 
   if (!field || !canvas) return;
 
@@ -24,6 +26,7 @@
   let lastPoint = null;
   let lastMoveAt = performance.now();
   let hideUiTimer = 0;
+  let pagePhase = document.body?.dataset.tmPhase || "origin";
 
   const breath = {
     inhale: 0,
@@ -119,10 +122,39 @@
     window.location.href = exitLink?.getAttribute("href") || "works.html";
   };
 
+  const updateCameraToggle = (label, active = false, disabled = false) => {
+    if (!cameraToggle) return;
+    cameraToggle.textContent = label;
+    cameraToggle.setAttribute("aria-pressed", String(active));
+    cameraToggle.disabled = disabled;
+  };
+
+  const stopCameraPresence = () => {
+    const stream = cameraPresence.video?.srcObject;
+    if (stream?.getTracks) stream.getTracks().forEach((track) => track.stop());
+    if (cameraPresence.video) cameraPresence.video.srcObject = null;
+    cameraPresence.active = false;
+    cameraPresence.motion = 0;
+    cameraPresence.brightnessShift = 0;
+    cameraPresence.presence = 0;
+    cameraPresence.rupture = 0;
+    cameraPresence.shock = 0;
+    cameraPresence.previousFrame = null;
+    cameraPresence.video = null;
+    cameraPresence.canvas = null;
+    cameraPresence.context = null;
+    updateCameraToggle("Camera: off");
+  };
+
   const initCameraPresence = async () => {
-    if (!navigator.mediaDevices?.getUserMedia) return;
+    if (!navigator.mediaDevices?.getUserMedia) {
+      updateCameraToggle("Camera: unavailable", false, true);
+      return;
+    }
 
     cameraPresence.available = true;
+    cameraPresence.denied = false;
+    updateCameraToggle("Camera: asking", false, true);
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -149,9 +181,11 @@
       cameraPresence.video = video;
       cameraPresence.canvas = sampleCanvas;
       cameraPresence.context = sampleCanvas.getContext("2d", { willReadFrequently: true });
+      updateCameraToggle("Camera: on", true);
     } catch {
       cameraPresence.active = false;
       cameraPresence.denied = true;
+      updateCameraToggle("Camera: blocked");
     }
   };
 
@@ -264,7 +298,9 @@
     }
   };
 
-  field.addEventListener("pointerenter", (event) => {
+  const pointerTarget = globalField ? document.documentElement : field;
+
+  pointerTarget.addEventListener("pointerenter", (event) => {
     inside = true;
     field.classList.add("is-active");
     showFieldExit();
@@ -272,25 +308,28 @@
     lastMoveAt = lastPoint.t;
   });
 
-  field.addEventListener("pointerleave", () => {
+  pointerTarget.addEventListener("pointerleave", () => {
     inside = false;
     field.classList.remove("is-active");
     pointerDown = false;
     lastPoint = null;
   });
 
-  field.addEventListener("pointerdown", (event) => {
+  pointerTarget.addEventListener("pointerdown", (event) => {
     pointerDown = true;
     lastPoint = pointFromEvent(event);
     lastMoveAt = lastPoint.t;
     showFieldExit();
   });
 
-  field.addEventListener("pointerup", () => {
+  pointerTarget.addEventListener("pointerup", () => {
     pointerDown = false;
   });
 
-  field.addEventListener("pointermove", (event) => {
+  pointerTarget.addEventListener("pointermove", (event) => {
+    if (globalField) {
+      inside = true;
+    }
     const point = pointFromEvent(event);
     if (
       point.x < 94 ||
@@ -316,6 +355,10 @@
     exitLink.addEventListener("pointerenter", showFieldExit);
     exitLink.addEventListener("focus", showFieldExit);
   }
+
+  window.addEventListener("tm:phase", (event) => {
+    pagePhase = event.detail?.phase || "origin";
+  });
 
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") exitField(event);
@@ -346,26 +389,31 @@
     const cameraSignal = cameraPresence.presence;
     const rupture = cameraPresence.rupture;
     const shock = cameraPresence.shock;
+    const phaseWeight = pagePhase === "carry" || pagePhase === "accumulate" ? 0.5 : 0;
+    const phaseRupture = pagePhase === "interrupt" ? 0.38 : 0;
+    const phaseEmergence = pagePhase === "emerge" || pagePhase === "open" ? 0.34 : 0;
     const pulse = Math.sin(breath.rhythm + residue.pulse) * 0.5 + 0.5;
     const slowPulse = Math.sin(breath.rhythm * 0.37 + residue.pulse * 1.7) * 0.5 + 0.5;
     const softPulse = 0.64 + pulse * 0.2 + slowPulse * idle * 0.1;
     const oldMemory = life > 0.18 ? life : 0;
     const cameraAwakening = cameraSignal * oldMemory;
-    const lionForce = rupture * oldMemory;
+    const lionForce = clamp(rupture * oldMemory + phaseRupture * oldMemory);
     const distanceFromPointer = lastPoint ? Math.hypot(residue.x - lastPoint.x, residue.y - lastPoint.y) : Infinity;
     const localPresence = Number.isFinite(distanceFromPointer) ? clamp(1 - distanceFromPointer / 170) : 0;
     const localStillness = inside ? localPresence * (hold * 0.65 + idle * 0.25) : 0;
-    residue.weight = clamp((residue.weight || 0) + localStillness * 0.0022 + oldMemory * 0.00012 - exhale * 0.00035);
+    residue.weight = clamp((residue.weight || 0) + localStillness * 0.0022 + oldMemory * (0.00012 + phaseWeight * 0.0007) - exhale * 0.00035);
     residue.rupture = clamp((residue.rupture || 0) * 0.965 + lionForce * 0.032 + shock * lionForce * 0.018);
-    residue.emergence = clamp((residue.emergence || 0) * 0.985 + (idle > 0.45 && oldMemory > 0.38 ? idle * oldMemory * (1 - residue.weight) * 0.0018 : 0) - residue.rupture * 0.0015);
+    residue.emergence = clamp((residue.emergence || 0) * 0.985 + (idle > 0.45 && oldMemory > 0.38 ? idle * oldMemory * (1 - residue.weight) * 0.0018 : 0) + phaseEmergence * oldMemory * 0.0009 - residue.rupture * 0.0015);
     const materialAge = clamp(life + residue.weight * 0.18 + residue.rupture * 0.08 + residue.emergence * 0.04);
     const residueTone = Math.round(218 - materialAge * 34);
+    const visibilityBoost = globalField ? 2.35 : 1;
     const alpha = clamp(
       residue.opacity *
         (1 - life * 0.72) *
-        (0.48 + inhale * 0.34 + hold * 0.2 + idle * 0.08 + residue.weight * 0.12 + residue.emergence * 0.05 + softPulse * 0.12),
+        (0.48 + inhale * 0.34 + hold * 0.2 + idle * 0.08 + residue.weight * 0.12 + residue.emergence * 0.05 + softPulse * 0.12) *
+        visibilityBoost,
       0,
-      0.052,
+      globalField ? 0.12 : 0.052,
     );
 
     const diffusion = residue.spread * (1 + materialAge * 8.5 + exhale * 3.2 + hold * 1.2 + idle * 0.8 + residue.rupture * 0.8 + residue.emergence * 0.55 + cameraAwakening * 0.34 + lionForce * 1.1);
@@ -501,13 +549,15 @@
 
     const backgroundPulse = Math.sin(breath.rhythm * 0.42) * 0.5 + 0.5;
     const lionPulse = cameraPresence.rupture * (0.6 + cameraPresence.shock * 0.8);
+    const phaseFade = pagePhase === "accumulate" || pagePhase === "carry" ? -0.0012 : pagePhase === "interrupt" ? 0.0014 : 0;
     const fade = clamp(
       0.008 +
         breath.exhale * 0.0032 -
         breath.hold * 0.0015 -
         breath.idle * 0.001 -
         cameraPresence.presence * (0.00055 + backgroundPulse * 0.00045) -
-        lionPulse * 0.0012,
+        lionPulse * 0.0012 +
+        phaseFade,
       0.0064,
       0.013,
     );
@@ -542,8 +592,47 @@
   }
 
   resize();
+  if (globalField) {
+    const seededAt = performance.now();
+    for (let i = 0; i < 86; i += 1) {
+      const angle = random(-Math.PI, Math.PI);
+      const length = random(7, 34);
+      const x = random(width * 0.1, width * 0.9);
+      const y = random(height * 0.18, height * 0.82);
+      addResidue({
+        x,
+        y,
+        px: x - Math.cos(angle) * length,
+        py: y - Math.sin(angle) * length,
+        vx: random(-0.003, 0.003),
+        vy: random(-0.003, 0.003),
+        angle,
+        opacity: random(0.018, 0.045),
+        decay: random(0.000035, 0.0001),
+        size: random(0.55, 1.35),
+        spread: random(1.2, 4.8),
+        density: random(0.32, 0.88),
+        directionNoise: random(0.28, 0.8),
+        weight: random(0.04, 0.18),
+        rupture: 0,
+        emergence: 0,
+        pulse: random(0, Math.PI * 2),
+        born: seededAt - random(0, 6200),
+      });
+    }
+  }
   showFieldExit();
-  initCameraPresence();
+  if (cameraToggle) {
+    updateCameraToggle("Camera: off");
+    cameraToggle.addEventListener("click", () => {
+      if (cameraPresence.active) stopCameraPresence();
+      else initCameraPresence();
+    });
+  } else {
+    // Preserve existing embedded-field behaviour on pages without the opt-in control.
+    initCameraPresence();
+  }
+  window.addEventListener("pagehide", stopCameraPresence);
   window.addEventListener("resize", resize);
   requestAnimationFrame(draw);
 })();
