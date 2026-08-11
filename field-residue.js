@@ -12,9 +12,9 @@
   const cameraDebug = document.createElement("span");
   const debugEnabled = new URLSearchParams(window.location.search).get("debug") === "true";
   const textResidues = {
-    weight: ["沉", "weight"],
-    rupture: ["断", "refuse"],
-    emergence: ["生", "again"],
+    weight: ["depth", "weight"],
+    rupture: ["break", "refuse"],
+    emergence: ["begin", "again"],
   };
 
   let width = 0;

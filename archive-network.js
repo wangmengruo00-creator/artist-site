@@ -298,7 +298,7 @@
               <div><dt>Date</dt><dd>${escapeHtml(item.date)}</dd></div>
               <div><dt>Place</dt><dd>${escapeHtml(item.place)}</dd></div>
               <div><dt>Former operation</dt><dd>${escapeHtml(item.function)}</dd></div>
-              ${item.sourceFile ? `<div><dt>Scan source</dt><dd>${escapeHtml(item.sourceFile)} · page ${escapeHtml(item.sourcePage)}</dd></div>` : ""}
+              ${item.sourceFile ? `<div><dt>Source record</dt><dd>Corpus scan · page ${escapeHtml(item.sourcePage)}</dd></div>` : ""}
             </dl>
             <p class="archive-reading-caution">Known information remains separate from later interpretation. Date, provenance, and circulation stay unresolved unless documented.</p>
           </div>`,

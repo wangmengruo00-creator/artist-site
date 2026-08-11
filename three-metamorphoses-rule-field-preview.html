@@ -509,6 +509,198 @@
       .logic-row strong { font-family: var(--serif); font-size: clamp(18px, 1.9vw, 26px); font-weight: 400; }
       .logic-row p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
 
+      .research-summary {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: clamp(48px, 7vh, 76px);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .research-summary article {
+        min-height: 142px;
+        padding: 17px 24px 21px 0;
+      }
+
+      .research-summary article:nth-child(even) {
+        padding-left: 24px;
+        border-left: 1px solid var(--line);
+      }
+
+      .research-summary article:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .research-summary small,
+      .live-force small,
+      .agency-grid small,
+      .field-experiment small {
+        color: var(--faint);
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.09em;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      .research-summary strong {
+        display: block;
+        margin-top: 25px;
+        font-family: var(--serif);
+        font-size: clamp(19px, 1.8vw, 25px);
+        font-weight: 400;
+        line-height: 1.22;
+      }
+
+      .research-summary p,
+      .agency-grid p {
+        margin: 9px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.6;
+      }
+
+      .live-analysis {
+        display: grid;
+        grid-template-columns: minmax(170px, 0.38fr) 1fr;
+        gap: clamp(28px, 5vw, 68px);
+        margin-top: 13px;
+        padding: 24px 0 27px;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .live-analysis-intro p {
+        max-width: 250px;
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.62;
+      }
+
+      .live-analysis-status {
+        display: block;
+        margin-top: 24px;
+        color: rgba(235, 234, 227, 0.72);
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+
+      .live-forces { display: grid; gap: 16px; }
+      .live-force {
+        display: grid;
+        grid-template-columns: 84px 1fr;
+        gap: 13px;
+        align-items: center;
+      }
+
+      .live-force-track {
+        height: 2px;
+        overflow: hidden;
+        background: rgba(235, 234, 227, 0.13);
+      }
+
+      .live-force-track i {
+        display: block;
+        width: var(--force-value, 0%);
+        height: 100%;
+        background: rgba(235, 234, 227, 0.72);
+        transition: width 240ms ease;
+      }
+
+      .system-map {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: 13px;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .system-map article {
+        position: relative;
+        min-height: 184px;
+        padding: 17px 20px 20px 0;
+      }
+
+      .system-map article + article {
+        padding-left: 20px;
+        border-left: 1px solid var(--line);
+      }
+
+      .system-map article + article::before {
+        position: absolute;
+        top: 50%;
+        left: -6px;
+        width: 11px;
+        color: var(--faint);
+        background: var(--panel);
+        content: "→";
+        font-family: var(--mono);
+        font-size: 10px;
+        text-align: center;
+      }
+
+      .system-map small { color: var(--faint); font-family: var(--mono); font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase; }
+      .system-map strong { display: block; margin-top: 34px; font-family: var(--serif); font-size: clamp(19px, 1.75vw, 24px); font-weight: 400; }
+      .system-map p { margin: 11px 0 0; color: var(--muted); font-family: var(--mono); font-size: 9px; line-height: 1.68; text-transform: uppercase; }
+
+      .field-experiments {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        margin-top: 13px;
+        background: var(--line);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .field-experiment {
+        min-height: 170px;
+        padding: 17px 18px 20px;
+        color: inherit;
+        background: var(--panel);
+        border: 0;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .field-experiment strong { display: block; margin-top: 28px; font-family: var(--serif); font-size: 20px; font-weight: 400; }
+      .field-experiment span { display: block; margin-top: 9px; color: var(--muted); font-size: 11px; line-height: 1.55; }
+      .field-experiment:hover,
+      .field-experiment:focus-visible { background: rgba(235, 234, 227, 0.055); outline: 1px solid rgba(235, 234, 227, 0.72); outline-offset: -2px; }
+
+      .agency-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 13px;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .agency-grid article { min-height: 126px; padding: 16px 22px 19px 0; }
+      .agency-grid article:nth-child(even) { padding-left: 22px; border-left: 1px solid var(--line); }
+      .agency-grid article:nth-child(n+3) { border-top: 1px solid var(--line); }
+
+      .technical-note {
+        margin-top: 18px;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .technical-note summary {
+        min-height: 44px;
+        padding: 14px 0;
+        color: var(--faint);
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        line-height: 1.6;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .technical-note[open] { padding-bottom: 18px; }
+      .technical-note .system-chain { margin-top: 0; }
+
       .rule-evidence-table {
         margin-top: 13px;
         border-top: 1px solid var(--line);
@@ -854,6 +1046,12 @@
         .primitive-strip span:nth-child(4) { border-left: 0; }
         .primitive-strip span:nth-child(n+4) { border-top: 1px solid var(--line); }
         .prototype-lines { grid-template-columns: 1fr; }
+        .system-map { grid-template-columns: repeat(2, 1fr); }
+        .system-map article:nth-child(3) { padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
+        .system-map article:nth-child(3)::before { display: none; }
+        .system-map article:nth-child(4) { border-top: 1px solid var(--line); }
+        .field-experiments { grid-template-columns: 1fr; }
+        .field-experiment { min-height: 0; }
         .status-note { padding-left: 0; }
         .m5-step { grid-template-columns: 32px 1fr; }
         .m5-step p { grid-column: 2; }
@@ -872,6 +1070,21 @@
         .rule-evidence-row { grid-template-columns: 70px 1fr; }
         .rule-evidence-row > :last-child { grid-column: 2; }
         .rule-evidence-head > :last-child { display: none; }
+        .research-summary,
+        .agency-grid { grid-template-columns: 1fr; }
+        .research-summary article,
+        .research-summary article:nth-child(even),
+        .agency-grid article,
+        .agency-grid article:nth-child(even) { padding-left: 0; border-left: 0; }
+        .research-summary article + article,
+        .agency-grid article + article { border-top: 1px solid var(--line); }
+        .live-analysis { grid-template-columns: 1fr; }
+        .live-force { grid-template-columns: 72px 1fr; }
+        .system-map { grid-template-columns: 1fr; }
+        .system-map article,
+        .system-map article + article { min-height: 0; padding: 17px 0 20px; border-top: 1px solid var(--line); border-left: 0; }
+        .system-map article:first-child { border-top: 0; }
+        .system-map article + article::before { display: none; }
         .system-chain div { grid-template-columns: 26px 1fr; }
         .system-chain span { grid-column: 2; }
         .proposal-label { grid-template-columns: 1fr; gap: 4px; }
@@ -908,7 +1121,7 @@
         </nav>
 
         <div class="field-title">
-          <h1>The Three<br>Metamorphoses <span>/ 精神三变</span></h1>
+          <h1>The Three<br>Metamorphoses</h1>
           <p>The field changes with movement, stillness, repetition and presence.</p>
           <div class="field-cue"><span>move</span><strong>leave a trace</strong><span>press + draw</span><strong>extend the path</strong><span>pause</span><strong>let residue gather</strong></div>
         </div>
@@ -921,6 +1134,7 @@
           <small>Research console</small>
           <nav class="console-tabs" aria-label="Research sections" role="tablist">
             <button id="tab-process" type="button" role="tab" aria-controls="panel-process" aria-selected="false" tabindex="-1" data-console-tab="process">Process</button>
+            <button id="tab-system" type="button" role="tab" aria-controls="panel-system" aria-selected="false" tabindex="-1" data-console-tab="system">System</button>
             <button id="tab-m5stack" type="button" role="tab" aria-controls="panel-m5stack" aria-selected="false" tabindex="-1" data-console-tab="m5stack">M5Stack</button>
             <button id="tab-exhibition" type="button" role="tab" aria-controls="panel-exhibition" aria-selected="false" tabindex="-1" data-console-tab="exhibition">Exhibition</button>
           </nav>
@@ -928,16 +1142,84 @@
         </header>
 
         <div class="console-scroll" data-console-scroll>
+          <section id="panel-system" class="console-section" role="tabpanel" aria-labelledby="tab-system" data-console-section="system" hidden>
+            <p class="section-kicker">02 / System and research boundary</p>
+            <h2>A field where carrying, resisting and beginning again remain unfinished.</h2>
+
+            <div class="research-summary" aria-label="Research summary">
+              <article><small>Question</small><strong>How might subtle change become perceptible without being represented, named or diagnosed?</strong></article>
+              <article><small>Contribution</small><strong>A philosophical reading translated into an open responsive field, not a symbolic illustration or a model of the viewer.</strong></article>
+              <article><small>Working now</small><p>Directional trace, persistent residue and opt-in coarse camera sensing operate in the browser. The M5Stack remains a separate working prototype.</p></article>
+              <article><small>Next inquiry</small><p>Observe 6–8 unguided encounters, compare differences and ambiguities in participants’ descriptions, then revise the rule mapping before spatial expansion.</p></article>
+            </div>
+
+            <div class="logic-block" aria-label="Live trace relation">
+              <span class="logic-heading">Live trace relation / descriptive, never diagnostic</span>
+              <div class="live-analysis">
+                <div class="live-analysis-intro">
+                  <small>Trace tendency / not a personal state</small>
+                  <p>Return to the field, press and draw. The changing relation below describes only how the current rule set reads that path.</p>
+                  <span class="live-analysis-status" data-trace-status>No trace measured</span>
+                </div>
+                <div class="live-forces" aria-label="Current trace forces">
+                  <div class="live-force" data-live-force="weight"><small>Weight</small><span class="live-force-track"><i></i></span></div>
+                  <div class="live-force" data-live-force="friction"><small>Friction</small><span class="live-force-track"><i></i></span></div>
+                  <div class="live-force" data-live-force="play"><small>Play</small><span class="live-force-track"><i></i></span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="logic-block" aria-label="System map">
+              <span class="logic-heading">System map / encounter → measurement → force → field</span>
+              <div class="system-map">
+                <article><small>01 / Encounter</small><strong>Pointer or camera</strong><p>Intentional path / coarse frame change</p></article>
+                <article><small>02 / Features</small><strong>Movement qualities</strong><p>Speed / duration / repetition / direction / unvisited area / stillness</p></article>
+                <article><small>03 / Relations</small><strong>Two linked layers</strong><p>Trace: weight / friction / play · field: pressure / rupture / emergence</p></article>
+                <article><small>04 / Consequence</small><strong>Perceptual field</strong><p>Density / interruption / opening / afterimage / decay</p></article>
+              </div>
+            </div>
+
+            <div class="logic-block" aria-label="Field experiments">
+              <span class="logic-heading">Three optional ways of entering the field</span>
+              <div class="field-experiments">
+                <button class="field-experiment" type="button" data-field-experiment="repeat"><small>01 / Accumulate</small><strong>Return to a familiar path</strong><span>Move slowly through an area where a trace already remains.</span></button>
+                <button class="field-experiment" type="button" data-field-experiment="turn"><small>02 / Interrupt</small><strong>Change direction without warning</strong><span>Let a continuous path turn against its previous movement.</span></button>
+                <button class="field-experiment" type="button" data-field-experiment="open"><small>03 / Explore</small><strong>Enter where no trace remains</strong><span>Move into an area the field has not yet remembered.</span></button>
+              </div>
+            </div>
+
+            <div class="logic-block" aria-label="Human and system agency">
+              <span class="logic-heading">Agency and boundary</span>
+              <div class="agency-grid">
+                <article><small>The visitor chooses</small><p>Whether to move, wait, repeat, draw, enable the camera or leave.</p></article>
+                <article><small>The system measures</small><p>Limited behavioural features and temporary low-resolution frame differences.</p></article>
+                <article><small>The system changes</small><p>Visual density, continuity, instability, diffusion and persistence.</p></article>
+                <article><small>The system cannot know</small><p>Identity, intention, emotion, belief or a person’s “true” metamorphosis.</p></article>
+              </div>
+            </div>
+
+            <div class="narrative-block">
+              <small>Limits / open questions</small>
+              <div>
+                <p>Repetition is inferred from spatial overlap with earlier traces, while novelty means entering cells not yet visited in this session. These are operational definitions, not psychological facts. Screen size, pointer hardware, ambient light and familiarity with drawing interfaces can all change the result.</p>
+                <p>The camera reads only 48 × 36 luminance differences. Movement and brightness can be confounded, access is uneven across devices, and opting out must remain a complete version of the work. Nietzsche’s sequence is culturally and historically situated; this project’s coexistence model is an artistic reinterpretation rather than a universal account of transformation.</p>
+                <p>Sound is intentionally absent from the current prototype: it might make duration and accumulation more bodily, but it could also overstate a field designed to remain quiet and unresolved. A later comparison should test sparse sonic feedback as a temporal layer rather than assume that another medium automatically deepens the work.</p>
+              </div>
+            </div>
+
+            <p class="status-note">The computation is exposed so that it can be questioned. The person remains unresolved.</p>
+          </section>
+
           <section id="panel-process" class="console-section" role="tabpanel" aria-labelledby="tab-process" data-console-section="process" hidden>
-            <p class="section-kicker">01 / Project position and system</p>
-            <h2>A perceptual field whose condition changes through presence.</h2>
+            <p class="section-kicker">01 / Project position and development</p>
+            <h2>A field shaped by movement, stillness and what remains.</h2>
 
             <div class="process-question">
               <small>Core proposition</small>
-              <p>The work does not represent transformation. It constructs conditions in which transformation can be perceived.</p>
+              <p>The work does not illustrate transformation as a sequence. It builds a field in which carrying, resisting and beginning can overlap and be felt without being named.</p>
             </div>
 
-            <p class="section-lead">Nietzsche’s chapter “On the Three Metamorphoses” in <em>Thus Spoke Zarathustra</em> gave language to changes I recognised from lived experience. It prompted a further question: if a philosophical text can reorganise one reader’s perception, can an interactive field create conditions in which other people notice shifts of their own?</p>
+            <p class="section-lead">Nietzsche’s chapter “On the Three Metamorphoses” in <em>Thus Spoke Zarathustra</em> gave language to changes I recognised from lived experience. It prompted a further question: if a philosophical text can reorganise one reader’s perception, can an interactive field allow transformation to be encountered before it is explained?</p>
 
             <div class="narrative-block">
               <small>Personal resonance / not autobiography</small>
@@ -949,13 +1231,13 @@
 
             <div class="process-question">
               <small>Research contribution</small>
-              <p>A proposed practice-based method for translating philosophical structures into behavioural rules without turning them into illustration, classification or psychological profiling.</p>
+              <p>A practice-based exploration of how a lived encounter with philosophy can become an interactive system without turning the text into illustration or the visitor into a category.</p>
             </div>
 
             <div class="logic-block" aria-label="Research questions">
               <span class="logic-heading">Research questions</span>
-              <div class="logic-row"><small>01</small><strong>Translation</strong><i>→</i><p>How can a philosophical structure become a responsive system without becoming a symbolic image?</p></div>
-              <div class="logic-row"><small>02</small><strong>Perception</strong><i>→</i><p>Can overlapping inner forces be perceived through density, rupture and opening without naming or judging the viewer?</p></div>
+              <div class="logic-row"><small>01</small><strong>Translation</strong><i>→</i><p>How can a philosophical reading become responsive conditions without being reduced to symbolic images?</p></div>
+              <div class="logic-row"><small>02</small><strong>Perception</strong><i>→</i><p>Can qualities of carrying, resisting and beginning be encountered through density, interruption and opening without naming or judging the viewer?</p></div>
               <div class="logic-row"><small>03</small><strong>Embodiment</strong><i>→</i><p>How do directional input, bodily presence and a physical threshold alter the way a field is entered and experienced?</p></div>
             </div>
 
@@ -965,25 +1247,34 @@
               <article><small>02 / Lion</small><h3>Friction</h3><p>Resistance, contradiction, interruption, displacement and rupture.</p></article>
               <article><small>03 / Child</small><h3>Play</h3><p>Exploration, connection, opening, creation and new possibility.</p></article>
             </div>
-            <p class="force-note">Weight + Friction + Play remain present in changing proportions. This is an operational reinterpretation for the interactive system, not a claim that Nietzsche’s three metamorphoses are non-sequential. The viewer is never classified.</p>
+            <p class="force-note">Nietzsche describes three metamorphoses in sequence. This work does not replace that structure with a universal theory: it holds Weight + Friction + Play together because lived change felt overlapping and unfinished. The viewer is never classified.</p>
 
             <div class="logic-block" aria-label="Interaction logic">
               <span class="logic-heading">Two linked rule layers</span>
               <div class="system-chain">
                 <div><small>01</small><strong>Trace analysis</strong><span>Speed / duration / repetition / directional change / exploration</span></div>
-                <div><small>02</small><strong>Trace forces</strong><span>Each completed path resolves into Weight / Friction / Play in changing proportions</span></div>
-                <div><small>03</small><strong>Residue field</strong><span>Movement / stillness / time and optional camera change tune Weight / Rupture / Emergence</span></div>
+                <div><small>02</small><strong>Trace relation</strong><span>Each completed path produces a temporary relation among Weight / Friction / Play</span></div>
+                <div><small>03</small><strong>Residue field</strong><span>A related but distinct layer uses movement / stillness / time and optional camera change to tune pressure / rupture / emergence</span></div>
                 <div><small>04</small><strong>Shared visual grammar</strong><span>Dust / trace / blur / noise / afterimage / displacement produce density, rupture, residue and opening</span></div>
               </div>
+              <details class="technical-note">
+                <summary>Technical note / inspect the hand-authored mapping</summary>
+                <div class="system-chain" aria-label="Operational trace equations">
+                  <div><small>W</small><strong>Weight</strong><span>increases with slower movement + prior spatial overlap + longer duration</span></div>
+                  <div><small>F</small><strong>Friction</strong><span>increases with speed + abrupt directional change</span></div>
+                  <div><small>P</small><strong>Play</strong><span>increases with unvisited space + directional continuity</span></div>
+                </div>
+                <div class="proposal-label"><span>Model status</span><span>Hand-authored and tuneable. These are proportions within one path, not machine-learned predictions or labels assigned to a person.</span></div>
+              </details>
             </div>
 
             <div class="logic-block" aria-label="Rule evidence">
               <span class="logic-heading">Rule evidence / input → state change → perceptual consequence</span>
               <div class="rule-evidence-table" role="table" aria-label="Interaction rules for the live field">
                 <div class="rule-evidence-row rule-evidence-head" role="row"><span role="columnheader">Encounter</span><span role="columnheader">Rule</span><span role="columnheader">Visible consequence</span></div>
-                <div class="rule-evidence-row" role="row"><strong role="cell">Move</strong><span role="cell">Movement deposits an active trace.</span><span role="cell">The path extends and the field ruptures.</span></div>
-                <div class="rule-evidence-row" role="row"><strong role="cell">Pause</strong><span role="cell">Stillness allows residue to accumulate.</span><span role="cell">Density gathers around the last position.</span></div>
-                <div class="rule-evidence-row" role="row"><strong role="cell">Stay</strong><span role="cell">Duration alters the field state.</span><span role="cell">The image thickens, fades, or leaves an afterimage.</span></div>
+                <div class="rule-evidence-row" role="row"><strong role="cell">Move</strong><span role="cell">Movement deposits an active trace.</span><span role="cell">A path extends and disturbs the existing field.</span></div>
+                <div class="rule-evidence-row" role="row"><strong role="cell">Pause</strong><span role="cell">Short stillness gathers residue locally.</span><span role="cell">Density forms around the last position.</span></div>
+                <div class="rule-evidence-row" role="row"><strong role="cell">Remain</strong><span role="cell">Longer stillness changes accumulation and decay.</span><span role="cell">The image thickens, diffuses or leaves an afterimage.</span></div>
               </div>
             </div>
 
@@ -1004,8 +1295,8 @@
               <div class="narrative-block">
                 <small>Current camera test / reflection</small>
                 <div>
-                  <p>In the current prototype, larger changes in the camera frame intensify the field’s bright points and can produce a more expansive burst. This began as an attempt to express a desire for change when another presence enters the system.</p>
-                  <p>The next test is whether that response is too explosive for the project’s quieter logic. Camera presence will be differentiated through global pressure, breathing and brief instability rather than another directional trace.</p>
+                  <p>The camera was introduced to test a kind of presence that is atmospheric rather than directional. In the current prototype, larger changes in the frame intensify bright points and can produce an expansive burst.</p>
+                  <p>That response may be too explosive for the project’s quieter logic. The next iteration will test global pressure, breathing and brief instability without treating the camera as another drawing instrument or assigning meaning to the body it senses.</p>
                 </div>
               </div>
               <div class="proposal-label"><span>Camera ethics</span><span>Opt-in only. A 48 × 36 luminance sample is processed locally and temporarily; no image is displayed, stored or transmitted, and no identity recognition is used. The field remains usable without camera access.</span></div>
@@ -1021,7 +1312,7 @@
             <div class="narrative-block">
               <small>Development trajectory</small>
               <div>
-                <p>The project began as a non-interactive particle state. Because this was my first sustained experiment with web coding, interaction entered gradually: first through mouse direction and trace, then through optional low-resolution camera sensing as an attempt to introduce a different kind of movement, rhythm and breath.</p>
+                <p>The project began as a non-interactive particle state. Through iterative web experiments, interaction entered gradually: first through mouse direction and trace, then through optional low-resolution camera sensing as an attempt to introduce a different kind of movement, rhythm and breath.</p>
                 <p>Particles, diffusion and water-like movement were chosen because the three forces felt microscopic, elusive and continuously flowing. Brighter halos, decorative light and firework-like effects were tested and rejected: their visual impact made transformation appear more violent and theatrical than it felt in lived experience.</p>
               </div>
             </div>
@@ -1056,17 +1347,17 @@
               <article>
                 <small>Next research stage</small>
                 <h3>Differentiate → map → observe</h3>
-                <p>Strengthen the difference between mouse and camera, make the force-to-primitive mapping more explicit, then conduct participant observation before technical integration.</p>
+                <p>Strengthen the difference between mouse and camera, clarify how each rule changes the visual field, then observe encounters before technical integration.</p>
               </article>
             </div>
 
-            <div class="proposal-label"><span>Participant observation</span><span>Not yet conducted. A planned first study with 6–8 consenting participants will combine a short unguided interaction with a post-interaction description, then compare recurring descriptions of stillness, repetition, rupture and opening without giving philosophical terms in advance. Camera use will remain optional.</span></div>
+            <div class="proposal-label"><span>Participant observation</span><span>Not yet conducted. A planned first study with 6–8 consenting participants will combine a short unguided interaction with a post-interaction description, then compare the language, differences and ambiguities that emerge before relating them back to the visual rules. Philosophical terms will not be given in advance, and camera use will remain optional.</span></div>
 
             <p class="status-note">The field does not tell the viewer what state they are in. It changes with the way they enter it.</p>
           </section>
 
           <section id="panel-m5stack" class="console-section" role="tabpanel" aria-labelledby="tab-m5stack" data-console-section="m5stack" hidden>
-            <p class="section-kicker">02 / Spiritual interface prototype</p>
+            <p class="section-kicker">03 / Spiritual interface prototype</p>
             <h2>A physical threshold, not a remote control.</h2>
             <p class="section-lead">The M5Stack Cardputer ADV tests what changes when a philosophical encounter becomes handheld, private and intentional. Its small display, physical keys and intervals of waiting create a threshold before the viewer enters the perceptual field.</p>
 
@@ -1101,7 +1392,7 @@
                 <small>04</small><h3>Three prompts</h3><p>Three questions are drawn from a changing set. The sequence differs between encounters and the participant answers using the physical keyboard.</p>
               </article>
               <article class="m5-step">
-                <small>05</small><h3>Open response</h3><p>The answers lead to one short response from a variable set. It offers an indication rather than a score, diagnosis or fixed metamorphosis.</p>
+                <small>05</small><h3>Open response</h3><p>After the three answers, the interface returns one short fragment from a variable set. It leaves a thought open rather than producing a score, diagnosis or fixed metamorphosis.</p>
               </article>
             </div>
 
@@ -1114,11 +1405,22 @@
               </div>
             </div>
 
+            <div class="logic-block">
+              <span class="logic-heading">Minimum viable connection / proposed test</span>
+              <div class="system-chain">
+                <div><small>01</small><strong>Send one event</strong><span>The device sends entry:ready only after the reflective sequence is completed</span></div>
+                <div><small>02</small><strong>Keep it local</strong><span>A local WebSocket carries no name, prompt text or written response</span></div>
+                <div><small>03</small><strong>Change one condition</strong><span>The Web Field begins a temporary inhale and lowers its rate of decay</span></div>
+                <div><small>04</small><strong>Expose the boundary</strong><span>Connection state and latency are documented; failure leaves the field independently usable</span></div>
+              </div>
+              <div class="proposal-label"><span>Implementation status</span><span>Protocol proposal only. It connects the completion of a threshold, not the content of a person’s responses; no interpretation, scoring or response transmission is required.</span></div>
+            </div>
+
             <p class="status-note">Here “spiritual interface” means a reflective, philosophical threshold rather than a religious claim or psychological instrument. The name is a temporary gesture of entry. Randomised prompts and variable responses prevent a single prescribed path, but the interface does not score, diagnose or tell the participant which metamorphosis they are.</p>
           </section>
 
           <section id="panel-exhibition" class="console-section" role="tabpanel" aria-labelledby="tab-exhibition" data-console-section="exhibition" hidden>
-            <p class="section-kicker">03 / Speculative spatial development</p>
+            <p class="section-kicker">04 / Speculative spatial development</p>
             <h2>The same perceptual system, expanded from screen to space.</h2>
             <p class="section-lead">The future installation is not a separate artwork. It translates the current digital and handheld experiments into a physical threshold where whole-body movement extends the directional role of the mouse and residue occupies projection, surface and atmosphere.</p>
 
@@ -1226,6 +1528,39 @@
           event.stopImmediatePropagation();
           closeConsole();
         }, true);
+
+        const traceStatus = document.querySelector("[data-trace-status]");
+        const liveForces = [...document.querySelectorAll("[data-live-force]")];
+        window.addEventListener("tm:trace-forces", (event) => {
+          const forces = event.detail?.forces;
+          if (!forces) return;
+          liveForces.forEach((row) => {
+            const value = Math.max(0, Math.min(1, Number(forces[row.dataset.liveForce]) || 0));
+            row.style.setProperty("--force-value", `${(value * 100).toFixed(1)}%`);
+          });
+          if (traceStatus) traceStatus.textContent = event.detail?.resolved ? "Trace resolved" : "Measuring current trace";
+        });
+
+        const experimentPrompts = {
+          repeat: "Return to a familiar path and notice what the field remembers.",
+          turn: "Change direction without warning and allow the path to resist itself.",
+          open: "Enter where no trace remains and notice what begins to appear.",
+        };
+        const fieldDescription = document.querySelector(".field-title > p");
+        let promptTimer = 0;
+        document.querySelectorAll("[data-field-experiment]").forEach((button) => {
+          button.addEventListener("click", () => {
+            closeConsole();
+            if (!fieldDescription) return;
+            const original = fieldDescription.dataset.originalText || fieldDescription.textContent;
+            fieldDescription.dataset.originalText = original;
+            fieldDescription.textContent = experimentPrompts[button.dataset.fieldExperiment];
+            window.clearTimeout(promptTimer);
+            promptTimer = window.setTimeout(() => {
+              fieldDescription.textContent = original;
+            }, 14000);
+          });
+        });
 
         const slides = [
           {
@@ -1530,7 +1865,8 @@
         window.requestAnimationFrame(render);
       })();
     </script>
-    <script src="three-metamorphoses-trace.js?v=20260808-1"></script>
+    <script src="three-metamorphoses-trace.js?v=20260811-1"></script>
     <script src="three-metamorphoses-research-visuals.js?v=20260808-1"></script>
+    <script src="language.js"></script>
   </body>
 </html>
