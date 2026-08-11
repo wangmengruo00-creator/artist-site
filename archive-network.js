@@ -23,14 +23,25 @@
     { id: "value", ref: "R–07", title: "Value", kind: "term", lens: "value", x: 780, y: 980 }
   ];
 
-  const scanSource = (window.INVALIDATED_ARCHIVE_ITEMS || []).filter((item) => item.published && !item.duplicateOf);
-  const traceSetIds = new Set([
-    "T-001", "T-012", "T-038", "T-072", "T-105", "T-148", "T-185",
-    "W-001", "W-015", "W-030", "W-051",
-    "L-001", "L-006", "L-012",
-    "E-001",
-    "P-001", "P-012", "P-024", "P-036", "P-044"
-  ]);
+  const curatedRecordDetails = {
+    "T-001": { title: "Haircut ticket / Jiyuan County / 1977", date: "1977 printed on object", place: "Jiyuan County printed on object", status: "Visible text transcribed" },
+    "T-038": { title: "Jiangxi grain coupon / 1 shi jin / 1978", date: "1978 printed on object", place: "Jiangxi Province printed on object", status: "Visible text transcribed" },
+    "T-072": { title: "Henan grain coupon / 20 shi jin / Luoyang", date: "Date not yet verified", place: "Henan Province · Luoyang printed on object", status: "Visible text transcribed" },
+    "T-105": { title: "Jilin local grain coupon / 0.2 shi jin / 1975", date: "1975 printed on object", place: "Jilin Province printed on object", status: "Visible text transcribed" },
+    "T-148": { title: "Hunan grain coupon / 0.2 shi jin / 1971", date: "1971 printed on object", place: "Hunan Province printed on object", status: "Visible text transcribed" },
+    "T-185": { title: "Hebei local grain coupon / 1 shi liang / 1971", date: "1971 printed on object", place: "Hebei Province printed on object", status: "Visible text transcribed" },
+    "W-001": { title: "Fruit hard-candy wrapper / Yichun Food Factory", status: "Brand and producer visible" },
+    "W-030": { title: "Milk-candy wrapper / yellow floral print", status: "Product type visible · producer unresolved" },
+    "L-001": { title: "Tonghua red grape wine label / 720 mL", status: "Product and volume visible" },
+    "L-006": { title: "Tonghua seasoned grape wine label / 710 mL", status: "Product and volume visible" },
+    "E-001": { title: "Flying Swallow Brand printed label", status: "Brand name visible · commodity unresolved" },
+    "P-001": { title: "Hope menthol cigarette wrapper / 20", status: "Brand and product type visible" }
+  };
+  const curatedRecordIds = new Set(Object.keys(curatedRecordDetails));
+  const scanSource = (window.INVALIDATED_ARCHIVE_ITEMS || []).filter((item) =>
+    item.published && !item.duplicateOf && curatedRecordIds.has(item.id)
+  );
+  const traceSetIds = curatedRecordIds;
   const collectionSeen = {};
   const collectionDetails = {
     food: {
@@ -90,13 +101,14 @@
         : source.collection === "labels" ? { x: 930, y: 520, r: 240 }
           : { x: 900, y: 520, r: 420 };
     const details = collectionDetails[source.collection];
+    const curated = curatedRecordDetails[source.id] || {};
     return {
-      id: `scan-${source.id.toLowerCase()}`, ref: source.id.replace("-", "–"), title: source.title,
+      id: `scan-${source.id.toLowerCase()}`, ref: source.id.replace("-", "–"), title: curated.title || source.title,
       kind: "object", scanned: true, featured, collection: source.collection, materialField: details.materialField,
       imageUrl: scanAssetRoot + source.image, imagePosition: "50% 50%",
       sourceFile: source.source, sourcePage: source.page,
-      date: details.date, place: details.place, function: details.function, trace: details.trace,
-      status: source.status, note: details.note, question: details.question,
+      date: curated.date || details.date, place: curated.place || details.place, function: details.function, trace: details.trace,
+      status: curated.status || source.status, note: details.note, question: details.question,
       observation: details.observation, context: details.context, inference: details.inference,
       x: Math.round(cluster.x + Math.cos(angle) * cluster.r * (0.45 + (collectionIndex % 5) * 0.1)),
       y: Math.round(cluster.y + Math.sin(angle) * cluster.r * (0.45 + (collectionIndex % 5) * 0.1))
@@ -193,8 +205,8 @@
     const matching = scannedRecords.filter((item) => state.collection === "all" || item.materialField === state.collection);
     const visible = state.view === "grid" ? matching.length : matching.filter((item) => item.featured).length;
     count.textContent = state.view === "grid"
-      ? `All objects / ${visible} individual scans / nothing removed`
-      : `Selected relations / ${visible} working examples / ${baseRecords.length} possible relations`;
+      ? `Selected working set / ${visible} visible object records`
+      : `Selected relations / ${visible} real object records / ${baseRecords.length} provisional relations`;
   };
 
   const positionNodes = () => {
