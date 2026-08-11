@@ -215,7 +215,6 @@
     "Project record": "项目记录",
     "Project record →": "项目记录 →",
     "Working interface model. Record labels are provisional display markers, not completed catalogue entries.": "工作中的界面模型。记录标签是暂定的展示标记，并非已完成的编目条目。",
-    "Rather than translating Nietzsche’s three figures into images, the project treats them as a provisional cycle of accumulation, rupture, and renewed formation.": "项目并不把尼采的三个形象转译为图像，而是把它们视为一个暂定的循环：积累、断裂与重新形成。",
     "Research premise · methods · working sequence": "研究前提 · 方法 · 工作序列",
     "Prototype / 01 · Work in progress": "原型 / 01 · 进行中",
     "Enter Bureau Reading System": "进入管理局阅读系统",
