@@ -477,8 +477,6 @@
   }));
 
   const originals = new WeakMap();
-  const languageKey = "mengruo-site-language";
-
   const normaliseText = (value) => value.replace(/\s+/g, " ").trim();
   const normalisedTranslations = new Map(
     [...translations].map(([key, value]) => [normaliseText(key), value])
@@ -511,12 +509,13 @@
 
     document.querySelectorAll("[data-language-toggle]").forEach((button) => {
       button.setAttribute("aria-label", language === "zh-CN" ? "Switch to English" : "切换到中文");
-      button.innerHTML = language === "zh-CN"
-        ? '<span>EN</span><span class="is-active">中文</span>'
-        : '<span class="is-active">EN</span><span>中文</span>';
+      if (button.dataset.languageState !== language) {
+        button.dataset.languageState = language;
+        button.innerHTML = language === "zh-CN"
+          ? '<span>EN</span><span class="is-active">中文</span>'
+          : '<span class="is-active">EN</span><span>中文</span>';
+      }
     });
-
-    localStorage.setItem(languageKey, language);
   }
 
   function addToggle() {
@@ -582,14 +581,23 @@
   document.head.append(style);
 
   addToggle();
-  applyLanguage(localStorage.getItem(languageKey) === "zh-CN" ? "zh-CN" : "en");
+  applyLanguage("en");
 
   let translationFrame = 0;
-  const observer = new MutationObserver(() => {
+  const observer = new MutationObserver((mutations) => {
     if (document.documentElement.lang !== "zh-CN" || translationFrame) return;
+
+    const hasRelevantAddition = mutations.some((mutation) =>
+      [...mutation.addedNodes].some((node) => {
+        const element = node.nodeType === Node.ELEMENT_NODE ? node : mutation.target;
+        return !element.closest?.(".language-toggle, script, style");
+      })
+    );
+    if (!hasRelevantAddition) return;
+
     translationFrame = window.requestAnimationFrame(() => {
       translationFrame = 0;
-      applyLanguage("zh-CN");
+      if (document.documentElement.lang === "zh-CN") applyLanguage("zh-CN");
     });
   });
   observer.observe(document.body, { childList: true, subtree: true });
