@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bureau Reading System — The Bureau of Invalidated Tickets</title>
+    <meta
+      name="description"
+      content="A provisional interface comparing official categories, material traces, and proposed computational readings for The Bureau of Invalidated Tickets by Mengruo Wang."
+    >
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../archive-network.css">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="archive-network-page">
+    <header class="archive-topbar">
+      <div class="archive-title-block">
+        <a class="archive-back" href="invalidated-tickets.html">← Project record</a>
+        <div>
+          <strong>THE BUREAU OF INVALIDATED TICKETS</strong>
+          <span lang="zh-Hans">失效票证管理局 · 阅读系统原型</span>
+        </div>
+      </div>
+      <div class="archive-status" aria-label="Archive status">
+        <span>BIT / READING SYSTEM–01</span>
+        <span><i aria-hidden="true"></i> Proposed prototype / accumulating</span>
+      </div>
+    </header>
+
+    <main class="archive-interface">
+      <section class="archive-reading-intro" aria-labelledby="archive-reading-title">
+        <div>
+          <p>BUREAU READING SYSTEM / PROTOTYPE</p>
+          <h1 id="archive-reading-title">Three readings of one material record.</h1>
+        </div>
+        <p>
+          A provisional interface for comparing official categories, material traces, and
+          computational readings. Proposed machine readings are hypotheses for testing; they are
+          not historical evidence and do not claim automated interpretation has been completed.
+        </p>
+      </section>
+
+      <section class="archive-controls" aria-label="Archive controls">
+        <div class="archive-control-group archive-reading-modes">
+          <span class="archive-control-label">Reading mode</span>
+          <div class="archive-segmented" role="group" aria-label="Reading mode">
+            <button class="is-active" type="button" data-reading-mode="system" aria-pressed="true">System record</button>
+            <button type="button" data-reading-mode="material" aria-pressed="false">Material trace</button>
+            <button type="button" data-reading-mode="machine" aria-pressed="false">Proposed machine reading</button>
+          </div>
+        </div>
+        <div class="archive-control-group">
+          <span class="archive-control-label">View</span>
+          <div class="archive-segmented" role="group" aria-label="View mode">
+            <button class="is-active" type="button" data-view="grid" aria-pressed="true">All objects</button>
+            <button type="button" data-view="network" aria-pressed="false">Selected relations</button>
+          </div>
+        </div>
+        <div class="archive-control-group archive-lenses">
+          <span class="archive-control-label">Read by</span>
+          <div class="archive-segmented archive-lens-buttons" role="group" aria-label="Reading lens">
+            <button class="is-active" type="button" data-lens="all" aria-pressed="true">Everything</button>
+            <button type="button" data-lens="access" aria-pressed="false">Who gets what</button>
+            <button type="button" data-lens="exchange" aria-pressed="false">Exchange / expiry</button>
+            <button type="button" data-lens="recognition" aria-pressed="false">Image / attraction</button>
+            <button type="button" data-lens="value" aria-pressed="false">Value</button>
+          </div>
+        </div>
+        <div class="archive-control-group archive-collections">
+          <span class="archive-control-label">Material type</span>
+          <div class="archive-segmented" role="group" aria-label="Material collection">
+            <button class="is-active" type="button" data-collection="all" aria-pressed="true">All</button>
+            <button type="button" data-collection="regulated" aria-pressed="false">Tickets &amp; vouchers</button>
+            <button type="button" data-collection="commodity" aria-pressed="false">Wrappers &amp; labels</button>
+            <button type="button" data-collection="peripheral" aria-pressed="false">Other printed matter</button>
+          </div>
+        </div>
+        <div class="archive-zoom" role="group" aria-label="Canvas zoom">
+          <button type="button" data-zoom="out" aria-label="Zoom out">−</button>
+          <button type="button" data-zoom="reset">Reset</button>
+          <button type="button" data-zoom="in" aria-label="Zoom in">+</button>
+        </div>
+      </section>
+
+      <section class="archive-workspace" aria-label="Interactive archive workspace">
+        <div class="archive-field" data-archive-field tabindex="0" aria-label="Pan and zoom through the working archive">
+          <div class="archive-stage" data-archive-stage>
+            <canvas class="archive-relations" width="1800" height="1100" aria-hidden="true"></canvas>
+            <div class="archive-nodes" data-archive-nodes></div>
+          </div>
+          <div class="archive-field-note">
+            <span data-archive-count>Working field / archive accumulating</span>
+            <span>All scans stay here · Selected relations uses 20 working examples</span>
+          </div>
+          <button class="archive-close-record" type="button" data-close-record aria-label="Close record">×</button>
+        </div>
+
+        <aside class="archive-record" data-archive-record aria-live="polite">
+          <div class="archive-record-empty">
+            <p class="archive-record-kicker">Bureau Reading System / How to read</p>
+            <h1>SELECT AN OBJECT</h1>
+            <p>
+              Select a material record, then move between three reading modes. The gap between
+              those readings is the research space of this prototype.
+            </p>
+            <div class="archive-record-guide">
+              <span>01</span><p>System record: what the paper may have regulated.</p>
+              <span>02</span><p>Material trace: what remains directly visible.</p>
+              <span>03</span><p>Proposed machine reading: what a formal model might connect or omit.</p>
+            </div>
+            <p class="archive-prototype-note">
+              This is a proposed reading system, not a completed AI analysis. Machine categories
+              remain hypotheses until they are implemented, tested, and critically compared.
+            </p>
+          </div>
+          <div class="archive-record-content" hidden></div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="../assets/invalidated-tickets/archive-items/archive-data.js"></script>
+    <script src="../archive-network.js"></script>
+  </body>
+</html>

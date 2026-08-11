@@ -509,6 +509,30 @@
       .logic-row strong { font-family: var(--serif); font-size: clamp(18px, 1.9vw, 26px); font-weight: 400; }
       .logic-row p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
 
+      .rule-evidence-table {
+        margin-top: 13px;
+        border-top: 1px solid var(--line);
+      }
+
+      .rule-evidence-row {
+        display: grid;
+        grid-template-columns: minmax(78px, 0.42fr) minmax(0, 1fr) minmax(0, 1.18fr);
+        gap: 18px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 11px;
+        line-height: 1.55;
+      }
+
+      .rule-evidence-row strong {
+        font-family: var(--serif);
+        font-size: 18px;
+        font-weight: 400;
+      }
+
+      .rule-evidence-row span { color: var(--muted); }
+      .rule-evidence-head { color: var(--faint); font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
+
       .force-mix {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -845,6 +869,9 @@
         .logic-row { grid-template-columns: 26px 1fr; }
         .logic-row i { display: none; }
         .logic-row p { grid-column: 2; }
+        .rule-evidence-row { grid-template-columns: 70px 1fr; }
+        .rule-evidence-row > :last-child { grid-column: 2; }
+        .rule-evidence-head > :last-child { display: none; }
         .system-chain div { grid-template-columns: 26px 1fr; }
         .system-chain span { grid-column: 2; }
         .proposal-label { grid-template-columns: 1fr; gap: 4px; }
@@ -947,6 +974,16 @@
                 <div><small>02</small><strong>Trace forces</strong><span>Each completed path resolves into Weight / Friction / Play in changing proportions</span></div>
                 <div><small>03</small><strong>Residue field</strong><span>Movement / stillness / time and optional camera change tune Weight / Rupture / Emergence</span></div>
                 <div><small>04</small><strong>Shared visual grammar</strong><span>Dust / trace / blur / noise / afterimage / displacement produce density, rupture, residue and opening</span></div>
+              </div>
+            </div>
+
+            <div class="logic-block" aria-label="Rule evidence">
+              <span class="logic-heading">Rule evidence / input → state change → perceptual consequence</span>
+              <div class="rule-evidence-table" role="table" aria-label="Interaction rules for the live field">
+                <div class="rule-evidence-row rule-evidence-head" role="row"><span role="columnheader">Encounter</span><span role="columnheader">Rule</span><span role="columnheader">Visible consequence</span></div>
+                <div class="rule-evidence-row" role="row"><strong role="cell">Move</strong><span role="cell">Movement deposits an active trace.</span><span role="cell">The path extends and the field ruptures.</span></div>
+                <div class="rule-evidence-row" role="row"><strong role="cell">Pause</strong><span role="cell">Stillness allows residue to accumulate.</span><span role="cell">Density gathers around the last position.</span></div>
+                <div class="rule-evidence-row" role="row"><strong role="cell">Stay</strong><span role="cell">Duration alters the field state.</span><span role="cell">The image thickens, fades, or leaves an afterimage.</span></div>
               </div>
             </div>
 

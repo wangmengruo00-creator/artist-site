@@ -4611,6 +4611,204 @@ body.landing-page {
   }
 }
 
+/* Research-led works hierarchy and collapsible foundations archive. */
+.works-index-page .foundations-archive {
+  min-width: 0;
+  border-top: 1px solid var(--line);
+}
+
+.works-index-page .foundations-archive > summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 0;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  list-style: none;
+}
+
+.works-index-page .foundations-archive > summary::-webkit-details-marker {
+  display: none;
+}
+
+.works-index-page .foundations-archive > summary::before {
+  content: "+";
+  width: 16px;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 0.8;
+}
+
+.works-index-page .foundations-archive[open] > summary::before {
+  content: "−";
+}
+
+.works-index-page .foundations-archive > summary span {
+  margin-right: auto;
+}
+
+.works-index-page .foundations-archive > summary strong {
+  font-weight: 400;
+}
+
+.works-index-page .foundations-archive[open] > .work-group-items {
+  padding-top: 28px;
+}
+
+/* The Three Metamorphoses: explicit evidence of input, rule, and consequence. */
+.tm-rule-evidence {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.7fr);
+  gap: clamp(28px, 5vw, 76px);
+  margin-top: clamp(52px, 7vw, 88px);
+  padding-top: 22px;
+  border-top: 1px solid rgba(240, 236, 226, 0.22);
+}
+
+.tm-rule-evidence-intro h3 {
+  max-width: 320px;
+  margin: 14px 0 0;
+  font-size: clamp(18px, 2vw, 25px);
+  font-weight: 360;
+  line-height: 1.35;
+}
+
+.tm-rule-table {
+  border-top: 1px solid rgba(240, 236, 226, 0.28);
+}
+
+.tm-rule-row {
+  display: grid;
+  grid-template-columns: minmax(84px, 0.55fr) minmax(0, 1.2fr) minmax(0, 1.35fr);
+  gap: 18px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(240, 236, 226, 0.17);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.tm-rule-row strong {
+  font-weight: 500;
+}
+
+.tm-rule-head {
+  color: rgba(240, 236, 226, 0.5);
+  font-size: 9px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/* Beijing Orders: make the interface's research role explicit. */
+.order-reading-note {
+  display: block;
+  max-width: 680px;
+  margin-top: 14px;
+  color: var(--text);
+  font-weight: 420;
+  line-height: 1.6;
+}
+
+/* Skin of Writing: an artist-defined trace-reading protocol. */
+.skin-reading-protocol {
+  border-top: 1px solid var(--line);
+}
+
+.skin-reading-protocol > p {
+  max-width: 620px;
+  margin: 0;
+  padding: 18px 0 22px;
+  color: #44433f;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.skin-trace-controls {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.skin-trace-controls button {
+  flex: 1 1 112px;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.skin-trace-controls button.is-active,
+.skin-trace-controls button:hover {
+  background: #252420;
+  color: #f4f1e9;
+}
+
+[data-writing-traces] {
+  transition: opacity 240ms ease, filter 240ms ease, transform 240ms ease;
+}
+
+[data-writing-traces].is-trace-muted {
+  opacity: 0.18;
+  filter: grayscale(1);
+}
+
+[data-writing-traces].is-trace-selected {
+  transform: translateY(-3px);
+}
+
+.skin-film-status {
+  display: grid;
+  gap: 10px;
+  margin-top: 34px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.skin-film-status span,
+.skin-film-status small {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.skin-film-status strong {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.5vw, 30px);
+  font-weight: 400;
+}
+
+@media (max-width: 760px) {
+  .tm-rule-evidence {
+    grid-template-columns: 1fr;
+  }
+
+  .tm-rule-row {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .tm-rule-row > :last-child {
+    grid-column: 2;
+  }
+
+  .tm-rule-head > :last-child {
+    display: none;
+  }
+}
+
 /* The Bureau of Invalidated Tickets */
 .tickets-project {
   --tickets-offset: min(20vw, 220px);

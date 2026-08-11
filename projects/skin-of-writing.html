@@ -94,31 +94,31 @@
             <h2 id="interior-title">Interior Sequence</h2>
           </div>
           <div class="skin-interior-grid">
-            <figure class="skin-interior-feature">
+            <figure class="skin-interior-feature" data-writing-traces="mark correction">
               <div class="skin-image-slot has-image">
                 <img src="../assets/skin-of-writing/03_interior/interior_01_control_transition.png" alt="Interior spread showing control marks and writing traces.">
               </div>
               <figcaption>Control marks</figcaption>
             </figure>
-            <figure>
+            <figure data-writing-traces="mark pressure">
               <div class="skin-image-slot has-image">
                 <img src="../assets/skin-of-writing/03_interior/interior_02_wave_repetition.png" alt="Interior spread showing repeated calligraphic marks.">
               </div>
               <figcaption>Calligraphy fragments</figcaption>
             </figure>
-            <figure>
+            <figure data-writing-traces="correction residue">
               <div class="skin-image-slot has-image">
                 <img src="../assets/skin-of-writing/03_interior/interior_03_character_black.png" alt="Interior spread showing dense black ink and character fragments.">
               </div>
               <figcaption>Ink texture</figcaption>
             </figure>
-            <figure>
+            <figure data-writing-traces="mark residue">
               <div class="skin-image-slot has-image">
                 <img src="../assets/skin-of-writing/03_interior/interior_05_character_texture_spread.png" alt="Interior spread showing the relation between character and ink texture.">
               </div>
               <figcaption>Character / texture</figcaption>
             </figure>
-            <figure class="skin-interior-wide">
+            <figure class="skin-interior-wide" data-writing-traces="pressure residue">
               <div class="skin-image-slot has-image">
                 <img src="../assets/skin-of-writing/03_interior/interior_07_tracing_paper.png" alt="Interior detail showing translucent tracing paper over an inked page.">
               </div>
@@ -156,13 +156,26 @@
 
         <section class="skin-video-section" aria-labelledby="video-title">
           <div class="skin-section-heading">
-            <p class="eyebrow">Documentation</p>
-            <h2 id="video-title">Flip-through</h2>
+            <p class="eyebrow">Reading protocol / 01</p>
+            <h2 id="video-title">Reading traces</h2>
           </div>
-          <div class="skin-video-placeholder editorial-media-needed" role="img" aria-label="Video to add: a complete flip-through of the hand-bound book.">
-            <span>VIDEO TO ADD / 01</span>
-            <strong>Complete book flip-through</strong>
-            <small>Suggested content: hands opening the cover and turning every spread · landscape 16:9 · 30–60 seconds</small>
+          <div class="skin-reading-protocol" data-skin-reading>
+            <p>
+              Select a trace to alter the reading emphasis in the interior sequence. This is an
+              artist-defined protocol, not automated recognition.
+            </p>
+            <div class="skin-trace-controls" role="group" aria-label="Select a writing trace">
+              <button class="is-active" type="button" data-trace-filter="all" aria-pressed="true">All</button>
+              <button type="button" data-trace-filter="mark" aria-pressed="false">Mark</button>
+              <button type="button" data-trace-filter="correction" aria-pressed="false">Correction</button>
+              <button type="button" data-trace-filter="pressure" aria-pressed="false">Pressure</button>
+              <button type="button" data-trace-filter="residue" aria-pressed="false">Residue</button>
+            </div>
+            <div class="skin-film-status">
+              <span>Forthcoming documentation / 45–60 sec</span>
+              <strong>Hand, paper, friction, pause, and return.</strong>
+              <small>A quiet close-range flip-through will be added when the physical filming is complete. No placeholder video is being presented as finished work.</small>
+            </div>
           </div>
         </section>
 
@@ -187,5 +200,25 @@
 
       </article>
     </main>
+    <script>
+      const traceButtons = document.querySelectorAll("[data-trace-filter]");
+      const traceFigures = document.querySelectorAll("[data-writing-traces]");
+
+      traceButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const filter = button.dataset.traceFilter;
+          traceButtons.forEach((candidate) => {
+            const active = candidate === button;
+            candidate.classList.toggle("is-active", active);
+            candidate.setAttribute("aria-pressed", String(active));
+          });
+          traceFigures.forEach((figure) => {
+            const matches = filter === "all" || figure.dataset.writingTraces.split(" ").includes(filter);
+            figure.classList.toggle("is-trace-muted", !matches);
+            figure.classList.toggle("is-trace-selected", matches && filter !== "all");
+          });
+        });
+      });
+    </script>
   </body>
 </html>
