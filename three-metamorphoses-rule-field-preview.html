@@ -1200,6 +1200,262 @@
         .gallery-controls { gap: 10px; }
       }
 
+      /* 2026-08-14 / editorial console study
+         The field remains the work; research enters as a quieter reading layer. */
+      @media (min-width: 641px) {
+        .field-world.is-console-open .residue-canvas {
+          filter: blur(0.8px);
+          opacity: 0.72;
+          transform: none;
+        }
+
+        .field-world.is-console-open .trace-canvas { opacity: 0.46; }
+
+        .field-world.is-console-open .field-title,
+        .field-world.is-console-open .field-index { opacity: 0.08; }
+
+        .field-world.is-console-open .field-nav {
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .field-world.is-console-open .console-shade {
+          background: linear-gradient(90deg, transparent 0 34%, rgba(0, 0, 0, 0.08) 58%, rgba(0, 0, 0, 0.34) 100%);
+        }
+
+        .research-console {
+          top: 18px;
+          right: 18px;
+          bottom: 18px;
+          width: min(820px, calc(100vw - 92px));
+          color: rgba(235, 234, 227, 0.9);
+          background:
+            linear-gradient(145deg, rgba(18, 20, 18, 0.94), rgba(8, 10, 9, 0.86)),
+            var(--panel);
+          border: 1px solid rgba(235, 234, 227, 0.16);
+          box-shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
+          backdrop-filter: blur(20px) saturate(72%);
+        }
+
+        .console-header {
+          top: 0;
+          right: auto;
+          bottom: 0;
+          left: 0;
+          width: 126px;
+          min-height: 0;
+          padding: 25px 18px 20px;
+          grid-template: auto 1fr auto / 1fr;
+          align-items: start;
+          background: rgba(7, 9, 8, 0.28);
+          border-right: 1px solid rgba(235, 234, 227, 0.11);
+          border-bottom: 0;
+        }
+
+        .console-header small {
+          max-width: 72px;
+          font-size: 9px;
+          line-height: 1.55;
+        }
+
+        .console-tabs {
+          align-self: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 4px;
+        }
+
+        .console-tabs button,
+        .console-close {
+          position: relative;
+          width: 100%;
+          min-height: 34px;
+          padding: 9px 0 9px 15px;
+          border: 0;
+          color: rgba(235, 234, 227, 0.42);
+          font-size: 9px;
+          letter-spacing: 0.12em;
+          text-align: left;
+        }
+
+        .console-tabs button::before {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 4px;
+          height: 4px;
+          border: 1px solid rgba(235, 234, 227, 0.3);
+          border-radius: 50%;
+          content: "";
+          transform: translateY(-50%);
+        }
+
+        .console-tabs button.is-active::before {
+          border-color: var(--paper);
+          background: var(--paper);
+        }
+
+        .console-tabs button:hover,
+        .console-tabs button:focus-visible,
+        .console-tabs button.is-active,
+        .console-close:hover,
+        .console-close:focus-visible {
+          border-bottom-color: transparent;
+          color: rgba(235, 234, 227, 0.94);
+          outline: 0;
+        }
+
+        .console-close {
+          align-self: end;
+          padding-left: 0;
+          color: rgba(235, 234, 227, 0.52);
+        }
+
+        .console-scroll {
+          padding: clamp(55px, 7vh, 76px) clamp(42px, 4.6vw, 64px) 86px 178px;
+        }
+
+        .section-kicker {
+          margin-bottom: 14px;
+          font-size: 9px;
+          letter-spacing: 0.16em;
+        }
+
+        .console-section h2 {
+          max-width: 590px;
+          font-size: clamp(27px, 2.35vw, 34px);
+          letter-spacing: -0.038em;
+          line-height: 1.08;
+          text-wrap: balance;
+        }
+
+        .section-lead {
+          max-width: 490px;
+          margin: 16px 0 0;
+          color: rgba(235, 234, 227, 0.68);
+          font-size: 12.5px;
+          line-height: 1.72;
+        }
+
+        .process-question,
+        .narrative-block {
+          grid-template-columns: 96px minmax(0, 1fr);
+          gap: 24px;
+        }
+
+        .process-question {
+          margin-top: 34px;
+          padding: 18px 0 19px;
+          border-color: rgba(235, 234, 227, 0.1);
+        }
+
+        .process-question p { font-size: clamp(16px, 1.35vw, 19px); }
+
+        .logic-block { margin-top: clamp(52px, 7.5vh, 78px); }
+
+        .logic-heading,
+        .process-question small,
+        .narrative-block small { font-size: 9px; letter-spacing: 0.13em; }
+
+        .live-analysis-block { margin-top: 34px; }
+
+        .live-analysis-block .live-analysis {
+          margin-top: 12px;
+          padding: 22px 18px 24px;
+          background: linear-gradient(100deg, rgba(235, 234, 227, 0.025), transparent 72%);
+        }
+
+        .live-analysis-block .live-forces {
+          align-content: center;
+          gap: 24px;
+        }
+
+        .live-analysis-block .live-force-track {
+          position: relative;
+          height: 1px;
+          overflow: visible;
+        }
+
+        .live-analysis-block .live-force-track i::after {
+          position: absolute;
+          top: 50%;
+          right: -2px;
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: rgba(235, 234, 227, 0.82);
+          box-shadow: 0 0 12px rgba(235, 234, 227, 0.18);
+          content: "";
+          transform: translateY(-50%);
+        }
+
+        .live-analysis-block .live-force-track i {
+          position: relative;
+          min-width: 1px;
+        }
+
+        .system-map,
+        .field-experiments,
+        .agency-grid,
+        .rule-evidence-table,
+        .field-check-list,
+        .study-metrics {
+          border-color: rgba(235, 234, 227, 0.09);
+        }
+
+        .system-map article + article,
+        .agency-grid article:nth-child(even),
+        .field-check-row,
+        .rule-evidence-row,
+        .study-metric { border-color: rgba(235, 234, 227, 0.075); }
+
+        .system-map strong,
+        .field-check-reading strong,
+        .field-experiment strong { letter-spacing: -0.018em; }
+
+        .status-note {
+          max-width: 430px;
+          margin: 76px 0 0 auto;
+          padding: 18px 0 0;
+          border-top: 1px solid rgba(235, 234, 227, 0.18);
+          color: rgba(235, 234, 227, 0.7);
+        }
+
+        html[lang="zh-CN"] .console-section h2 {
+          max-width: 500px;
+          font-size: clamp(24px, 3.25vw, 31px);
+          letter-spacing: 0.025em;
+          line-height: 1.34;
+        }
+
+        html[lang="zh-CN"] .section-lead {
+          max-width: 480px;
+          font-size: 13.5px;
+          line-height: 1.92;
+        }
+
+        html[lang="zh-CN"] .process-question p {
+          font-size: clamp(16px, 2vw, 18px);
+          letter-spacing: 0.025em;
+          line-height: 1.62;
+        }
+
+        html[lang="zh-CN"] .narrative-block p,
+        html[lang="zh-CN"] .research-summary p,
+        html[lang="zh-CN"] .agency-grid p,
+        html[lang="zh-CN"] .field-check-row > p {
+          font-size: 13.5px;
+          line-height: 1.86;
+        }
+
+        html[lang="zh-CN"] .logic-heading,
+        html[lang="zh-CN"] .process-question small,
+        html[lang="zh-CN"] .narrative-block small {
+          letter-spacing: 0.08em;
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .residue-canvas,
         .trace-canvas,
@@ -1252,14 +1508,7 @@
             <p class="section-kicker">02 / System and research boundary</p>
             <h2>A field where carrying, resisting and beginning again remain unfinished.</h2>
 
-            <div class="research-summary" aria-label="Research summary">
-              <article><small>Question</small><strong>How might subtle change become perceptible without being represented, named or diagnosed?</strong></article>
-              <article><small>Contribution</small><strong>A philosophical encounter reworked as an open, responsive field—not a symbolic illustration or a model of the viewer.</strong></article>
-              <article><small>Working now</small><p>Resampled curve geometry, independent trace relations and a low-resolution density and vector field operate in the browser. Coarse camera sensing remains optional; the M5Stack remains a separate prototype.</p></article>
-              <article><small>Next inquiry</small><p>Observe 6–8 unguided encounters, compare differences and ambiguities in participants’ descriptions, then revise the rule mapping before spatial expansion.</p></article>
-            </div>
-
-            <div class="logic-block" aria-label="Live trace relation">
+            <div class="logic-block live-analysis-block" aria-label="Live trace relation">
               <span class="logic-heading">Live trace relation / descriptive, never diagnostic</span>
               <div class="live-analysis">
                 <div class="live-analysis-intro">
@@ -1273,6 +1522,13 @@
                   <div class="live-force" data-live-force="play"><small>Play</small><span class="live-force-track"><i></i></span></div>
                 </div>
               </div>
+            </div>
+
+            <div class="research-summary" aria-label="Research summary">
+              <article><small>Question</small><strong>How might subtle change become perceptible without being represented, named or diagnosed?</strong></article>
+              <article><small>Contribution</small><strong>A philosophical encounter reworked as an open, responsive field—not a symbolic illustration or a model of the viewer.</strong></article>
+              <article><small>Working now</small><p>Resampled curve geometry, independent trace relations and a low-resolution density and vector field operate in the browser. Coarse camera sensing remains optional; the M5Stack remains a separate prototype.</p></article>
+              <article><small>Next inquiry</small><p>Observe 6–8 unguided encounters, compare differences and ambiguities in participants’ descriptions, then revise the rule mapping before spatial expansion.</p></article>
             </div>
 
             <div class="logic-block" aria-label="System map">
