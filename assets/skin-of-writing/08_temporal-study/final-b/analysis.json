@@ -1,0 +1,19 @@
+{
+  "source": "frame-15-032.48s.jpg",
+  "crop": [
+    240,
+    560,
+    460,
+    820
+  ],
+  "output_size": [
+    220,
+    260
+  ],
+  "otsu_threshold": 126,
+  "foreground_pixels": 6725,
+  "skeleton_pixels": 486,
+  "endpoints": 11,
+  "junctions": 3,
+  "note": "Endpoints and junctions are clustered crossing-number features, not semantic strokes."
+}
