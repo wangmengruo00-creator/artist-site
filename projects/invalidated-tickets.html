@@ -93,6 +93,15 @@
             </a>
           </div>
           <div class="tickets-collection-field" data-collection-preview aria-label="A visual field of 296 digitised working records"></div>
+          <dialog class="tickets-collection-lightbox" data-collection-lightbox aria-label="Enlarged collection record">
+            <button class="tickets-collection-lightbox-close" type="button" data-collection-lightbox-close>
+              Close <span aria-hidden="true">×</span>
+            </button>
+            <figure>
+              <img data-collection-lightbox-image alt="">
+              <figcaption data-collection-lightbox-caption></figcaption>
+            </figure>
+          </dialog>
         </section>
 
         <section class="tickets-intro" aria-labelledby="tickets-intro-title">
@@ -363,16 +372,82 @@
         ));
         if (collectionPreview) {
           const previewFragment = document.createDocumentFragment();
-          collectionItems.forEach((item) => {
+          collectionItems.forEach((item, index) => {
             const image = document.createElement('img');
-            image.src = `../assets/invalidated-tickets/${item.image.replace('archive-items/', 'archive-items/thumbnails/')}`;
-            image.alt = '';
+            const thumbnailSrc = `../assets/invalidated-tickets/${item.image.replace('archive-items/', 'archive-items/thumbnails/')}`;
+            if (index < 96) {
+              image.src = thumbnailSrc;
+            } else {
+              image.dataset.thumbnailSrc = thumbnailSrc;
+            }
+            image.alt = `${item.id} — ${item.title}`;
             image.loading = 'lazy';
             image.decoding = 'async';
+            image.fetchPriority = 'low';
             image.dataset.collection = item.collection;
+            image.dataset.fullSrc = `../assets/invalidated-tickets/${item.image}`;
+            image.dataset.recordId = item.id;
+            image.dataset.recordTitle = item.title;
+            image.tabIndex = 0;
+            image.setAttribute('role', 'button');
+            image.setAttribute('aria-label', `Enlarge ${item.id}`);
             previewFragment.append(image);
           });
           collectionPreview.append(previewFragment);
+
+          const hydrateThumbnail = (image) => {
+            if (!image?.dataset.thumbnailSrc) return;
+            image.src = image.dataset.thumbnailSrc;
+            delete image.dataset.thumbnailSrc;
+          };
+          const deferredThumbnails = [...collectionPreview.querySelectorAll('img[data-thumbnail-src]')];
+          const scheduleThumbnailBatch = () => {
+            if ('requestIdleCallback' in window) {
+              window.requestIdleCallback(hydrateBatch, { timeout: 900 });
+            } else {
+              window.setTimeout(hydrateBatch, 120);
+            }
+          };
+          const hydrateBatch = () => {
+            deferredThumbnails.splice(0, 24).forEach(hydrateThumbnail);
+            if (!deferredThumbnails.length) return;
+            window.setTimeout(scheduleThumbnailBatch, 90);
+          };
+          scheduleThumbnailBatch();
+          collectionPreview.addEventListener('pointerover', (event) => {
+            hydrateThumbnail(event.target.closest('img'));
+          });
+          collectionPreview.addEventListener('focusin', (event) => {
+            hydrateThumbnail(event.target.closest('img'));
+          });
+
+          const lightbox = document.querySelector('[data-collection-lightbox]');
+          const lightboxImage = lightbox?.querySelector('[data-collection-lightbox-image]');
+          const lightboxCaption = lightbox?.querySelector('[data-collection-lightbox-caption]');
+          const lightboxClose = lightbox?.querySelector('[data-collection-lightbox-close]');
+          const openRecord = (image) => {
+            if (!lightbox || !lightboxImage || !lightboxCaption) return;
+            lightboxImage.src = image.dataset.fullSrc;
+            lightboxImage.alt = image.alt;
+            lightboxCaption.textContent = `${image.dataset.recordId} / ${image.dataset.recordTitle}`;
+            lightbox.showModal();
+          };
+
+          collectionPreview.addEventListener('click', (event) => {
+            const image = event.target.closest('img');
+            if (image) openRecord(image);
+          });
+          collectionPreview.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            const image = event.target.closest('img');
+            if (!image) return;
+            event.preventDefault();
+            openRecord(image);
+          });
+          lightboxClose?.addEventListener('click', () => lightbox.close());
+          lightbox?.addEventListener('click', (event) => {
+            if (event.target === lightbox) lightbox.close();
+          });
         }
 
         const video = document.getElementById('tickets-documentary-video');
