@@ -5676,7 +5676,11 @@ body.landing-page {
   padding: 18px;
   overflow: hidden;
   border: 1px solid var(--tickets-rule);
-  background: #f0ece2;
+  background-color: #f0ece2;
+  background-image: url("assets/invalidated-tickets/archive-items/collection-atlas.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: calc(100% - 36px) calc(100% - 36px);
 }
 
 .tickets-collection-field::after {
@@ -5706,19 +5710,40 @@ body.landing-page {
 .tickets-collection-field img[data-collection="labels"] { border-top: 1px solid rgba(153, 113, 39, 0.55); }
 .tickets-collection-field img[data-collection^="misc"] { border-top: 1px solid rgba(95, 89, 78, 0.4); }
 
-.tickets-collection-field img:hover {
-  z-index: 4;
-  opacity: 1;
-  transform: scale(3.2);
-  box-shadow: 0 4px 14px rgba(35, 31, 25, 0.18);
+.tickets-collection-field img:not([src]) {
+  border-color: transparent;
+  background: transparent;
+  opacity: 0;
 }
 
-.tickets-collection-field img:focus-visible {
-  z-index: 4;
+.tickets-collection-field img[data-record-id]:focus-visible {
   outline: 1px solid var(--tickets-red);
   outline-offset: 2px;
   opacity: 1;
-  transform: scale(3.2);
+  background: rgba(139, 51, 40, 0.08);
+  color: transparent;
+}
+
+.tickets-collection-field .tickets-collection-hover-preview {
+  position: absolute;
+  z-index: 6;
+  width: clamp(118px, 18%, 176px);
+  height: clamp(118px, 18%, 176px);
+  aspect-ratio: 1;
+  padding: 10px;
+  border: 1px solid rgba(91, 83, 72, 0.38);
+  background: #f8f5ed;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.92);
+  box-shadow: 0 8px 24px rgba(35, 31, 25, 0.2);
+  transition: opacity 120ms ease, transform 150ms ease;
+}
+
+.tickets-collection-field .tickets-collection-hover-preview.is-visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .tickets-collection-lightbox {
