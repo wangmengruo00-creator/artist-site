@@ -57,7 +57,7 @@
     "After Use": "《使用之后》",
     "AFTER USE": "《使用之后》",
 
-    "Working across printed matter, material traces, embodied writing, and responsive systems of reading.": "我的创作横跨印刷物、材料痕迹、具身书写与响应式阅读系统。",
+    "Working across material, visual and interactive systems, I explore how relations become perceptible, and how different systems shape what can be read and acted upon.": "我的实践横跨材料、视觉与互动系统，探索关系如何变得可感，以及不同系统如何塑造何者能够被阅读并转化为行动。",
     "Alongside these materials, I work with artist-book structures and responsive interfaces. I am drawn to folds, stains, corrections, handwriting, numbers, stamps, and classifications—the traces through which former conditions of use remain partially perceptible.": "除这些材料外，我也使用艺术家书结构与响应式界面。我关注折痕、污渍、修改、手写、数字、印章与分类——正是通过这些痕迹，材料过去的使用条件仍能被部分感知。",
     "Ration coupons, exchange and supply vouchers, commodity labels and wrappers, practice papers, ink, handmade paper, and responsive interfaces.": "粮票、兑换券与供应券、商品标签与包装纸、练习用纸、墨、手工纸和响应式界面。",
     "Selected works examining how material traces, reading structures, and responsive systems can make relations perceptible.": "精选作品探索材料痕迹、阅读结构与响应式系统如何使关系变得可感。",
@@ -67,7 +67,7 @@
     "System record · material trace · proposed machine reading": "系统记录 · 材料痕迹 · 拟议的机器阅读",
     "Ration coupons, exchange vouchers, wrappers and product labels": "粮票、兑换券、包装纸与商品标签",
 
-    "Practice-based artist and researcher": "实践型艺术家与研究者",
+    "Practice-based artist-researcher": "实践型艺术家—研究者",
     "Working across printed matter, material traces, embodied writing, and interactive structures of reading.": "我的创作横跨印刷物、材料痕迹、具身书写与互动阅读结构。",
     "Enter selected works": "进入精选作品",
     "Selected practice · 2016—2026": "精选实践 · 2016—2026",
