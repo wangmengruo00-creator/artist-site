@@ -4299,6 +4299,39 @@ body.landing-page {
   line-height: 1.55;
 }
 
+.about-current-research-copy {
+  max-width: 720px;
+}
+
+.about-current-research-copy p {
+  margin: 0 0 22px;
+  color: #4e4c46;
+  font-size: 15px;
+  line-height: 1.78;
+}
+
+.about-current-research-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.education-list li > span:last-child {
+  display: grid;
+  gap: 4px;
+}
+
+.education-list strong {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 430;
+  line-height: 1.4;
+}
+
+.education-list small {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
 .about-page-section .about-contact {
   padding-top: 30px;
   border-top: 2px solid var(--text);
