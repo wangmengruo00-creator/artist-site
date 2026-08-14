@@ -8,9 +8,9 @@
       :root {
         --ink: #0b0d0c;
         --paper: #ebeae3;
-        --muted: rgba(235, 234, 227, 0.68);
-        --faint: rgba(235, 234, 227, 0.5);
-        --line: rgba(235, 234, 227, 0.17);
+        --muted: rgba(235, 234, 227, 0.72);
+        --faint: rgba(235, 234, 227, 0.54);
+        --line: rgba(235, 234, 227, 0.13);
         --panel: rgba(13, 15, 14, 0.97);
         --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         --serif: Georgia, "Times New Roman", serif;
@@ -184,6 +184,48 @@
         letter-spacing: -0.04em;
       }
 
+      .field-title h1 .title-en {
+        margin: 0;
+        font-family: inherit;
+        font-size: 1em;
+        font-weight: inherit;
+        letter-spacing: inherit;
+      }
+
+      .field-title h1 .title-zh { display: none; }
+
+      html[lang="zh-CN"] .field-title h1 .title-en { display: none; }
+      html[lang="zh-CN"] .field-title h1 .title-zh {
+        display: block;
+        margin: 0;
+        font-family: "Songti SC", "Noto Serif CJK SC", SimSun, serif;
+        font-size: 0.82em;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        line-height: 1.05;
+      }
+
+      html[lang="zh-CN"] .console-section h2,
+      html[lang="zh-CN"] .process-question p,
+      html[lang="zh-CN"] .logic-row strong,
+      html[lang="zh-CN"] .force-mix h3,
+      html[lang="zh-CN"] .system-chain strong,
+      html[lang="zh-CN"] .system-map strong,
+      html[lang="zh-CN"] .field-experiment strong,
+      html[lang="zh-CN"] .prototype-lines h3,
+      html[lang="zh-CN"] .m5-step h3 {
+        font-family: "Songti SC", "Noto Serif CJK SC", SimSun, serif;
+        letter-spacing: 0;
+      }
+
+      html[lang="zh-CN"] .section-lead,
+      html[lang="zh-CN"] .narrative-block p,
+      html[lang="zh-CN"] .research-summary p,
+      html[lang="zh-CN"] .agency-grid p,
+      html[lang="zh-CN"] .prototype-lines p {
+        line-height: 1.78;
+      }
+
       .field-title p {
         max-width: 355px;
         margin: 17px 0 0;
@@ -230,7 +272,7 @@
         top: 0;
         right: 0;
         bottom: 0;
-        width: min(720px, 52vw);
+        width: min(920px, 64vw);
         overflow: hidden;
         color: var(--paper);
         background: var(--panel);
@@ -301,7 +343,7 @@
         height: 100%;
         overflow-y: auto;
         overscroll-behavior: contain;
-        padding: clamp(86px, 10vh, 112px) clamp(24px, 3.5vw, 48px) 56px;
+        padding: clamp(90px, 10vh, 116px) clamp(34px, 4vw, 62px) 84px;
         scrollbar-width: thin;
         scrollbar-color: rgba(235, 234, 227, 0.18) transparent;
       }
@@ -330,7 +372,7 @@
         font-size: clamp(27px, 2.6vw, 38px);
         font-weight: 400;
         letter-spacing: -0.045em;
-        line-height: 0.98;
+        line-height: 1.03;
       }
 
       .section-lead {
@@ -485,9 +527,7 @@
         letter-spacing: -0.03em;
       }
 
-      .logic-block {
-        margin-top: clamp(34px, 5vh, 52px);
-      }
+      .logic-block { margin-top: clamp(46px, 6.5vh, 68px); }
 
       .logic-heading {
         display: block;
@@ -512,19 +552,18 @@
       .research-summary {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: clamp(28px, 4vw, 52px);
         margin-top: clamp(30px, 4.5vh, 44px);
         border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
       }
 
       .research-summary article {
         min-height: 92px;
-        padding: 13px 18px 16px 0;
+        padding: 16px 0 24px;
       }
 
       .research-summary article:nth-child(even) {
-        padding-left: 18px;
-        border-left: 1px solid var(--line);
+        padding-left: 0;
       }
 
       .research-summary article:nth-child(n+3) { border-top: 1px solid var(--line); }
@@ -724,6 +763,57 @@
 
       .rule-evidence-row span { color: var(--muted); }
       .rule-evidence-head { color: var(--faint); font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
+      .field-check-list { border-top: 1px solid var(--line); }
+      .field-check-row { display: grid; grid-template-columns: 92px minmax(170px, 0.58fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 38px); align-items: center; min-height: 112px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+      .field-check-mark { display: grid; place-items: center; width: 92px; height: 58px; overflow: hidden; background: rgba(235, 234, 227, 0.018); }
+      .field-check-mark svg { width: 82px; height: 48px; overflow: visible; }
+      .field-check-mark path,
+      .field-check-mark line,
+      .field-check-mark circle { fill: none; stroke: rgba(235, 234, 227, 0.68); stroke-width: 1.15; vector-effect: non-scaling-stroke; }
+      .field-check-mark .ghost { stroke: rgba(235, 234, 227, 0.18); }
+      .field-check-mark .soft { stroke: rgba(235, 234, 227, 0.38); }
+      .field-check-mark circle { fill: rgba(235, 234, 227, 0.38); stroke: none; }
+      .field-check-mark circle.soft,
+      .field-check-mark circle.ghost { fill: none; }
+      .field-check-reading small { color: var(--faint); font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
+      .field-check-reading strong { display: block; margin-top: 8px; font-family: var(--serif); font-size: clamp(18px, 1.5vw, 22px); font-weight: 400; }
+      .field-check-reading span { display: block; margin-top: 7px; color: var(--faint); font-family: var(--mono); font-size: 9px; line-height: 1.55; text-transform: uppercase; }
+      .field-check-row > p { max-width: 440px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
+      .prototype-check-note { max-width: 760px; margin: 16px 0 0 auto; color: var(--faint); font-family: var(--mono); font-size: 9px; letter-spacing: 0.035em; line-height: 1.68; text-transform: uppercase; }
+
+      .study-panel[hidden] { display: none; }
+      .study-panel { margin-top: clamp(30px, 4.5vh, 44px); padding: 16px 0 18px; border-top: 1px solid rgba(235, 234, 227, 0.5); border-bottom: 1px solid rgba(235, 234, 227, 0.5); }
+      .study-panel-header { display: grid; grid-template-columns: minmax(150px, 0.38fr) 1fr; gap: 24px; }
+      .study-panel h3 { margin: 10px 0 0; font-family: var(--serif); font-size: clamp(18px, 1.55vw, 22px); font-weight: 400; }
+      .study-panel p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.62; }
+      .study-panel small,
+      .study-metric span,
+      .study-clock span { color: var(--faint); font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
+      .study-conditions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; margin-top: 17px; background: var(--line); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .study-conditions button,
+      .study-actions button { color: inherit; background: var(--panel); border: 0; font-family: var(--mono); font-size: 9px; letter-spacing: 0.06em; line-height: 1.45; text-transform: uppercase; cursor: pointer; }
+      .study-conditions button { min-height: 58px; padding: 12px; text-align: left; }
+      .study-conditions button[aria-pressed="true"] { color: var(--panel); background: rgba(235, 234, 227, 0.82); }
+      .study-conditions button:focus-visible,
+      .study-actions button:focus-visible { outline: 1px solid rgba(235, 234, 227, 0.86); outline-offset: -2px; }
+      .study-protocol { display: grid; grid-template-columns: minmax(96px, 0.26fr) 1fr; gap: 18px; min-height: 52px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+      .study-actions { display: flex; flex-wrap: wrap; gap: 1px; margin-top: 14px; background: transparent; }
+      .study-actions button { border: 1px solid var(--line); }
+      .study-actions button { min-height: 38px; padding: 9px 13px; }
+      .study-actions button:disabled { color: rgba(235, 234, 227, 0.22); cursor: default; }
+      .study-readout { display: grid; grid-template-columns: minmax(112px, 0.32fr) 1fr; gap: 20px; margin-top: 16px; }
+      .study-clock strong { display: block; margin-top: 8px; font-family: var(--mono); font-size: 22px; font-weight: 400; }
+      .study-clock em { display: block; margin-top: 8px; color: var(--muted); font-family: var(--mono); font-size: 9px; font-style: normal; text-transform: uppercase; }
+      .study-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+      .study-metric { min-height: 54px; padding: 9px 12px 10px 0; border-bottom: 1px solid var(--line); }
+      .study-metric:nth-child(3n+2),
+      .study-metric:nth-child(3n+3) { padding-left: 12px; border-left: 1px solid var(--line); }
+      .study-metric strong { display: block; margin-top: 7px; font-family: var(--mono); font-size: 12px; font-weight: 400; }
+      .study-phase { display: grid; grid-template-columns: minmax(96px, 0.26fr) 1fr; gap: 18px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+      .study-phase strong { color: var(--text); font-family: var(--mono); font-size: 10px; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; }
+      .study-cue { position: fixed; left: 50%; bottom: 26px; z-index: 18; width: min(560px, calc(100vw - 40px)); padding: 11px 16px; border: 1px solid rgba(235, 234, 227, 0.32); background: rgba(12, 13, 12, 0.86); color: rgba(235, 234, 227, 0.88); font: 9px/1.5 var(--mono); letter-spacing: 0.06em; text-align: center; text-transform: uppercase; transform: translateX(-50%); backdrop-filter: blur(8px); pointer-events: none; }
+      .study-cue[hidden] { display: none; }
+      .study-cue[data-phase="observation"] { border-color: rgba(235, 234, 227, 0.72); background: rgba(8, 9, 8, 0.94); color: rgba(255, 254, 247, 0.98); }
 
       .force-mix {
         display: grid;
@@ -1052,6 +1142,18 @@
         .system-map article:nth-child(4) { border-top: 1px solid var(--line); }
         .field-experiments { grid-template-columns: 1fr; }
         .field-experiment { min-height: 0; }
+        .field-check-row { grid-template-columns: 74px minmax(0, 1fr); gap: 16px 20px; }
+        .field-check-mark { width: 74px; }
+        .field-check-mark svg { width: 66px; }
+        .field-check-row > p { grid-column: 2; }
+        .prototype-check-note { margin-left: 94px; }
+        .study-panel-header,
+        .study-readout { grid-template-columns: 1fr; }
+        .study-conditions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .study-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .study-metric:nth-child(3n+2),
+        .study-metric:nth-child(3n+3) { padding-left: 0; border-left: 0; }
+        .study-metric:nth-child(even) { padding-left: 12px; border-left: 1px solid var(--line); }
         .status-note { padding-left: 0; }
         .m5-step { grid-template-columns: 32px 1fr; }
         .m5-step p { grid-column: 2; }
@@ -1070,6 +1172,10 @@
         .rule-evidence-row { grid-template-columns: 70px 1fr; }
         .rule-evidence-row > :last-child { grid-column: 2; }
         .rule-evidence-head > :last-child { display: none; }
+        .field-check-row { grid-template-columns: 58px minmax(0, 1fr); }
+        .field-check-mark { width: 58px; height: 52px; }
+        .field-check-mark svg { width: 52px; }
+        .prototype-check-note { margin-left: 78px; }
         .research-summary,
         .agency-grid { grid-template-columns: 1fr; }
         .research-summary article,
@@ -1121,7 +1227,7 @@
         </nav>
 
         <div class="field-title">
-          <h1>The Three<br>Metamorphoses</h1>
+          <h1><span class="title-en" lang="en">The Three<br>Metamorphoses</span><span class="title-zh" lang="zh-CN">精神三变</span></h1>
           <p>The field changes with movement, stillness, repetition and presence.</p>
           <div class="field-cue"><span>move</span><strong>leave a trace</strong><span>press + draw</span><strong>extend the path</strong><span>pause</span><strong>let residue gather</strong></div>
         </div>
@@ -1148,8 +1254,8 @@
 
             <div class="research-summary" aria-label="Research summary">
               <article><small>Question</small><strong>How might subtle change become perceptible without being represented, named or diagnosed?</strong></article>
-              <article><small>Contribution</small><strong>A philosophical reading translated into an open responsive field, not a symbolic illustration or a model of the viewer.</strong></article>
-              <article><small>Working now</small><p>Directional trace, persistent residue and opt-in coarse camera sensing operate in the browser. The M5Stack remains a separate working prototype.</p></article>
+              <article><small>Contribution</small><strong>A philosophical encounter reworked as an open, responsive field—not a symbolic illustration or a model of the viewer.</strong></article>
+              <article><small>Working now</small><p>Resampled curve geometry, independent trace relations and a low-resolution density and vector field operate in the browser. Coarse camera sensing remains optional; the M5Stack remains a separate prototype.</p></article>
               <article><small>Next inquiry</small><p>Observe 6–8 unguided encounters, compare differences and ambiguities in participants’ descriptions, then revise the rule mapping before spatial expansion.</p></article>
             </div>
 
@@ -1173,10 +1279,75 @@
               <span class="logic-heading">System map / encounter → measurement → force → field</span>
               <div class="system-map">
                 <article><small>01 / Encounter</small><strong>Pointer or camera</strong><p>Intentional path / coarse frame change</p></article>
-                <article><small>02 / Features</small><strong>Movement qualities</strong><p>Speed / duration / repetition / direction / unvisited area / stillness</p></article>
-                <article><small>03 / Relations</small><strong>Two linked layers</strong><p>Trace: weight / friction / play · field: pressure / rupture / emergence</p></article>
-                <article><small>04 / Consequence</small><strong>Perceptual field</strong><p>Density / interruption / opening / afterimage / decay</p></article>
+                <article><small>02 / Features</small><strong>Curve geometry</strong><p>Speed / curvature / duration / spatial return / unvisited area / stillness</p></article>
+                <article><small>03 / Relations</small><strong>Independent signals</strong><p>Trace: weight / friction / play · field: density / direction / persistence</p></article>
+                <article><small>04 / Consequence</small><strong>Perceptual field</strong><p>Flow / interruption / opening / afterimage / decay</p></article>
               </div>
+            </div>
+
+            <section class="study-panel" data-study-panel hidden aria-label="Controlled comparison study mode">
+              <div class="study-panel-header">
+                <div><small>Study mode / local evidence</small><h3>Controlled comparison</h3></div>
+                <p>The condition constrains the test input, not the participant’s meaning. Each run begins from the same empty field and records operational features for 30 seconds.</p>
+              </div>
+              <div class="study-conditions" aria-label="Input condition">
+                <button type="button" data-study-condition="fast" aria-pressed="false">Fast straight</button>
+                <button type="button" data-study-condition="slow" aria-pressed="false">Slow 5 seconds</button>
+                <button type="button" data-study-condition="still" aria-pressed="false">Still 3 seconds</button>
+                <button type="button" data-study-condition="repeat" aria-pressed="false">Repeat path</button>
+              </div>
+              <div class="study-protocol"><small>Current protocol</small><p data-study-protocol>Select one condition. The field will reset before the timed run.</p></div>
+              <div class="study-phase"><small>Current phase</small><strong data-study-phase>Waiting for a condition</strong></div>
+              <div class="study-actions">
+                <button type="button" data-study-reset>Reset field</button>
+                <button type="button" data-study-start disabled>Start 30-second run</button>
+                <button type="button" data-study-mark disabled>Mark observation</button>
+                <button type="button" data-study-export disabled>Export JSON</button>
+              </div>
+              <div class="study-readout">
+                <div class="study-clock"><span>Run time</span><strong data-study-time>00:00.0</strong><em data-study-status>Not started</em></div>
+                <div class="study-metrics">
+                  <div class="study-metric"><span>Speed</span><strong data-study-metric="speed">—</strong></div>
+                  <div class="study-metric"><span>Curvature</span><strong data-study-metric="curvature">—</strong></div>
+                  <div class="study-metric"><span>Spatial return</span><strong data-study-metric="repetition">—</strong></div>
+                  <div class="study-metric"><span>Duration</span><strong data-study-metric="duration">—</strong></div>
+                  <div class="study-metric"><span>Intersections</span><strong data-study-metric="intersections">—</strong></div>
+                  <div class="study-metric"><span>Field density</span><strong data-study-metric="density">—</strong></div>
+                  <div class="study-metric"><span>Direction memory</span><strong data-study-metric="directionStrength">—</strong></div>
+                  <div class="study-metric"><span>Residues</span><strong data-study-metric="residueCount">0</strong></div>
+                  <div class="study-metric"><span>Observations</span><strong data-study-metric="observations">0</strong></div>
+                  <div class="study-metric"><span>Pointer distance</span><strong data-study-metric="pointerDistance">0 px</strong></div>
+                  <div class="study-metric"><span>Longest stillness</span><strong data-study-metric="longestStillness">0.0 s</strong></div>
+                  <div class="study-metric"><span>Protocol</span><strong data-study-metric="compliance">—</strong></div>
+                </div>
+              </div>
+            </section>
+
+            <div class="logic-block" aria-label="Controlled field check">
+              <span class="logic-heading">Controlled field check / selected local prototype runs</span>
+              <div class="field-check-list" aria-label="Comparison of four controlled input conditions">
+                <article class="field-check-row">
+                  <div class="field-check-mark" aria-hidden="true"><svg viewBox="0 0 82 48"><path class="ghost" d="M6 35 C22 31 31 23 45 20 S66 13 77 10"/><path d="M7 34 C23 30 32 22 46 19 S67 12 77 9"/></svg></div>
+                  <div class="field-check-reading"><small>01 / directional opening</small><strong>Fast</strong><span>0.69 s · speed 1.59 · novelty 1.00</span></div>
+                  <p>A brief directional disturbance opened unused space, then gradually decayed.</p>
+                </article>
+                <article class="field-check-row">
+                  <div class="field-check-mark" aria-hidden="true"><svg viewBox="0 0 82 48"><path class="ghost" d="M7 34 C18 32 27 27 39 23 S62 14 76 12"/><path class="soft" d="M7 36 C19 34 29 29 41 25 S63 16 76 14"/><path d="M7 33 C18 31 28 26 40 22 S62 13 76 11"/></svg></div>
+                  <div class="field-check-reading"><small>02 / sustained passage</small><strong>Slow</strong><span>7.22 s · speed 0.075 · Weight 0.71</span></div>
+                  <p>Longer input built a denser field with stronger persistence.</p>
+                </article>
+                <article class="field-check-row">
+                  <div class="field-check-mark" aria-hidden="true"><svg viewBox="0 0 82 48"><circle cx="40" cy="24" r="2.8"/><circle class="soft" cx="40" cy="24" r="8"/><circle class="ghost" cx="40" cy="24" r="15"/><circle class="ghost" cx="40" cy="24" r="21"/></svg></div>
+                  <div class="field-check-reading"><small>03 / local duration</small><strong>Still</strong><span>28.5 s without added movement</span></div>
+                  <p>Local residue gathered briefly, stabilised, and slowly lost density and direction.</p>
+                </article>
+                <article class="field-check-row">
+                  <div class="field-check-mark" aria-hidden="true"><svg viewBox="0 0 82 48"><path class="ghost" d="M7 35 C22 31 32 23 46 20 S66 14 76 11"/><path class="soft" d="M7 33 C22 29 31 22 45 18 S66 12 76 9"/><path d="M7 37 C23 33 33 25 47 22 S67 16 76 13"/></svg></div>
+                  <div class="field-check-reading"><small>04 / spatial return</small><strong>Repeat</strong><span>3 paths · spatial return 1.00 · Weight 0.75</span></div>
+                  <p>The first path opened space; return converted novelty into accumulation.</p>
+                </article>
+              </div>
+              <p class="prototype-check-note">These hand-run checks verify differentiation between system rules. They are not participant findings and do not assign meaning, identity or psychological state to a viewer.</p>
             </div>
 
             <div class="logic-block" aria-label="Field experiments">
@@ -1192,8 +1363,8 @@
               <span class="logic-heading">Agency and boundary</span>
               <div class="agency-grid">
                 <article><small>The visitor chooses</small><p>Whether to move, wait, repeat, draw, enable the camera or leave.</p></article>
-                <article><small>The system measures</small><p>Limited behavioural features and temporary low-resolution frame differences.</p></article>
-                <article><small>The system changes</small><p>Visual density, continuity, instability, diffusion and persistence.</p></article>
+                <article><small>The field receives</small><p>Movement, stillness, spatial relation and temporary low-resolution frame differences.</p></article>
+                <article><small>The field changes</small><p>Visual density, continuity, instability, diffusion and persistence.</p></article>
                 <article><small>The system cannot know</small><p>Identity, intention, emotion, belief or a person’s “true” metamorphosis.</p></article>
               </div>
             </div>
@@ -1231,7 +1402,7 @@
 
             <div class="process-question">
               <small>Research contribution</small>
-              <p>A practice-based exploration of how a lived encounter with philosophy can become an interactive system without turning the text into illustration or the visitor into a category.</p>
+              <p>Rather than translating Nietzsche’s three figures into images, the project draws from bearing, refusal and beginning again as provisional forces that can overlap, recur and remain unfinished within the field.</p>
             </div>
 
             <div class="logic-block" aria-label="Research questions">
@@ -1241,30 +1412,30 @@
               <div class="logic-row"><small>03</small><strong>Embodiment</strong><i>→</i><p>How do directional input, bodily presence and a physical threshold alter the way a field is entered and experienced?</p></div>
             </div>
 
-            <span class="logic-heading translation-heading">Three coexisting forces / never three stages</span>
+            <span class="logic-heading translation-heading">Three coexisting forces / not a fixed sequence within the field</span>
             <div class="force-mix" aria-label="Three coexisting forces">
               <article><small>01 / Camel</small><h3>Weight</h3><p>Burden, endurance, repetition, lingering and accumulation.</p></article>
               <article><small>02 / Lion</small><h3>Friction</h3><p>Resistance, contradiction, interruption, displacement and rupture.</p></article>
               <article><small>03 / Child</small><h3>Play</h3><p>Exploration, connection, opening, creation and new possibility.</p></article>
             </div>
-            <p class="force-note">Nietzsche describes three metamorphoses in sequence. This work does not replace that structure with a universal theory: it holds Weight + Friction + Play together because lived change felt overlapping and unfinished. The viewer is never classified.</p>
+            <p class="force-note">Nietzsche describes three metamorphoses in sequence. This work does not replace that structure with a universal theory: it holds Weight + Friction + Play together because lived change felt overlapping and unfinished. These relations shape the field; they do not identify, limit or define the viewer.</p>
 
             <div class="logic-block" aria-label="Interaction logic">
-              <span class="logic-heading">Two linked rule layers</span>
+              <span class="logic-heading">Geometric field model / two linked rule layers</span>
               <div class="system-chain">
-                <div><small>01</small><strong>Trace analysis</strong><span>Speed / duration / repetition / directional change / exploration</span></div>
-                <div><small>02</small><strong>Trace relation</strong><span>Each completed path produces a temporary relation among Weight / Friction / Play</span></div>
-                <div><small>03</small><strong>Residue field</strong><span>A related but distinct layer uses movement / stillness / time and optional camera change to tune pressure / rupture / emergence</span></div>
+                <div><small>01</small><strong>Trace analysis</strong><span>Arc-length sampling / speed / duration / curvature / intersections / spatial return / exploration</span></div>
+                <div><small>02</small><strong>Trace relation</strong><span>Each path produces independent, coexisting Weight / Friction / Play signals</span></div>
+                <div><small>03</small><strong>Residue field</strong><span>A low-resolution density and vector field retains local direction, diffuses it and gradually lets it decay</span></div>
                 <div><small>04</small><strong>Shared visual grammar</strong><span>Dust / trace / blur / noise / afterimage / displacement produce density, rupture, residue and opening</span></div>
               </div>
               <details class="technical-note">
                 <summary>Technical note / inspect the hand-authored mapping</summary>
                 <div class="system-chain" aria-label="Operational trace equations">
                   <div><small>W</small><strong>Weight</strong><span>increases with slower movement + prior spatial overlap + longer duration</span></div>
-                  <div><small>F</small><strong>Friction</strong><span>increases with speed + abrupt directional change</span></div>
-                  <div><small>P</small><strong>Play</strong><span>increases with unvisited space + directional continuity</span></div>
+                  <div><small>F</small><strong>Friction</strong><span>increases with curvature + abrupt turns + self-intersection</span></div>
+                  <div><small>P</small><strong>Play</strong><span>increases with unvisited space + directional continuity + spatial extension</span></div>
                 </div>
-                <div class="proposal-label"><span>Model status</span><span>Hand-authored and tuneable. These are proportions within one path, not machine-learned predictions or labels assigned to a person.</span></div>
+                <div class="proposal-label"><span>Model status</span><span>Hand-authored and tuneable. The three signals are independent and may coexist; they are not machine-learned predictions or labels assigned to a person.</span></div>
               </details>
             </div>
 
@@ -1275,6 +1446,9 @@
                 <div class="rule-evidence-row" role="row"><strong role="cell">Move</strong><span role="cell">Movement deposits an active trace.</span><span role="cell">A path extends and disturbs the existing field.</span></div>
                 <div class="rule-evidence-row" role="row"><strong role="cell">Pause</strong><span role="cell">Short stillness gathers residue locally.</span><span role="cell">Density forms around the last position.</span></div>
                 <div class="rule-evidence-row" role="row"><strong role="cell">Remain</strong><span role="cell">Longer stillness changes accumulation and decay.</span><span role="cell">The image thickens, diffuses or leaves an afterimage.</span></div>
+                <div class="rule-evidence-row" role="row"><strong role="cell">Repeat</strong><span role="cell">Spatial return increases local density and retention.</span><span role="cell">The familiar path becomes thicker and remains longer.</span></div>
+                <div class="rule-evidence-row" role="row"><strong role="cell">Turn</strong><span role="cell">Curvature, abrupt direction and self-intersection increase rupture.</span><span role="cell">Continuity briefly separates, shifts or leaves a gap.</span></div>
+                <div class="rule-evidence-row" role="row"><strong role="cell">Explore</strong><span role="cell">Entering a low-density or unvisited area increases emergence.</span><span role="cell">Sparse points establish a new local direction.</span></div>
               </div>
             </div>
 
@@ -1363,15 +1537,15 @@
 
             <div class="m5-evidence" aria-label="M5Stack interface evidence">
               <figure>
-                <img src="assets/three-metamorphoses/interface-prototype-test.jpg" alt="M5Stack Cardputer being tested beside the live Web Field">
+                <img src="assets/three-metamorphoses/interface-prototype-test.jpg" loading="lazy" decoding="async" alt="M5Stack Cardputer being tested beside the live Web Field">
                 <figcaption>01 / Device and field — two current prototypes in relation</figcaption>
               </figure>
               <figure>
-                <img src="assets/three-metamorphoses/m5-name-entry.jpg" alt="Close view of the M5Stack name entry screen">
+                <img src="assets/three-metamorphoses/m5-name-entry.jpg" loading="lazy" decoding="async" alt="Close view of the M5Stack name entry screen">
                 <figcaption>02 / Name entry — a physical gesture of arrival</figcaption>
               </figure>
               <figure>
-                <img src="assets/three-metamorphoses/m5-random-question.jpg" alt="Close view of a randomly selected question on the M5Stack screen">
+                <img src="assets/three-metamorphoses/m5-random-question.jpg" loading="lazy" decoding="async" alt="Close view of a randomly selected question on the M5Stack screen">
                 <figcaption>03 / Variable prompt — one question within a changing sequence</figcaption>
               </figure>
             </div>
@@ -1416,7 +1590,7 @@
               <div class="proposal-label"><span>Implementation status</span><span>Protocol proposal only. It connects the completion of a threshold, not the content of a person’s responses; no interpretation, scoring or response transmission is required.</span></div>
             </div>
 
-            <p class="status-note">Here “spiritual interface” means a reflective, philosophical threshold rather than a religious claim or psychological instrument. The name is a temporary gesture of entry. Randomised prompts and variable responses prevent a single prescribed path, but the interface does not score, diagnose or tell the participant which metamorphosis they are.</p>
+            <p class="status-note">Here “spiritual interface” means a reflective, philosophical threshold rather than a religious claim or psychological instrument. Entering a name is a temporary gesture of arrival. Randomised prompts and variable responses prevent a single prescribed path, but the interface does not score, diagnose or tell the participant which metamorphosis they are.</p>
           </section>
 
           <section id="panel-exhibition" class="console-section" role="tabpanel" aria-labelledby="tab-exhibition" data-console-section="exhibition" hidden>
@@ -1445,7 +1619,7 @@
             </div>
 
             <div class="gallery-stage" data-gallery>
-              <img data-gallery-image src="assets/three-metamorphoses/installation-proposal/installation-overview.jpg" alt="Proposed exhibition overview">
+              <img data-gallery-image src="assets/three-metamorphoses/installation-proposal/installation-overview.jpg" loading="lazy" decoding="async" alt="Proposed exhibition overview">
             </div>
             <div class="gallery-controls">
               <button type="button" data-gallery-prev>← Previous</button>
@@ -1458,7 +1632,7 @@
       </aside>
     </main>
 
-    <script src="field-residue.js?v=20260810-1"></script>
+    <script src="field-residue.js?v=20260814-visual1"></script>
     <script>
       (() => {
         const world = document.querySelector("[data-field-world]");
@@ -1865,8 +2039,9 @@
         window.requestAnimationFrame(render);
       })();
     </script>
-    <script src="three-metamorphoses-trace.js?v=20260811-1"></script>
+    <script src="three-metamorphoses-trace.js?v=20260814-study1"></script>
     <script src="three-metamorphoses-research-visuals.js?v=20260808-1"></script>
-    <script src="language.js"></script>
+    <script src="three-metamorphoses-study.js?v=20260814-study3"></script>
+    <script src="language.js?v=20260814-study1"></script>
   </body>
 </html>

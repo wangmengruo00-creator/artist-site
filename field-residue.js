@@ -11,6 +11,7 @@
   const residues = [];
   const cameraDebug = document.createElement("span");
   const debugEnabled = new URLSearchParams(window.location.search).get("debug") === "true";
+  const studyEnabled = new URLSearchParams(window.location.search).get("study") === "true";
   const textResidues = {
     weight: ["depth", "weight"],
     rupture: ["break", "refuse"],
@@ -25,8 +26,28 @@
   let pointerDown = false;
   let lastPoint = null;
   let lastMoveAt = performance.now();
+  let lastStillnessEmitAt = 0;
+  let studyMoveCount = 0;
+  let studyPointerDistance = 0;
+  let studyLongestStillness = 0;
+  let studyHasMovement = false;
   let hideUiTimer = 0;
   let pagePhase = document.body?.dataset.tmPhase || "origin";
+
+  const flowField = {
+    cellSize: 30,
+    columns: 1,
+    rows: 1,
+    vx: new Float32Array(1),
+    vy: new Float32Array(1),
+    strength: new Float32Array(1),
+    density: new Float32Array(1),
+    nextVx: new Float32Array(1),
+    nextVy: new Float32Array(1),
+    nextStrength: new Float32Array(1),
+    nextDensity: new Float32Array(1),
+    lastAngle: null,
+  };
 
   const breath = {
     inhale: 0,
@@ -74,6 +95,163 @@
   const random = (min, max) => min + Math.random() * (max - min);
   const ease = (current, target, amount) => current + (target - current) * amount;
 
+  const configureFlowField = () => {
+    flowField.columns = Math.max(1, Math.ceil(width / flowField.cellSize));
+    flowField.rows = Math.max(1, Math.ceil(height / flowField.cellSize));
+    const length = flowField.columns * flowField.rows;
+    flowField.vx = new Float32Array(length);
+    flowField.vy = new Float32Array(length);
+    flowField.strength = new Float32Array(length);
+    flowField.density = new Float32Array(length);
+    flowField.nextVx = new Float32Array(length);
+    flowField.nextVy = new Float32Array(length);
+    flowField.nextStrength = new Float32Array(length);
+    flowField.nextDensity = new Float32Array(length);
+    flowField.lastAngle = null;
+  };
+
+  const flowIndex = (column, row) => {
+    const x = Math.max(0, Math.min(flowField.columns - 1, column));
+    const y = Math.max(0, Math.min(flowField.rows - 1, row));
+    return y * flowField.columns + x;
+  };
+
+  const sampleFlow = (x, y) => {
+    const gx = clamp(x / flowField.cellSize, 0, flowField.columns - 1);
+    const gy = clamp(y / flowField.cellSize, 0, flowField.rows - 1);
+    const x0 = Math.floor(gx);
+    const y0 = Math.floor(gy);
+    const x1 = Math.min(flowField.columns - 1, x0 + 1);
+    const y1 = Math.min(flowField.rows - 1, y0 + 1);
+    const tx = gx - x0;
+    const ty = gy - y0;
+    const interpolate = (array) => {
+      const top = array[flowIndex(x0, y0)] * (1 - tx) + array[flowIndex(x1, y0)] * tx;
+      const bottom = array[flowIndex(x0, y1)] * (1 - tx) + array[flowIndex(x1, y1)] * tx;
+      return top * (1 - ty) + bottom * ty;
+    };
+    return {
+      x: interpolate(flowField.vx),
+      y: interpolate(flowField.vy),
+      strength: interpolate(flowField.strength),
+      density: interpolate(flowField.density),
+    };
+  };
+
+  const depositFlow = (point, previous) => {
+    if (!previous) return { weight: 0, rupture: 0, emergence: 0 };
+    const dx = point.x - previous.x;
+    const dy = point.y - previous.y;
+    const distance = Math.hypot(dx, dy);
+    if (distance < 0.45) return { weight: 0, rupture: 0, emergence: 0 };
+
+    const directionX = dx / distance;
+    const directionY = dy / distance;
+    const angle = Math.atan2(directionY, directionX);
+    const signedTurn = flowField.lastAngle === null
+      ? 0
+      : Math.atan2(Math.sin(angle - flowField.lastAngle), Math.cos(angle - flowField.lastAngle));
+    const turn = Math.abs(signedTurn);
+    const speed = clamp(distance / 90);
+    const existing = sampleFlow(point.x, point.y);
+    const relation = {
+      weight: clamp(0.08 + (1 - speed) * 0.36 + existing.density * 0.62),
+      rupture: clamp(0.04 + clamp(turn / 1.35) * 0.78 + speed * 0.18),
+      emergence: clamp(0.08 + (1 - existing.density) * 0.74 + speed * 0.08),
+    };
+
+    const centerX = Math.floor(point.x / flowField.cellSize);
+    const centerY = Math.floor(point.y / flowField.cellSize);
+    const radius = 2;
+    for (let offsetY = -radius; offsetY <= radius; offsetY += 1) {
+      for (let offsetX = -radius; offsetX <= radius; offsetX += 1) {
+        const cellDistance = Math.hypot(offsetX, offsetY);
+        if (cellDistance > radius) continue;
+        const influence = (1 - cellDistance / (radius + 0.5)) * (0.55 + speed * 0.45);
+        const index = flowIndex(centerX + offsetX, centerY + offsetY);
+        const ruptureDeflection = signedTurn * relation.rupture * influence * 0.16;
+        const depositedX = Math.cos(angle + ruptureDeflection);
+        const depositedY = Math.sin(angle + ruptureDeflection);
+        const blend = 0.08 + influence * 0.18;
+        flowField.vx[index] = ease(flowField.vx[index], depositedX, blend);
+        flowField.vy[index] = ease(flowField.vy[index], depositedY, blend);
+        flowField.strength[index] = clamp(flowField.strength[index] + influence * 0.09);
+        flowField.density[index] = clamp(flowField.density[index] + influence * (0.012 + relation.weight * 0.012));
+      }
+    }
+    flowField.lastAngle = angle;
+    return relation;
+  };
+
+  const updateFlowField = () => {
+    if (frame % 2 !== 0) return;
+    const { columns, rows } = flowField;
+    for (let row = 0; row < rows; row += 1) {
+      for (let column = 0; column < columns; column += 1) {
+        const index = flowIndex(column, row);
+        const left = flowIndex(column - 1, row);
+        const right = flowIndex(column + 1, row);
+        const up = flowIndex(column, row - 1);
+        const down = flowIndex(column, row + 1);
+        const averageX = (flowField.vx[left] + flowField.vx[right] + flowField.vx[up] + flowField.vx[down]) * 0.25;
+        const averageY = (flowField.vy[left] + flowField.vy[right] + flowField.vy[up] + flowField.vy[down]) * 0.25;
+        const averageStrength = (flowField.strength[left] + flowField.strength[right] + flowField.strength[up] + flowField.strength[down]) * 0.25;
+        const averageDensity = (flowField.density[left] + flowField.density[right] + flowField.density[up] + flowField.density[down]) * 0.25;
+        flowField.nextVx[index] = flowField.vx[index] * 0.976 + averageX * 0.024;
+        flowField.nextVy[index] = flowField.vy[index] * 0.976 + averageY * 0.024;
+        flowField.nextStrength[index] = clamp((flowField.strength[index] * 0.982 + averageStrength * 0.018) * 0.9988);
+        flowField.nextDensity[index] = clamp((flowField.density[index] * 0.988 + averageDensity * 0.012) * 0.9992);
+      }
+    }
+    [flowField.vx, flowField.nextVx] = [flowField.nextVx, flowField.vx];
+    [flowField.vy, flowField.nextVy] = [flowField.nextVy, flowField.vy];
+    [flowField.strength, flowField.nextStrength] = [flowField.nextStrength, flowField.strength];
+    [flowField.density, flowField.nextDensity] = [flowField.nextDensity, flowField.density];
+  };
+
+  const resetResidueField = () => {
+    residues.length = 0;
+    configureFlowField();
+    lastPoint = null;
+    lastMoveAt = performance.now();
+    lastStillnessEmitAt = 0;
+    studyMoveCount = 0;
+    studyPointerDistance = 0;
+    studyLongestStillness = 0;
+    studyHasMovement = false;
+    breath.inhale = 0;
+    breath.hold = 0;
+    breath.exhale = 0.45;
+    breath.idle = 0.18;
+    breath.rhythm = 0;
+    ctx.fillStyle = "#22221f";
+    ctx.fillRect(0, 0, width, height);
+  };
+
+  const reportFieldState = () => {
+    if (!studyEnabled || frame % 30 !== 0) return;
+    const idleForMs = studyHasMovement ? Math.max(0, performance.now() - lastMoveAt) : 0;
+    studyLongestStillness = Math.max(studyLongestStillness, idleForMs);
+    let density = 0;
+    let strength = 0;
+    for (let index = 0; index < flowField.density.length; index += 1) {
+      density += flowField.density[index];
+      strength += flowField.strength[index];
+    }
+    const divisor = Math.max(1, flowField.density.length);
+    window.dispatchEvent(new CustomEvent("tm:field-state", {
+      detail: {
+        density: density / divisor,
+        directionStrength: strength / divisor,
+        residueCount: residues.length,
+        idleForMs,
+        longestStillnessMs: studyLongestStillness,
+        pointerMoveCount: studyMoveCount,
+        pointerDistance: studyPointerDistance,
+      },
+    }));
+  };
+
   const resize = () => {
     const rect = field.getBoundingClientRect();
     pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
@@ -86,6 +264,7 @@
     ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
     ctx.fillStyle = "#22221f";
     ctx.fillRect(0, 0, width, height);
+    configureFlowField();
   };
 
   const pointFromEvent = (event) => {
@@ -250,7 +429,7 @@
     if (residues.length > 560) residues.splice(0, residues.length - 560);
   };
 
-  const emitResidue = (point, previous) => {
+  const emitResidue = (point, previous, relation) => {
     if (!previous) return;
 
     const dx = point.x - previous.x;
@@ -261,7 +440,7 @@
     const speed = clamp(distance / 145);
     const angle = Math.atan2(dy, dx);
     const side = angle + Math.PI / 2;
-    const count = Math.max(1, Math.min(4, Math.floor(distance / 34) + 1));
+    const count = Math.max(1, Math.min(4, Math.floor(distance / 34) + 1 + Math.round((relation?.weight || 0) * 0.7)));
     const now = performance.now();
 
     breath.inhale = clamp(breath.inhale + speed * 0.2 + 0.045);
@@ -273,7 +452,8 @@
       const x = previous.x + dx * t + Math.cos(side) * off + random(-0.8, 0.8);
       const y = previous.y + dy * t + Math.sin(side) * off + random(-0.8, 0.8);
       const length = Math.max(6, Math.min(56, distance * random(0.18, 0.46)));
-      const imperfectAngle = angle + random(-0.11, 0.11);
+      const angularBreak = 0.11 + (relation?.rupture || 0) * 0.2;
+      const imperfectAngle = angle + random(-angularBreak, angularBreak);
 
       addResidue({
         x,
@@ -283,24 +463,68 @@
         vx: dx * random(0.00008, 0.00028) + random(-0.0028, 0.0028),
         vy: dy * random(0.00008, 0.00028) + random(-0.0028, 0.0028),
         angle: imperfectAngle,
-        opacity: clamp(0.026 + speed * 0.042 + (pointerDown ? 0.008 : 0), 0.018, 0.08),
-        decay: random(0.000035, 0.00013),
-        size: random(0.6, 1.55) + speed * 0.42,
-        spread: random(1.0, 3.2),
+        opacity: clamp(0.026 + speed * 0.041 + (relation?.weight || 0) * 0.007 + (pointerDown ? 0.007 : 0), 0.019, 0.084),
+        decay: random(0.000034, 0.000125) * (1 - (relation?.weight || 0) * 0.14),
+        size: random(0.6, 1.58) + speed * 0.4 + (relation?.weight || 0) * 0.13,
+        spread: random(1.0, 3.2) + (relation?.rupture || 0) * 0.5,
         density: random(0.35, 0.95) + speed * 0.35,
         directionNoise: random(0.22, 0.72),
-        weight: random(0.04, 0.12),
-        rupture: 0,
-        emergence: 0,
+        weight: clamp((relation?.weight || 0) * random(0.24, 0.38) + random(0.025, 0.07)),
+        rupture: clamp((relation?.rupture || 0) * random(0.18, 0.32)),
+        emergence: clamp((relation?.emergence || 0) * random(0.16, 0.28)),
         pulse: random(0, Math.PI * 2),
         born: now,
       });
     }
   };
 
+  const emitStillness = (now, idleFor) => {
+    if (
+      !inside ||
+      !lastPoint ||
+      idleFor < 520 ||
+      idleFor > 2600 ||
+      now - lastStillnessEmitAt < 240 ||
+      field.classList.contains("is-console-open")
+    ) return;
+
+    lastStillnessEmitAt = now;
+    const localFlow = sampleFlow(lastPoint.x, lastPoint.y);
+    const quietWeight = clamp(0.38 + localFlow.density * 0.54 + idleFor / 5200);
+    const radius = 2.5 + quietWeight * 5.5;
+    const angle = localFlow.strength > 0.04 ? Math.atan2(localFlow.y, localFlow.x) : random(-Math.PI, Math.PI);
+    const x = lastPoint.x + random(-radius, radius);
+    const y = lastPoint.y + random(-radius, radius);
+    const length = random(3, 9) + quietWeight * 5;
+    addResidue({
+      x,
+      y,
+      px: x - Math.cos(angle) * length,
+      py: y - Math.sin(angle) * length,
+      vx: localFlow.x * 0.002,
+      vy: localFlow.y * 0.002,
+      angle,
+      opacity: 0.018 + quietWeight * 0.012,
+      decay: random(0.000025, 0.000055),
+      size: random(0.65, 1.25) + quietWeight * 0.12,
+      spread: random(1.2, 2.8),
+      density: random(0.55, 0.9),
+      directionNoise: random(0.38, 0.78),
+      weight: quietWeight * random(0.3, 0.46),
+      rupture: 0,
+      emergence: clamp((1 - localFlow.density) * 0.14),
+      pulse: random(0, Math.PI * 2),
+      born: now,
+    });
+  };
+
   const pointerTarget = globalField ? document.documentElement : field;
+  const isInterfaceEvent = (event) => field.classList.contains("is-console-open") || Boolean(event.target?.closest?.(
+    ".research-console, .field-nav, [data-open-section], [data-console-close], [data-field-exit], [data-camera-toggle], .language-toggle",
+  ));
 
   pointerTarget.addEventListener("pointerenter", (event) => {
+    if (isInterfaceEvent(event)) return;
     inside = true;
     field.classList.add("is-active");
     showFieldExit();
@@ -316,9 +540,14 @@
   });
 
   pointerTarget.addEventListener("pointerdown", (event) => {
+    if (isInterfaceEvent(event)) return;
     pointerDown = true;
     lastPoint = pointFromEvent(event);
     lastMoveAt = lastPoint.t;
+    if (studyEnabled) {
+      studyMoveCount += 1;
+      studyHasMovement = true;
+    }
     showFieldExit();
   });
 
@@ -327,6 +556,7 @@
   });
 
   pointerTarget.addEventListener("pointermove", (event) => {
+    if (isInterfaceEvent(event)) return;
     if (globalField) {
       inside = true;
     }
@@ -345,7 +575,14 @@
       }, 3000);
     }
 
-    emitResidue(point, lastPoint);
+    const movementDistance = lastPoint ? Math.hypot(point.x - lastPoint.x, point.y - lastPoint.y) : 0;
+    if (studyEnabled && movementDistance >= 0.45) {
+      studyMoveCount += 1;
+      studyPointerDistance += movementDistance;
+      studyHasMovement = true;
+    }
+    const relation = depositFlow(point, lastPoint);
+    emitResidue(point, lastPoint, relation);
     lastPoint = point;
     lastMoveAt = point.t;
   });
@@ -363,6 +600,7 @@
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") exitField(event);
   });
+  window.addEventListener("tm:study-reset", resetResidueField);
 
   const updateBreath = (idleFor) => {
     const moving = clamp(breath.inhale);
@@ -401,6 +639,7 @@
     const distanceFromPointer = lastPoint ? Math.hypot(residue.x - lastPoint.x, residue.y - lastPoint.y) : Infinity;
     const localPresence = Number.isFinite(distanceFromPointer) ? clamp(1 - distanceFromPointer / 170) : 0;
     const localStillness = inside ? localPresence * (hold * 0.65 + idle * 0.25) : 0;
+    const localFlow = sampleFlow(residue.x, residue.y);
     residue.weight = clamp((residue.weight || 0) + localStillness * 0.0022 + oldMemory * (0.00012 + phaseWeight * 0.0007) - exhale * 0.00035);
     residue.rupture = clamp((residue.rupture || 0) * 0.965 + lionForce * 0.032 + shock * lionForce * 0.018);
     residue.emergence = clamp((residue.emergence || 0) * 0.985 + (idle > 0.45 && oldMemory > 0.38 ? idle * oldMemory * (1 - residue.weight) * 0.0018 : 0) + phaseEmergence * oldMemory * 0.0009 - residue.rupture * 0.0015);
@@ -410,14 +649,14 @@
     const alpha = clamp(
       residue.opacity *
         (1 - life * 0.72) *
-        (0.48 + inhale * 0.34 + hold * 0.2 + idle * 0.08 + residue.weight * 0.12 + residue.emergence * 0.05 + softPulse * 0.12) *
+        (0.49 + inhale * 0.34 + hold * 0.22 + idle * 0.09 + residue.weight * 0.16 + residue.emergence * 0.07 + softPulse * 0.12) *
         visibilityBoost,
       0,
-      globalField ? 0.12 : 0.052,
+      globalField ? 0.125 : 0.058,
     );
 
-    const diffusion = residue.spread * (1 + materialAge * 8.5 + exhale * 3.2 + hold * 1.2 + idle * 0.8 + residue.rupture * 0.8 + residue.emergence * 0.55 + cameraAwakening * 0.34 + lionForce * 1.1);
-    const ruptureOffset = (lionForce + residue.rupture * 0.65) * (2 + shock * 5);
+    const diffusion = residue.spread * (1 + materialAge * 8.5 + exhale * 3.2 + hold * 1.25 + idle * 0.8 + residue.rupture * 0.95 + residue.emergence * 0.62 + cameraAwakening * 0.34 + lionForce * 1.1);
+    const ruptureOffset = (lionForce + residue.rupture * 0.9) * (2.3 + shock * 5);
     const drift =
       Math.sin(breath.rhythm * 0.72 + residue.angle) * diffusion * (0.18 + idle * 0.1) +
       Math.sin(breath.rhythm * 0.31 + residue.pulse) * idle * 0.9 +
@@ -426,7 +665,7 @@
     const y = residue.y + Math.sin(residue.angle - frame * 0.0009) * drift + random(-ruptureOffset, ruptureOffset);
     const sx = residue.px * 0.7 + x * 0.3;
     const sy = residue.py * 0.7 + y * 0.3;
-    const microCount = Math.max(2, Math.floor(3 + residue.density * 2 + inhale * 2 + idle * 1.5 + residue.weight * 1.2 + residue.emergence));
+    const microCount = Math.max(2, Math.floor(3 + residue.density * 2 + inhale * 2 + idle * 1.5 + residue.weight * 1.6 + residue.emergence * 1.15));
 
     for (let i = 0; i < microCount; i += 1) {
       const t = random(0.08, 1);
@@ -451,7 +690,7 @@
       ctx.fillRect(mx, my, size, size);
     }
 
-    const fogAlpha = alpha * (0.052 + hold * 0.032 + exhale * 0.07 + idle * 0.04);
+    const fogAlpha = alpha * (0.03 + hold * 0.018 + exhale * 0.042 + idle * 0.024);
     if (fogAlpha > 0.001) {
       const fogCount = 2 + Math.floor(exhale * 2);
       ctx.fillStyle = `rgba(${Math.max(174, residueTone - 10)}, ${Math.max(174, residueTone - 10)}, ${Math.max(166, residueTone - 18)}, ${fogAlpha})`;
@@ -475,10 +714,10 @@
       ctx.fillRect(x + random(-diffusion, diffusion), y + random(-diffusion, diffusion), random(0.7, 1.4), random(0.7, 1.4));
     }
 
-    if (residue.emergence > 0.12 && Math.random() < residue.emergence * 0.018) {
-      const edgeDistance = diffusion * random(0.7, 1.4);
-      const edgeAngle = residue.angle + random(-1.8, 1.8);
-      const edgeAlpha = alpha * random(0.04, 0.12);
+    if (residue.emergence > 0.1 && Math.random() < residue.emergence * 0.038) {
+      const edgeDistance = diffusion * random(0.8, 1.8);
+      const edgeAngle = residue.angle + random(-2.1, 2.1);
+      const edgeAlpha = alpha * random(0.08, 0.18);
       ctx.fillStyle = `rgba(218, 216, 202, ${edgeAlpha})`;
       ctx.fillRect(
         x + Math.cos(edgeAngle) * edgeDistance,
@@ -514,14 +753,21 @@
       ctx.restore();
     }
 
-    residue.x += residue.vx + random(-0.0015, 0.0015) + Math.cos(residue.pulse + breath.rhythm * 0.24) * (idle * 0.006 + cameraAwakening * 0.006 + lionForce * 0.018);
-    residue.y += residue.vy + random(-0.0015, 0.0015) + Math.sin(residue.pulse - breath.rhythm * 0.21) * (idle * 0.006 + cameraAwakening * 0.006 + lionForce * 0.018);
+    const advection = localFlow.strength * (0.032 + residue.emergence * 0.025 + idle * 0.008);
+    residue.x += residue.vx + localFlow.x * advection + random(-0.0015, 0.0015) + Math.cos(residue.pulse + breath.rhythm * 0.24) * (idle * 0.006 + cameraAwakening * 0.006 + lionForce * 0.018);
+    residue.y += residue.vy + localFlow.y * advection + random(-0.0015, 0.0015) + Math.sin(residue.pulse - breath.rhythm * 0.21) * (idle * 0.006 + cameraAwakening * 0.006 + lionForce * 0.018);
+    if (localFlow.strength > 0.04) {
+      const targetAngle = Math.atan2(localFlow.y, localFlow.x);
+      const angleDifference = Math.atan2(Math.sin(targetAngle - residue.angle), Math.cos(targetAngle - residue.angle));
+      residue.angle += angleDifference * localFlow.strength * 0.006;
+    }
     residue.px += residue.vx * 0.42;
     residue.py += residue.vy * 0.42;
     residue.vx *= 0.988 - residue.weight * 0.004;
     residue.vy *= 0.988 - residue.weight * 0.004;
     residue.spread += 0.002 + exhale * 0.006 + hold * 0.002 + idle * 0.0015 + residue.emergence * 0.002 + lionForce * 0.003;
-    residue.opacity -= residue.decay * (0.68 + exhale * 0.42 + lionForce * 0.08 - hold * 0.18 - idle * 0.12);
+    const decayRate = clamp(0.68 + exhale * 0.42 + lionForce * 0.08 - hold * 0.2 - idle * 0.12 - residue.weight * 0.18, 0.2, 1.3);
+    residue.opacity -= residue.decay * decayRate;
   };
 
   const updateCameraDebug = () => {
@@ -546,6 +792,9 @@
     sampleCameraPresence(now);
     updateCameraDebug();
     updateBreath(idleFor);
+    updateFlowField();
+    emitStillness(now, idleFor);
+    reportFieldState();
 
     const backgroundPulse = Math.sin(breath.rhythm * 0.42) * 0.5 + 0.5;
     const lionPulse = cameraPresence.rupture * (0.6 + cameraPresence.shock * 0.8);
