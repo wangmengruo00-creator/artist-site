@@ -375,7 +375,7 @@
           collectionItems.forEach((item, index) => {
             const image = document.createElement('img');
             const thumbnailSrc = `../assets/invalidated-tickets/${item.image.replace('archive-items/', 'archive-items/thumbnails/')}`;
-            if (index < 96) {
+            if (index % 12 === 0) {
               image.src = thumbnailSrc;
             } else {
               image.dataset.thumbnailSrc = thumbnailSrc;
@@ -413,7 +413,12 @@
             if (!deferredThumbnails.length) return;
             window.setTimeout(scheduleThumbnailBatch, 90);
           };
-          scheduleThumbnailBatch();
+          const beginDeferredHydration = () => scheduleThumbnailBatch();
+          if (document.readyState === 'complete') {
+            beginDeferredHydration();
+          } else {
+            window.addEventListener('load', beginDeferredHydration, { once: true });
+          }
           collectionPreview.addEventListener('pointerover', (event) => {
             hydrateThumbnail(event.target.closest('img'));
           });
