@@ -136,10 +136,10 @@ body.machine-reading-page {
 }
 
 .machine-reading-intro h1 {
-  max-width: 8ch;
+  max-width: 10.5ch;
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(30px, 3vw, 36px);
+  font-size: clamp(28px, 2.5vw, 32px);
   font-weight: 400;
   line-height: 0.92;
   letter-spacing: -0.035em;
@@ -654,7 +654,7 @@ button.machine-reading-corpus-item { cursor: pointer; }
 @media (max-width: 580px) {
   .machine-reading-page main { width: min(100% - 24px, 1040px); }
   .machine-reading-intro { min-height: 0; padding: 44px 0 34px; }
-  .machine-reading-intro h1 { font-size: 32px; }
+  .machine-reading-intro h1 { max-width: 8ch; font-size: 32px; }
   .machine-reading-intro-copy > p { font-size: 18px; }
   .machine-reading-route { grid-template-columns: 1fr; }
   .machine-reading-route a { border-right: 0; border-bottom: 1px solid var(--mr-rule); }

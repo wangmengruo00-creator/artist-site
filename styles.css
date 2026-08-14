@@ -6109,6 +6109,16 @@ body.landing-page {
   margin-bottom: clamp(98px, 13vw, 174px);
 }
 
+@media (min-width: 761px) {
+  .tickets-intro {
+    margin-bottom: clamp(72px, 9vw, 124px);
+  }
+
+  .tickets-section {
+    margin-bottom: clamp(74px, 9vw, 124px);
+  }
+}
+
 .tickets-section-heading {
   min-height: 144px;
 }
