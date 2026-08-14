@@ -376,7 +376,7 @@
             const image = document.createElement('img');
             const thumbnailSrc = `../assets/invalidated-tickets/${item.image.replace('archive-items/', 'archive-items/thumbnails/')}`;
             image.dataset.thumbnailSrc = thumbnailSrc;
-            image.alt = `${item.id} — ${item.title}`;
+            image.alt = '';
             image.loading = 'lazy';
             image.decoding = 'async';
             image.fetchPriority = 'low';
@@ -425,7 +425,7 @@
           const openRecord = (image) => {
             if (!lightbox || !lightboxImage || !lightboxCaption) return;
             lightboxImage.src = image.dataset.fullSrc;
-            lightboxImage.alt = image.alt;
+            lightboxImage.alt = `${image.dataset.recordId} — ${image.dataset.recordTitle}`;
             lightboxCaption.textContent = `${image.dataset.recordId} / ${image.dataset.recordTitle}`;
             lightbox.showModal();
           };
