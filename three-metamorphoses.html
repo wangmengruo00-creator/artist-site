@@ -3,258 +3,379 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Three Metamorphoses - Mengruo Wang</title>
+    <title>The Three Metamorphoses — Mengruo Wang</title>
     <meta
       name="description"
-      content="The Three Metamorphoses, an ongoing research project by Mengruo Wang developed through sketchbook studies, early visual tests, and two separate technical prototypes."
+      content="The Three Metamorphoses, an ongoing interaction and interface study by Mengruo Wang."
     >
     <link rel="stylesheet" href="styles.css?v=20260721-1">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <style>
+      :root {
+        --tm-bg: #1d1e1b;
+        --tm-panel: #171815;
+        --tm-paper: #efeee8;
+        --tm-muted: rgba(239, 238, 232, 0.58);
+        --tm-faint: rgba(239, 238, 232, 0.28);
+        --tm-line: rgba(239, 238, 232, 0.15);
+        --tm-signal: #d8c98e;
+        --tm-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
       .tm-research-body {
+        margin: 0;
         overflow-x: hidden;
-        background: #22221f;
+        background: var(--tm-bg);
       }
 
       .tm-page {
-        width: 100%;
-        min-height: 100svh;
-        color: rgba(238, 236, 226, 0.78);
+        color: var(--tm-paper);
+        background: var(--tm-bg);
       }
 
       .tm-shell {
         width: min(88vw, 1180px);
-        margin: 0 auto;
+        margin-inline: auto;
       }
 
-      .tm-intro {
-        min-height: 100svh;
-        padding: clamp(28px, 5vw, 76px) 0 clamp(72px, 10vw, 136px);
-        display: grid;
-        align-content: center;
-      }
-
-      .tm-back {
-        width: fit-content;
-        margin-bottom: clamp(42px, 7vw, 92px);
-        color: rgba(238, 236, 226, 0.72);
-        border-bottom: 1px solid currentColor;
-        font-size: 12px;
-      }
-
-      .tm-title-block {
-        position: relative;
-        max-width: 850px;
-        padding-left: clamp(24px, 4vw, 52px);
-      }
-
-      .tm-title-block::before {
-        position: absolute;
-        inset: 0 auto 0 0;
-        width: 1px;
-        content: "";
-        background: currentColor;
-        opacity: 0.72;
-      }
-
-      .tm-title-block .eyebrow {
-        margin-bottom: 26px;
-      }
-
-      .tm-title-block h1 {
-        max-width: 820px;
-        margin: 0 0 24px;
-        color: rgba(248, 248, 246, 0.98);
-        font-size: clamp(36px, 5.2vw, 68px);
-        font-weight: 350;
-        line-height: 1.02;
-        letter-spacing: -0.025em;
-      }
-
-      .tm-subtitle {
-        max-width: 620px;
-        margin: 0 0 34px;
-        color: rgba(238, 236, 226, 0.58);
-        font-size: 13px;
-        letter-spacing: 0.02em;
-      }
-
-      .tm-concept {
-        max-width: 720px;
-      }
-
-      .tm-concept p {
-        margin: 0;
-        color: rgba(238, 236, 226, 0.78);
-        font-size: 15px;
-        line-height: 1.82;
-      }
-
-      .tm-concept p + p {
-        margin-top: 18px;
-      }
-
-      .tm-section {
-        display: grid;
-        grid-template-columns: minmax(150px, 220px) minmax(0, 760px);
-        gap: clamp(28px, 5vw, 76px);
-        margin-bottom: clamp(84px, 12vw, 164px);
-        padding-top: 24px;
-        border-top: 1px solid rgba(238, 236, 226, 0.2);
-      }
-
-      .tm-section-heading .eyebrow {
-        margin: 0 0 10px;
-      }
-
-      .tm-section-heading h2 {
-        margin: 0;
-        color: rgba(248, 248, 246, 0.92);
-        font-size: 15px;
-        font-weight: 400;
-        letter-spacing: 0.025em;
-        line-height: 1.45;
-      }
-
-      .tm-copy {
-        max-width: 680px;
-      }
-
-      .tm-copy p {
-        margin: 0;
-        color: rgba(238, 236, 226, 0.72);
-        font-size: 14px;
-        line-height: 1.85;
-      }
-
-      .tm-copy p + p {
-        margin-top: 18px;
-      }
-
-      .tm-process {
-        margin: 32px 0 0;
-        padding: 22px 0 0;
-        border-top: 1px solid rgba(238, 236, 226, 0.14);
-        color: rgba(238, 236, 226, 0.6);
-        font-size: 12px;
-        line-height: 1.9;
-      }
-
-      .tm-process span {
-        display: block;
-      }
-
-      .tm-sketchbook {
-        margin: 34px 0 0;
-      }
-
-      .tm-sketchbook img,
-      .tm-test img,
-      .tm-device-figure img,
-      .tm-future-figure img {
-        display: block;
-        width: 100%;
-        height: auto;
-        background: #1b1b19;
-      }
-
-      .tm-sketchbook img {
-        filter: saturate(0.35) brightness(0.84) contrast(1.03);
-      }
-
-      .tm-sketchbook figcaption,
-      .tm-test figcaption,
-      .tm-device-figure figcaption,
-      .tm-future-figure figcaption {
-        margin-top: 10px;
-        color: rgba(232, 230, 220, 0.48);
-        font-size: 11px;
-        line-height: 1.6;
-      }
-
-      .tm-tests {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: clamp(36px, 5vw, 62px) clamp(18px, 3vw, 32px);
-        margin-top: clamp(48px, 7vw, 82px);
-      }
-
-      .tm-test {
-        margin: 0;
-      }
-
-      .tm-test-label {
-        display: block;
-        margin-bottom: 12px;
-        color: rgba(248, 248, 246, 0.82);
-        font-size: 10px;
-        font-weight: 500;
-        letter-spacing: 0.12em;
-      }
-
-      .tm-test img {
-        object-fit: contain;
-      }
-
-      .tm-test-wide {
-        grid-column: 1 / -1;
-        width: min(100%, 560px);
-        margin-left: auto;
-      }
-
-      .tm-test-wide .field-entry-visual {
-        min-height: 360px;
-      }
-
-      .tm-prototype-section {
-        margin-bottom: clamp(84px, 12vw, 164px);
-      }
-
-      .tm-prototype-heading {
-        display: grid;
-        grid-template-columns: minmax(150px, 220px) minmax(0, 760px);
-        gap: clamp(28px, 5vw, 76px);
-        width: min(88vw, 1180px);
-        margin: 0 auto clamp(34px, 5vw, 58px);
-        padding-top: 24px;
-        border-top: 1px solid rgba(238, 236, 226, 0.2);
-      }
-
-      .tm-prototype-heading .eyebrow {
-        margin: 0 0 10px;
-      }
-
-      .tm-prototype-heading h2 {
-        margin: 0 0 16px;
-        color: rgba(248, 248, 246, 0.92);
-        font-size: clamp(20px, 2.2vw, 28px);
-        font-weight: 350;
-        line-height: 1.28;
-      }
-
-      .tm-prototype-heading p {
-        max-width: 680px;
-        margin: 0;
-        color: rgba(238, 236, 226, 0.72);
-        font-size: 14px;
-        line-height: 1.85;
-      }
-
-      .tm-prototype-status {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 6px 9px;
-        color: rgba(238, 236, 226, 0.62);
-        border: 1px solid rgba(238, 236, 226, 0.2);
+      .tm-system-label,
+      .tm-kicker,
+      .tm-phase-index,
+      .tm-phase-name,
+      .tm-prototype-tag,
+      .tm-state,
+      .tm-device-status,
+      .tm-node-index,
+      .tm-caption {
+        font-family: var(--tm-mono);
         font-size: 9px;
-        letter-spacing: 0.11em;
+        letter-spacing: 0.12em;
+        line-height: 1.5;
         text-transform: uppercase;
       }
 
+      .tm-phase-rail {
+        position: fixed;
+        z-index: 8;
+        top: 50%;
+        right: 18px;
+        display: grid;
+        grid-template-columns: auto auto 1px;
+        gap: 7px;
+        color: var(--tm-faint);
+        pointer-events: none;
+        transform: translateY(-50%);
+      }
+
+      .tm-phase-index,
+      .tm-phase-name {
+        writing-mode: vertical-rl;
+      }
+
+      .tm-phase-name {
+        color: rgba(239, 238, 232, 0.52);
+      }
+
+      .tm-phase-track {
+        position: relative;
+        width: 1px;
+        height: 114px;
+        background: var(--tm-line);
+      }
+
+      .tm-phase-track i {
+        position: absolute;
+        inset: 0;
+        background: var(--tm-signal);
+        transform: scaleY(0.125);
+        transform-origin: top;
+        transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .tm-entry {
+        position: relative;
+        min-height: 100svh;
+        overflow: hidden;
+        display: grid;
+        align-content: center;
+        padding: clamp(28px, 5vw, 72px) 0;
+        background:
+          radial-gradient(circle at 72% 42%, rgba(216, 201, 142, 0.07), transparent 26%),
+          radial-gradient(circle at 35% 70%, rgba(239, 238, 232, 0.04), transparent 30%),
+          var(--tm-bg);
+      }
+
+      .tm-entry::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        opacity: 0.3;
+        background-image: linear-gradient(rgba(239, 238, 232, 0.025) 1px, transparent 1px);
+        background-size: 100% 42px;
+        pointer-events: none;
+      }
+
+      .tm-back {
+        position: absolute;
+        top: clamp(26px, 4vw, 54px);
+        left: 0;
+        width: fit-content;
+        color: rgba(239, 238, 232, 0.64);
+        border-bottom: 1px solid currentColor;
+        font-size: 11px;
+      }
+
+      .tm-entry-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+        gap: clamp(50px, 8vw, 120px);
+        align-items: end;
+      }
+
+      .tm-title-block {
+        padding-left: clamp(20px, 3.4vw, 46px);
+        border-left: 1px solid rgba(239, 238, 232, 0.48);
+      }
+
+      .tm-title-block h1 {
+        max-width: 780px;
+        margin: 22px 0 26px;
+        font-size: clamp(42px, 6vw, 78px);
+        font-weight: 330;
+        letter-spacing: -0.045em;
+        line-height: 0.98;
+      }
+
+      .tm-title-block h1 span {
+        display: block;
+        margin-top: 8px;
+        font-weight: 280;
+      }
+
+      .tm-entry-summary {
+        max-width: 690px;
+        margin: 0;
+        color: rgba(239, 238, 232, 0.7);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .tm-entry-question {
+        position: relative;
+        min-height: 340px;
+        display: grid;
+        place-items: center;
+        border-top: 1px solid var(--tm-line);
+        border-bottom: 1px solid var(--tm-line);
+      }
+
+      .tm-entry-question p {
+        position: relative;
+        z-index: 2;
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(28px, 4vw, 50px);
+        line-height: 1.08;
+        text-align: center;
+      }
+
+      .tm-entry-question span {
+        position: absolute;
+        color: rgba(239, 238, 232, 0.2);
+        font-family: var(--tm-mono);
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        animation: tm-drift 9s ease-in-out infinite alternate;
+      }
+
+      .tm-entry-question span:nth-of-type(1) { top: 15%; left: 10%; }
+      .tm-entry-question span:nth-of-type(2) { top: 28%; right: 11%; animation-delay: -2s; }
+      .tm-entry-question span:nth-of-type(3) { bottom: 19%; left: 19%; animation-delay: -4s; }
+      .tm-entry-question span:nth-of-type(4) { right: 18%; bottom: 12%; animation-delay: -6s; }
+
+      @keyframes tm-drift {
+        from { transform: translate3d(-5px, 5px, 0); opacity: 0.14; }
+        to { transform: translate3d(8px, -7px, 0); opacity: 0.38; }
+      }
+
+      .tm-reading {
+        position: relative;
+        padding: clamp(74px, 9vw, 126px) 0;
+        background: rgba(29, 30, 27, 0.98);
+      }
+
+      .tm-section-head {
+        display: grid;
+        grid-template-columns: minmax(150px, 210px) minmax(0, 780px);
+        gap: clamp(30px, 6vw, 82px);
+        margin-bottom: clamp(42px, 6vw, 76px);
+        padding-top: 20px;
+        border-top: 1px solid var(--tm-line);
+      }
+
+      .tm-section-head h2 {
+        margin: 0;
+        font-size: clamp(25px, 3.4vw, 44px);
+        font-weight: 330;
+        letter-spacing: -0.025em;
+        line-height: 1.12;
+      }
+
+      .tm-section-intro {
+        max-width: 680px;
+        margin: 18px 0 0;
+        color: var(--tm-muted);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .tm-translation {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border-top: 1px solid var(--tm-line);
+        border-bottom: 1px solid var(--tm-line);
+      }
+
+      .tm-translation article {
+        min-height: 310px;
+        padding: clamp(24px, 3vw, 38px);
+        border-right: 1px solid var(--tm-line);
+      }
+
+      .tm-translation article:last-child {
+        border-right: 0;
+      }
+
+      .tm-translation .tm-system-label {
+        color: var(--tm-faint);
+      }
+
+      .tm-translation h3 {
+        margin: 44px 0 26px;
+        font-size: clamp(30px, 4vw, 54px);
+        font-weight: 320;
+        letter-spacing: -0.04em;
+      }
+
+      .tm-translation dl {
+        margin: 0;
+      }
+
+      .tm-translation dl div {
+        display: grid;
+        grid-template-columns: 88px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-top: 1px solid rgba(239, 238, 232, 0.08);
+      }
+
+      .tm-translation dt,
+      .tm-translation dd {
+        margin: 0;
+        font-size: 11px;
+        line-height: 1.5;
+      }
+
+      .tm-translation dt {
+        color: var(--tm-faint);
+        font-family: var(--tm-mono);
+        text-transform: uppercase;
+      }
+
+      .tm-translation dd {
+        color: rgba(239, 238, 232, 0.72);
+      }
+
+      .tm-two-prototypes {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-top: 1px solid var(--tm-line);
+        border-bottom: 1px solid var(--tm-line);
+      }
+
+      .tm-prototype-summary {
+        position: relative;
+        min-height: 360px;
+        padding: clamp(28px, 4vw, 52px);
+      }
+
+      .tm-prototype-summary + .tm-prototype-summary {
+        border-left: 1px solid var(--tm-line);
+      }
+
+      .tm-prototype-summary h3 {
+        margin: 62px 0 18px;
+        font-size: clamp(28px, 4vw, 52px);
+        font-weight: 330;
+        letter-spacing: -0.035em;
+      }
+
+      .tm-prototype-summary p {
+        max-width: 420px;
+        color: var(--tm-muted);
+        font-size: 13px;
+        line-height: 1.75;
+      }
+
+      .tm-prototype-summary ol {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 32px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .tm-prototype-summary li {
+        padding: 6px 9px;
+        color: rgba(239, 238, 232, 0.5);
+        border: 1px solid var(--tm-line);
+        font-family: var(--tm-mono);
+        font-size: 8px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .tm-separate-note {
+        margin: 22px 0 0;
+        color: rgba(216, 201, 142, 0.72);
+        font-family: var(--tm-mono);
+        font-size: 9px;
+        letter-spacing: 0.1em;
+        text-align: right;
+        text-transform: uppercase;
+      }
+
+      .tm-field-section {
+        background: #22221f;
+      }
+
+      .tm-field-heading {
+        display: grid;
+        grid-template-columns: minmax(150px, 210px) minmax(0, 780px);
+        gap: clamp(30px, 6vw, 82px);
+        padding: clamp(50px, 7vw, 90px) 0 32px;
+      }
+
+      .tm-field-heading h2 {
+        margin: 0 0 14px;
+        font-size: clamp(26px, 3.4vw, 44px);
+        font-weight: 330;
+      }
+
+      .tm-field-heading p {
+        max-width: 660px;
+        margin: 0;
+        color: var(--tm-muted);
+        font-size: 13px;
+        line-height: 1.75;
+      }
+
       .tm-web-prototype {
-        min-height: min(76svh, 760px);
-        border-top: 1px solid rgba(238, 236, 226, 0.1);
-        border-bottom: 1px solid rgba(238, 236, 226, 0.1);
+        min-height: min(82svh, 820px);
+        border-top: 1px solid var(--tm-line);
+        border-bottom: 1px solid var(--tm-line);
       }
 
       .tm-web-prototype .field-exit {
@@ -262,73 +383,29 @@
       }
 
       .tm-web-prototype .field-caption {
-        color: rgba(232, 230, 220, 0.58);
+        color: rgba(239, 238, 232, 0.52);
       }
 
-      .tm-device-grid {
+      .tm-field-lock {
+        width: min(88vw, 1180px);
+        margin: 18px auto 0;
+        padding-bottom: clamp(66px, 9vw, 120px);
+        color: rgba(239, 238, 232, 0.38);
+        font-family: var(--tm-mono);
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        line-height: 1.7;
+        text-transform: uppercase;
+      }
+
+      .tm-m5-grid {
         display: grid;
-        grid-template-columns: minmax(0, 0.68fr) minmax(300px, 1fr);
-        gap: clamp(34px, 6vw, 88px);
+        grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr);
+        gap: clamp(28px, 5vw, 70px);
         align-items: start;
       }
 
       .tm-device-figure {
-        margin: 0;
-      }
-
-      .tm-device-figure img {
-        filter: none;
-      }
-
-      .tm-separation-note {
-        margin-top: 18px !important;
-        color: rgba(238, 236, 226, 0.56) !important;
-      }
-
-      .tm-future {
-        margin-bottom: clamp(84px, 12vw, 164px);
-        padding: clamp(42px, 6vw, 72px) 0;
-        background: #191917;
-        border-top: 1px solid rgba(238, 236, 226, 0.14);
-        border-bottom: 1px solid rgba(238, 236, 226, 0.14);
-      }
-
-      .tm-future-label {
-        display: block;
-        margin-bottom: 20px;
-        color: rgba(238, 236, 226, 0.56);
-        font-size: 10px;
-        font-weight: 400;
-        letter-spacing: 0.1em;
-        line-height: 1.4;
-      }
-
-      .tm-future h2 {
-        max-width: 780px;
-        margin: 0 0 22px;
-        color: rgba(248, 248, 246, 0.94);
-        font-size: clamp(24px, 3vw, 38px);
-        font-weight: 350;
-        line-height: 1.18;
-      }
-
-      .tm-future-copy {
-        max-width: 680px;
-        margin: 0;
-        color: rgba(238, 236, 226, 0.68);
-        font-size: 14px;
-        line-height: 1.85;
-      }
-
-      .tm-future-gallery {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: clamp(34px, 5vw, 62px) clamp(16px, 3vw, 30px);
-        align-items: start;
-        margin-top: clamp(42px, 6vw, 72px);
-      }
-
-      .tm-future-figure {
         margin: 0;
       }
 
@@ -338,95 +415,549 @@
         margin: 0;
         padding: 0;
         overflow: hidden;
-        color: inherit;
         background: transparent;
         border: 0;
         cursor: zoom-in;
       }
 
-      .tm-image-button:focus-visible {
-        outline: 1px solid rgba(248, 248, 246, 0.72);
-        outline-offset: 4px;
+      .tm-image-button img {
+        display: block;
+        width: 100%;
+        filter: saturate(0.58) brightness(0.88) contrast(1.05);
+        transition: filter 450ms ease, transform 650ms ease;
       }
 
       .tm-image-button:hover img {
-        opacity: 0.84;
+        filter: saturate(0.82) brightness(0.96);
+        transform: scale(1.012);
       }
 
-      .tm-current-status {
-        margin-bottom: clamp(84px, 11vw, 144px);
+      .tm-device-figure figcaption,
+      .tm-future-figure figcaption {
+        margin-top: 9px;
+        color: rgba(239, 238, 232, 0.38);
+        font-size: 10px;
+        line-height: 1.6;
       }
 
-      .tm-status-text {
-        max-width: 740px;
+      .tm-m5-interface {
+        position: relative;
+        min-height: 520px;
+        overflow: hidden;
+        padding: clamp(24px, 4vw, 48px);
+        background: #11120f;
+        border: 1px solid var(--tm-line);
+      }
+
+      .tm-m5-interface::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        opacity: 0.1;
+        background-image: linear-gradient(rgba(239, 238, 232, 0.08) 1px, transparent 1px);
+        background-size: 100% 4px;
+        pointer-events: none;
+      }
+
+      .tm-device-header {
+        position: relative;
+        z-index: 3;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        color: rgba(239, 238, 232, 0.38);
+      }
+
+      .tm-word-cloud {
+        position: absolute;
+        z-index: 1;
+        inset: 62px 20px 20px;
+        pointer-events: none;
+      }
+
+      .tm-word-cloud span {
+        position: absolute;
+        top: var(--y);
+        left: var(--x);
+        color: rgba(239, 238, 232, 0.17);
+        font-family: var(--tm-mono);
+        font-size: var(--s, 9px);
+        letter-spacing: 0.06em;
+        transform: translate(-50%, -50%) rotate(var(--r, 0deg));
+        transition: color 700ms ease, opacity 700ms ease, transform 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .tm-m5-interface.is-processing .tm-word-cloud span {
+        color: rgba(216, 201, 142, 0.28);
+        transform: translate(-50%, -50%) rotate(0deg) scale(1.03);
+      }
+
+      .tm-m5-interface.has-response .tm-word-cloud span {
+        opacity: 0.38;
+        color: rgba(239, 238, 232, 0.11);
+      }
+
+      .tm-device-screen {
+        position: relative;
+        z-index: 2;
+        width: min(100%, 440px);
+        margin: 62px auto 0;
+        padding: 28px;
+        background: rgba(12, 13, 11, 0.9);
+        border: 1px solid rgba(239, 238, 232, 0.2);
+        box-shadow: 0 20px 70px rgba(0, 0, 0, 0.28);
+      }
+
+      .tm-device-question {
+        min-height: 74px;
+        margin: 0 0 24px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(26px, 3vw, 38px);
+        line-height: 1.08;
+      }
+
+      .tm-device-options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .tm-device-options button {
+        padding: 11px 12px;
+        color: rgba(239, 238, 232, 0.62);
+        background: transparent;
+        border: 1px solid rgba(239, 238, 232, 0.16);
+        font-family: var(--tm-mono);
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        text-align: left;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .tm-device-options button:hover,
+      .tm-device-options button:focus-visible,
+      .tm-device-options button.is-selected {
+        color: var(--tm-paper);
+        background: rgba(216, 201, 142, 0.09);
+        border-color: rgba(216, 201, 142, 0.6);
+        outline: none;
+      }
+
+      .tm-device-output {
+        min-height: 42px;
+        margin: 22px 0 0;
+        color: rgba(216, 201, 142, 0.72);
+        font-family: var(--tm-mono);
+        font-size: 9px;
+        letter-spacing: 0.09em;
+        line-height: 1.65;
+        text-transform: uppercase;
+      }
+
+      .tm-m5-note {
+        max-width: 620px;
+        margin: 22px 0 0;
+        color: var(--tm-muted);
+        font-size: 12px;
+        line-height: 1.75;
+      }
+
+      .tm-force-stage {
+        position: relative;
+        min-height: 620px;
+        overflow: hidden;
+        background: #121310;
+        border-top: 1px solid var(--tm-line);
+        border-bottom: 1px solid var(--tm-line);
+      }
+
+      .tm-force-controls {
+        position: relative;
+        z-index: 4;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-bottom: 1px solid var(--tm-line);
+      }
+
+      .tm-force-controls button {
+        display: grid;
+        gap: 7px;
+        min-height: 110px;
+        padding: 22px 26px;
+        color: rgba(239, 238, 232, 0.48);
+        background: rgba(18, 19, 16, 0.84);
+        border: 0;
+        border-right: 1px solid var(--tm-line);
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .tm-force-controls button:last-child {
+        border-right: 0;
+      }
+
+      .tm-force-controls button strong {
+        font-size: clamp(20px, 2.5vw, 31px);
+        font-weight: 340;
+      }
+
+      .tm-force-controls button span {
+        font-family: var(--tm-mono);
+        font-size: 8px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .tm-force-controls button.is-active {
+        color: var(--tm-paper);
+        background: rgba(216, 201, 142, 0.07);
+      }
+
+      .tm-force-controls button:focus-visible {
+        outline: 1px solid rgba(216, 201, 142, 0.5);
+        outline-offset: -2px;
+      }
+
+      .tm-text-field {
+        position: absolute;
+        inset: 111px 0 0;
+      }
+
+      .tm-text-particle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: rgba(239, 238, 232, 0.42);
+        font-family: var(--tm-mono);
+        font-size: var(--size, 10px);
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+        transform: translate(calc(var(--carry-x) * 1px), calc(var(--carry-y) * 1px)) rotate(calc(var(--carry-r) * 1deg));
+        transition: transform 1200ms cubic-bezier(0.22, 1, 0.36, 1), color 750ms ease, opacity 750ms ease;
+        animation: tm-particle-breathe 6s ease-in-out infinite alternate;
+        animation-delay: calc(var(--delay) * -1s);
+      }
+
+      .tm-text-particle-ambient {
+        color: rgba(239, 238, 232, 0.22);
+        font-size: var(--size, 8px);
+        animation-duration: 8s;
+      }
+
+      .tm-force-stage[data-force="interrupt"] .tm-text-particle {
+        color: rgba(239, 238, 232, 0.58);
+        transform: translate(calc(var(--interrupt-x) * 1px), calc(var(--interrupt-y) * 1px)) rotate(calc(var(--interrupt-r) * 1deg));
+      }
+
+      .tm-force-stage[data-force="begin"] .tm-text-particle {
+        color: rgba(216, 201, 142, 0.58);
+        transform: translate(calc(var(--begin-x) * 1px), calc(var(--begin-y) * 1px)) rotate(calc(var(--begin-r) * 1deg));
+      }
+
+      @keyframes tm-particle-breathe {
+        from { opacity: 0.42; filter: blur(0); }
+        to { opacity: 0.86; filter: blur(0.2px); }
+      }
+
+      .tm-force-question {
+        position: absolute;
+        z-index: 3;
+        right: 5%;
+        bottom: 7%;
+        max-width: 480px;
         margin: 0;
-        color: rgba(248, 248, 246, 0.82);
-        font-size: clamp(20px, 2.4vw, 30px);
-        font-weight: 350;
-        line-height: 1.5;
+        padding: 16px 18px;
+        color: rgba(239, 238, 232, 0.82);
+        background: rgba(18, 19, 16, 0.78);
+        border-left: 1px solid rgba(216, 201, 142, 0.54);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(17px, 2vw, 25px);
+        line-height: 1.32;
+      }
+
+      .tm-paths {
+        display: grid;
+        gap: 34px;
+      }
+
+      .tm-path {
+        display: grid;
+        grid-template-columns: 160px minmax(0, 1fr);
+        gap: 28px;
+        align-items: center;
+      }
+
+      .tm-path-label strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 15px;
+        font-weight: 450;
+      }
+
+      .tm-path-track {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .tm-path-track::before {
+        position: absolute;
+        z-index: 0;
+        top: 21px;
+        right: 8%;
+        left: 8%;
+        height: 1px;
+        content: "";
+        background: var(--tm-line);
+      }
+
+      .tm-node {
+        position: relative;
+        z-index: 1;
+        min-height: 104px;
+        padding: 16px;
+        background: var(--tm-bg);
+        border: 1px solid var(--tm-line);
+      }
+
+      .tm-node::before {
+        display: block;
+        width: 8px;
+        height: 8px;
+        margin-bottom: 24px;
+        content: "";
+        background: var(--tm-bg);
+        border: 1px solid rgba(216, 201, 142, 0.58);
+        border-radius: 50%;
+      }
+
+      .tm-node strong {
+        display: block;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .tm-node small {
+        display: block;
+        margin-top: 7px;
+        color: var(--tm-faint);
+        font-size: 9px;
+        line-height: 1.45;
+      }
+
+      .tm-convergence {
+        margin-top: 62px;
+        padding: 32px;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1.15fr;
+        gap: 20px;
+        align-items: center;
+        background: #151613;
+        border: 1px solid var(--tm-line);
+      }
+
+      .tm-convergence strong {
+        display: block;
+        margin-top: 7px;
+        font-size: 15px;
+        font-weight: 380;
+      }
+
+      .tm-arrow {
+        color: rgba(216, 201, 142, 0.64);
+      }
+
+      .tm-future {
+        padding: clamp(74px, 9vw, 126px) 0;
+        background: #171815;
+      }
+
+      .tm-future-gallery {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: clamp(14px, 2vw, 28px);
+        align-items: start;
+      }
+
+      .tm-future-figure {
+        margin: 0;
+      }
+
+      .tm-future-figure img {
+        display: block;
+        width: 100%;
+      }
+
+      .tm-future-figure:nth-child(1) { grid-column: 1 / 9; }
+      .tm-future-figure:nth-child(2) { grid-column: 9 / 13; margin-top: 18%; }
+      .tm-future-figure:nth-child(3) { grid-column: 2 / 6; }
+      .tm-future-figure:nth-child(4) { grid-column: 6 / 13; margin-top: 7%; }
+
+      .tm-test-grid {
+        display: grid;
+        grid-template-columns: minmax(180px, 0.55fr) minmax(0, 1.45fr);
+        gap: clamp(34px, 7vw, 90px);
+      }
+
+      .tm-test-meta {
+        color: rgba(239, 238, 232, 0.72);
+        font-family: var(--tm-mono);
+        font-size: 11px;
+        line-height: 2;
+        text-transform: uppercase;
+      }
+
+      .tm-test-prompts {
+        display: grid;
+        gap: 14px;
+      }
+
+      .tm-test-prompts p {
+        margin: 0;
+        padding: 16px 0;
+        color: rgba(239, 238, 232, 0.76);
+        border-top: 1px solid var(--tm-line);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(18px, 2.2vw, 27px);
+        line-height: 1.35;
+      }
+
+      .tm-status {
+        margin-top: 74px;
+        padding-top: 24px;
+        border-top: 1px solid var(--tm-line);
+      }
+
+      .tm-status p {
+        max-width: 790px;
+        margin: 18px 0 0;
+        font-size: clamp(20px, 2.8vw, 34px);
+        font-weight: 320;
+        line-height: 1.42;
       }
 
       .tm-page .field-footer-nav {
         margin-top: 0;
       }
 
-      @media (max-width: 760px) {
-        .tm-section,
-        .tm-prototype-heading,
-        .tm-device-grid {
+      @media (max-width: 800px) {
+        .tm-entry-grid,
+        .tm-section-head,
+        .tm-field-heading,
+        .tm-m5-grid,
+        .tm-test-grid {
           grid-template-columns: 1fr;
         }
 
-        .tm-tests {
+        .tm-entry-question {
+          min-height: 260px;
+        }
+
+        .tm-translation,
+        .tm-two-prototypes {
           grid-template-columns: 1fr;
         }
 
-        .tm-test-wide {
-          grid-column: auto;
-          width: 100%;
+        .tm-translation article {
+          min-height: 250px;
+          border-right: 0;
+          border-bottom: 1px solid var(--tm-line);
+        }
+
+        .tm-translation article:last-child {
+          border-bottom: 0;
+        }
+
+        .tm-prototype-summary + .tm-prototype-summary {
+          border-top: 1px solid var(--tm-line);
+          border-left: 0;
+        }
+
+        .tm-path {
+          grid-template-columns: 1fr;
+        }
+
+        .tm-convergence {
+          grid-template-columns: 1fr;
+        }
+
+        .tm-arrow {
+          transform: rotate(90deg);
+        }
+      }
+
+      @media (max-width: 560px) {
+        .tm-shell {
+          width: calc(100% - 38px);
+        }
+
+        .tm-entry {
+          align-content: start;
+          padding-top: 112px;
+        }
+
+        .tm-entry-grid {
+          gap: 44px;
+        }
+
+        .tm-title-block h1 {
+          font-size: 42px;
+        }
+
+        .tm-phase-rail {
+          display: none;
+        }
+
+        .tm-force-controls {
+          grid-template-columns: 1fr;
+        }
+
+        .tm-force-controls button {
+          min-height: 74px;
+          border-right: 0;
+          border-bottom: 1px solid var(--tm-line);
+        }
+
+        .tm-text-field {
+          inset: 223px 0 0;
+          transform: scale(0.68);
+          transform-origin: center;
+        }
+
+        .tm-force-stage {
+          min-height: 720px;
+        }
+
+        .tm-path-track {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .tm-path-track::before {
+          display: none;
+        }
+
+        .tm-device-options {
+          grid-template-columns: 1fr;
         }
 
         .tm-future-gallery {
           grid-template-columns: 1fr;
         }
 
-        .tm-title-block h1 {
-          font-size: clamp(34px, 10vw, 52px);
-        }
-
-        .tm-web-prototype {
-          min-height: 70svh;
+        .tm-future-figure:nth-child(n) {
+          grid-column: auto;
+          margin-top: 0;
         }
       }
 
-      @media (max-width: 520px) {
-        .tm-shell,
-        .tm-prototype-heading {
-          width: calc(100% - 40px);
-        }
-
-        .tm-title-block {
-          padding-left: 22px;
-        }
-
-        .tm-title-block h1 {
-          font-size: clamp(32px, 10.5vw, 44px);
-          line-height: 1.06;
-        }
-
-        .tm-concept p,
-        .tm-copy p,
-        .tm-prototype-heading p,
-        .tm-future-copy {
-          font-size: 13px;
-        }
-
-        .tm-test-wide .field-entry-visual {
-          min-height: 300px;
-        }
-
-        .tm-status-text {
-          font-size: 26px;
+      @media (prefers-reduced-motion: reduce) {
+        .tm-entry-question span,
+        .tm-text-particle {
+          animation: none !important;
         }
       }
     </style>
@@ -434,161 +965,337 @@
   <body class="metamorphoses-body tm-research-body">
     <main class="field-main">
       <article class="tm-page" aria-labelledby="metamorphoses-title">
-        <header class="tm-intro tm-shell">
-          <a class="tm-back" href="works.html">Back to Works</a>
-          <div class="tm-title-block">
-            <p class="eyebrow">ONGOING RESEARCH PROJECT / 2026–</p>
-            <h1 id="metamorphoses-title">The Three Metamorphoses</h1>
-            <p class="tm-subtitle">
-              Ongoing research · Two separate technical prototypes
-            </p>
-            <div class="tm-concept">
-              <p>
-                Taking Nietzsche’s camel, lion and child as prompts rather than images to
-                illustrate, <em>The Three Metamorphoses</em> asks whether transformation can
-                be translated into movement, duration and response.
-              </p>
-              <p>
-                Early studies shifted from symbolic figures towards accumulation, disturbance
-                and unstable fields. The project is now being tested through a responsive
-                webpage and a standalone M5Stack Cardputer prototype. They are not yet connected.
-              </p>
+        <aside class="tm-phase-rail" aria-hidden="true">
+          <span class="tm-phase-index" data-tm-index>01</span>
+          <span class="tm-phase-name" data-tm-name>QUESTION</span>
+          <span class="tm-phase-track"><i data-tm-progress></i></span>
+        </aside>
+
+        <header class="tm-entry" data-page-phase="question">
+          <div class="tm-shell">
+            <a class="tm-back" href="works.html">Back to Works</a>
+            <div class="tm-entry-grid">
+              <div class="tm-title-block">
+                <span class="tm-kicker">ONGOING RESEARCH / INTERACTION + INTERFACE / 2026–</span>
+                <h1 id="metamorphoses-title">The Three Metamorphoses</h1>
+                <p class="tm-entry-summary">
+                  Nietzsche’s camel, lion and child are treated as prompts rather than images to
+                  illustrate. The project asks whether philosophical transformation can be
+                  encountered through movement, waiting, language and response.
+                </p>
+              </div>
+              <div class="tm-entry-question" aria-label="Opening philosophical prompt">
+                <span>THERE</span><span>CORNER</span><span>HERE</span><span>VOID</span>
+                <p>Where are you?</p>
+              </div>
             </div>
           </div>
         </header>
 
-        <section class="tm-section tm-shell" aria-labelledby="inspiration-title">
-          <div class="tm-section-heading">
-            <p class="eyebrow">01</p>
-            <h2 id="inspiration-title">INSPIRATION AND PERSONAL REFLECTION</h2>
-          </div>
-          <div class="tm-copy">
-            <p>
-              Reading Nietzsche alongside personal reflection moved the project away from
-              illustrating three figures. Transformation is approached instead through traces
-              that accumulate, disturbances that alter a condition, and fields that remain
-              unresolved.
-            </p>
+        <section class="tm-reading" data-page-phase="translation" aria-labelledby="translation-title">
+          <div class="tm-shell">
+            <header class="tm-section-head">
+              <div>
+                <span class="tm-kicker">01 / SOURCE → TRANSLATION</span>
+              </div>
+              <div>
+                <h2 id="translation-title">Three figures became three forces.</h2>
+                <p class="tm-section-intro">
+                  I began through reading and intuitive visual tests. Rather than representing
+                  three fixed characters, I translated each figure into a quality that could
+                  organise movement and response.
+                </p>
+              </div>
+            </header>
+
+            <div class="tm-translation">
+              <article>
+                <span class="tm-system-label">01 / CAMEL</span>
+                <h3>Carry</h3>
+                <dl>
+                  <div><dt>Force</dt><dd>Burden</dd></div>
+                  <div><dt>Action</dt><dd>Repeat and remain</dd></div>
+                  <div><dt>Field</dt><dd>Accumulation</dd></div>
+                </dl>
+              </article>
+              <article>
+                <span class="tm-system-label">02 / LION</span>
+                <h3>Interrupt</h3>
+                <dl>
+                  <div><dt>Force</dt><dd>Resistance</dd></div>
+                  <div><dt>Action</dt><dd>Refuse and break</dd></div>
+                  <div><dt>Field</dt><dd>Disturbance</dd></div>
+                </dl>
+              </article>
+              <article>
+                <span class="tm-system-label">03 / CHILD</span>
+                <h3>Begin</h3>
+                <dl>
+                  <div><dt>Force</dt><dd>Play</dd></div>
+                  <div><dt>Action</dt><dd>Release and remake</dd></div>
+                  <div><dt>Field</dt><dd>Unstable relation</dd></div>
+                </dl>
+              </article>
+            </div>
           </div>
         </section>
 
-        <section class="tm-prototype-section" aria-labelledby="web-prototype-title">
-          <header class="tm-prototype-heading">
-            <div>
-              <p class="eyebrow">02 / PROTOTYPE A</p>
-              <h2 id="web-prototype-title">RESPONSIVE WEBPAGE PROTOTYPE</h2>
+        <section class="tm-reading" data-page-phase="prototypes" aria-labelledby="prototypes-title">
+          <div class="tm-shell">
+            <header class="tm-section-head">
+              <div><span class="tm-kicker">02 / ONE INQUIRY · TWO PROTOTYPES</span></div>
+              <div>
+                <h2 id="prototypes-title">The same question is tested through two different forms of encounter.</h2>
+              </div>
+            </header>
+
+            <div class="tm-two-prototypes">
+              <article class="tm-prototype-summary">
+                <span class="tm-prototype-tag">PROTOTYPE A / WEB FIELD</span>
+                <h3>Body becomes trace.</h3>
+                <p>Pointer movement, stillness and duration alter a responsive visual field.</p>
+                <ol><li>Movement</li><li>Trace</li><li>Rupture</li><li>Afterimage</li></ol>
+              </article>
+              <article class="tm-prototype-summary">
+                <span class="tm-prototype-tag">PARALLEL INTERFACE STUDY / M5STACK</span>
+                <h3>Answer becomes language.</h3>
+                <p>A handheld interface asks a question, registers a choice and returns a delayed philosophical hint.</p>
+                <ol><li>Question</li><li>Choice</li><li>Waiting</li><li>Response</li></ol>
+              </article>
             </div>
+            <p class="tm-separate-note">Current state / implemented separately</p>
+
+            <div class="tm-rule-evidence" aria-labelledby="tm-rule-evidence-title">
+              <div class="tm-rule-evidence-intro">
+                <span class="tm-kicker">RULE EVIDENCE / WEB FIELD</span>
+                <h3 id="tm-rule-evidence-title">Input → rule → state change → perceptual consequence</h3>
+              </div>
+              <div class="tm-rule-table" role="table" aria-label="Interaction rules for the responsive field">
+                <div class="tm-rule-row tm-rule-head" role="row">
+                  <span role="columnheader">Encounter</span>
+                  <span role="columnheader">Rule</span>
+                  <span role="columnheader">Visible consequence</span>
+                </div>
+                <div class="tm-rule-row" role="row">
+                  <strong role="cell">Move</strong>
+                  <span role="cell">Movement deposits an active trace.</span>
+                  <span role="cell">The path extends and the field ruptures.</span>
+                </div>
+                <div class="tm-rule-row" role="row">
+                  <strong role="cell">Pause</strong>
+                  <span role="cell">Stillness allows residue to accumulate.</span>
+                  <span role="cell">Density gathers around the last position.</span>
+                </div>
+                <div class="tm-rule-row" role="row">
+                  <strong role="cell">Stay</strong>
+                  <span role="cell">Duration alters the field state.</span>
+                  <span role="cell">The image thickens, fades, or leaves an afterimage.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="tm-field-section" data-page-phase="web-field" aria-labelledby="web-field-title">
+          <header class="tm-field-heading tm-shell">
+            <div><span class="tm-kicker">03 / PROTOTYPE A · LIVE</span></div>
             <div>
-              <p>
-                A browser-based study of how pointer movement, stillness and duration
-                leave temporary traces.
-              </p>
+              <h2 id="web-field-title">Enter the field.</h2>
+              <p>Move, pause and remain. Your action deposits traces; stillness and duration alter how they gather and decay.</p>
             </div>
           </header>
+
+          <!-- Locked interaction module: keep data-residue-field and its canvas behaviour unchanged. -->
           <div class="prototype-field tm-web-prototype" data-residue-field>
             <canvas class="residue-canvas" aria-hidden="true"></canvas>
-            <p class="field-caption">Move / pause / stay · Responsive webpage prototype</p>
+            <p class="field-caption">Move / pause / stay · responsive webpage prototype</p>
           </div>
+          <p class="tm-field-lock">Existing interaction preserved / pointer + duration + optional camera presence</p>
         </section>
 
-        <section class="tm-section tm-shell" aria-labelledby="cardputer-title">
-          <div class="tm-section-heading">
-            <p class="eyebrow">03 / PROTOTYPE B</p>
-            <h2 id="cardputer-title">STANDALONE M5STACK CARDPUTER PROTOTYPE</h2>
-          </div>
-          <div class="tm-device-grid">
-            <div class="tm-copy">
-              <p>
-                The standalone M5Stack Cardputer tests a small handheld interaction through
-                short inputs and returned messages. It was developed separately from the
-                responsive webpage and is not currently connected to it.
-              </p>
-              <p class="tm-separation-note">
-                The screen visible behind the device is part of the test documentation,
-                not a live connection.
-              </p>
-            </div>
-            <figure class="tm-device-figure">
-              <button class="tm-image-button" type="button" aria-label="Enlarge standalone M5Stack Cardputer prototype test">
-                <img
-                  src="assets/three-metamorphoses/interface-prototype-test.jpg?v=20260721-1"
-                  alt="M5Stack Cardputer ADV held during a standalone device test."
-                  loading="lazy"
-                >
-              </button>
-              <figcaption>
-                Standalone M5Stack Cardputer prototype test, 2026.
-              </figcaption>
-            </figure>
-          </div>
-        </section>
-
-        <section class="tm-future" aria-labelledby="future-title">
+        <section class="tm-reading" data-page-phase="m5stack" aria-labelledby="m5-title">
           <div class="tm-shell">
-            <span class="tm-future-label">PROPOSED INTEGRATION · FUTURE INTERACTION LOGIC</span>
-            <h2 id="future-title">A possible relationship between the two prototypes</h2>
-            <p class="tm-future-copy">
-              Concept visualisations for a possible future spatial integration.
-              The interaction logic and technical connection remain under development.
+            <header class="tm-section-head">
+              <div><span class="tm-kicker">04 / PROTOTYPE B · PHILOSOPHICAL INTERFACE</span></div>
+              <div>
+                <h2 id="m5-title">A question held in the hand.</h2>
+                <p class="tm-section-intro">
+                  The Cardputer is not a controller for the field. It is a small, private interface
+                  for questioning, choosing and waiting. The final philosopher and quotation
+                  mapping will be added from the project’s source material.
+                </p>
+              </div>
+            </header>
+
+            <div class="tm-m5-grid">
+              <figure class="tm-device-figure">
+                <button class="tm-image-button" type="button" aria-label="Enlarge M5Stack Cardputer prototype test">
+                  <img src="assets/three-metamorphoses/interface-prototype-test.jpg?v=20260721-1" alt="M5Stack Cardputer held during a standalone interface test.">
+                </button>
+                <figcaption>Standalone M5Stack Cardputer interface test, 2026.</figcaption>
+              </figure>
+
+              <div class="tm-m5-interface" data-m5-interface>
+                <div class="tm-device-header">
+                  <span class="tm-device-status" data-m5-status>AWAITING INPUT</span>
+                  <span class="tm-device-status">M5 / TEXT ENCOUNTER</span>
+                </div>
+                <div class="tm-word-cloud" aria-hidden="true">
+                  <span style="--x:9%;--y:18%;--r:-8deg">POSITION</span>
+                  <span style="--x:28%;--y:8%;--r:4deg">BECOMING</span>
+                  <span style="--x:61%;--y:16%;--r:-3deg">THRESHOLD</span>
+                  <span style="--x:88%;--y:10%;--r:7deg">PRESENCE</span>
+                  <span style="--x:14%;--y:46%;--r:3deg">WHERE</span>
+                  <span style="--x:84%;--y:43%;--r:-5deg">YOU</span>
+                  <span style="--x:7%;--y:77%;--r:-4deg">THERE</span>
+                  <span style="--x:32%;--y:91%;--r:6deg">CORNER</span>
+                  <span style="--x:67%;--y:86%;--r:-6deg">HERE</span>
+                  <span style="--x:92%;--y:72%;--r:5deg">VOID</span>
+                  <span style="--x:45%;--y:36%;--r:2deg">SELF</span>
+                  <span style="--x:55%;--y:70%;--r:-2deg">TO BE</span>
+                </div>
+                <div class="tm-device-screen">
+                  <p class="tm-device-question" data-m5-question>Where are you?</p>
+                  <div class="tm-device-options" data-m5-options>
+                    <button type="button" data-answer="There">A / There</button>
+                    <button type="button" data-answer="Corner">B / Corner</button>
+                    <button type="button" data-answer="Here">C / Here</button>
+                    <button type="button" data-answer="Void">D / Void</button>
+                  </div>
+                  <p class="tm-device-output" data-m5-output>Select a position to enter the textual encounter.</p>
+                </div>
+              </div>
+            </div>
+            <p class="tm-m5-note">
+              Interface simulation using documented prototype language. It demonstrates the rhythm
+              of question → choice → waiting → response without inventing a philosopher quotation.
             </p>
+          </div>
+        </section>
+
+        <section class="tm-reading" data-page-phase="forces" aria-labelledby="forces-title">
+          <div class="tm-shell">
+            <header class="tm-section-head">
+              <div><span class="tm-kicker">05 / INTERACTION GRAMMAR</span></div>
+              <div>
+                <h2 id="forces-title">One field. Three behavioural forces.</h2>
+                <p class="tm-section-intro">The same linguistic material changes its behaviour. Select a force to reorganise the field.</p>
+              </div>
+            </header>
+
+            <div class="tm-force-stage" data-force-stage data-force="carry">
+              <div class="tm-force-controls">
+                <button class="is-active" type="button" data-force-button="carry"><span>Camel / Burden</span><strong>Carry</strong></button>
+                <button type="button" data-force-button="interrupt"><span>Lion / Resistance</span><strong>Interrupt</strong></button>
+                <button type="button" data-force-button="begin"><span>Child / Play</span><strong>Begin</strong></button>
+              </div>
+              <div class="tm-text-field" aria-hidden="true">
+                <span class="tm-text-particle" style="--carry-x:-250;--carry-y:82;--carry-r:-5;--interrupt-x:-470;--interrupt-y:-150;--interrupt-r:-18;--begin-x:-410;--begin-y:-90;--begin-r:2;--delay:1;--size:9px">BURDEN</span>
+                <span class="tm-text-particle" style="--carry-x:-180;--carry-y:108;--carry-r:3;--interrupt-x:-310;--interrupt-y:-70;--interrupt-r:11;--begin-x:-230;--begin-y:-155;--begin-r:-4;--delay:2;--size:12px">I CARRY</span>
+                <span class="tm-text-particle" style="--carry-x:-95;--carry-y:132;--carry-r:-2;--interrupt-x:-170;--interrupt-y:40;--interrupt-r:-24;--begin-x:-65;--begin-y:-105;--begin-r:5;--delay:3;--size:8px">REPETITION</span>
+                <span class="tm-text-particle" style="--carry-x:8;--carry-y:154;--carry-r:2;--interrupt-x:-30;--interrupt-y:-130;--interrupt-r:19;--begin-x:100;--begin-y:-170;--begin-r:-7;--delay:4;--size:14px">WEIGHT</span>
+                <span class="tm-text-particle" style="--carry-x:120;--carry-y:126;--carry-r:-4;--interrupt-x:120;--interrupt-y:10;--interrupt-r:-16;--begin-x:260;--begin-y:-80;--begin-r:4;--delay:5;--size:9px">REMAINS</span>
+                <span class="tm-text-particle" style="--carry-x:230;--carry-y:94;--carry-r:4;--interrupt-x:310;--interrupt-y:-105;--interrupt-r:22;--begin-x:410;--begin-y:-140;--begin-r:-3;--delay:6;--size:11px">ACCUMULATION</span>
+                <span class="tm-text-particle" style="--carry-x:-220;--carry-y:38;--carry-r:2;--interrupt-x:-420;--interrupt-y:130;--interrupt-r:14;--begin-x:-360;--begin-y:35;--begin-r:-4;--delay:2.5;--size:8px">MUST</span>
+                <span class="tm-text-particle" style="--carry-x:-135;--carry-y:62;--carry-r:-3;--interrupt-x:-255;--interrupt-y:170;--interrupt-r:-20;--begin-x:-190;--begin-y:105;--begin-r:7;--delay:3.5;--size:10px">ENDURE</span>
+                <span class="tm-text-particle" style="--carry-x:-35;--carry-y:86;--carry-r:3;--interrupt-x:-100;--interrupt-y:115;--interrupt-r:12;--begin-x:-25;--begin-y:32;--begin-r:-6;--delay:4.5;--size:9px">REFUSE</span>
+                <span class="tm-text-particle" style="--carry-x:72;--carry-y:68;--carry-r:-2;--interrupt-x:55;--interrupt-y:165;--interrupt-r:-25;--begin-x:140;--begin-y:85;--begin-r:6;--delay:5.5;--size:13px">NO</span>
+                <span class="tm-text-particle" style="--carry-x:170;--carry-y:44;--carry-r:3;--interrupt-x:225;--interrupt-y:115;--interrupt-r:17;--begin-x:300;--begin-y:28;--begin-r:-5;--delay:6.5;--size:9px">RUPTURE</span>
+                <span class="tm-text-particle" style="--carry-x:260;--carry-y:18;--carry-r:-4;--interrupt-x:430;--interrupt-y:160;--interrupt-r:-15;--begin-x:430;--begin-y:90;--begin-r:5;--delay:7.5;--size:11px">DISTURBANCE</span>
+                <span class="tm-text-particle" style="--carry-x:-185;--carry-y:-18;--carry-r:-3;--interrupt-x:-380;--interrupt-y:-15;--interrupt-r:24;--begin-x:-325;--begin-y:-25;--begin-r:6;--delay:1.5;--size:10px">PLAY</span>
+                <span class="tm-text-particle" style="--carry-x:-78;--carry-y:4;--carry-r:4;--interrupt-x:-215;--interrupt-y:-145;--interrupt-r:-13;--begin-x:-150;--begin-y:-42;--begin-r:-7;--delay:2.8;--size:12px">AGAIN</span>
+                <span class="tm-text-particle" style="--carry-x:34;--carry-y:-20;--carry-r:-3;--interrupt-x:-20;--interrupt-y:80;--interrupt-r:21;--begin-x:25;--begin-y:-8;--begin-r:4;--delay:3.8;--size:15px">BEGIN</span>
+                <span class="tm-text-particle" style="--carry-x:145;--carry-y:2;--carry-r:2;--interrupt-x:160;--interrupt-y:-155;--interrupt-r:-18;--begin-x:195;--begin-y:-34;--begin-r:-4;--delay:4.8;--size:9px">BECOMING</span>
+                <span class="tm-text-particle" style="--carry-x:235;--carry-y:-34;--carry-r:-4;--interrupt-x:390;--interrupt-y:20;--interrupt-r:14;--begin-x:365;--begin-y:-5;--begin-r:7;--delay:5.8;--size:8px">UNFINISHED</span>
+                <span class="tm-text-particle" style="--carry-x:-125;--carry-y:-74;--carry-r:2;--interrupt-x:-300;--interrupt-y:60;--interrupt-r:-22;--begin-x:-260;--begin-y:158;--begin-r:-5;--delay:6.8;--size:9px">TRACE</span>
+                <span class="tm-text-particle" style="--carry-x:-12;--carry-y:-50;--carry-r:-2;--interrupt-x:-90;--interrupt-y:-55;--interrupt-r:18;--begin-x:-80;--begin-y:120;--begin-r:6;--delay:7.8;--size:11px">AFTERIMAGE</span>
+                <span class="tm-text-particle" style="--carry-x:102;--carry-y:-78;--carry-r:3;--interrupt-x:105;--interrupt-y:90;--interrupt-r:-17;--begin-x:85;--begin-y:145;--begin-r:-3;--delay:8.8;--size:9px">WHAT REMAINS?</span>
+                <span class="tm-text-particle" style="--carry-x:205;--carry-y:-102;--carry-r:-4;--interrupt-x:325;--interrupt-y:-40;--interrupt-r:25;--begin-x:280;--begin-y:128;--begin-r:5;--delay:9.8;--size:12px">TO BE</span>
+              </div>
+              <p class="tm-force-question" data-force-question>At what point does repetition become perceived as weight?</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="tm-reading" data-page-phase="paths" aria-labelledby="paths-title">
+          <div class="tm-shell">
+            <header class="tm-section-head">
+              <div><span class="tm-kicker">06 / CURRENT LOGIC</span></div>
+              <div>
+                <h2 id="paths-title">Two paths remain separate before they converge.</h2>
+                <p class="tm-section-intro">This diagram distinguishes what exists now from the connection proposed for the next iteration.</p>
+              </div>
+            </header>
+
+            <div class="tm-paths">
+              <div class="tm-path">
+                <div class="tm-path-label"><span class="tm-kicker">PATH A</span><strong>BODY / FIELD</strong></div>
+                <div class="tm-path-track">
+                  <div class="tm-node"><span class="tm-node-index">01</span><strong>Movement</strong><small>pointer or presence</small></div>
+                  <div class="tm-node"><span class="tm-node-index">02</span><strong>Trace</strong><small>action becomes visible</small></div>
+                  <div class="tm-node"><span class="tm-node-index">03</span><strong>Rupture</strong><small>continuity is disturbed</small></div>
+                  <div class="tm-node"><span class="tm-node-index">04</span><strong>Afterimage</strong><small>something remains</small></div>
+                </div>
+              </div>
+              <div class="tm-path">
+                <div class="tm-path-label"><span class="tm-kicker">PATH B</span><strong>QUESTION / LANGUAGE</strong></div>
+                <div class="tm-path-track">
+                  <div class="tm-node"><span class="tm-node-index">01</span><strong>Question</strong><small>the device addresses you</small></div>
+                  <div class="tm-node"><span class="tm-node-index">02</span><strong>Choice</strong><small>a position is entered</small></div>
+                  <div class="tm-node"><span class="tm-node-index">03</span><strong>Association</strong><small>philosophical relation</small></div>
+                  <div class="tm-node"><span class="tm-node-index">04</span><strong>Response</strong><small>an open hint returns</small></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tm-convergence">
+              <div><span class="tm-kicker">M5 RESPONSE</span><strong>Language is generated</strong></div>
+              <span class="tm-arrow">→</span>
+              <div><span class="tm-kicker">TEXTUAL MATERIAL</span><strong>Words enter the field</strong></div>
+              <span class="tm-arrow">→</span>
+              <div><span class="tm-kicker">PROPOSED INTEGRATION</span><strong>The body disturbs language; an afterimage remains.</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="tm-future" data-page-phase="proposal" aria-labelledby="proposal-title">
+          <div class="tm-shell">
+            <header class="tm-section-head">
+              <div><span class="tm-kicker">07 / SPATIAL PROPOSAL</span></div>
+              <div>
+                <h2 id="proposal-title">A possible space where language, projection and presence may meet.</h2>
+                <p class="tm-section-intro">These images are proposals, not documentation of a completed installation. The technical connection remains to be built and evaluated.</p>
+              </div>
+            </header>
 
             <div class="tm-future-gallery">
-              <figure class="tm-future-figure">
-                <button class="tm-image-button" type="button" aria-label="Enlarge future integration overview">
-                  <img
-                    src="assets/three-metamorphoses/installation-proposal/installation-overview.jpg"
-                    alt="Concept visualisation of a possible future spatial integration."
-                    loading="lazy"
-                  >
-                </button>
-                <figcaption>Possible spatial overview.</figcaption>
-              </figure>
-
-              <figure class="tm-future-figure">
-                <button class="tm-image-button" type="button" aria-label="Enlarge future threshold proposal">
-                  <img
-                    src="assets/three-metamorphoses/installation-proposal/installation-entry.jpg"
-                    alt="Concept visualisation of a possible future interaction threshold."
-                    loading="lazy"
-                  >
-                </button>
-                <figcaption>Possible interaction threshold.</figcaption>
-              </figure>
-
-              <figure class="tm-future-figure">
-                <button class="tm-image-button" type="button" aria-label="Enlarge future device integration detail">
-                  <img
-                    src="assets/three-metamorphoses/installation-proposal/interface-detail.jpg"
-                    alt="Concept visualisation of a possible future Cardputer integration."
-                    loading="lazy"
-                  >
-                </button>
-                <figcaption>Possible device integration.</figcaption>
-              </figure>
-
-              <figure class="tm-future-figure">
-                <button class="tm-image-button" type="button" aria-label="Enlarge future projected field proposal">
-                  <img
-                    src="assets/three-metamorphoses/installation-proposal/projected-field.jpg"
-                    alt="Concept visualisation of a possible future projected field."
-                    loading="lazy"
-                  >
-                </button>
-                <figcaption>Possible projected field.</figcaption>
-              </figure>
+              <figure class="tm-future-figure"><button class="tm-image-button" type="button" aria-label="Enlarge possible spatial overview"><img src="assets/three-metamorphoses/installation-proposal/installation-overview.jpg" alt="Concept visualisation of a possible spatial integration."></button><figcaption>Possible spatial overview.</figcaption></figure>
+              <figure class="tm-future-figure"><button class="tm-image-button" type="button" aria-label="Enlarge possible interaction threshold"><img src="assets/three-metamorphoses/installation-proposal/installation-entry.jpg" alt="Concept visualisation of a possible interaction threshold."></button><figcaption>Possible interaction threshold.</figcaption></figure>
+              <figure class="tm-future-figure"><button class="tm-image-button" type="button" aria-label="Enlarge possible device integration"><img src="assets/three-metamorphoses/installation-proposal/interface-detail.jpg" alt="Concept visualisation of a possible Cardputer integration."></button><figcaption>Possible device integration.</figcaption></figure>
+              <figure class="tm-future-figure"><button class="tm-image-button" type="button" aria-label="Enlarge possible projected field"><img src="assets/three-metamorphoses/installation-proposal/projected-field.jpg" alt="Concept visualisation of a possible projected field."></button><figcaption>Possible projected field.</figcaption></figure>
             </div>
           </div>
         </section>
 
-        <section class="tm-section tm-shell tm-current-status" aria-labelledby="status-title">
-          <div class="tm-section-heading">
-            <p class="eyebrow">04</p>
-            <h2 id="status-title">CURRENT STATUS</h2>
+        <section class="tm-reading" data-page-phase="test" aria-labelledby="test-title">
+          <div class="tm-shell">
+            <header class="tm-section-head">
+              <div><span class="tm-kicker">08 / NEXT TEST</span></div>
+              <div><h2 id="test-title">Reading the encounter.</h2></div>
+            </header>
+            <div class="tm-test-grid">
+              <div class="tm-test-meta">PROPOSED PROTOCOL<br>5 PARTICIPANTS<br>3 MINUTES EACH</div>
+              <div class="tm-test-prompts">
+                <p>What did your action change?</p>
+                <p>Did the response feel discovered, assigned, or produced by you?</p>
+                <p>What remained after you left?</p>
+              </div>
+            </div>
+            <div class="tm-status">
+              <span class="tm-kicker">CURRENT STATUS</span>
+              <p>The Web Field and Cardputer exist as separate prototypes. Their conceptual relation is defined; the philosophical quotation mapping, technical connection and participant observation form the next stage.</p>
+            </div>
           </div>
-          <p class="tm-status-text">
-            Two separate technical prototypes are currently being tested. Their future
-            integration remains under development.
-          </p>
         </section>
 
         <nav class="project-footer-nav field-footer-nav" aria-label="Related projects">
@@ -598,38 +1305,115 @@
 
         <dialog class="installation-lightbox" data-installation-lightbox aria-label="Project image viewer">
           <button class="installation-lightbox-close" type="button" data-installation-lightbox-close>Close</button>
-          <figure>
-            <img src="" alt="" data-installation-lightbox-image>
-            <figcaption data-installation-lightbox-caption></figcaption>
-          </figure>
+          <figure><img src="" alt="" data-installation-lightbox-image><figcaption data-installation-lightbox-caption></figcaption></figure>
         </dialog>
       </article>
     </main>
 
-    <script src="field-residue.js"></script>
+    <script src="field-residue.js?v=20260814-visual1"></script>
     <script>
-      const installationLightbox = document.querySelector("[data-installation-lightbox]");
-      const installationLightboxImage = installationLightbox.querySelector("[data-installation-lightbox-image]");
-      const installationLightboxCaption = installationLightbox.querySelector("[data-installation-lightbox-caption]");
-      const installationLightboxClose = installationLightbox.querySelector("[data-installation-lightbox-close]");
+      const lightbox = document.querySelector("[data-installation-lightbox]");
+      const lightboxImage = lightbox.querySelector("[data-installation-lightbox-image]");
+      const lightboxCaption = lightbox.querySelector("[data-installation-lightbox-caption]");
 
       document.querySelectorAll(".tm-image-button").forEach((button) => {
         button.addEventListener("click", () => {
           const image = button.querySelector("img");
-          const caption = button.closest("figure").querySelector("figcaption");
-          installationLightboxImage.src = image.src;
-          installationLightboxImage.alt = image.alt;
-          installationLightboxCaption.textContent = caption.textContent;
-          installationLightbox.showModal();
+          const caption = button.closest("figure")?.querySelector("figcaption");
+          lightboxImage.src = image.src;
+          lightboxImage.alt = image.alt;
+          lightboxCaption.textContent = caption?.textContent || "";
+          lightbox.showModal();
         });
       });
 
-      installationLightboxClose.addEventListener("click", () => installationLightbox.close());
-      installationLightbox.addEventListener("click", (event) => {
-        if (event.target === installationLightbox) {
-          installationLightbox.close();
-        }
+      lightbox.querySelector("[data-installation-lightbox-close]").addEventListener("click", () => lightbox.close());
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) lightbox.close();
       });
+
+      const m5Interface = document.querySelector("[data-m5-interface]");
+      const m5Status = document.querySelector("[data-m5-status]");
+      const m5Question = document.querySelector("[data-m5-question]");
+      const m5Output = document.querySelector("[data-m5-output]");
+      let m5Timer = 0;
+
+      document.querySelectorAll("[data-answer]").forEach((button) => {
+        button.addEventListener("click", () => {
+          window.clearTimeout(m5Timer);
+          document.querySelectorAll("[data-answer]").forEach((option) => option.classList.toggle("is-selected", option === button));
+          m5Interface.classList.remove("has-response");
+          m5Interface.classList.add("is-processing");
+          m5Status.textContent = "SEARCHING RELATIONS";
+          m5Question.textContent = `${button.dataset.answer} / input registered`;
+          m5Output.textContent = "Waiting · language is gathering around the answer…";
+
+          m5Timer = window.setTimeout(() => {
+            m5Interface.classList.remove("is-processing");
+            m5Interface.classList.add("has-response");
+            m5Status.textContent = "RESPONSE FORMING";
+            m5Question.textContent = `You are ${button.dataset.answer.toLowerCase()}.`;
+            m5Output.textContent = "TO BE / documented prototype language · quotation mapping remains open";
+          }, 900);
+        });
+      });
+
+      const forceStage = document.querySelector("[data-force-stage]");
+      const forceQuestion = document.querySelector("[data-force-question]");
+      const textField = forceStage.querySelector(".tm-text-field");
+      const ambientVocabulary = [
+        "WHERE", "ARE", "YOU", "HERE", "THERE", "VOID", "CORNER", "SELF",
+        "BURDEN", "RESIST", "PLAY", "TRACE", "WAIT", "ANSWER", "BECOME", "AGAIN",
+        "POSITION", "PRESENCE", "CHOICE", "RETURN", "REMAIN", "LANGUAGE", "FIELD", "BODY",
+        "QUESTION", "AFTERIMAGE", "DISTANCE", "DURATION", "BEGIN", "INTERRUPT", "CARRY", "TO BE",
+      ];
+
+      ambientVocabulary.forEach((word, index) => {
+        const particle = document.createElement("span");
+        particle.className = "tm-text-particle tm-text-particle-ambient";
+        particle.textContent = word;
+        particle.style.setProperty("--carry-x", ((index * 137) % 980) - 490);
+        particle.style.setProperty("--carry-y", ((index * 71) % 350) - 205);
+        particle.style.setProperty("--carry-r", ((index * 7) % 13) - 6);
+        particle.style.setProperty("--interrupt-x", ((index * 223) % 1100) - 550);
+        particle.style.setProperty("--interrupt-y", ((index * 109) % 410) - 235);
+        particle.style.setProperty("--interrupt-r", ((index * 17) % 47) - 23);
+        particle.style.setProperty("--begin-x", ((index * 181) % 1040) - 520);
+        particle.style.setProperty("--begin-y", ((index * 83) % 380) - 210);
+        particle.style.setProperty("--begin-r", ((index * 11) % 17) - 8);
+        particle.style.setProperty("--delay", (index % 9) + 1);
+        particle.style.setProperty("--size", `${7 + (index % 4)}px`);
+        textField.appendChild(particle);
+      });
+
+      const forceQuestions = {
+        carry: "At what point does repetition become perceived as weight?",
+        interrupt: "When does interruption feel like agency rather than noise?",
+        begin: "Can a beginning appear without erasing what came before?",
+      };
+
+      document.querySelectorAll("[data-force-button]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const force = button.dataset.forceButton;
+          forceStage.dataset.force = force;
+          forceQuestion.textContent = forceQuestions[force];
+          document.querySelectorAll("[data-force-button]").forEach((control) => control.classList.toggle("is-active", control === button));
+        });
+      });
+
+      const phaseSections = [...document.querySelectorAll("[data-page-phase]")];
+      const phaseIndex = document.querySelector("[data-tm-index]");
+      const phaseName = document.querySelector("[data-tm-name]");
+      const phaseProgress = document.querySelector("[data-tm-progress]");
+      const phaseObserver = new IntersectionObserver((entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        const index = phaseSections.indexOf(visible.target);
+        phaseIndex.textContent = String(index + 1).padStart(2, "0");
+        phaseName.textContent = visible.target.dataset.pagePhase.toUpperCase();
+        phaseProgress.style.transform = `scaleY(${(index + 1) / phaseSections.length})`;
+      }, { rootMargin: "-25% 0px -48%", threshold: [0, 0.2, 0.5] });
+      phaseSections.forEach((section) => phaseObserver.observe(section));
     </script>
     <script src="language.js"></script>
   </body>
