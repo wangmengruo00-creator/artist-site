@@ -2955,6 +2955,30 @@ body.landing-page {
   aspect-ratio: 16 / 9;
 }
 
+.skin-video-frame {
+  margin: 0;
+}
+
+.skin-video-frame video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #eeede8;
+}
+
+.skin-video-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
 .skin-process {
   margin-top: clamp(68px, 11vw, 148px);
   padding-top: 24px;
@@ -3033,6 +3057,11 @@ body.landing-page {
 }
 
 @media (max-width: 520px) {
+  .skin-video-caption {
+    display: grid;
+    gap: 3px;
+  }
+
   .skin-heading h1 {
     font-size: 38px;
   }
