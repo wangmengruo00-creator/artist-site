@@ -10,6 +10,7 @@
     >
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preload" as="image" href="assets/web/works/bureau-material-field.webp" type="image/webp" fetchpriority="high">
   </head>
   <body>
     <header class="site-header" aria-label="Primary navigation">
@@ -72,7 +73,11 @@
           <figure class="about-material-field">
             <div class="about-material-field-image">
               <img
-                src="assets/invalidated-tickets/curated/bureau-material-field.png"
+                src="assets/web/works/bureau-material-field.webp"
+                width="900"
+                height="675"
+                decoding="async"
+                fetchpriority="high"
                 alt="Overhead view of commodity wrappers, tickets, vouchers, and archive sheets being arranged on a studio floor"
               >
               <div class="about-field-stamp" aria-hidden="true">
