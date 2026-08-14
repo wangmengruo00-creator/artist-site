@@ -830,6 +830,14 @@ body.landing-page {
   letter-spacing: -0.012em;
 }
 
+.about-profile-evidence {
+  display: block;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 .about-practice-map {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
