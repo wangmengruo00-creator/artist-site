@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Machine-Assisted Diagnostic Reading — The Bureau of Invalidated Tickets</title>
+    <meta name="description" content="A bounded diagnostic comparison of machine and material readings within The Bureau of Invalidated Tickets.">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../machine-reading-preview.css">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="machine-reading-page">
+    <header class="machine-reading-topbar">
+      <a href="invalidated-tickets.html">← Project record</a>
+      <div>
+        <strong>BUREAU / MACHINE-ASSISTED DIAGNOSTIC READING</strong>
+        <span>Run 01 · Bounded review set</span>
+      </div>
+      <p><i aria-hidden="true"></i>Provisional output</p>
+    </header>
+
+    <main>
+      <nav class="machine-reading-route" aria-label="Research layers">
+        <a href="invalidated-tickets-archive.html"><span>00</span><strong>Wider collection</strong><small>296 working records ↗</small></a>
+        <a href="#collection-field"><span>01</span><strong>Diagnostic subset</strong><small>185 source scans</small></a>
+        <a href="#diagnostic-reading"><span>02</span><strong>Human comparison</strong><small>20-record review set</small></a>
+        <a href="#operational-pilot"><span>03</span><strong>Operational pilot</strong><small>Proposed / not yet run</small></a>
+      </nav>
+
+      <section class="machine-reading-intro">
+        <div>
+          <p class="machine-reading-kicker">Contextual tracing / RQ1</p>
+          <h1>Where readings<br>fail to coincide.</h1>
+        </div>
+        <div class="machine-reading-intro-copy">
+          <p>
+            A bounded comparison of what machine reading preserves, alters, omits or reconstructs
+            within the 185-record food-related subset drawn from the wider 296-record working collection.
+          </p>
+          <small>
+            Computational output is retained as diagnostic evidence of a reading process. It does
+            not establish provenance, object identity or historical fact.
+          </small>
+        </div>
+      </section>
+
+      <section class="machine-reading-register" aria-label="Run register">
+        <div><span>Source field</span><strong>185 scans</strong></div>
+        <div><span>Review set</span><strong>20 records</strong></div>
+        <div><span>Input condition</span><strong>Fixed / V1</strong></div>
+        <div><span>Non-empty OCR</span><strong>184 / 185</strong></div>
+        <div><span>Review pending</span><strong>165 / 185</strong></div>
+      </section>
+
+      <section class="machine-reading-corpus" id="collection-field" aria-labelledby="collection-field-title">
+        <div class="machine-reading-corpus-head">
+          <div>
+            <p class="machine-reading-kicker">Diagnostic subset / source register</p>
+            <h2 id="collection-field-title">The 185-record subset remains visible.</h2>
+          </div>
+          <div>
+            <p>
+              185 source scans demonstrate the accumulating material field. They are not presented
+              as 185 completed catalogue entries: some scans contain more than one physical object,
+              and object-level identification remains in progress.
+            </p>
+            <span>Scroll horizontally →</span>
+          </div>
+        </div>
+        <div class="machine-reading-corpus-window" tabindex="0" aria-label="Scrollable field of 185 source scans">
+          <div class="machine-reading-corpus-grid" data-corpus-grid></div>
+        </div>
+        <div class="machine-reading-corpus-key">
+          <span><i></i>Included in Run 01 review set</span>
+          <span><i></i>Source scan / object review pending</span>
+        </div>
+      </section>
+
+      <section class="machine-reading-stage" id="diagnostic-reading" aria-label="Human and machine comparison">
+        <div class="machine-reading-object">
+          <div class="machine-reading-object-head">
+            <span data-record-id>T–027</span>
+            <span data-record-group>Machine failure</span>
+          </div>
+          <figure>
+            <img data-record-image src="../assets/invalidated-tickets/archive-items/food/t027.webp" alt="Selected paper record">
+          </figure>
+          <div class="machine-reading-object-meta">
+            <p data-record-assessment>Productive omission</p>
+            <dl>
+              <div><dt>OCR confidence</dt><dd data-record-confidence>0.000</dd></div>
+              <div><dt>Visual cluster</dt><dd data-record-cluster>01</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <article class="machine-reading-comparison">
+          <div class="machine-reading-readable">
+            <p>Visible record / provisional human review</p>
+            <h2 data-record-visible>A faded, vertically oriented printed voucher.</h2>
+          </div>
+
+          <div class="machine-reading-raw">
+            <span>Raw machine output</span>
+            <p data-record-machine>No text detected</p>
+          </div>
+
+          <nav class="machine-reading-lenses" aria-label="Comparative reading lens">
+            <button class="is-active" type="button" data-lens="preserved" aria-pressed="true">Preserved</button>
+            <button type="button" data-lens="altered" aria-pressed="false">Altered</button>
+            <button type="button" data-lens="omitted" aria-pressed="false">Omitted</button>
+            <button type="button" data-lens="reconstructed" aria-pressed="false">Reconstructed</button>
+          </nav>
+
+          <div class="machine-reading-lens-output">
+            <span data-lens-number>01 / PRESERVED</span>
+            <p data-lens-output>The visual model registers a dark, vertical, bordered object.</p>
+          </div>
+
+          <details class="machine-reading-next">
+            <summary>Next verification action</summary>
+            <p data-record-next></p>
+          </details>
+        </article>
+      </section>
+
+      <section class="machine-reading-index" aria-labelledby="machine-reading-index-title">
+        <div class="machine-reading-index-head">
+          <div>
+            <p class="machine-reading-kicker">Bounded sample / 20</p>
+            <h2 id="machine-reading-index-title">Review set</h2>
+          </div>
+          <div class="machine-reading-filters" role="group" aria-label="Filter review set">
+            <button class="is-active" type="button" data-filter="all">All</button>
+            <button type="button" data-filter="machine-failure">Machine failure</button>
+            <button type="button" data-filter="visual-outlier">Visual outlier</button>
+            <button type="button" data-filter="positive-control">Positive control</button>
+            <button type="button" data-filter="boundary-case">Boundary case</button>
+          </div>
+        </div>
+        <div class="machine-reading-grid" data-review-grid></div>
+      </section>
+
+      <aside class="machine-reading-boundary" id="operational-pilot">
+        <p>Next research layer / RQ3</p>
+        <div>
+          <h2>The archive remains. The rule begins to operate.</h2>
+          <p>
+            Run 01 documents a fixed diagnostic trial under RQ1. A separate operational pilot will
+            select one relation - allocation or temporal validity - and translate it into a transparent
+            state-transition system with participant actions and a timestamped event log. The pilot
+            will not replace the collection or present OCR as the experiment itself.
+          </p>
+          <span>Prototype status / not yet run</span>
+        </div>
+      </aside>
+
+      <section class="machine-reading-version" aria-label="Version record">
+        <div><span>INPUT</span><p>185 fixed scan files with stable identifiers T–001–T–185.</p></div>
+        <div><span>PROCESS</span><p>OCR, measured visual features and provisional comparison rules.</p></div>
+        <div><span>RETAINED</span><p>Raw outputs, code version, review notes and uncertainty remain separately traceable.</p></div>
+      </section>
+    </main>
+
+    <script src="../assets/invalidated-tickets/machine-reading-preview-data.js"></script>
+    <script src="../assets/invalidated-tickets/machine-reading-corpus-data.js"></script>
+    <script src="../machine-reading-preview.js"></script>
+  </body>
+</html>

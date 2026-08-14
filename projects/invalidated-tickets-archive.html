@@ -6,7 +6,7 @@
     <title>Bureau Reading System — The Bureau of Invalidated Tickets</title>
     <meta
       name="description"
-      content="A provisional interface comparing official categories, material traces, and proposed computational readings for The Bureau of Invalidated Tickets by Mengruo Wang."
+      content="A working archive that keeps visible evidence, recorded information, provisional relations, and unresolved questions distinct within The Bureau of Invalidated Tickets by Mengruo Wang."
     >
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../archive-network.css">
@@ -18,25 +18,26 @@
         <a class="archive-back" href="invalidated-tickets.html">← Project record</a>
         <div>
           <strong>THE BUREAU OF INVALIDATED TICKETS</strong>
-          <span>Bureau Reading System · Prototype</span>
+          <span>Working archive · Provisional reading system</span>
         </div>
       </div>
       <div class="archive-status" aria-label="Archive status">
-        <span>BIT / READING SYSTEM–01</span>
-        <span><i aria-hidden="true"></i> Proposed prototype / accumulating</span>
+        <span>BIT / WORKING ARCHIVE–01</span>
+        <span><i aria-hidden="true"></i> Open / accumulating / unresolved</span>
+        <a href="invalidated-tickets-machine-reading-preview.html">Run 01 / Diagnostic reading →</a>
       </div>
     </header>
 
     <main class="archive-interface">
       <section class="archive-reading-intro" aria-labelledby="archive-reading-title">
         <div>
-          <p>BUREAU READING SYSTEM / PROTOTYPE</p>
-          <h1 id="archive-reading-title">Three readings of one material record.</h1>
+          <p>COLLECTION FIELD / 296 DIGITISED WORKING RECORDS</p>
+          <h1 id="archive-reading-title">The whole collected field remains visible.</h1>
         </div>
         <p>
-          A provisional interface for comparing official categories, material traces, and
-          computational readings. Proposed machine readings are hypotheses for testing; they are
-          not historical evidence and do not claim automated interpretation has been completed.
+          The complete working field contains 185 tickets and vouchers, 51 wrappers, 12 product
+          labels, and 48 other printed records. What is visible, recorded, proposed, and unresolved
+          remains deliberately separate as the reading lens changes.
           <br><br><strong>Working interface model. Record labels are provisional display markers,
           not completed catalogue entries.</strong>
         </p>
@@ -44,43 +45,39 @@
 
       <section class="archive-controls" aria-label="Archive controls">
         <div class="archive-control-group archive-reading-modes">
-          <span class="archive-control-label">Reading mode</span>
-          <div class="archive-segmented" role="group" aria-label="Reading mode">
-            <button class="is-active" type="button" data-reading-mode="system" aria-pressed="true">System record</button>
-            <button type="button" data-reading-mode="material" aria-pressed="false">Material trace</button>
-            <button type="button" data-reading-mode="machine" aria-pressed="false">Proposed machine reading</button>
+          <span class="archive-control-label">Evidence layer</span>
+          <div class="archive-segmented" role="group" aria-label="Evidence layer">
+            <button class="is-active" type="button" data-reading-mode="visible" aria-pressed="true">Visible</button>
+            <button type="button" data-reading-mode="recorded" aria-pressed="false">Recorded</button>
+            <button type="button" data-reading-mode="proposed" aria-pressed="false">Provisional</button>
+            <button type="button" data-reading-mode="unresolved" aria-pressed="false">Unresolved</button>
           </div>
         </div>
         <div class="archive-control-group">
           <span class="archive-control-label">View</span>
           <div class="archive-segmented" role="group" aria-label="View mode">
-            <button class="is-active" type="button" data-view="grid" aria-pressed="true">All objects</button>
-            <button type="button" data-view="network" aria-pressed="false">Selected relations</button>
+            <button class="is-active" type="button" data-view="grid" aria-pressed="true">All records / 296</button>
+            <button type="button" data-view="network" aria-pressed="false">Relation field</button>
           </div>
         </div>
         <div class="archive-control-group archive-lenses">
-          <span class="archive-control-label">Read by</span>
+          <span class="archive-control-label">Provisional relation</span>
           <div class="archive-segmented archive-lens-buttons" role="group" aria-label="Reading lens">
-            <button class="is-active" type="button" data-lens="all" aria-pressed="true">Everything</button>
-            <button type="button" data-lens="access" aria-pressed="false">Who gets what</button>
-            <button type="button" data-lens="exchange" aria-pressed="false">Exchange / expiry</button>
-            <button type="button" data-lens="recognition" aria-pressed="false">Image / attraction</button>
+            <button class="is-active" type="button" data-lens="all" aria-pressed="true">All relations</button>
+            <button type="button" data-lens="access" aria-pressed="false">Allocation / access</button>
+            <button type="button" data-lens="exchange" aria-pressed="false">Exchange / validity</button>
+            <button type="button" data-lens="recognition" aria-pressed="false">Recognition / attraction</button>
             <button type="button" data-lens="value" aria-pressed="false">Value</button>
           </div>
         </div>
         <div class="archive-control-group archive-collections">
           <span class="archive-control-label">Material type</span>
           <div class="archive-segmented" role="group" aria-label="Material collection">
-            <button class="is-active" type="button" data-collection="all" aria-pressed="true">All</button>
-            <button type="button" data-collection="regulated" aria-pressed="false">Tickets &amp; vouchers</button>
-            <button type="button" data-collection="commodity" aria-pressed="false">Wrappers &amp; labels</button>
-            <button type="button" data-collection="peripheral" aria-pressed="false">Other printed matter</button>
+            <button class="is-active" type="button" data-collection="all" aria-pressed="true">All / 296</button>
+            <button type="button" data-collection="regulated" aria-pressed="false">Tickets &amp; vouchers / 185</button>
+            <button type="button" data-collection="commodity" aria-pressed="false">Wrappers &amp; labels / 63</button>
+            <button type="button" data-collection="peripheral" aria-pressed="false">Other printed matter / 48</button>
           </div>
-        </div>
-        <div class="archive-zoom" role="group" aria-label="Canvas zoom">
-          <button type="button" data-zoom="out" aria-label="Zoom out">−</button>
-          <button type="button" data-zoom="reset">Reset</button>
-          <button type="button" data-zoom="in" aria-label="Zoom in">+</button>
         </div>
       </section>
 
@@ -92,27 +89,36 @@
           </div>
           <div class="archive-field-note">
             <span data-archive-count>Working field / archive accumulating</span>
-            <span>All scans stay here · Selected relations uses 20 working examples</span>
+            <span>All 296 records remain present · relation lines are limited to 12 bounded examples · select an object to inspect its evidence record</span>
+          </div>
+          <div class="archive-zoom archive-zoom-floating" role="group" aria-label="Canvas zoom">
+            <button type="button" data-zoom="out" aria-label="Zoom out">−</button>
+            <button type="button" data-zoom="reset" aria-label="Reset and fit network"><span data-zoom-level>Fit</span></button>
+            <button type="button" data-zoom="in" aria-label="Zoom in">+</button>
           </div>
           <button class="archive-close-record" type="button" data-close-record aria-label="Close record">×</button>
         </div>
 
         <aside class="archive-record" data-archive-record aria-live="polite">
           <div class="archive-record-empty">
-            <p class="archive-record-kicker">Bureau Reading System / How to read</p>
+            <p class="archive-record-kicker">Working archive / How to read</p>
             <h1>SELECT AN OBJECT</h1>
             <p>
-              Select a material record, then move between three reading modes. The gap between
-              those readings is the research space of this prototype.
+              Select a material record, then compare four evidence layers. Their separation keeps
+              direct observation, documentation, interpretation, and uncertainty from becoming one claim.
             </p>
             <div class="archive-record-guide">
-              <span>01</span><p>System record: what the paper may have regulated.</p>
-              <span>02</span><p>Material trace: what remains directly visible.</p>
-              <span>03</span><p>Proposed machine reading: what a formal model might connect or omit.</p>
+              <span>01</span><p>Visible: what can be observed in the scan.</p>
+              <span>02</span><p>Recorded: what the present archive can document.</p>
+              <span>03</span><p>Provisional: a relation being tested, not a conclusion.</p>
+              <span>04</span><p>Unresolved: what still requires material or historical research.</p>
+            </div>
+            <div class="archive-evidence-key" aria-label="Evidence key">
+              <span>Visible</span><span>Recorded</span><span>Provisional</span><span>Unresolved</span>
             </div>
             <p class="archive-prototype-note">
-              This is a proposed reading system, not a completed AI analysis. Machine categories
-              remain hypotheses until they are implemented, tested, and critically compared.
+              This interface does not reconstruct a complete history. It makes the current limits
+              of the research visible while the material field continues to grow.
             </p>
           </div>
           <div class="archive-record-content" hidden></div>

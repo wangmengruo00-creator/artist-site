@@ -39,10 +39,14 @@
   };
   const curatedRecordIds = new Set(Object.keys(curatedRecordDetails));
   const scanSource = (window.INVALIDATED_ARCHIVE_ITEMS || []).filter((item) =>
-    item.published && !item.duplicateOf && curatedRecordIds.has(item.id)
+    item.published && !item.duplicateOf
   );
   const traceSetIds = curatedRecordIds;
   const collectionSeen = {};
+  const collectionTotals = scanSource.reduce((totals, item) => {
+    totals[item.collection] = (totals[item.collection] || 0) + 1;
+    return totals;
+  }, {});
   const collectionDetails = {
     food: {
       materialField: "regulated",
@@ -96,35 +100,46 @@
     collectionSeen[source.collection] = collectionIndex + 1;
     const featured = traceSetIds.has(source.id);
     const angle = collectionIndex * 2.399963;
-    const cluster = source.collection === "food" ? { x: 570, y: 500, r: 360 }
-      : source.collection === "wrappers" ? { x: 1270, y: 500, r: 300 }
-        : source.collection === "labels" ? { x: 930, y: 520, r: 240 }
-          : { x: 900, y: 520, r: 420 };
+    const cluster = source.collection === "food" ? { x: 500, y: 500, r: 420 }
+      : source.collection === "wrappers" ? { x: 1290, y: 360, r: 275 }
+        : source.collection === "labels" ? { x: 1370, y: 820, r: 165 }
+          : { x: 980, y: 810, r: 255 };
+    const radialProgress = Math.sqrt((collectionIndex + 1) / collectionTotals[source.collection]);
+    const radius = cluster.r * (0.12 + radialProgress * 0.86);
     const details = collectionDetails[source.collection];
     const curated = curatedRecordDetails[source.id] || {};
     return {
       id: `scan-${source.id.toLowerCase()}`, ref: source.id.replace("-", "–"), title: curated.title || source.title,
       kind: "object", scanned: true, featured, collection: source.collection, materialField: details.materialField,
-      imageUrl: scanAssetRoot + source.image, imagePosition: "50% 50%",
+      imageUrl: scanAssetRoot + source.image,
+      thumbnailUrl: scanAssetRoot + source.image.replace("archive-items/", "archive-items/thumbnails/"),
+      imagePosition: "50% 50%",
       sourceFile: source.source, sourcePage: source.page,
       date: curated.date || details.date, place: curated.place || details.place, function: details.function, trace: details.trace,
       status: curated.status || source.status, note: details.note, question: details.question,
       observation: details.observation, context: details.context, inference: details.inference,
-      x: Math.round(cluster.x + Math.cos(angle) * cluster.r * (0.45 + (collectionIndex % 5) * 0.1)),
-      y: Math.round(cluster.y + Math.sin(angle) * cluster.r * (0.45 + (collectionIndex % 5) * 0.1))
+      x: Math.round(cluster.x + Math.cos(angle) * radius),
+      y: Math.round(cluster.y + Math.sin(angle) * radius)
     };
   });
 
   const records = [...baseRecords, ...scannedRecords];
 
-  const scannedRelations = scannedRecords.flatMap((item) => collectionDetails[item.collection].terms.map(([target, lens]) => ({ source: item.id, target, lens })));
+  const scannedRelations = scannedRecords
+    .filter((item) => item.featured)
+    .flatMap((item) => collectionDetails[item.collection].terms.map(([target, lens]) => ({ source: item.id, target, lens })));
   const relations = scannedRelations;
 
   const byId = new Map(records.map((item) => [item.id, item]));
   const elements = new Map();
-  const state = { scale: 0.72, x: 0, y: 0, view: "grid", lens: "all", collection: "all", readingMode: "system", selected: null, dragging: false, pointerX: 0, pointerY: 0 };
+  const state = {
+    scale: 0.72, x: 0, y: 0, view: "grid", lens: "all", collection: "all",
+    readingMode: "visible", selected: null, dragging: false, pointerX: 0, pointerY: 0,
+    nodeDrag: null, suppressClickId: null, topNodeZ: 20
+  };
 
   const imageUrl = (item) => item.imageUrl;
+  const thumbnailUrl = (item) => item.thumbnailUrl || item.imageUrl;
 
   const escapeHtml = (value = "") => String(value).replace(/[&<>'"]/g, (character) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#039;", '"': "&quot;"
@@ -141,16 +156,17 @@
     button.type = "button";
     button.className = `archive-node archive-node-${item.kind}`;
     if (item.scanned) button.classList.add("archive-node-scanned");
+    if (item.featured) button.classList.add("archive-node-featured");
     button.dataset.id = item.id;
     button.dataset.index = String(index + 1).padStart(2, "0");
     button.setAttribute("aria-label", `${item.ref}: ${item.title}`);
 
     if (item.kind === "object") {
       const imageAttributes = item.scanned && !item.featured
-        ? `data-src="${imageUrl(item)}"`
-        : `src="${imageUrl(item)}"`;
+        ? `data-src="${thumbnailUrl(item)}"`
+        : `src="${thumbnailUrl(item)}"`;
       button.innerHTML = `
-        <span class="archive-node-image"><img ${imageAttributes} alt="" loading="lazy" decoding="async" style="object-position:${item.imagePosition}"></span>
+        <span class="archive-node-image"><img ${imageAttributes} alt="" draggable="false" loading="lazy" decoding="async" fetchpriority="low" style="object-position:${item.imagePosition}"></span>
         <span class="archive-node-ref">${escapeHtml(item.ref)} / Material record</span>
         <strong>${escapeHtml(item.title)}</strong>
         <span class="archive-node-meta">${escapeHtml(item.date)} · ${escapeHtml(item.status)}</span>
@@ -161,8 +177,59 @@
 
     button.addEventListener("click", (event) => {
       event.stopPropagation();
+      if (state.suppressClickId === item.id) {
+        state.suppressClickId = null;
+        return;
+      }
       selectNode(item.id);
     });
+
+    button.addEventListener("pointerdown", (event) => {
+      if (state.view !== "network" || (event.pointerType === "mouse" && event.button !== 0)) return;
+      event.stopPropagation();
+      state.topNodeZ += 1;
+      button.style.zIndex = String(state.topNodeZ);
+      state.nodeDrag = {
+        id: item.id,
+        pointerId: event.pointerId,
+        startPointerX: event.clientX,
+        startPointerY: event.clientY,
+        startNodeX: item.x,
+        startNodeY: item.y,
+        moved: false
+      };
+      button.classList.add("is-node-dragging");
+      button.setPointerCapture(event.pointerId);
+    });
+
+    button.addEventListener("pointermove", (event) => {
+      const drag = state.nodeDrag;
+      if (!drag || drag.id !== item.id || drag.pointerId !== event.pointerId) return;
+      const deltaX = (event.clientX - drag.startPointerX) / state.scale;
+      const deltaY = (event.clientY - drag.startPointerY) / state.scale;
+      if (Math.hypot(deltaX, deltaY) > 2) drag.moved = true;
+      if (!drag.moved) return;
+      event.preventDefault();
+      item.x = Math.max(8, Math.min(stage.offsetWidth - button.offsetWidth - 8, drag.startNodeX + deltaX));
+      item.y = Math.max(8, Math.min(stage.offsetHeight - button.offsetHeight - 8, drag.startNodeY + deltaY));
+      button.style.left = `${item.x}px`;
+      button.style.top = `${item.y}px`;
+      window.requestAnimationFrame(drawRelations);
+    });
+
+    const finishNodeDrag = (event) => {
+      const drag = state.nodeDrag;
+      if (!drag || drag.id !== item.id || drag.pointerId !== event.pointerId) return;
+      if (drag.moved && event.type === "pointerup") state.suppressClickId = item.id;
+      state.nodeDrag = null;
+      button.classList.remove("is-node-dragging");
+      if (button.hasPointerCapture(event.pointerId)) button.releasePointerCapture(event.pointerId);
+      drawRelations();
+    };
+
+    button.addEventListener("pointerup", finishNodeDrag);
+    button.addEventListener("pointercancel", finishNodeDrag);
+    button.addEventListener("dragstart", (event) => event.preventDefault());
     nodesLayer.appendChild(button);
     elements.set(item.id, button);
   };
@@ -203,17 +270,21 @@
     const count = document.querySelector("[data-archive-count]");
     if (!count) return;
     const matching = scannedRecords.filter((item) => state.collection === "all" || item.materialField === state.collection);
-    const visible = state.view === "grid" ? matching.length : matching.filter((item) => item.featured).length;
+    const connectedExamples = matching.filter((item) => {
+      if (!item.featured) return false;
+      if (state.lens === "all") return true;
+      return collectionDetails[item.collection].terms.some(([, lens]) => lens === state.lens);
+    }).length;
     count.textContent = state.view === "grid"
-      ? `Selected working set / ${visible} visible object records`
-      : `Selected relations / ${visible} real object records / ${baseRecords.length} provisional relations`;
+      ? `Collection field / ${matching.length} working records visible`
+      : `Relation field / ${matching.length} records visible / ${connectedExamples} bounded examples linked`;
   };
 
   const positionNodes = () => {
     document.body.dataset.archiveView = state.view;
     updateStageSize();
     records.forEach((item) => {
-      const networkHidden = state.view === "network" && item.scanned && (!item.featured || !matchesCollection(item));
+      const networkHidden = state.view === "network" && item.scanned && !matchesCollection(item);
       const gridHidden = state.view === "grid" && (item.kind === "term" || !matchesCollection(item));
       const position = state.view === "grid" ? gridPosition(item) : item;
       const element = elements.get(item.id);
@@ -246,6 +317,8 @@
     const activeRelations = visibleRelations();
     activeRelations.forEach((relation) => {
       if (elements.get(relation.source)?.hidden || elements.get(relation.target)?.hidden) return;
+      const sourceItem = byId.get(relation.source);
+      if (sourceItem?.scanned && !sourceItem.featured && state.selected !== relation.source) return;
       const source = nodeCenter(relation.source);
       const target = nodeCenter(relation.target);
       const connected = !state.selected || relation.source === state.selected || relation.target === state.selected;
@@ -253,11 +326,13 @@
       ctx.moveTo(source.x, source.y);
       const middleX = (source.x + target.x) / 2;
       ctx.bezierCurveTo(middleX, source.y, middleX, target.y, target.x, target.y);
+      ctx.setLineDash(connected && state.selected ? [5, 4] : [3, 6]);
       ctx.strokeStyle = ["recognition", "value"].includes(relation.lens)
-        ? `rgba(135,55,45,${connected ? 0.42 : 0.07})`
-        : `rgba(48,75,103,${connected ? 0.34 : 0.06})`;
+        ? `rgba(135,55,45,${connected ? 0.34 : 0.055})`
+        : `rgba(48,75,103,${connected ? 0.28 : 0.045})`;
       ctx.lineWidth = connected && state.selected ? 1.6 : 0.8;
       ctx.stroke();
+      ctx.setLineDash([]);
     });
   };
 
@@ -286,63 +361,80 @@
 
   const renderRecord = (item) => {
     const related = [...relatedIds(item.id)].map((id) => byId.get(id));
-    const relationButtons = related.length
-      ? related.map((entry) => `<li><button type="button" data-related-id="${entry.id}">${escapeHtml(entry.ref)} — ${escapeHtml(entry.title)}</button></li>`).join("")
+    const visibleRelated = item.kind === "term"
+      ? [...related].sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured))).slice(0, 24)
+      : related;
+    const relationButtons = visibleRelated.length
+      ? visibleRelated.map((entry) => `<li><button type="button" data-related-id="${entry.id}">${escapeHtml(entry.ref)} — ${escapeHtml(entry.title)}</button></li>`).join("")
       : "<li><button type=\"button\" disabled>No relation under this lens</button></li>";
+    const relationSummary = item.kind === "term" && related.length > visibleRelated.length
+      ? `<p class="archive-related-summary">${related.length} records enter this working comparison; ${visibleRelated.length} are listed here to keep the field readable.</p>`
+      : "";
 
     if (item.kind === "term") {
       recordContent.innerHTML = `
         <p class="archive-record-kicker">${escapeHtml(item.ref)} / Provisional term</p>
         <h1>${escapeHtml(item.title)}</h1>
-        <span class="archive-record-state">Proposed relation / not historical fact</span>
-        <p>This is one possible way of comparing the objects. The visible connections do not claim that the former relation survives unchanged.</p>
-        <span class="archive-related-label">Objects connected for comparison</span>
+        <span class="archive-record-state">Working term / not historical evidence</span>
+        <p>This term opens one temporary route through the material field. A line indicates a proposed comparison only; it does not prove that the objects once shared the same history or use.</p>
+        <span class="archive-related-label">Objects temporarily compared through this term</span>
+        ${relationSummary}
         <ul class="archive-related-list">${relationButtons}</ul>
       `;
     } else {
       const readingPanels = {
-        system: `
-          <div class="archive-reading-panel" data-reading-panel="system">
-            <span class="archive-reading-panel-label">SYSTEM RECORD / DOCUMENTED + UNRESOLVED</span>
-            <p>Read the object through the conditions its former system may have organised.</p>
-            <dl class="archive-record-data">
-              <div><dt>Material type</dt><dd>${escapeHtml(materialFieldLabels[item.materialField])}</dd></div>
-              <div><dt>Date</dt><dd>${escapeHtml(item.date)}</dd></div>
-              <div><dt>Place</dt><dd>${escapeHtml(item.place)}</dd></div>
-              <div><dt>Former operation</dt><dd>${escapeHtml(item.function)}</dd></div>
-              ${item.sourceFile ? `<div><dt>Source record</dt><dd>Corpus scan · page ${escapeHtml(item.sourcePage)}</dd></div>` : ""}
-            </dl>
-            <p class="archive-reading-caution">Known information remains separate from later interpretation. Date, provenance, and circulation stay unresolved unless documented.</p>
-          </div>`,
-        material: `
-          <div class="archive-reading-panel" data-reading-panel="material">
-            <span class="archive-reading-panel-label">MATERIAL TRACE / DIRECT OBSERVATION</span>
+        visible: `
+          <div class="archive-reading-panel" data-reading-panel="visible">
+            <span class="archive-reading-panel-label">VISIBLE / DIRECT OBSERVATION</span>
             <p>${escapeHtml(item.observation)}</p>
             <dl class="archive-record-data">
               <div><dt>Trace field</dt><dd>${escapeHtml(item.trace)}</dd></div>
-              <div><dt>Reading limit</dt><dd>A visible trace cannot by itself recover who used the object or what that use meant.</dd></div>
+              <div><dt>Limit</dt><dd>A visible trace cannot by itself recover who used the object or what that use meant.</dd></div>
             </dl>
           </div>`,
-        machine: `
-          <div class="archive-reading-panel archive-reading-panel-machine" data-reading-panel="machine">
-            <span class="archive-reading-panel-label">PROPOSED MACHINE READING / NOT YET COMPUTED</span>
-            <p>A future prototype could compare this scan through colour distribution, layout, printed symbols, numerals, edges, and visible wear.</p>
+        recorded: `
+          <div class="archive-reading-panel" data-reading-panel="recorded">
+            <span class="archive-reading-panel-label">RECORDED / PRESENT ARCHIVE</span>
+            <p>Only information held by the present working archive is listed here.</p>
             <dl class="archive-record-data">
-              <div><dt>Possible link</dt><dd>Formal similarity to other records may produce a new comparison.</dd></div>
-              <div><dt>Possible omission</dt><dd>Provenance, touch, former eligibility, and lived use may remain illegible to the model.</dd></div>
-              <div><dt>Research status</dt><dd>Proposed test only. No automated interpretation is presented as historical evidence.</dd></div>
+              <div><dt>Material field</dt><dd>${escapeHtml(materialFieldLabels[item.materialField])}</dd></div>
+              <div><dt>Archive status</dt><dd>${escapeHtml(item.status)}</dd></div>
+              ${item.sourceFile ? `<div><dt>Scan record</dt><dd>Corpus scan · page ${escapeHtml(item.sourcePage)}</dd></div>` : ""}
+            </dl>
+            <p class="archive-reading-caution">Material field is a current working placement. It is not a final taxonomy.</p>
+          </div>`,
+        proposed: `
+          <div class="archive-reading-panel archive-reading-panel-proposed" data-reading-panel="proposed">
+            <span class="archive-reading-panel-label">PROVISIONAL / RELATION UNDER TEST</span>
+            <p>${escapeHtml(item.inference)}</p>
+            <dl class="archive-record-data">
+              <div><dt>Working route</dt><dd>${escapeHtml(item.function)}</dd></div>
+              <div><dt>Status</dt><dd>Artistic research proposition; not yet supported as object-specific historical evidence.</dd></div>
+            </dl>
+          </div>`,
+        unresolved: `
+          <div class="archive-reading-panel archive-reading-panel-unresolved" data-reading-panel="unresolved">
+            <span class="archive-reading-panel-label">UNRESOLVED / RESEARCH REQUIRED</span>
+            <p>${escapeHtml(item.context)}</p>
+            <dl class="archive-record-data">
+              <div><dt>Date</dt><dd>${escapeHtml(item.date)}</dd></div>
+              <div><dt>Place</dt><dd>${escapeHtml(item.place)}</dd></div>
+              <div><dt>Still unknown</dt><dd>Object-specific provenance, circulation, handling, and lived relation.</dd></div>
             </dl>
           </div>`
       };
       recordContent.innerHTML = `
         <p class="archive-record-kicker">${escapeHtml(item.ref)} / Material record</p>
         <h1>${escapeHtml(item.title)}</h1>
-        <figure class="archive-record-hero"><img src="${imageUrl(item)}" alt="${escapeHtml(item.title)}" style="object-position:${item.imagePosition}"></figure>
-        <span class="archive-record-state">${escapeHtml(item.status)}</span>
+        <figure class="archive-record-hero"><img src="${imageUrl(item)}" alt="${escapeHtml(item.title)}" decoding="async" style="object-position:${item.imagePosition}"></figure>
+        <span class="archive-record-state">${escapeHtml(item.status)} / working record</span>
         <p>${escapeHtml(item.note)}</p>
+        <div class="archive-evidence-key" aria-label="Evidence key">
+          <span>Visible</span><span>Recorded</span><span>Provisional</span><span>Unresolved</span>
+        </div>
         ${readingPanels[state.readingMode]}
         <p class="archive-record-question">${escapeHtml(item.question)}</p>
-        <span class="archive-related-label">Possible connections in this view</span>
+        <span class="archive-related-label">Working comparison terms in this view</span>
         <ul class="archive-related-list">${relationButtons}</ul>
       `;
     }
@@ -371,15 +463,17 @@
 
   const applyTransform = () => {
     stage.style.transform = `translate(${state.x}px, ${state.y}px) scale(${state.scale})`;
+    const zoomLevel = document.querySelector("[data-zoom-level]");
+    if (zoomLevel) zoomLevel.textContent = `${Math.round(state.scale * 100)}%`;
   };
 
   const resetView = () => {
     const bounds = field.getBoundingClientRect();
     const dimensions = updateStageSize();
     if (state.view === "grid") {
-      state.scale = Math.max(0.48, Math.min(0.82, (bounds.width / dimensions.width) * 0.96));
-      state.x = (bounds.width - dimensions.width * state.scale) / 2;
-      state.y = 24;
+      state.scale = 1;
+      state.x = 0;
+      state.y = 0;
     } else {
       state.scale = Math.max(0.36, Math.min(0.9, Math.min(bounds.width / dimensions.width, bounds.height / dimensions.height) * 0.94));
       state.x = (bounds.width - dimensions.width * state.scale) / 2;
@@ -388,14 +482,14 @@
     applyTransform();
   };
 
-  const setZoom = (nextScale) => {
+  const setZoom = (nextScale, clientX, clientY) => {
     const bounds = field.getBoundingClientRect();
     const previous = state.scale;
     state.scale = Math.max(0.32, Math.min(1.45, nextScale));
-    const centerX = bounds.width / 2;
-    const centerY = bounds.height / 2;
-    state.x = centerX - ((centerX - state.x) / previous) * state.scale;
-    state.y = centerY - ((centerY - state.y) / previous) * state.scale;
+    const focusX = Number.isFinite(clientX) ? clientX - bounds.left : bounds.width / 2;
+    const focusY = Number.isFinite(clientY) ? clientY - bounds.top : bounds.height / 2;
+    state.x = focusX - ((focusX - state.x) / previous) * state.scale;
+    state.y = focusY - ((focusY - state.y) / previous) * state.scale;
     applyTransform();
   };
 
@@ -479,11 +573,35 @@
   });
 
   field.addEventListener("wheel", (event) => {
+    if (state.view === "grid") return;
     event.preventDefault();
-    setZoom(state.scale * (event.deltaY > 0 ? 0.92 : 1.08));
+    setZoom(state.scale * (event.deltaY > 0 ? 0.9 : 1.1), event.clientX, event.clientY);
   }, { passive: false });
 
+  field.addEventListener("dblclick", (event) => {
+    if (state.view !== "network" || event.target.closest("button")) return;
+    event.preventDefault();
+    setZoom(state.scale * 1.28, event.clientX, event.clientY);
+  });
+
+  field.addEventListener("keydown", (event) => {
+    if (state.view !== "network") return;
+    if (["+", "="].includes(event.key)) {
+      event.preventDefault();
+      setZoom(state.scale * 1.16);
+    }
+    if (event.key === "-") {
+      event.preventDefault();
+      setZoom(state.scale / 1.16);
+    }
+    if (event.key === "0") {
+      event.preventDefault();
+      resetView();
+    }
+  });
+
   field.addEventListener("pointerdown", (event) => {
+    if (state.view !== "network") return;
     if (event.target.closest(".archive-node") || event.target.closest("button")) return;
     state.dragging = true;
     state.pointerX = event.clientX;

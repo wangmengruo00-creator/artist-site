@@ -5349,6 +5349,12 @@ body.landing-page {
   --tickets-blue: #263f5e;
 }
 
+/* Keep the long research record inexpensive before its sections enter view. */
+.tickets-project > .tickets-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 760px;
+}
+
 .tickets-project > .back-link {
   margin-bottom: 22px;
 }
@@ -5359,6 +5365,19 @@ body.landing-page {
   margin-bottom: 24px;
   border-top: 1px solid var(--tickets-ink);
   border-bottom: 1px solid var(--tickets-rule);
+}
+
+.tickets-surface-nav:has(.tickets-surface-experiment) {
+  grid-template-columns: minmax(180px, 0.72fr) repeat(2, minmax(260px, 1fr));
+}
+
+.tickets-surface-experiment {
+  border-left: 1px solid rgba(246, 240, 228, 0.28);
+  background: #87372d;
+}
+
+.tickets-surface-experiment:hover {
+  background: #9a4034;
 }
 
 .tickets-surface-current,
@@ -5438,6 +5457,22 @@ body.landing-page {
   color: var(--tickets-ink);
 }
 
+.tickets-surface-nav .tickets-surface-experiment {
+  background: #87372d;
+  color: #f6f0e4;
+}
+
+.tickets-surface-nav .tickets-surface-experiment span,
+.tickets-surface-nav .tickets-surface-experiment small,
+.tickets-surface-nav .tickets-surface-experiment b {
+  color: #f6f0e4;
+}
+
+.tickets-surface-nav .tickets-surface-experiment:hover {
+  background: #9a4034;
+  color: #fffaf0;
+}
+
 .tickets-surface-archive:hover b {
   transform: translate(5px, calc(-50% - 5px));
 }
@@ -5492,7 +5527,191 @@ body.landing-page {
   gap: clamp(34px, 6vw, 86px);
   align-items: start;
   margin-top: clamp(48px, 7vw, 82px);
-  margin-bottom: clamp(88px, 12vw, 158px);
+  margin-bottom: clamp(54px, 8vw, 96px);
+}
+
+.tickets-collection-overview {
+  display: grid;
+  grid-template-columns: minmax(310px, 0.66fr) minmax(0, 1.34fr);
+  gap: clamp(34px, 6vw, 88px);
+  margin-bottom: clamp(96px, 13vw, 168px);
+  padding: clamp(28px, 4.5vw, 58px) 0;
+  border-top: 1px solid var(--tickets-ink);
+  border-bottom: 1px solid var(--tickets-ink);
+}
+
+.tickets-collection-copy {
+  align-self: start;
+}
+
+.tickets-collection-copy > span,
+.tickets-run-overview > div > .eyebrow {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--tickets-red);
+  font-family: "SFMono-Regular", "Roboto Mono", ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.tickets-collection-copy h2,
+.tickets-run-overview h2 {
+  max-width: 500px;
+  margin: 0 0 24px;
+  font-family: var(--display);
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 360;
+  line-height: 1.08;
+  letter-spacing: -0.018em;
+}
+
+.tickets-collection-copy > p,
+.tickets-run-overview > div > p {
+  max-width: 520px;
+  color: #625e56;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.tickets-collection-counts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 30px 0 28px;
+  border-top: 1px solid var(--tickets-rule);
+  border-left: 1px solid var(--tickets-rule);
+}
+
+.tickets-collection-counts div {
+  min-height: 70px;
+  padding: 12px;
+  border-right: 1px solid var(--tickets-rule);
+  border-bottom: 1px solid var(--tickets-rule);
+}
+
+.tickets-collection-counts dt {
+  display: block;
+  margin-bottom: 5px;
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.tickets-collection-counts dd {
+  margin: 0;
+  color: #766f65;
+  font-size: 9px;
+  line-height: 1.4;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.tickets-collection-enter,
+.tickets-run-enter {
+  display: inline-flex;
+  gap: 14px;
+  align-items: center;
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--tickets-ink);
+  color: var(--tickets-ink);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.tickets-collection-enter b,
+.tickets-run-enter b {
+  color: var(--tickets-red);
+  font-size: 17px;
+  font-weight: 400;
+  transition: transform 180ms ease;
+}
+
+.tickets-collection-enter:hover b,
+.tickets-run-enter:hover b {
+  transform: translate(4px, -4px);
+}
+
+.tickets-collection-field {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(18, minmax(0, 1fr));
+  gap: 4px;
+  align-content: center;
+  min-height: 460px;
+  padding: 18px;
+  overflow: hidden;
+  border: 1px solid var(--tickets-rule);
+  background: #f0ece2;
+}
+
+.tickets-collection-field::after {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 48px rgba(45, 41, 34, 0.07);
+  content: "";
+  pointer-events: none;
+}
+
+.tickets-collection-field img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 2px;
+  object-fit: contain;
+  background: rgba(250, 248, 242, 0.72);
+  filter: saturate(0.78) contrast(1.025);
+  opacity: 0.86;
+  transition: transform 160ms ease, opacity 160ms ease, box-shadow 160ms ease;
+}
+
+.tickets-collection-field img[data-collection="food"] { border-top: 1px solid rgba(48, 75, 103, 0.5); }
+.tickets-collection-field img[data-collection="wrappers"] { border-top: 1px solid rgba(135, 55, 45, 0.55); }
+.tickets-collection-field img[data-collection="labels"] { border-top: 1px solid rgba(153, 113, 39, 0.55); }
+.tickets-collection-field img[data-collection^="misc"] { border-top: 1px solid rgba(95, 89, 78, 0.4); }
+
+.tickets-collection-field img:hover {
+  z-index: 4;
+  opacity: 1;
+  transform: scale(2.25);
+  box-shadow: 0 4px 14px rgba(35, 31, 25, 0.18);
+}
+
+.tickets-run-overview {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(32px, 5.5vw, 78px);
+  align-items: start;
+  margin: calc(clamp(96px, 13vw, 176px) * -0.5) 0 clamp(100px, 13vw, 174px);
+  padding: clamp(28px, 3.5vw, 44px);
+  border-top: 3px solid var(--tickets-red);
+  background: #ebe6db;
+}
+
+.tickets-run-overview h2 {
+  max-width: 430px;
+  font-size: clamp(28px, 2.8vw, 38px);
+  line-height: 1.08;
+}
+
+.tickets-run-overview .tickets-record-bar {
+  align-self: start;
+  margin: 0 0 24px;
+}
+
+.tickets-run-overview > div:first-child {
+  grid-row: 1 / span 2;
+}
+
+.tickets-run-overview .tickets-record-bar > div {
+  min-height: 92px;
+}
+
+.tickets-run-overview .tickets-run-enter {
+  grid-column: 2;
+  justify-self: start;
 }
 
 .tickets-hero-copy {
@@ -5518,6 +5737,17 @@ body.landing-page {
 .tickets-project-meta {
   padding-top: 13px;
   border-top: 1px solid var(--tickets-rule);
+}
+
+.tickets-project-framework {
+  max-width: 520px;
+  margin: -10px 0 12px;
+  color: var(--tickets-red);
+  font-family: "SFMono-Regular", "Roboto Mono", ui-monospace, monospace;
+  font-size: 9px;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .tickets-project-summary {
@@ -6581,6 +6811,15 @@ body.landing-page {
 }
 
 @media (max-width: 900px) {
+  .tickets-surface-nav:has(.tickets-surface-experiment) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tickets-surface-nav:has(.tickets-surface-experiment) .tickets-surface-current {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--tickets-rule);
+  }
+
   .tickets-record-bar {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -6599,6 +6838,28 @@ body.landing-page {
 
   .tickets-hero-copy {
     max-width: 680px;
+  }
+
+  .tickets-collection-overview,
+  .tickets-run-overview {
+    grid-template-columns: 1fr;
+  }
+
+  .tickets-collection-copy {
+    max-width: 700px;
+  }
+
+  .tickets-run-overview .tickets-run-enter {
+    grid-column: 1;
+  }
+
+  .tickets-run-overview > div:first-child {
+    grid-row: auto;
+  }
+
+  .tickets-collection-field {
+    grid-template-columns: repeat(16, minmax(0, 1fr));
+    min-height: 420px;
   }
 
   .tickets-intro-copy {
@@ -6736,6 +6997,10 @@ body.landing-page {
     grid-template-columns: 1fr;
   }
 
+  .tickets-surface-nav:has(.tickets-surface-experiment) {
+    grid-template-columns: 1fr;
+  }
+
   .tickets-surface-current,
   .tickets-surface-archive {
     min-height: 82px;
@@ -6752,6 +7017,23 @@ body.landing-page {
   .tickets-observation-grid,
   .tickets-research-lines {
     grid-template-columns: 1fr;
+  }
+
+  .tickets-collection-overview {
+    padding: 26px 0;
+  }
+
+  .tickets-collection-field {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    gap: 3px;
+    min-height: 0;
+    max-height: 520px;
+    padding: 10px;
+  }
+
+  .tickets-run-overview {
+    margin-top: -34px;
+    padding: 26px 18px;
   }
 
   .tickets-record-bar > div {
