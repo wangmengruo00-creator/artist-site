@@ -5594,7 +5594,7 @@ body.landing-page {
   max-width: 500px;
   margin: 0 0 24px;
   font-family: var(--display);
-  font-size: clamp(27px, 2.55vw, 36px);
+  font-size: clamp(24px, 2.2vw, 30px);
   font-weight: 360;
   line-height: 1.08;
   letter-spacing: -0.018em;
@@ -5854,7 +5854,7 @@ body.landing-page {
 
 .tickets-run-overview h2 {
   max-width: 430px;
-  font-size: clamp(27px, 2.45vw, 34px);
+  font-size: clamp(24px, 2.1vw, 28px);
   line-height: 1.08;
 }
 
@@ -5884,7 +5884,7 @@ body.landing-page {
   max-width: 520px;
   margin-bottom: 24px;
   font-family: var(--display);
-  font-size: clamp(35px, 3.45vw, 46px);
+  font-size: clamp(32px, 3vw, 38px);
   font-weight: 400;
   line-height: 1.02;
   letter-spacing: -0.025em;
@@ -5923,7 +5923,7 @@ body.landing-page {
 .tickets-hero-statement {
   max-width: 470px;
   margin-top: clamp(38px, 4.5vw, 58px);
-  font-size: clamp(20px, 1.85vw, 25px);
+  font-size: clamp(18px, 1.6vw, 22px);
   line-height: 1.34;
 }
 
@@ -6002,7 +6002,7 @@ body.landing-page {
 .tickets-intro-copy .tickets-lede {
   max-width: 840px;
   margin-bottom: clamp(34px, 5vw, 58px);
-  font-size: clamp(23px, 2.45vw, 32px);
+  font-size: clamp(20px, 1.9vw, 24px);
   line-height: 1.27;
 }
 
@@ -6027,7 +6027,7 @@ body.landing-page {
   margin: 0;
   color: #302e29;
   font-family: var(--display);
-  font-size: clamp(19px, 1.9vw, 25px);
+  font-size: clamp(17px, 1.65vw, 21px);
   line-height: 1.42;
 }
 
@@ -6141,7 +6141,7 @@ body.landing-page {
   border-bottom: 1px solid var(--tickets-rule);
   color: #302e29;
   font-family: var(--display);
-  font-size: clamp(21px, 2.1vw, 28px);
+  font-size: clamp(18px, 1.75vw, 22px);
   line-height: 1.4;
   letter-spacing: -0.012em;
 }
@@ -6272,7 +6272,7 @@ body.landing-page {
 
 .tickets-current-inquiry .tickets-section-copy p {
   max-width: 720px;
-  font-size: clamp(20px, 1.9vw, 26px);
+  font-size: clamp(18px, 1.7vw, 22px);
   line-height: 1.42;
 }
 
@@ -6458,7 +6458,7 @@ body.landing-page {
   margin: 0 0 18px;
   color: var(--tickets-ink);
   font-family: var(--display);
-  font-size: clamp(22px, 2.45vw, 30px);
+  font-size: clamp(20px, 2vw, 25px);
   font-weight: 400;
   line-height: 1.16;
   letter-spacing: -0.018em;
@@ -6494,7 +6494,7 @@ body.landing-page {
   margin: 0;
   color: #302e29;
   font-family: var(--display);
-  font-size: clamp(22px, 2.55vw, 30px);
+  font-size: clamp(19px, 1.85vw, 23px);
   line-height: 1.27;
   letter-spacing: -0.018em;
 }
@@ -6680,7 +6680,7 @@ body.landing-page {
 .tickets-archive-door-copy > strong {
   max-width: 620px;
   font-family: var(--display);
-  font-size: clamp(25px, 2.8vw, 34px);
+  font-size: clamp(22px, 2.2vw, 27px);
   font-weight: 400;
   line-height: 1.08;
   letter-spacing: -0.018em;
@@ -7211,7 +7211,7 @@ body.landing-page {
   }
 
   .tickets-hero-copy h1 {
-    font-size: clamp(34px, 9.5vw, 42px);
+    font-size: clamp(30px, 8.5vw, 36px);
   }
 
   .tickets-research-question,
@@ -7283,7 +7283,7 @@ body.landing-page {
   }
 
   .tickets-archive-door-copy > strong {
-    font-size: clamp(25px, 7.8vw, 32px);
+    font-size: clamp(22px, 6.8vw, 27px);
   }
 
   .tickets-live-toolbar > span:first-child,
