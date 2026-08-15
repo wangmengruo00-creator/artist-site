@@ -6584,6 +6584,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .tickets-project {
   width: min(1180px, calc(100% - clamp(40px, 7vw, 96px)));
   max-width: 1180px;
+  padding-top: clamp(36px, 4.5vw, 64px);
   --tickets-offset: clamp(174px, 19vw, 224px);
   --tickets-ink: #282722;
   --tickets-paper: #f4f1e9;
@@ -6769,7 +6770,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
   grid-template-columns: minmax(300px, 0.76fr) minmax(430px, 1.24fr);
   gap: clamp(34px, 6vw, 86px);
   align-items: start;
-  margin-top: clamp(48px, 7vw, 82px);
+  margin-top: clamp(28px, 4vw, 48px);
   margin-bottom: clamp(54px, 8vw, 96px);
 }
 
@@ -7057,9 +7058,9 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
   gap: clamp(32px, 5.5vw, 78px);
   align-items: start;
   margin: calc(clamp(96px, 13vw, 176px) * -0.5) 0 clamp(100px, 13vw, 174px);
-  padding: clamp(28px, 3.5vw, 44px);
-  border-top: 3px solid var(--tickets-red);
-  background: #ebe6db;
+  padding: clamp(24px, 3vw, 36px);
+  border-top: 1px solid var(--tickets-red);
+  background: rgba(235, 230, 219, 0.68);
 }
 
 .tickets-run-overview h2 {
