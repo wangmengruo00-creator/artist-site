@@ -1435,6 +1435,18 @@
       node.nodeValue = language === "zh-CN" ? translatedText(original, language) : original;
     }
 
+    document.querySelectorAll(".skin-machine-pipeline strong, .skin-machine-pipeline small").forEach((element) => {
+      const textNode = element.firstChild;
+      if (!textNode || textNode.nodeType !== Node.TEXT_NODE) return;
+      if (!originals.has(textNode)) originals.set(textNode, textNode.nodeValue);
+      const original = originals.get(textNode);
+      const key = normaliseText(original);
+      const translated = skinTemporalReaderTranslations[key] || skinOfWritingTranslations[key];
+      textNode.nodeValue = language === "zh-CN" && translated
+        ? original.replace(key, translated)
+        : original;
+    });
+
     document.querySelectorAll("[data-language-toggle]").forEach((button) => {
       button.setAttribute("aria-label", language === "zh-CN" ? "Switch to English" : "切换到中文");
       if (button.dataset.languageState !== language) {
