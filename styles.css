@@ -2717,7 +2717,7 @@ body.landing-page {
 
 /* Skin of Writing: image-led book documentation with a quiet archive rhythm. */
 .skin-project {
-  max-width: 620px;
+  max-width: 700px;
 }
 
 .skin-project.section {
@@ -2729,7 +2729,7 @@ body.landing-page {
 }
 
 .skin-heading {
-  max-width: 440px;
+  max-width: 490px;
   margin: 0 0 clamp(26px, 3vw, 40px) auto;
   padding-left: clamp(26px, 3vw, 34px);
 }
@@ -2756,7 +2756,7 @@ body.landing-page {
 
 .skin-project-meta,
 .skin-project-summary {
-  max-width: 440px;
+  max-width: 490px;
   margin: 0;
   color: var(--muted);
   font-size: 14px;
@@ -2816,7 +2816,7 @@ body.landing-page {
 
 .skin-experiment-door > small {
   margin-top: 7px;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.5;
   opacity: 0.72;
 }
@@ -2938,8 +2938,8 @@ body.landing-page {
   max-width: 570px;
   margin: 0 0 22px;
   color: #44433f;
-  font-size: 13px;
-  line-height: 1.75;
+  font-size: 14px;
+  line-height: 1.72;
 }
 
 .skin-metadata {
@@ -2955,7 +2955,7 @@ body.landing-page {
   gap: 18px;
   padding: 10px 0;
   border-bottom: 1px solid var(--line);
-  font-size: 12px;
+  font-size: 12.5px;
   line-height: 1.6;
 }
 
@@ -3114,7 +3114,7 @@ body.landing-page {
   grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
   gap: 14px;
   align-items: center;
-  max-width: 620px;
+  max-width: 700px;
   margin: clamp(58px, 7vw, 82px) 0 0 auto;
   padding: 13px 0;
   border-top: 1px solid var(--text);
@@ -3192,7 +3192,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-machine-chapter > p {
   margin: 0;
   color: rgba(244, 242, 237, 0.78);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.65;
 }
 
@@ -3218,7 +3218,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 }
 
 .skin-machine-content {
-  max-width: 620px;
+  max-width: 700px;
   margin-left: auto;
 }
 
@@ -3233,7 +3233,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
   max-width: 390px;
   margin: 0;
   color: var(--text);
-  font-size: clamp(22px, 2.4vw, 30px);
+  font-size: clamp(22px, 2.25vw, 27px);
   font-weight: 330;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -3330,7 +3330,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-machine-reading-guide > div > p:last-child {
   margin: 0;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.6;
 }
 
@@ -3357,7 +3357,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-machine-reading-guide dt,
 .skin-machine-reading-guide dd {
   margin: 0;
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.45;
 }
 
@@ -3430,7 +3430,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
   max-width: 560px;
   margin: 9px 0 0;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.65;
 }
 
@@ -3468,7 +3468,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-machine-case-heading dt,
 .skin-machine-case-heading dd {
   margin: 0;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.5;
 }
 
@@ -3508,7 +3508,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
   grid-column: 1 / -1;
   margin-bottom: 5px;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -3522,7 +3522,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 
 .skin-machine-finding em {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   font-style: normal;
   line-height: 1.4;
 }
@@ -3604,7 +3604,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-machine-annotation-key dt,
 .skin-machine-annotation-key dd {
   margin: 0;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.55;
 }
 
@@ -3653,7 +3653,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
   gap: 10px;
   margin-top: 7px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.04em;
   line-height: 1.4;
   text-transform: uppercase;
@@ -3734,7 +3734,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-temporal-bridge p {
   margin: 0;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.65;
 }
 
@@ -3760,7 +3760,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
   max-width: 270px;
   margin: 12px 0 0;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.65;
 }
 
@@ -3781,7 +3781,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-calligraphy-context dt {
   min-height: 34px;
   color: var(--text);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 520;
   line-height: 1.4;
 }
@@ -3797,7 +3797,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-calligraphy-context dd {
   margin: 9px 0 0;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 10.5px;
   line-height: 1.65;
 }
 
@@ -3837,7 +3837,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-retrace-evidence > p {
   margin: 0;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.68;
 }
 
@@ -3867,7 +3867,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-temporal-limit span {
   display: block;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: 0.08em;
   line-height: 1.4;
   text-transform: uppercase;
@@ -3877,7 +3877,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
   display: block;
   margin-top: 12px;
   color: var(--text);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   line-height: 1.45;
 }
@@ -3885,7 +3885,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-temporal-premise p {
   margin: 8px 0 0;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.6;
 }
 
@@ -4142,7 +4142,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
   gap: 3px;
   margin-top: 7px;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: 0.05em;
   line-height: 1.4;
   text-transform: uppercase;
@@ -4170,7 +4170,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-temporal-limit p {
   margin: 0;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.65;
 }
 
@@ -4207,7 +4207,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
   padding: 9px 9px 10px 0;
   border-bottom: 1px solid var(--line);
   color: var(--muted);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
   line-height: 1.55;
   text-align: left;
@@ -4216,7 +4216,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 
 .skin-machine-comparison thead th {
   color: var(--text);
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -4228,7 +4228,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 
 .skin-machine-comparison td small {
   color: var(--muted);
-  font-size: 7px;
+  font-size: 8px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -4239,7 +4239,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
   padding-top: 11px;
   border-top: 1px solid var(--line);
   color: var(--muted);
-  font-size: 8px;
+  font-size: 9.5px;
   line-height: 1.65;
 }
 
@@ -4476,6 +4476,85 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 }
 
 @media (max-width: 520px) {
+  .skin-machine-comparison table,
+  .skin-machine-comparison tbody,
+  .skin-machine-comparison tr,
+  .skin-machine-comparison th,
+  .skin-machine-comparison td {
+    display: block;
+    width: 100%;
+  }
+
+  .skin-machine-comparison thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .skin-machine-comparison tbody tr {
+    padding: 12px 0 10px;
+    border-top: 1px solid var(--text);
+  }
+
+  .skin-machine-comparison tbody tr:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .skin-machine-comparison tbody th,
+  .skin-machine-comparison tbody td {
+    padding: 4px 0;
+    border: 0;
+    font-size: 11px;
+  }
+
+  .skin-machine-comparison tbody th {
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+
+  .skin-machine-comparison tbody td {
+    display: grid;
+    grid-template-columns: 108px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .skin-machine-comparison tbody td::before {
+    color: var(--text);
+    font-size: 8px;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .skin-machine-comparison tbody td:nth-child(2)::before {
+    content: "Machine description";
+  }
+
+  .skin-machine-comparison tbody td:nth-child(3)::before {
+    content: "Time / body evidence";
+  }
+
+  .skin-machine-comparison tbody td:nth-child(4)::before {
+    content: "Interpretive gap";
+  }
+
+  html[lang="zh-CN"] .skin-machine-comparison tbody td:nth-child(2)::before {
+    content: "机器描述";
+  }
+
+  html[lang="zh-CN"] .skin-machine-comparison tbody td:nth-child(3)::before {
+    content: "时间 / 身体证据";
+  }
+
+  html[lang="zh-CN"] .skin-machine-comparison tbody td:nth-child(4)::before {
+    content: "解释距离";
+  }
+
   .skin-video-caption {
     display: grid;
     gap: 3px;
