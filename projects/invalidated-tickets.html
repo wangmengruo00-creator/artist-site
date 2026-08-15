@@ -8,6 +8,12 @@
       name="description"
       content="The Bureau of Invalidated Tickets traces how obsolete paper systems persist and what changes when physical objects become computational records."
     >
+    <link
+      rel="preload"
+      as="image"
+      href="../assets/invalidated-tickets/curated/bureau-material-field.webp"
+      fetchpriority="high"
+    >
     <link rel="stylesheet" href="../styles.css?v=20260815-tickets2">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   </head>
@@ -49,6 +55,9 @@
             <img
               src="../assets/invalidated-tickets/curated/bureau-material-field.webp"
               alt="A working field of tickets, wrappers and printed materials arranged on the floor."
+              width="1400"
+              height="1050"
+              loading="eager"
               decoding="async"
               fetchpriority="high"
             >
@@ -436,7 +445,6 @@
             const image = document.createElement('img');
             const thumbnailSrc = `../assets/invalidated-tickets/${item.image.replace('archive-items/', 'archive-items/thumbnails/')}`;
             image.dataset.thumbnailSrc = thumbnailSrc;
-            image.src = thumbnailSrc;
             image.alt = '';
             image.loading = 'lazy';
             image.decoding = 'async';
@@ -451,6 +459,22 @@
             previewFragment.append(image);
           });
           collectionPreview.append(previewFragment);
+
+          const loadCollectionThumbnails = () => {
+            collectionPreview.querySelectorAll('img[data-thumbnail-src]:not([src])').forEach((image) => {
+              image.src = image.dataset.thumbnailSrc;
+            });
+          };
+          if ('IntersectionObserver' in window) {
+            const collectionLoader = new IntersectionObserver((entries, observer) => {
+              if (!entries.some((entry) => entry.isIntersecting)) return;
+              loadCollectionThumbnails();
+              observer.disconnect();
+            }, { rootMargin: '700px 0px' });
+            collectionLoader.observe(collectionPreview);
+          } else {
+            loadCollectionThumbnails();
+          }
 
           const hoverPreview = document.createElement('img');
           hoverPreview.className = 'tickets-collection-hover-preview';
