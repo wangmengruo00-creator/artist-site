@@ -237,6 +237,10 @@ body.archive-network-page {
   letter-spacing: 0.045em;
 }
 
+html[lang="zh-CN"] .archive-lenses.is-inactive::after {
+  content: "切换到关系场后可用";
+}
+
 .archive-lenses button:disabled {
   cursor: default;
 }
