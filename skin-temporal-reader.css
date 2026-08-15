@@ -1,0 +1,443 @@
+.temporal-reader-page {
+  --reader-blue: #294766;
+  --reader-red: #c94d2c;
+  --reader-paper: #f4f2ec;
+}
+
+.temporal-reader-main {
+  width: min(calc(100% - 48px), 960px);
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 78px) 0 90px;
+}
+
+.temporal-reader-main > .back-link {
+  margin-bottom: 34px;
+}
+
+.temporal-reader-heading {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(320px, 1.15fr);
+  gap: clamp(32px, 7vw, 88px);
+  align-items: end;
+  padding: 14px 0 22px;
+  border-top: 1px solid var(--text);
+  border-bottom: 1px solid var(--line);
+}
+
+.temporal-reader-heading h1 {
+  max-width: 430px;
+  margin: 12px 0 0;
+  font-family: var(--display);
+  font-size: clamp(34px, 5vw, 54px);
+  font-weight: 350;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.temporal-reader-heading > p {
+  max-width: 520px;
+  margin: 0;
+  color: #3f3e3a;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.temporal-reader-key {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 26px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.temporal-reader-key article {
+  padding: 12px 16px 14px 0;
+}
+
+.temporal-reader-key article + article {
+  padding-left: 16px;
+  border-left: 1px solid var(--line);
+}
+
+.temporal-reader-key span,
+.temporal-reader-reading > span,
+.temporal-reader-accounts span {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.temporal-reader-key strong {
+  display: block;
+  margin-top: 9px;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 520;
+}
+
+.temporal-reader-key p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.temporal-reader-instrument {
+  --reader-blue: #294766;
+  --reader-red: #c94d2c;
+  --reader-paper: #f4f2ec;
+  margin-top: clamp(42px, 6vw, 64px);
+  padding: 18px;
+  border: 1px solid var(--text);
+  background: var(--reader-paper);
+}
+
+.temporal-reader-instrument-header {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) auto;
+  gap: 28px;
+  align-items: end;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.temporal-reader-instrument-header h2 {
+  max-width: 520px;
+  margin: 8px 0 0;
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 390;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.temporal-reader-switch {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid var(--line);
+}
+
+.temporal-reader-switch button {
+  min-width: 124px;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.temporal-reader-switch button + button {
+  border-left: 1px solid var(--line);
+}
+
+.skin-machine-content .temporal-reader-instrument-header {
+  grid-template-columns: 1fr;
+}
+
+.skin-machine-content .temporal-reader-switch {
+  width: 100%;
+}
+
+.temporal-reader-switch button.is-active {
+  background: var(--reader-blue);
+  color: #f7f4ed;
+}
+
+.temporal-reader-stage {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.72fr) minmax(160px, 0.72fr) minmax(220px, 1.15fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.temporal-reader-stage figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.temporal-reader-video video,
+.temporal-reader-trace img {
+  display: block;
+  width: 100%;
+  height: 258px;
+  object-fit: cover;
+  background: #161616;
+}
+
+.temporal-reader-video video {
+  object-position: center;
+}
+
+.temporal-reader-trace img {
+  object-fit: contain;
+  background: #ece9e1;
+}
+
+.temporal-reader-stage figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.skin-project .temporal-reader-stage figure figcaption::before {
+  content: none;
+}
+
+.temporal-reader-stage figcaption b {
+  color: var(--text);
+  font-weight: 520;
+  font-variant-numeric: tabular-nums;
+}
+
+.temporal-reader-reading {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 258px;
+  padding: 20px;
+  color: #f5f2eb;
+  background: var(--reader-blue);
+}
+
+.temporal-reader-reading > span {
+  color: rgba(245, 242, 235, 0.62);
+}
+
+.temporal-reader-reading strong {
+  display: block;
+  margin-top: auto;
+  font-family: var(--display);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 350;
+  line-height: 1.08;
+}
+
+.temporal-reader-reading p {
+  margin: 14px 0 0;
+  color: rgba(245, 242, 235, 0.74);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.temporal-reader-timeline {
+  margin-top: 20px;
+  padding-top: 11px;
+  border-top: 1px solid var(--line);
+}
+
+.temporal-reader-timeline-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.temporal-reader-timeline-label b {
+  color: var(--text);
+  font-weight: 520;
+}
+
+.temporal-reader-chart {
+  height: 82px;
+  background: #ebe8e0;
+  border-bottom: 1px solid var(--text);
+}
+
+.temporal-reader-chart svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+[data-motion-path] {
+  fill: none;
+  stroke: var(--reader-blue);
+  stroke-width: 1.4;
+}
+
+[data-playhead] {
+  stroke: var(--reader-red);
+  stroke-width: 1.5;
+  opacity: 0;
+}
+
+.temporal-reader-chart.is-playing [data-playhead] {
+  opacity: 1;
+}
+
+[data-interruption-zones] rect {
+  fill: rgba(201, 77, 44, 0.13);
+}
+
+.temporal-reader-ticks {
+  position: relative;
+  height: 23px;
+}
+
+.temporal-reader-ticks span {
+  position: absolute;
+  top: 5px;
+  transform: translateX(-50%);
+  color: var(--muted);
+  font-size: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.temporal-reader-method-note {
+  max-width: 680px;
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.temporal-reader-accounts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 20px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.temporal-reader-accounts article {
+  min-width: 0;
+  padding: 13px 14px 15px 0;
+}
+
+.temporal-reader-accounts article + article {
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
+}
+
+.temporal-reader-accounts strong {
+  display: block;
+  margin-top: 12px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.temporal-reader-accounts p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.temporal-reader-accounts .temporal-reader-gap strong {
+  color: var(--reader-red);
+}
+
+.temporal-reader-principle {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 620px);
+  gap: 28px;
+  margin-top: 26px;
+  padding: 13px 0;
+  border-top: 1px solid var(--reader-blue);
+  border-bottom: 1px solid var(--line);
+}
+
+.temporal-reader-principle p {
+  margin: 0;
+}
+
+.temporal-reader-principle > p:last-child {
+  color: #3f3e3a;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+@media (max-width: 760px) {
+  .temporal-reader-heading,
+  .temporal-reader-instrument-header {
+    grid-template-columns: 1fr;
+  }
+
+  .temporal-reader-stage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .temporal-reader-reading {
+    grid-column: 1 / -1;
+    min-height: 210px;
+  }
+
+  .temporal-reader-switch {
+    width: 100%;
+  }
+
+  .temporal-reader-switch button {
+    min-width: 0;
+    padding-inline: 6px;
+  }
+}
+
+@media (max-width: 560px) {
+  .temporal-reader-main {
+    width: min(calc(100% - 28px), 960px);
+    padding-top: 38px;
+  }
+
+  .temporal-reader-key,
+  .temporal-reader-accounts,
+  .temporal-reader-principle {
+    grid-template-columns: 1fr;
+  }
+
+  .temporal-reader-key article + article,
+  .temporal-reader-accounts article + article {
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .temporal-reader-instrument {
+    padding: 12px;
+  }
+
+  .temporal-reader-stage {
+    gap: 8px;
+  }
+
+  .temporal-reader-video video,
+  .temporal-reader-trace img {
+    height: 218px;
+  }
+
+  .temporal-reader-stage figcaption {
+    display: grid;
+    gap: 2px;
+  }
+
+  .temporal-reader-reading {
+    min-height: 190px;
+    padding: 16px;
+  }
+
+  .temporal-reader-chart {
+    height: 68px;
+  }
+
+  .temporal-reader-principle {
+    gap: 8px;
+  }
+}

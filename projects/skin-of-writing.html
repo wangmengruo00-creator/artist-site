@@ -8,7 +8,8 @@
       name="description"
       content="Skin of Writing grew from a calligraphy practice into a hand-bound artist book about bodily memory, discarded practice sheets, ink, paper, and time."
     >
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles.css?v=20260815-evidence-1">
+    <link rel="stylesheet" href="../skin-temporal-reader.css?v=20260815-abc-1">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   </head>
   <body>
@@ -281,15 +282,11 @@
                 Does a computationally recognised line correspond to the action remembered by the body?
               </p>
 
-              <ol class="skin-machine-pipeline" aria-label="Proposed machine-reading process">
-                <li><span>01</span><strong>Input image</strong><small>Ten selected writing scans</small></li>
-                <li><span>02</span><strong>Binarisation</strong><small>Separate mark from ground</small></li>
-                <li><span>03</span><strong>Edge detection</strong><small>Locate the boundary of ink</small></li>
-                <li><span>04</span><strong>Skeletonisation</strong><small>Reduce the stroke to a centreline</small></li>
-                <li><span>05</span><strong>Line description</strong><small>Curvature, junction, endpoint</small></li>
-                <li><span>06</span><strong>Shape comparison</strong><small>Compare repetition and deviation</small></li>
-                <li><span>07</span><strong>Error annotation</strong><small>Mark where machine and body diverge</small></li>
-                <li><span>08</span><strong>Moving-image check</strong><small>Restore sequence, duration, lift, and return</small></li>
+              <ol class="skin-machine-pipeline" aria-label="Machine, video, and embodied evidence process">
+                <li><span>01</span><strong>Verified trace</strong><small>Authorship, learning stage, and source conditions</small></li>
+                <li><span>02</span><strong>Static image description</strong><small>Threshold, edge, skeleton, endpoint, and junction</small></li>
+                <li><span>03</span><strong>Temporal comparison</strong><small>A continues · B stops · C returns</small></li>
+                <li><span>04</span><strong>Embodied interpretation</strong><small>The writer distinguishes composure, broken qi, and retracing</small></li>
               </ol>
             </div>
 
@@ -302,7 +299,7 @@
               <div>
                 <p class="eyebrow">Reading guide</p>
                 <h3 id="machine-reading-guide-title">How to read these images</h3>
-                <p>The system does not recognise calligraphy, intention, or bodily memory. It only describes relationships between pixels.</p>
+                <p>This geometric reader describes relationships between pixels; it is not an aesthetic model. A trained vision model may learn to call a trace heavy or rigid, but that remains a judgement about appearance—not proof of how the trace was made.</p>
               </div>
               <dl>
                 <div><dt><i class="skin-guide-ink" aria-hidden="true"></i>Black</dt><dd>Original ink trace</dd></div>
@@ -311,6 +308,14 @@
                 <div><dt><i class="skin-guide-junction" aria-hidden="true"></i>Square</dt><dd>Detected junction</dd></div>
               </dl>
             </aside>
+
+            <header class="skin-machine-subchapter" aria-labelledby="static-reading-title">
+              <p class="eyebrow">01 / Static Surface Reading</p>
+              <div>
+                <h3 id="static-reading-title">What can a machine describe after bodily time has become a finished surface?</h3>
+                <p>Two verified practice traces establish the first limit: image geometry can describe fragmentation, overlap, and topology, but it cannot reconstruct the continuity of the writing body.</p>
+              </div>
+            </header>
 
             <section class="skin-machine-case" aria-labelledby="machine-case-01-title">
               <header class="skin-machine-case-heading">
@@ -393,9 +398,10 @@
                 <div>
                   <p class="eyebrow">Machine / Static account</p>
                   <p>
-                    The scan becomes 41,400 foreground pixels and a 1,457-pixel centreline,
-                    producing 19 endpoint clusters and 5 junction clusters. These are geometric
-                    features—not records of stroke order, speed, or hesitation.
+                    After thresholding and skeletonisation, the image produces 19 endpoint clusters
+                    and 5 junction clusters. Foreground and skeleton pixel totals remain in the method
+                    metadata because they vary with crop, resolution, and threshold; they are not treated
+                    as calligraphic findings.
                   </p>
                 </div>
                 <div class="skin-machine-error">
@@ -418,7 +424,7 @@
               </header>
 
               <div class="skin-machine-finding" aria-label="Case 02 key comparison">
-                <span><small>Machine reports</small><strong>929</strong><em>detected junction clusters</em></span>
+                <span><small>Machine reports</small><strong>Dense overlap</strong><em>junction-rich image topology</em></span>
                 <b aria-hidden="true">≠</b>
                 <span><small>Artist recalls</small><strong>One</strong><em>continuous exercise</em></span>
               </div>
@@ -466,8 +472,9 @@
                 <div>
                   <p class="eyebrow">Machine / Static account</p>
                   <p>
-                    The accumulated image becomes 329,201 foreground pixels and a 27,468-pixel
-                    skeleton, producing 85 endpoint clusters and 929 junction clusters.
+                    The dense overlaps produce 85 endpoint clusters and 929 junction clusters after
+                    thresholding and skeletonisation. The count describes this particular crop and
+                    processing setup; it does not count bodily decisions or interruptions.
                   </p>
                 </div>
                 <div class="skin-machine-error">
@@ -480,189 +487,154 @@
             <section class="skin-temporal-study" aria-labelledby="temporal-study-title">
               <header class="skin-machine-case-heading">
                 <div>
-                  <p class="eyebrow">Evidence Extension / Moving Image</p>
-                  <h3 id="temporal-study-title">The finished character hides the order in which it was made.</h3>
+                  <p class="eyebrow">02 / Temporal Intervention</p>
+                  <h3 id="temporal-study-title">Continuity, interruption, and return</h3>
                 </div>
                 <dl>
                   <div><dt>Source</dt><dd>Three fixed overhead recordings of the same character, written by the artist</dd></div>
-                  <div><dt>Review</dt><dd>Original 60 fps footage inspected at approximately 0.25-second intervals</dd></div>
+                  <div><dt>Conditions</dt><dd>A / natural continuity · B / imposed stop · C / deliberate retracing</dd></div>
                 </dl>
               </header>
 
+              <div class="skin-temporal-bridge">
+                <strong>A static trace cannot verify how the hand moved through time.</strong>
+                <p>The study therefore turns from finished geometry to recorded action: A continues, B is forced to stop, and C returns to an already completed trace.</p>
+              </div>
+
+              <aside class="skin-calligraphy-context" aria-labelledby="calligraphy-context-title">
+                <header>
+                  <p class="eyebrow">Calligraphic context</p>
+                  <h4 id="calligraphy-context-title">Three terms needed before reading A, B, and C</h4>
+                  <p>These terms are used from the artist's training and embodied account. They guide the comparison without asking the machine to judge calligraphy.</p>
+                </header>
+                <dl>
+                  <div>
+                    <dt><span>01</span>Ding / settled readiness</dt>
+                    <dd>Ding does not mean holding the hand still. A composed relation between body, wrist, and brush makes decisive movement possible.</dd>
+                  </div>
+                  <div>
+                    <dt><span>02</span>Qi / carried continuity</dt>
+                    <dd>A lift, turn, or space between strokes may still carry momentum forward. An externally imposed halt can cut that continuity.</dd>
+                  </div>
+                  <div>
+                    <dt><span>03</span>Retracing after completion</dt>
+                    <dd>Retracing here is not adjustment within an unfolding stroke. It means returning to completed ink and turning forward formation into surface repair.</dd>
+                  </div>
+                </dl>
+              </aside>
+
               <div class="skin-temporal-premise" aria-label="Relation between scan, video, and embodied account">
                 <article>
-                  <span>01 / Scan</span>
+                  <span>01 / Machine</span>
+                  <strong>Measures visible change</strong>
+                  <p>Video and image processing can locate motion, stillness, density, and spatial return.</p>
+                </article>
+                <article>
+                  <span>02 / Surface</span>
                   <strong>Retains the final trace</strong>
-                  <p>Shows density, edge, overlap, and the completed shape—but collapses every action into one surface.</p>
+                  <p>The completed character collapses continuing, stopping, and returning into one material image.</p>
                 </article>
                 <article>
-                  <span>02 / Video</span>
-                  <strong>Restores visible time</strong>
-                  <p>Shows sequence, duration, brush lift, repositioning, and whether the hand returns to an earlier mark.</p>
-                </article>
-                <article>
-                  <span>03 / Artist</span>
-                  <strong>Names bodily experience</strong>
-                  <p>Intention, felt pressure, confidence, and hesitation still require the writer’s own account.</p>
+                  <span>03 / Writer</span>
+                  <strong>Interprets bodily consequence</strong>
+                  <p>The writer distinguishes composure, broken <em>qi</em>, and the taboo of retracing.</p>
                 </article>
               </div>
 
-              <div class="skin-temporal-videos">
-                <article class="skin-temporal-video-card">
-                  <header><span>Take A</span><strong>22.1 sec</strong></header>
-                  <video controls playsinline preload="none" poster="../assets/skin-of-writing/08_temporal-study/a-poster.jpg" aria-label="Take A: overhead recording of the artist writing the same character in 22.1 seconds.">
-                    <source src="../assets/skin-of-writing/08_temporal-study/a-writing-web.mp4" type="video/mp4">
-                    Your browser does not support embedded video.
-                  </video>
-                  <dl class="skin-temporal-events">
-                    <div><dt>0–3.7</dt><dd>Aim / hover</dd></div>
-                    <div><dt>3.7–20.7</dt><dd>Successive strokes</dd></div>
-                    <div><dt>≈21.2</dt><dd>Final lift</dd></div>
-                  </dl>
-                </article>
-
-                <article class="skin-temporal-video-card">
-                  <header><span>Take B</span><strong>32.7 sec</strong></header>
-                  <video controls playsinline preload="none" poster="../assets/skin-of-writing/08_temporal-study/b-poster.jpg" aria-label="Take B: overhead recording of the artist writing the same character in 32.7 seconds.">
-                    <source src="../assets/skin-of-writing/08_temporal-study/b-writing-web.mp4" type="video/mp4">
-                    Your browser does not support embedded video.
-                  </video>
-                  <dl class="skin-temporal-events">
-                    <div><dt>0–4.2</dt><dd>Aim / hover</dd></div>
-                    <div><dt>4.2–31.0</dt><dd>Longer spacing between strokes</dd></div>
-                    <div><dt>≈32.0</dt><dd>Final lift</dd></div>
-                  </dl>
-                </article>
-
-                <article class="skin-temporal-video-card skin-temporal-video-card-return">
-                  <header><span>Take C</span><strong>41.6 sec</strong></header>
-                  <video controls playsinline preload="none" poster="../assets/skin-of-writing/08_temporal-study/c-poster.jpg" aria-label="Take C: overhead recording showing the artist complete the main character and then return to earlier marks.">
-                    <source src="../assets/skin-of-writing/08_temporal-study/c-writing-web.mp4" type="video/mp4">
-                    Your browser does not support embedded video.
-                  </video>
-                  <dl class="skin-temporal-events">
-                    <div><dt>0–4.2</dt><dd>Aim / hover</dd></div>
-                    <div><dt>4.2–27.0</dt><dd>Main form becomes visible</dd></div>
-                    <div class="skin-temporal-return"><dt>28.0–39.9</dt><dd>Return / rework</dd></div>
-                    <div><dt>≈40.9</dt><dd>Final lift</dd></div>
-                  </dl>
-                </article>
-              </div>
-
-              <p class="skin-temporal-timing-note">Times are observational markers, rounded from the 4 fps review sequence; they describe visible action rather than intention.</p>
-
-              <section class="skin-temporal-matched-evidence" aria-labelledby="matched-evidence-title">
-                <header>
-                  <p class="eyebrow">Matched Evidence / Same Three Takes</p>
-                  <h4 id="matched-evidence-title">One final trace, one recorded action, one embodied account</h4>
+              <section class="temporal-reader-instrument" aria-labelledby="reader-title" data-temporal-reader>
+                <header class="temporal-reader-instrument-header">
+                  <div>
+                    <p class="eyebrow">A/B/C Temporal Reader</p>
+                    <h4 id="reader-title">Three instructions produce three different relations to writing time.</h4>
+                  </div>
+                  <div class="temporal-reader-switch" role="group" aria-label="Select recorded take">
+                    <button type="button" data-take="a">A / Natural continuity</button>
+                    <button type="button" class="is-active" data-take="b" aria-pressed="true">B / Forced interruption</button>
+                    <button type="button" data-take="c">C / Deliberate retracing</button>
+                  </div>
                 </header>
 
-                <div class="skin-temporal-final-traces">
-                  <article>
-                    <figure>
-                      <img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/final-a/01_original.png" alt="Final trace from Take A, cropped from the last clear frame of the video.">
-                      <figcaption>Take A / video-derived final frame</figcaption>
-                    </figure>
-                    <dl>
-                      <div><dt>Machine</dt><dd>11 endpoint clusters / 3 junction clusters</dd></div>
-                      <div><dt>Video</dt><dd>Shortest take; no post-completion return</dd></div>
-                    </dl>
-                    <blockquote>
-                      <span>Artist / embodied account</span>
-                      In normal writing I would actually be faster. Calligraphy requires
-                      <em>ding</em>—a settled, decisive state—rather than manufactured hesitation.
-                    </blockquote>
-                  </article>
+                <div class="temporal-reader-stage">
+                  <figure class="temporal-reader-video">
+                    <video controls playsinline preload="metadata" poster="../assets/skin-of-writing/08_temporal-study/b-poster.jpg" data-reader-video>
+                      <source src="../assets/skin-of-writing/08_temporal-study/b-writing-web.mp4" type="video/mp4">
+                      Your browser does not support embedded video.
+                    </video>
+                    <figcaption><span data-video-label>Take B / recorded action</span><b data-video-time>00:00 / 00:33</b></figcaption>
+                  </figure>
 
-                  <article>
-                    <figure>
-                      <img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/final-b/01_original.png" alt="Final trace from Take B, cropped from the last clear frame of the video.">
-                      <figcaption>Take B / video-derived final frame</figcaption>
-                    </figure>
-                    <dl>
-                      <div><dt>Machine</dt><dd>11 endpoint clusters / 3 junction clusters</dd></div>
-                      <div><dt>Video</dt><dd>Deliberately spaced pauses between strokes</dd></div>
-                    </dl>
-                    <blockquote>
-                      <span>Artist / embodied account</span>
-                      This take was broadly okay, but calligraphy has <em>qi kou</em>—a
-                      breathing opening within continuity. When I was deliberately told to pause,
-                      the movement caught instead of breathing.
-                    </blockquote>
-                  </article>
+                  <figure class="temporal-reader-trace">
+                    <img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/final-b/01_original.png" alt="Final trace from Take B" data-reader-trace>
+                    <figcaption><span>Final surface</span><b>Chronology unavailable</b></figcaption>
+                  </figure>
 
-                  <article class="skin-temporal-final-return">
-                    <figure>
-                      <img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/final-c/01_original.png" alt="Final trace from Take C, cropped from the last clear frame after repeated retracing.">
-                      <figcaption>Take C / video-derived final frame</figcaption>
-                    </figure>
-                    <dl>
-                      <div><dt>Machine</dt><dd>9 endpoint clusters / 5 junction clusters</dd></div>
-                      <div><dt>Video</dt><dd>Main form followed by repeated return and rework</dd></div>
-                    </dl>
-                    <blockquote>
-                      <span>Artist / embodied account</span>
-                      Calligraphy is not normally written by repeatedly tracing over a stroke.
-                      Retracing made the whole character heavy, rigid, and lifeless.
-                    </blockquote>
-                  </article>
+                  <div class="temporal-reader-reading" aria-live="polite">
+                    <span>Current reading</span>
+                    <strong data-reader-state>Forced interruption</strong>
+                    <p data-reader-detail>The instruction inserts stops into the writing sequence. Their bodily meaning is not contained in the final shape.</p>
+                  </div>
                 </div>
 
-                <p class="skin-temporal-frame-caveat">
-                  The final traces are cropped from the last clear video frames, not controlled scans.
-                  Machine counts describe pixel geometry only; they do not measure <em>qi kou</em>,
-                  composure, or calligraphic weight.
-                </p>
+                <div class="temporal-reader-timeline">
+                  <div class="temporal-reader-timeline-label">
+                    <span>Visible frame change / observational proxy</span>
+                    <b data-duration-label>32.7 sec</b>
+                  </div>
+                  <div class="temporal-reader-chart" data-reader-chart>
+                    <svg viewBox="0 0 1000 120" preserveAspectRatio="none" aria-label="Video frame-change signal">
+                      <g data-interruption-zones></g>
+                      <path data-motion-path vector-effect="non-scaling-stroke"></path>
+                      <line data-playhead x1="0" x2="0" y1="0" y2="120" vector-effect="non-scaling-stroke"></line>
+                    </svg>
+                  </div>
+                  <div class="temporal-reader-ticks" data-timeline-ticks></div>
+                  <p class="temporal-reader-method-note" data-method-note>Shaded intervals mark approximate low-motion regions observed in Take B. They locate visible stillness; they do not identify <em>qi</em>.</p>
+                </div>
+
+                <div class="temporal-reader-accounts">
+                  <article>
+                    <span>Machine observation</span>
+                    <strong data-machine-account>Motion falls and resumes</strong>
+                    <p data-machine-detail>The recording can locate intervals of reduced visible movement and subsequent restart.</p>
+                  </article>
+                  <article>
+                    <span>Embodied account</span>
+                    <strong data-body-account>The imposed halt cuts the continuing flow of qi.</strong>
+                    <p data-body-detail>Continuing afterwards does not feel like breathing through a natural transition; it feels like beginning again.</p>
+                  </article>
+                  <article class="temporal-reader-gap">
+                    <span>Interpretive gap</span>
+                    <strong data-gap-account>Zero motion is not the same as broken qi.</strong>
+                    <p data-gap-detail>The system measures an event. The writer supplies its calligraphic and bodily meaning.</p>
+                  </article>
+                </div>
               </section>
 
-              <div class="skin-temporal-finding">
-                <div>
-                  <p class="eyebrow">Video finding / Take C</p>
-                  <h4>A return can disappear inside a finished stroke—and change its felt life.</h4>
+              <section class="skin-retrace-evidence" aria-labelledby="retrace-evidence-title">
+                <header>
+                  <p class="eyebrow">C / Verified Return Sequence</p>
+                  <h4 id="retrace-evidence-title">Can a machine distinguish one weighted stroke from a trace accumulated through return?</h4>
+                </header>
+                <p>By approximately 27.0 seconds, the main form is already visible. From about 28.0 seconds, the brush re-enters previously marked regions. Video can verify that return; only the writer can explain why retracing is taboo in calligraphic practice and why the result feels heavy, rigid, and lifeless.</p>
+                <div class="skin-temporal-frame-strip" aria-label="Take C sequence showing completion and return">
+                  <figure><img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/c-01-main-form.jpg" alt="Take C at 27.01 seconds, when the main form is already visible."><figcaption><span>27.01 s</span>Main form</figcaption></figure>
+                  <figure><img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/c-02-return.jpg" alt="Take C at 28.01 seconds, as the brush returns to the written area."><figcaption><span>28.01 s</span>Return begins</figcaption></figure>
+                  <figure><img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/c-03-rework.jpg" alt="Take C at 31.98 seconds during reworking of an earlier mark."><figcaption><span>31.98 s</span>Rework</figcaption></figure>
+                  <figure><img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/c-04-rework.jpg" alt="Take C at 33.98 seconds during a further return to the written area."><figcaption><span>33.98 s</span>Return again</figcaption></figure>
+                  <figure><img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/c-05-final.jpg" alt="Take C at 40.94 seconds immediately before the final lift."><figcaption><span>40.94 s</span>Final state</figcaption></figure>
                 </div>
-                <p>
-                  By approximately 27.0 seconds, the main form is already visible. From about
-                  28.0 seconds, the brush returns to previously written areas and continues to
-                  rework them before the final lift. The artist describes the resulting character
-                  as heavy, rigid, and lifeless. A later scan would merge those separate moments
-                  into a single dark trace, hiding that its weight came from accumulated retracing
-                  rather than one decisive action.
-                </p>
-              </div>
-
-              <div class="skin-temporal-frame-strip" aria-label="Take C sequence showing completion and return">
-                <figure>
-                  <img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/c-01-main-form.jpg" alt="Take C at 27.01 seconds, when the main form is already visible.">
-                  <figcaption><span>27.01 s</span>Main form</figcaption>
-                </figure>
-                <figure>
-                  <img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/c-02-return.jpg" alt="Take C at 28.01 seconds, as the brush returns to the written area.">
-                  <figcaption><span>28.01 s</span>Return begins</figcaption>
-                </figure>
-                <figure>
-                  <img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/c-03-rework.jpg" alt="Take C at 31.98 seconds during reworking of an earlier mark.">
-                  <figcaption><span>31.98 s</span>Rework</figcaption>
-                </figure>
-                <figure>
-                  <img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/c-04-rework.jpg" alt="Take C at 33.98 seconds during a further return to the written area.">
-                  <figcaption><span>33.98 s</span>Return again</figcaption>
-                </figure>
-                <figure>
-                  <img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/c-05-final.jpg" alt="Take C at 40.94 seconds immediately before the final lift.">
-                  <figcaption><span>40.94 s</span>Final state</figcaption>
-                </figure>
-              </div>
+              </section>
 
               <div class="skin-temporal-limit">
-                <span>Error annotation / 03</span>
-                <p><strong>Visible stillness is not felt hesitation.</strong> Video can locate a pause or return, but it cannot determine whether the writer was uncertain, adjusting pressure, recalling instruction, or simply preparing the next stroke.</p>
+                <span>Temporal finding</span>
+                <p><strong>A continues, B stops, and C returns.</strong> Machine-readable events do not contain their calligraphic meaning: zero motion is not broken <em>qi</em>, and detected return is not knowledge of why retracing is taboo.</p>
               </div>
             </section>
 
             <section class="skin-machine-comparison" aria-labelledby="case-comparison-title">
               <div>
-                <p class="eyebrow">Comparative finding</p>
-                <h3 id="case-comparison-title">Three cases, one recurring interpretive failure</h3>
+                <p class="eyebrow">03 / Evidence Boundary</p>
+                <h3 id="case-comparison-title">Different actions can converge in similar static descriptions</h3>
               </div>
               <table>
                 <thead>
@@ -682,13 +654,14 @@
                     <td>Complex topology is not complex action</td>
                   </tr>
                   <tr>
-                    <th>03 / Three takes</th>
-                    <td>9–11 endpoint clusters<br>Static chronology unavailable</td>
-                    <td>A: settled and fast<br>B: imposed pause disrupts <em>qi kou</em><br>C: retracing feels heavy and lifeless</td>
-                    <td>Pixel geometry is not calligraphic vitality</td>
+                    <th>03 / A · B · C</th>
+                    <td>A 11 / 3<br>B 11 / 3<br>C 9 / 5<br><small>endpoints / junctions</small></td>
+                    <td>A: settled and fast<br>B: imposed stop breaks continuity<br>C: return accumulates inside the trace</td>
+                    <td>Similar static counts do not establish similar action</td>
                   </tr>
                 </tbody>
               </table>
+              <p class="skin-machine-comparison-note"><strong>Data status.</strong> The A/B/C images are crops from final video frames, not controlled scans. Their near-matching feature counts are a pilot observation about what this geometric representation fails to separate—not statistical proof about calligraphic quality.</p>
             </section>
 
             <div class="skin-machine-boundaries" aria-label="Limits of computational interpretation">
@@ -703,9 +676,9 @@
                 <p>Possible pressure change, overlap, correction, accumulation, and deviation.</p>
               </article>
               <article>
-                <p class="eyebrow">Unavailable</p>
-                <h3>What pixels cannot supply</h3>
-                <p>Felt <em>qi kou</em>, intention, composure, why a pause occurred, or why a character feels alive, heavy, or rigid.</p>
+                <p class="eyebrow">Requires context</p>
+                <h3>What pixels alone cannot establish</h3>
+                <p>The action that caused a visual quality, felt <em>qi kou</em>, intention, composure, or why the writer experiences a character as alive, heavy, or rigid.</p>
               </article>
             </div>
 
@@ -722,6 +695,7 @@
         </nav>
       </article>
     </main>
-    <script src="../language.js?v=20260815-skin-4"></script>
+    <script src="../skin-temporal-reader.js?v=20260815-abc-1"></script>
+    <script src="../language.js?v=20260815-skin-9"></script>
   </body>
 </html>
