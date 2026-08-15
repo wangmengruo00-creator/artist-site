@@ -24,11 +24,11 @@
       <div class="landing-light" aria-hidden="true"></div>
       <section class="landing-copy" aria-labelledby="home-title">
         <h1 id="home-title">MENGRUO WANG</h1>
-        <p class="landing-role">Practice-based artist and researcher</p>
+        <p class="landing-role">Practice-based artist-researcher</p>
         <p class="landing-statement">
-          Working across artist books, material traces, embodied writing, and
-          perceptual systems, exploring how memory, space, and interfaces are
-          transformed into contemporary artistic forms.
+          Working across material, visual and interactive systems, I explore how
+          relations become perceptible, and how different systems shape what can
+          be read and acted upon.
         </p>
         <a class="landing-enter" href="works.html">Enter selected works <span aria-hidden="true">→</span></a>
       </section>
@@ -44,12 +44,18 @@
         window.addEventListener(
           "pointermove",
           (event) => {
-            root.style.setProperty("--mx", (event.clientX / window.innerWidth).toFixed(3));
-            root.style.setProperty("--my", (event.clientY / window.innerHeight).toFixed(3));
+            const x = event.clientX / window.innerWidth;
+            const y = event.clientY / window.innerHeight;
+
+            root.style.setProperty("--mx", x.toFixed(3));
+            root.style.setProperty("--my", y.toFixed(3));
+            root.style.setProperty("--copy-x", `${((x - 0.5) * 3).toFixed(2)}px`);
+            root.style.setProperty("--copy-y", `${((y - 0.5) * 2).toFixed(2)}px`);
           },
           { passive: true }
         );
       }
     </script>
+    <script src="language.js"></script>
   </body>
 </html>

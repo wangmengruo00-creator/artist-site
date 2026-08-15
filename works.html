@@ -10,6 +10,7 @@
     >
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preload" as="image" href="assets/web/works/bureau-material-field.webp" type="image/webp" fetchpriority="high">
   </head>
   <body class="works-index-page">
     <header class="site-header" aria-label="Primary navigation">
@@ -27,9 +28,8 @@
           <div>
             <h1 id="works-title">Works</h1>
             <p class="works-intro">
-              Selected works tracing a practice from artist books and printed matter
-              toward book-based structures, interactive perceptual fields, material
-              archives, and embodied writing.
+              Selected works examining how material traces, reading structures, and
+              interactive structures can make relations perceptible.
             </p>
           </div>
         </div>
@@ -40,24 +40,29 @@
               <p class="eyebrow">Section 01</p>
               <h2 class="work-group-title" id="current-practice-title">Current Practice</h2>
               <p class="work-group-note">
-                Recent works across book-based structures, interactive perceptual fields,
-                material archives, and embodied writing.
+                Four current projects through which material traces, bodily encounters, and
+                interactive conditions are tested as distinct yet related forms of reading.
               </p>
             </div>
             <div class="work-group-items">
-              <a class="work-row current-work-row" href="projects/beijing-order-longlin-binding.html">
+              <a class="work-row current-work-row" href="projects/invalidated-tickets.html">
                 <img
-                  src="assets/beijing-order/abc-hero.png"
-                  alt="Three dragon-scale binding books shown fully opened in sequence."
+                  class="ticket-work-thumb"
+                  src="assets/web/works/bureau-material-field.webp"
+                  width="900"
+                  height="675"
+                  decoding="async"
+                  fetchpriority="high"
+                  alt="Mengruo Wang arranging tickets, wrappers, labels, and printed records across the studio floor."
                 >
                 <div class="work-content">
-                  <div class="work-index">01 / Current</div>
-                  <h3>Beijing Orders</h3>
+                  <div class="work-index">01 / Work in progress</div>
+                  <h3>The Bureau of Invalidated Tickets</h3>
                   <div class="work-meta-line">
-                    <span>2026</span>
-                    <span>Completed spatial-translation pilot</span>
+                    <span>2026–</span>
+                    <span>Working corpus, material archive, reading-system prototype</span>
                   </div>
-                  <p>Three dragon-scale-bound artist books translating embodied encounters with Beijing’s architectural and historical order into layered material reading.</p>
+                  <p>A working research framework within <em>AFTER USE</em>, bringing system records and material traces into comparison through a completed machine-assisted diagnostic reading.</p>
                 </div>
               </a>
 
@@ -65,7 +70,7 @@
                 <div class="thumb-placeholder metamorphoses-thumb" aria-label="Abstract residue field thumbnail"></div>
                 <div class="work-content">
                   <div class="work-index">02 / Current</div>
-                  <h3>The Three Metamorphoses / 精神三变</h3>
+                  <h3>The Three Metamorphoses</h3>
                   <div class="work-meta-line">
                     <span>2026–</span>
                     <span>Interactive web field, visual grammar, responsive perception</span>
@@ -74,30 +79,32 @@
                 </div>
               </a>
 
-              <a class="work-row current-work-row" href="projects/invalidated-tickets.html">
+              <a class="work-row current-work-row" href="projects/beijing-order-longlin-binding.html">
                 <img
-                  class="ticket-work-thumb"
-                  src="assets/invalidated-tickets/invalidated-tickets-documentary-poster.png"
-                  alt="An arranged archive of invalidated tickets and everyday printed matter."
+                  src="assets/web/works/abc-hero.webp"
+                  width="900"
+                  height="675"
+                  decoding="async"
+                  alt="Three dragon-scale binding books shown fully opened in sequence."
                 >
                 <div class="work-content">
-                  <div class="work-index">03 / Ongoing archive</div>
-                  <h3>The Bureau of Invalidated Tickets / 失效票证管理局</h3>
+                  <div class="work-index">03 / Current</div>
+                  <h3>Three States of Order (Beijing Orders)</h3>
                   <div class="work-meta-line">
-                    <span>2026–</span>
-                    <span>Working archive, moving-image study, research system</span>
+                    <span>2026</span>
+                    <span>Material prototype, speculative studies, interactive binding study</span>
                   </div>
-                  <p>An accumulating study of obsolete tickets as material records of access, allocation, value, and circulation.</p>
+                  <p>Dragon-scale-bound artist books translating embodied encounters with Beijing’s architectural and historical order into layered material reading.</p>
                 </div>
               </a>
 
               <a class="work-row current-work-row" href="projects/skin-of-writing.html">
-                <img src="assets/skin-of-writing/01_hero/hero_01_cover_angle.png" alt="Skin of Writing hand-bound book shown from an angled cover view.">
+                <img src="assets/web/works/skin-of-writing.webp" width="900" height="675" decoding="async" alt="Skin of Writing hand-bound book shown from an angled cover view.">
                 <div class="work-content">
                   <div class="work-index">04 / Current</div>
-                  <h3>皮相 / 笔象 / Skin of Writing</h3>
+                  <h3>Skin of Writing</h3>
                   <div class="work-meta-line">
-                    <span>2025–2026</span>
+                    <span>2025–present</span>
                     <span>Ink, calligraphy practice paper, handmade paper, hand binding</span>
                   </div>
                   <p>A hand-bound book object gathering the pressure, correction, and residue of writing practice.</p>
@@ -109,15 +116,20 @@
           <section class="work-group earlier-works-group" aria-labelledby="foundational-works-title">
             <div class="work-group-label">
               <p class="eyebrow">Section 02</p>
-              <h2 class="work-group-title" id="foundational-works-title">Earlier Works and Foundations</h2>
+              <h2 class="work-group-title" id="foundational-works-title">Foundations Archive / 2016–2021</h2>
               <p class="work-group-note">
-                Earlier artist books, printed matter, and handmade paper objects that continue
-                to inform the practice.
+                Early experiments in printed sequence, folding, transparency, portable reading,
+                and paper mechanisms.
               </p>
             </div>
-            <div class="work-group-items">
+            <details class="foundations-archive">
+              <summary>
+                <span>Open archive</span>
+                <strong>6 works</strong>
+              </summary>
+              <div class="work-group-items">
               <a class="work-row" href="projects/destroyed-beautiful-life.html">
-                <img src="assets/early-printed-matter/covers/destroyed-beautiful-life-cover.png" alt="Destroyed a Beautiful Life archive plate.">
+                <img src="assets/web/works/destroyed-beautiful-life.webp" width="900" height="900" loading="lazy" decoding="async" alt="Destroyed a Beautiful Life archive plate.">
                 <div class="work-index">E01</div>
                 <div class="work-content">
                   <h3>Destroyed a Beautiful Life</h3>
@@ -130,7 +142,7 @@
               </a>
 
               <a class="work-row" href="projects/object-poems.html">
-                <img src="assets/early-printed-matter/covers/object-poems-cover.png" alt="Object Poems archive plate.">
+                <img src="assets/web/works/object-poems.webp" width="900" height="675" loading="lazy" decoding="async" alt="Object Poems archive plate.">
                 <div class="work-index">E02</div>
                 <div class="work-content">
                   <h3>Object Poems</h3>
@@ -143,7 +155,7 @@
               </a>
 
               <a class="work-row" href="projects/folded-poem-study.html">
-                <img src="assets/early-printed-matter/covers/folded-poem-study-cover.png" alt="Folded Poem Study archive plate.">
+                <img src="assets/web/works/folded-poem-study.webp" width="900" height="1125" loading="lazy" decoding="async" alt="Folded Poem Study archive plate.">
                 <div class="work-index">E03</div>
                 <div class="work-content">
                   <h3>Folded Poem Study</h3>
@@ -157,8 +169,8 @@
 
               <a class="work-row" href="projects/drawings-in-printed-form.html">
                 <div class="work-thumb-pair" aria-label="Two published watercolor books from 2017 and 2021.">
-                  <img src="assets/drawings-in-printed-form/publication-2017-cover.jpg" alt="">
-                  <img src="assets/drawings-in-printed-form/publication-2021-cover.jpg" alt="">
+                  <img src="assets/web/works/publication-2017.webp" width="900" height="638" loading="lazy" decoding="async" alt="">
+                  <img src="assets/web/works/publication-2021.webp" width="800" height="800" loading="lazy" decoding="async" alt="">
                 </div>
                 <div class="work-index">E04</div>
                 <div class="work-content">
@@ -172,7 +184,7 @@
               </a>
 
               <a class="work-row" href="projects/travel-journal-series.html">
-                <img src="assets/early-printed-matter/covers/travel-journal-series-cover.png" alt="Travel Journal Series archive plate.">
+                <img src="assets/web/works/travel-journal-series.webp" width="900" height="611" loading="lazy" decoding="async" alt="Travel Journal Series archive plate.">
                 <div class="work-index">E05</div>
                 <div class="work-content">
                   <h3>Travel Journal Series</h3>
@@ -185,7 +197,7 @@
               </a>
 
               <a class="work-row" href="projects/risograph-box.html">
-                <img src="assets/early-printed-matter/covers/risograph-box-cover.png" alt="Risograph Box archive plate.">
+                <img src="assets/web/works/risograph-box.webp" width="900" height="1125" loading="lazy" decoding="async" alt="Risograph Box archive plate.">
                 <div class="work-index">E06</div>
                 <div class="work-content">
                   <h3>Risograph Box</h3>
@@ -196,10 +208,12 @@
                   <p>A hand-assembled box opening into layered paper mechanisms.</p>
                 </div>
               </a>
-            </div>
+              </div>
+            </details>
           </section>
         </div>
       </section>
     </main>
+    <script src="language.js"></script>
   </body>
 </html>
