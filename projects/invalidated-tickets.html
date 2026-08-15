@@ -6,9 +6,9 @@
     <title>The Bureau of Invalidated Tickets - Mengruo Wang</title>
     <meta
       name="description"
-      content="The Bureau of Invalidated Tickets, a practice-based inquiry tracing organising relations in obsolete everyday paper systems by Mengruo Wang."
+      content="The Bureau of Invalidated Tickets traces how obsolete paper systems persist and what changes when physical objects become computational records."
     >
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles.css?v=20260815-tickets2">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   </head>
   <body class="tickets-project-page">
@@ -24,26 +24,6 @@
       <article class="section tickets-project" aria-labelledby="tickets-title">
         <a class="back-link" href="../works.html">Back to Works</a>
 
-        <nav class="tickets-surface-nav" aria-label="Project views">
-          <div class="tickets-surface-current" aria-current="page">
-            <span>View / 01</span>
-            <strong>Project record</strong>
-            <small>Research premise · methods · working sequence</small>
-          </div>
-          <a class="tickets-surface-archive" href="invalidated-tickets-archive.html">
-            <span>Collection field / 296 working records</span>
-            <strong>Explore the Collected Field</strong>
-            <small>185 tickets · 51 wrappers · 12 labels · 48 other printed records</small>
-            <b aria-hidden="true">↗</b>
-          </a>
-          <a class="tickets-surface-archive tickets-surface-experiment" href="invalidated-tickets-machine-reading-preview.html">
-            <span>Run 01 / 185-record diagnostic subset</span>
-            <strong>Machine-Assisted Diagnostic Reading</strong>
-            <small>184 non-empty OCR · 38 visual measures · 20 bounded human reviews</small>
-            <b aria-hidden="true">↗</b>
-          </a>
-        </nav>
-
         <header class="tickets-hero">
           <div class="tickets-hero-copy">
             <p class="eyebrow">CURRENT PRACTICE / 01</p>
@@ -51,12 +31,19 @@
             <p class="tickets-project-framework">A working research framework within <em>AFTER USE</em></p>
             <p class="tickets-project-meta">Practice-based inquiry · Working corpus · 2026–</p>
             <p class="tickets-project-summary">
-              Tracing and translating organising relations in obsolete everyday paper systems.
+              Tracing how obsolete paper systems persist—and what changes when one system reads another.
             </p>
             <p class="tickets-hero-statement">
               I am not collecting rare objects. I am tracing everyday systems through the paper
               they left behind.
             </p>
+            <aside class="tickets-hero-finding" aria-label="Current research finding">
+              <span>CURRENT FINDING / 318 OBJECTS → 296 RECORDS</span>
+              <p>
+                The discrepancy between 318 distinct physical objects and 296 candidate digital
+                records turned the tool-making process itself into a research question.
+              </p>
+            </aside>
           </div>
           <figure class="tickets-hero-figure">
             <img
@@ -72,37 +59,6 @@
             </figcaption>
           </figure>
         </header>
-
-        <section class="tickets-collection-overview" aria-labelledby="tickets-collection-title">
-          <div class="tickets-collection-copy">
-            <p class="eyebrow">COLLECTION FIELD / 296 DIGITISED WORKING RECORDS</p>
-            <h2 id="tickets-collection-title">The collection forms the material basis of the research.</h2>
-            <p>
-              These 296 records make the scale and unevenness of the collecting practice visible.
-              They are working digital records rather than completed catalogue entries: many
-              objects still require identification, provenance research, and object-level review.
-            </p>
-            <dl class="tickets-collection-counts">
-              <div><dt>185</dt><dd>Tickets and vouchers</dd></div>
-              <div><dt>51</dt><dd>Wrappers</dd></div>
-              <div><dt>12</dt><dd>Product labels</dd></div>
-              <div><dt>48</dt><dd>Other printed records</dd></div>
-            </dl>
-            <a class="tickets-collection-enter" href="invalidated-tickets-archive.html">
-              Explore all 296 working records <span aria-hidden="true">→</span>
-            </a>
-          </div>
-          <div class="tickets-collection-field" data-collection-preview aria-label="A visual field of 296 digitised working records"></div>
-          <dialog class="tickets-collection-lightbox" data-collection-lightbox aria-label="Enlarged collection record">
-            <button class="tickets-collection-lightbox-close" type="button" data-collection-lightbox-close>
-              Close <span aria-hidden="true">×</span>
-            </button>
-            <figure>
-              <img data-collection-lightbox-image alt="">
-              <figcaption data-collection-lightbox-caption></figcaption>
-            </figure>
-          </dialog>
-        </section>
 
         <section class="tickets-intro" aria-labelledby="tickets-intro-title">
           <div>
@@ -127,43 +83,65 @@
             </aside>
             <dl class="tickets-metadata">
               <div><dt>Core corpus</dt><dd>Tickets, ration coupons, exchange vouchers, wrappers and product labels</dd></div>
-              <div><dt>Methods</dt><dd>Corpus construction, material observation, contextual tracing, artistic translation and conditional testing</dd></div>
+              <div><dt>Current phase</dt><dd>Archive construction, web prototyping and a preliminary machine-reading pilot completed; reconciliation and artist validation ongoing</dd></div>
             </dl>
           </div>
         </section>
 
-        <section class="tickets-run-overview" aria-labelledby="tickets-run-title">
-          <div>
-            <p class="eyebrow">RUN 01 / COMPLETED DIAGNOSTIC READING</p>
-            <h2 id="tickets-run-title">Run 01 tests a bounded diagnostic subset.</h2>
+        <nav class="tickets-surface-nav" aria-label="Project views">
+          <div class="tickets-surface-current" aria-current="page">
+            <span>View / 01</span>
+            <strong>Project record</strong>
+            <small>Research premise · material practice · current findings</small>
+          </div>
+          <a class="tickets-surface-archive" href="invalidated-tickets-archive.html">
+            <span>View / 02 · 296 candidate digital records</span>
+            <strong>Working Archive</strong>
+            <small>Evidence layers · material groups · curated relations</small>
+            <b aria-hidden="true">↗</b>
+          </a>
+          <a class="tickets-surface-archive tickets-surface-experiment" href="invalidated-tickets-machine-reading-preview.html">
+            <span>View / 03 · Run 01 / 185 records</span>
+            <strong>Machine-Reading Pilot</strong>
+            <small>OCR output · visual features · draft comparisons</small>
+            <b aria-hidden="true">↗</b>
+          </a>
+        </nav>
+
+        <section class="tickets-section tickets-origin" aria-labelledby="tickets-origin-title">
+          <div class="tickets-section-heading">
+            <p class="eyebrow">01</p>
+            <h2 id="tickets-origin-title">RESEARCH ORIGIN</h2>
+            <p class="tickets-heading-note">Collection routes<br>Objects after use</p>
+          </div>
+          <div class="tickets-section-copy">
+            <p class="tickets-section-lede">
+              The project began with obsolete paper found at street bookstalls in Xi'an and grew
+              through livestream auctions, Kongfz, Xianyu and collector networks.
+            </p>
             <p>
-              Run 01 processed the 185-record food-related subset drawn from the wider 296-record
-              working collection. The machine outputs remain diagnostic candidates, not historical
-              classifications or completed interpretations.
+              Papers that had lost their original administrative or commercial function entered a
+              second economy of bidding, exchange and collecting. This return to circulation made
+              invalidation itself perceptible: the objects no longer operated as tickets or
+              packaging, yet the systems of eligibility, value, attraction and desire remained
+              materially present.
             </p>
           </div>
-          <div class="tickets-record-bar" aria-label="Run 01 research evidence">
-            <div><span>Subset</span><strong>185 deduplicated source scans</strong></div>
-            <div><span>OCR</span><strong>184 records with non-empty text</strong></div>
-            <div><span>Visual reading</span><strong>38 researcher-defined measurements</strong></div>
-            <div><span>Human review</span><strong>20 bounded reviews · 165 pending</strong></div>
-          </div>
-          <a class="tickets-run-enter" href="invalidated-tickets-machine-reading-preview.html">
-            Open Run 01 research record <span aria-hidden="true">→</span>
-          </a>
         </section>
 
         <section class="tickets-section tickets-fields" aria-labelledby="tickets-fields-title">
           <div class="tickets-section-heading">
-            <p class="eyebrow">01</p>
-            <h2 id="tickets-fields-title">TWO MATERIAL SYSTEMS</h2>
-            <p class="tickets-heading-note">Bounded corpus<br>Provisional groups</p>
+            <p class="eyebrow">02</p>
+            <h2 id="tickets-fields-title">ARTIST-ORGANISED ARCHIVE</h2>
+            <p class="tickets-heading-note">Before machine reading<br>Situated classification</p>
           </div>
           <div class="tickets-section-copy">
             <p>
-              The initial corpus is deliberately limited to two working groups. They are compared
-              not because they are historically equivalent, but because they organised everyday
-              life through two markedly different modes.
+              The materials were already being sorted, compared and interpreted before they became
+              digital records. Tickets were read through exchange, qualification and institutional
+              identity; grain coupons through region; wrappers through colour, attraction,
+              accumulation and desire. These are situated artistic classifications rather than a
+              recovered historical taxonomy.
             </p>
           </div>
           <div class="tickets-field-list">
@@ -177,7 +155,7 @@
                 <figcaption>Material group / T–01</figcaption>
               </figure>
               <div>
-                <p class="tickets-field-mode">02 / Regulated access and exchange</p>
+                <p class="tickets-field-mode">Artist grouping / Regulated access and exchange</p>
                 <h3>Eligibility, quantity and allocation</h3>
                 <p>
                   Ration coupons and exchange vouchers organised who could obtain what, how much,
@@ -200,7 +178,7 @@
                 <figcaption>Single-object lens / W–001</figcaption>
               </figure>
               <div>
-                <p class="tickets-field-mode">01 / Commodity presentation and value</p>
+                <p class="tickets-field-mode">Artist grouping / Commodity image and value</p>
                 <h3>Recognition, attraction and value</h3>
                 <p>
                   Wrappers and labels participated in naming, recognition, attraction, perceived
@@ -234,6 +212,24 @@
               </div>
             </article>
           </div>
+          <div class="tickets-observation-study">
+            <figure class="tickets-observation-sheet">
+              <img
+                src="../assets/invalidated-tickets/curated/research-sheets.webp"
+                alt="Two handwritten single-object research sheets for wrappers and labels."
+                loading="lazy"
+              >
+              <figcaption><strong>Artist record / O–01</strong><span>Handwritten pages precede the machine run and keep observation, association and uncertainty visibly separate.</span></figcaption>
+            </figure>
+            <figure class="tickets-observation-handling">
+              <img
+                src="../assets/invalidated-tickets/curated/binder-handling.webp"
+                alt="A hand turning through an archive binder of collected paper objects."
+                loading="lazy"
+              >
+              <figcaption><strong>Handling / O–02</strong><span>Touch, placement and viewing distance remain part of the classification process.</span></figcaption>
+            </figure>
+          </div>
         </section>
 
         <aside class="tickets-working-principle" aria-label="How each record is read">
@@ -246,32 +242,127 @@
           </div>
         </aside>
 
-        <section class="tickets-section tickets-sequence-section" aria-labelledby="tickets-sequence-title">
+        <section class="tickets-collection-overview" aria-labelledby="tickets-collection-title">
+          <div class="tickets-collection-copy">
+            <p class="eyebrow">FROM PHYSICAL OBJECTS TO DIGITAL RECORDS</p>
+            <h2 id="tickets-collection-title">The first digital translation does not coincide with the physical archive.</h2>
+            <p>
+              An artist-led inventory identified 318 distinct physical objects and checked them for
+              duplication. The present web archive contains 296 candidate digital crop records
+              produced through a mixed computational and manually adjusted extraction workflow.
+              A digital record may merge several objects, omit an object boundary or preserve a
+              scan condition rather than one independently verified object.
+            </p>
+            <dl class="tickets-collection-counts tickets-reconciliation-counts">
+              <div><dt>318</dt><dd>Distinct physical objects · artist count</dd></div>
+              <div><dt>296</dt><dd>Candidate digital crop records</dd></div>
+              <div><dt>185</dt><dd>Ticket-and-voucher records in Run 01</dd></div>
+              <div><dt>20</dt><dd>Draft comparisons awaiting artist validation</dd></div>
+            </dl>
+            <p class="tickets-reconciliation-note">Object–record correspondence / under reconciliation</p>
+            <a class="tickets-collection-enter" href="invalidated-tickets-archive.html">
+              Inspect the 296-record working archive <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="tickets-collection-field" data-collection-preview aria-label="A visual field of 296 candidate digital working records"></div>
+          <dialog class="tickets-collection-lightbox" data-collection-lightbox aria-label="Enlarged collection record">
+            <button class="tickets-collection-lightbox-close" type="button" data-collection-lightbox-close>
+              Close <span aria-hidden="true">×</span>
+            </button>
+            <figure>
+              <img data-collection-lightbox-image alt="">
+              <figcaption data-collection-lightbox-caption></figcaption>
+            </figure>
+          </dialog>
+        </section>
+
+        <section class="tickets-section tickets-system-reading" aria-labelledby="tickets-system-reading-title">
           <div class="tickets-section-heading">
-            <p class="eyebrow">02</p>
-            <h2 id="tickets-sequence-title">RESEARCH SEQUENCE</h2>
-            <p class="tickets-heading-note">From residue<br>To conditional testing</p>
+            <p class="eyebrow">03</p>
+            <h2 id="tickets-system-reading-title">WHEN ONE SYSTEM READS ANOTHER</h2>
+            <p class="tickets-heading-note">Machine error<br>Diagnostic evidence</p>
+          </div>
+          <div class="tickets-section-copy">
+            <p class="tickets-section-lede">
+              An obsolete administrative system is being read again by a contemporary
+              computational system.
+            </p>
+            <p>
+              Machine classifications, omissions and misreadings are retained as diagnostic
+              evidence rather than treated as corrected catalogue truth. They reveal which visual
+              and textual properties become computable, which material relations disappear and
+              where a new record is reconstructed by the reading process itself.
+            </p>
+          </div>
+          <div class="tickets-mismatch-grid" aria-label="Examples of machine-reading mismatch">
+            <article>
+              <figure><img src="../assets/invalidated-tickets/archive-items/food/t024.webp" alt="Several overlapping banknotes represented by one digital crop." loading="lazy"></figure>
+              <span>T–024 / Segmentation</span>
+              <h3>Several objects become one record.</h3>
+              <p>The crop preserves the scan as a single unit while collapsing the boundaries between physical objects.</p>
+            </article>
+            <article>
+              <figure><img src="../assets/invalidated-tickets/archive-items/food/t083.webp" alt="A grain ticket whose unit was changed by OCR." loading="lazy"></figure>
+              <span>T–083 / High-confidence error</span>
+              <h3>A plausible character breaks the unit.</h3>
+              <p>Relatively high OCR confidence does not prevent 市斤 from becoming 市厅.</p>
+            </article>
+            <article>
+              <figure><img src="../assets/invalidated-tickets/archive-items/food/t120.webp" alt="A supply certificate with an unfilled month field." loading="lazy"></figure>
+              <span>T–120 / Evidential absence</span>
+              <h3>The label is read; the blank is lost.</h3>
+              <p>OCR detects 月 but not the meaningful condition that no month was entered.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="tickets-run-overview" aria-labelledby="tickets-run-title">
+          <div>
+            <p class="eyebrow">RUN 01 / MACHINE RUN COMPLETE · ARTIST VALIDATION ONGOING</p>
+            <h2 id="tickets-run-title">A fixed diagnostic subset tests where readings fail to coincide.</h2>
+            <p>
+              Run 01 processed 185 candidate ticket-and-voucher records drawn from the wider
+              296-record working archive. The output remains a preliminary machine-reading pilot:
+              it does not establish provenance, object identity or historical fact.
+            </p>
+          </div>
+          <div class="tickets-record-bar" aria-label="Run 01 research evidence">
+            <div><span>Subset</span><strong>185 fixed candidate records</strong></div>
+            <div><span>OCR</span><strong>184 records with non-empty output</strong></div>
+            <div><span>Visual reading</span><strong>38-dimensional computational feature set</strong></div>
+            <div><span>Comparison</span><strong>20 machine-assisted drafts · artist validation pending</strong></div>
+          </div>
+          <a class="tickets-run-enter" href="invalidated-tickets-machine-reading-preview.html">
+            Open Run 01 research record <span aria-hidden="true">→</span>
+          </a>
+        </section>
+
+        <section class="tickets-section tickets-network-method" aria-labelledby="tickets-network-title">
+          <div class="tickets-section-heading">
+            <p class="eyebrow">04</p>
+            <h2 id="tickets-network-title">NETWORK INTERFACE</h2>
+            <p class="tickets-heading-note">Artist-directed<br>Code-assisted prototype</p>
           </div>
           <div class="tickets-section-copy">
             <p>
-              The archive is one stage of the method, not its final form. Material records are
-              traced through evidence, translated through artistic processes and, only where it
-              changes the research situation, tested through rule-based or algorithmic mediation.
+              The network is a curated interface for navigating evidence layers and provisional
+              relations. It is not an automatically discovered knowledge graph. Relation terms,
+              featured examples, information density and interaction behaviour were developed
+              through an artist-directed, iterative prototyping process.
             </p>
-            <ol class="tickets-research-sequence">
-              <li><span>01 / RESIDUE</span><strong>What materially remains?</strong><small>Surface, fold, stain, text, image and use trace.</small></li>
-              <li><span>02 / TRACING</span><strong>What can be supported?</strong><small>Observation, provenance, context and unresolved gaps.</small></li>
-              <li><span>03 / TRANSLATION</span><strong>What changes form?</strong><small>Regrouping, reprinting, cutting, folding, binding and spatial rules.</small></li>
-              <li><span>04 / TESTING</span><strong>What can operate again?</strong><small>A selected relation placed under contemporary conditions.</small></li>
-              <li><span>05 / EMERGENCE</span><strong>What was not there before?</strong><small>Effects produced through participant action and feedback.</small></li>
-            </ol>
+            <dl class="tickets-network-register">
+              <div><dt>Relations</dt><dd>Eligibility · allocation · exchange · validity · recognition · attraction · value</dd></div>
+              <div><dt>Interaction</dt><dd>Grid and relation views · object-level evidence reading · zoom · drag · object inspection</dd></div>
+              <div><dt>Boundary</dt><dd>Connections remain curated propositions; they do not claim machine-discovered historical meaning</dd></div>
+            </dl>
+            <a class="tickets-run-enter" href="invalidated-tickets-archive.html">Open the working interface <span aria-hidden="true">→</span></a>
           </div>
         </section>
 
         <section class="tickets-section tickets-film-section" aria-labelledby="tickets-film-title">
           <div class="tickets-section-heading">
-            <p class="eyebrow">03</p>
-            <h2 id="tickets-film-title">MOVING-IMAGE STUDY</h2>
+            <p class="eyebrow">05</p>
+            <h2 id="tickets-film-title">PRACTICE EVIDENCE</h2>
             <p class="tickets-heading-note">Process evidence<br>Duration 02:00</p>
           </div>
           <div class="tickets-section-copy">
@@ -304,55 +395,24 @@
           </figure>
         </section>
 
-        <section class="tickets-section" aria-labelledby="tickets-observation-title">
-          <div class="tickets-section-heading">
-            <p class="eyebrow">04</p>
-            <h2 id="tickets-observation-title">OBSERVATION PAGES</h2>
-            <p class="tickets-heading-note">Working pages<br>Observation · handling</p>
-          </div>
-          <div class="tickets-section-copy">
-            <p>
-              Observation pages hold one object or material group long enough for surface, fold,
-              stain, typography and repetition to be recorded. They separate what is directly
-              visible from contextual evidence, inference and what remains unresolved.
-            </p>
-          </div>
-          <div class="tickets-observation-study">
-            <figure class="tickets-observation-sheet">
-              <img
-                src="../assets/invalidated-tickets/curated/research-sheets.webp"
-                alt="Two handwritten single-object research sheets for wrappers and labels."
-                loading="lazy"
-              >
-              <figcaption><strong>Observation / O–01</strong><span>Handwritten sheets separate what is known, what is seen and what remains uncertain.</span></figcaption>
-            </figure>
-            <figure class="tickets-observation-handling">
-              <img
-                src="../assets/invalidated-tickets/curated/binder-handling.webp"
-                alt="A hand turning through an archive binder of collected paper objects."
-                loading="lazy"
-              >
-              <figcaption><strong>Observation / O–02</strong><span>Handling changes the distance between object, body and archive.</span></figcaption>
-            </figure>
-          </div>
-        </section>
-
         <section class="tickets-section tickets-current-inquiry" aria-labelledby="tickets-inquiry-title">
           <div class="tickets-section-heading">
-            <p class="eyebrow">05</p>
-            <h2 id="tickets-inquiry-title">EXPERIMENTAL PILOT</h2>
-            <p class="tickets-heading-note">Provisional<br>Next research cycle</p>
+            <p class="eyebrow">06</p>
+            <h2 id="tickets-inquiry-title">CURRENT LIMITS AND NEXT COMPARISON</h2>
+            <p class="tickets-heading-note">Phase 01 complete<br>Research ongoing</p>
           </div>
           <div class="tickets-section-copy">
             <p>
-              The next stage is not a larger visual network. It is a small operational pilot in
-              which one relation—such as allocation or temporal validity—is translated into a
-              changing condition that participants can encounter and affect.
+              Phase 01 is complete as archive construction, web prototyping and a preliminary
+              machine-reading pilot. The research is not complete: the next step is to compare the
+              physical inventory, digital records and computational readings without collapsing
+              their different evidential status.
             </p>
             <ol class="tickets-open-questions">
-              <li><span>01</span>Who defines the translated rule, and what is retained, altered or removed?</li>
-              <li><span>02</span>Can participant actions change what later participants are able to access, receive or see?</li>
-              <li><span>03</span>Does algorithmic mediation produce a meaningful relational difference, or should it be removed?</li>
+              <li><span>01</span>Reconcile 318 distinct physical objects with 296 candidate digital records.</li>
+              <li><span>02</span>Validate, correct or reject the 20 draft comparisons through artist-led review.</li>
+              <li><span>03</span>Keep the remaining 165 Run 01 records explicitly pending rather than implying completed human review.</li>
+              <li><span>04</span>Test whether a later participant-facing pilot extends the inquiry; it is a possible direction, not a predetermined endpoint.</li>
             </ol>
           </div>
         </section>
@@ -363,7 +423,7 @@
         </nav>
       </article>
     </main>
-    <script src="../assets/invalidated-tickets/archive-items/archive-data.js"></script>
+    <script src="../assets/invalidated-tickets/archive-items/archive-data.js?v=20260814-296"></script>
     <script>
       (() => {
         const collectionPreview = document.querySelector('[data-collection-preview]');
@@ -376,6 +436,7 @@
             const image = document.createElement('img');
             const thumbnailSrc = `../assets/invalidated-tickets/${item.image.replace('archive-items/', 'archive-items/thumbnails/')}`;
             image.dataset.thumbnailSrc = thumbnailSrc;
+            image.src = thumbnailSrc;
             image.alt = '';
             image.loading = 'lazy';
             image.decoding = 'async';
@@ -548,6 +609,6 @@
         });
       })();
     </script>
-    <script src="../language.js"></script>
+    <script src="../language.js?v=20260815-tickets1"></script>
   </body>
 </html>

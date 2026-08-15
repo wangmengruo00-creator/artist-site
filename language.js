@@ -347,6 +347,7 @@
   } : {};
   const translations = new Map(Object.entries({
     ...(window.mengruoAutoTranslations || {}),
+    ...invalidatedTicketsTranslations,
     "Works": "作品",
     "About": "关于",
     "Practice": "实践",
