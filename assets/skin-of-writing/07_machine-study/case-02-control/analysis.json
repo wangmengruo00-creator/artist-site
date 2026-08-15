@@ -1,0 +1,19 @@
+{
+  "source": "CamScanner 2026-7-7 17.51_5.jpg",
+  "crop": [
+    0,
+    0,
+    2392,
+    1192
+  ],
+  "output_size": [
+    900,
+    448
+  ],
+  "otsu_threshold": 96,
+  "foreground_pixels": 329201,
+  "skeleton_pixels": 27468,
+  "endpoints": 85,
+  "junctions": 929,
+  "note": "Endpoints and junctions are clustered crossing-number features, not semantic strokes."
+}
