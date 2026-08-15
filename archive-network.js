@@ -14,29 +14,33 @@
   const ctx = canvas.getContext("2d");
   const scanAssetRoot = "../assets/invalidated-tickets/";
 
+  const isZh = () => document.documentElement.lang === "zh-CN";
+  const bilingual = (english, chinese) => isZh() ? chinese : english;
+  const itemText = (item, key) => isZh() && item[`${key}Zh`] ? item[`${key}Zh`] : item[key];
+
   const baseRecords = [
-    { id: "eligibility", ref: "R–01", title: "Eligibility", kind: "term", lens: "access", x: 110, y: 245 },
-    { id: "allocation", ref: "R–02", title: "Allocation", kind: "term", lens: "access", x: 390, y: 80 },
-    { id: "exchange", ref: "R–03", title: "Exchange", kind: "term", lens: "exchange", x: 765, y: 70 },
-    { id: "validity", ref: "R–04", title: "Temporal validity", kind: "term", lens: "exchange", x: 1135, y: 95 },
-    { id: "recognition", ref: "R–05", title: "Recognition", kind: "term", lens: "recognition", x: 1540, y: 285 },
-    { id: "attraction", ref: "R–06", title: "Attraction", kind: "term", lens: "recognition", x: 1480, y: 850 },
-    { id: "value", ref: "R–07", title: "Value", kind: "term", lens: "value", x: 780, y: 980 }
+    { id: "eligibility", ref: "R–01", title: "Eligibility", titleZh: "资格", kind: "term", lens: "access", x: 110, y: 245 },
+    { id: "allocation", ref: "R–02", title: "Allocation", titleZh: "分配", kind: "term", lens: "access", x: 390, y: 80 },
+    { id: "exchange", ref: "R–03", title: "Exchange", titleZh: "交换", kind: "term", lens: "exchange", x: 765, y: 70 },
+    { id: "validity", ref: "R–04", title: "Temporal validity", titleZh: "时间有效性", kind: "term", lens: "exchange", x: 1135, y: 95 },
+    { id: "recognition", ref: "R–05", title: "Recognition", titleZh: "识别", kind: "term", lens: "recognition", x: 1540, y: 285 },
+    { id: "attraction", ref: "R–06", title: "Attraction", titleZh: "吸引", kind: "term", lens: "recognition", x: 1480, y: 850 },
+    { id: "value", ref: "R–07", title: "Value", titleZh: "价值", kind: "term", lens: "value", x: 780, y: 980 }
   ];
 
   const curatedRecordDetails = {
-    "T-001": { title: "Haircut ticket / Jiyuan County / 1977", date: "1977 printed on object", place: "Jiyuan County printed on object", status: "Visible text transcribed" },
-    "T-038": { title: "Jiangxi grain coupon / 1 shi jin / 1978", date: "1978 printed on object", place: "Jiangxi Province printed on object", status: "Visible text transcribed" },
-    "T-072": { title: "Henan grain coupon / 20 shi jin / Luoyang", date: "Date not yet verified", place: "Henan Province · Luoyang printed on object", status: "Visible text transcribed" },
-    "T-105": { title: "Jilin local grain coupon / 0.2 shi jin / 1975", date: "1975 printed on object", place: "Jilin Province printed on object", status: "Visible text transcribed" },
-    "T-148": { title: "Hunan grain coupon / 0.2 shi jin / 1971", date: "1971 printed on object", place: "Hunan Province printed on object", status: "Visible text transcribed" },
-    "T-185": { title: "Hebei local grain coupon / 1 shi liang / 1971", date: "1971 printed on object", place: "Hebei Province printed on object", status: "Visible text transcribed" },
-    "W-001": { title: "Fruit hard-candy wrapper / Yichun Food Factory", status: "Brand and producer visible" },
-    "W-030": { title: "Milk-candy wrapper / yellow floral print", status: "Product type visible · producer unresolved" },
-    "L-001": { title: "Tonghua red grape wine label / 720 mL", status: "Product and volume visible" },
-    "L-006": { title: "Tonghua seasoned grape wine label / 710 mL", status: "Product and volume visible" },
-    "E-001": { title: "Flying Swallow Brand printed label", status: "Brand name visible · commodity unresolved" },
-    "P-001": { title: "Hope menthol cigarette wrapper / 20", status: "Brand and product type visible" }
+    "T-001": { title: "Haircut ticket / Jiyuan County / 1977", titleZh: "理发票 / 济源县 / 1977", date: "1977 printed on object", dateZh: "物件上印有1977年", place: "Jiyuan County printed on object", placeZh: "物件上印有济源县", status: "Visible text transcribed", statusZh: "可见文字已转录" },
+    "T-038": { title: "Jiangxi grain coupon / 1 shi jin / 1978", titleZh: "江西省粮票 / 壹市斤 / 1978", date: "1978 printed on object", dateZh: "物件上印有1978年", place: "Jiangxi Province printed on object", placeZh: "物件上印有江西省", status: "Visible text transcribed", statusZh: "可见文字已转录" },
+    "T-072": { title: "Henan grain coupon / 20 shi jin / Luoyang", titleZh: "河南省粮票 / 贰拾市斤 / 洛阳", date: "Date not yet verified", dateZh: "日期尚未核实", place: "Henan Province · Luoyang printed on object", placeZh: "物件上印有河南省 · 洛阳", status: "Visible text transcribed", statusZh: "可见文字已转录" },
+    "T-105": { title: "Jilin local grain coupon / 0.2 shi jin / 1975", titleZh: "吉林省地方粮票 / 贰市两 / 1975", date: "1975 printed on object", dateZh: "物件上印有1975年", place: "Jilin Province printed on object", placeZh: "物件上印有吉林省", status: "Visible text transcribed", statusZh: "可见文字已转录" },
+    "T-148": { title: "Hunan grain coupon / 0.2 shi jin / 1971", titleZh: "湖南省粮票 / 贰市两 / 1971", date: "1971 printed on object", dateZh: "物件上印有1971年", place: "Hunan Province printed on object", placeZh: "物件上印有湖南省", status: "Visible text transcribed", statusZh: "可见文字已转录" },
+    "T-185": { title: "Hebei local grain coupon / 1 shi liang / 1971", titleZh: "河北省地方粮票 / 壹市两 / 1971", date: "1971 printed on object", dateZh: "物件上印有1971年", place: "Hebei Province printed on object", placeZh: "物件上印有河北省", status: "Visible text transcribed", statusZh: "可见文字已转录" },
+    "W-001": { title: "Fruit hard-candy wrapper / Yichun Food Factory", titleZh: "水果硬糖包装纸 / 宜春食品厂", status: "Brand and producer visible", statusZh: "品牌与生产者可见" },
+    "W-030": { title: "Milk-candy wrapper / yellow floral print", titleZh: "奶糖包装纸 / 黄色花纹", status: "Product type visible · producer unresolved", statusZh: "产品类型可见 · 生产者未决" },
+    "L-001": { title: "Tonghua red grape wine label / 720 mL", titleZh: "通化红葡萄酒标签 / 720毫升", status: "Product and volume visible", statusZh: "产品与容量可见" },
+    "L-006": { title: "Tonghua seasoned grape wine label / 710 mL", titleZh: "通化加香葡萄酒标签 / 710毫升", status: "Product and volume visible", statusZh: "产品与容量可见" },
+    "E-001": { title: "Flying Swallow Brand printed label", titleZh: "飞燕牌印刷标签", status: "Brand name visible · commodity unresolved", statusZh: "品牌名可见 · 商品未决" },
+    "P-001": { title: "Hope menthol cigarette wrapper / 20", titleZh: "希望牌薄荷烟包装 / 20支", status: "Brand and product type visible", statusZh: "品牌与产品类型可见" }
   };
   const curatedRecordIds = new Set(Object.keys(curatedRecordDetails));
   const scanSource = (window.INVALIDATED_ARCHIVE_ITEMS || []).filter((item) =>
@@ -96,6 +100,62 @@
     }
   };
 
+  const collectionDetailsZh = {
+    food: {
+      date: "日期未决", place: "地区待辨认", function: "分配 / 准入 / 价值",
+      trace: "印刷面额；纸张边缘；使用痕迹",
+      note: "这张票证先作为一条独立材料记录进入档案。它的日期、地域与实际流通仍需逐件核验。",
+      observation: "扫描中可以直接看到印刷面额、纸张边缘、颜色与接触痕迹。",
+      context: "它原来的具体功能、日期与地域，仍需要回到单件物件与来源中查证。",
+      inference: "仅凭扫描图像，不能推断它曾如何流通，也不能代替使用者的生活经验。",
+      question: "当这张票证与其他受规制的纸张并置时，哪些组织关系开始变得可见？"
+    },
+    wrappers: {
+      date: "日期未决", place: "地点待辨认", function: "包装 / 吸引 / 识别",
+      trace: "折痕；颜色；薄印刷纸",
+      note: "包装纸在这里保持自己的尺度，使颜色、字体与被拿取的记忆不会消失在一堆图像之中。",
+      observation: "颜色、字体、折痕与薄印刷纸可以被直接观察。",
+      context: "生产者、商品、日期与流通仍需逐件查证。",
+      inference: "“吸引”是我正在测试的研究关系，不是已经复原的消费者反应。",
+      question: "当商品与用途已经消失，什么仍然继续产生吸引？"
+    },
+    labels: {
+      date: "日期未决", place: "地点待辨认", function: "识别 / 商品图像",
+      trace: "裁切边缘；印刷颜色；表面磨损",
+      note: "这张标签先被作为一个带有图像的独立物件阅读；它的生产者、日期与流通仍在调查。",
+      observation: "裁切边缘、印刷颜色、图像与表面磨损可以被直接观察。",
+      context: "生产者、地点、日期以及它与原商品之间的关系仍待记录。",
+      inference: "识别与价值只是暂定的分析路径，不是历史结论。",
+      question: "一块很小的印刷表面，如何继续组织识别与价值？"
+    },
+    "misc-a": {
+      date: "日期未决", place: "地点待辨认", function: "图像 / 包装 / 识别",
+      trace: "印刷表面；裁切边缘；颜色",
+      note: "这张印刷图像标签被作为单件物件，而不是扫描页的一部分进入档案；身份仍保持开放。",
+      observation: "印刷表面、边缘、颜色与接触痕迹可以被直接观察。",
+      context: "来源未决，因此这条记录暂时停留在档案边界。",
+      inference: "在研究关系获得支持之前，它是否进入核心材料集仍被保留。",
+      question: "在什么条件下，这件物件才应该进入限定材料集？"
+    },
+    "misc-b": {
+      date: "日期未决", place: "地点待辨认", function: "图像 / 包装 / 识别",
+      trace: "印刷表面；册页痕迹；接触痕迹",
+      note: "这张包装或印刷标签从册页中被分离出来，使图像、字体与材料痕迹可以被独立阅读。",
+      observation: "重新扫描后，印刷表面、纸张边缘、颜色与接触痕迹可以被直接观察。",
+      context: "身份与来源仍未解决；记录暂时停留在材料集边界。",
+      inference: "它与识别或价值的可能关系，在获得查证之前仍只是艺术研究命题。",
+      question: "在什么条件下，这件物件才应该进入限定材料集？"
+    }
+  };
+
+  const genericTitleZh = (source) => ({
+    food: "候选票证记录",
+    wrappers: "候选包装纸记录",
+    labels: "候选商品标签记录",
+    "misc-a": "候选印刷物记录",
+    "misc-b": "候选印刷物记录"
+  })[source.collection] || "候选材料记录";
+
   const scannedRecords = scanSource.map((source, index) => {
     const collectionIndex = collectionSeen[source.collection] || 0;
     collectionSeen[source.collection] = collectionIndex + 1;
@@ -108,9 +168,11 @@
     const radialProgress = Math.sqrt((collectionIndex + 1) / collectionTotals[source.collection]);
     const radius = cluster.r * (0.12 + radialProgress * 0.86);
     const details = collectionDetails[source.collection];
+    const detailsZh = collectionDetailsZh[source.collection];
     const curated = curatedRecordDetails[source.id] || {};
     return {
       id: `scan-${source.id.toLowerCase()}`, ref: source.id.replace("-", "–"), title: curated.title || source.title,
+      titleZh: curated.titleZh || genericTitleZh(source),
       kind: "object", scanned: true, featured, collection: source.collection, materialField: details.materialField,
       imageUrl: scanAssetRoot + source.image,
       thumbnailUrl: scanAssetRoot + source.image.replace("archive-items/", "archive-items/thumbnails/"),
@@ -119,6 +181,11 @@
       date: curated.date || details.date, place: curated.place || details.place, function: details.function, trace: details.trace,
       status: curated.status || source.status, note: details.note, question: details.question,
       observation: details.observation, context: details.context, inference: details.inference,
+      dateZh: curated.dateZh || detailsZh.date, placeZh: curated.placeZh || detailsZh.place,
+      functionZh: detailsZh.function, traceZh: detailsZh.trace,
+      statusZh: curated.statusZh || "候选数字记录 · 待逐件核对", noteZh: detailsZh.note,
+      questionZh: detailsZh.question, observationZh: detailsZh.observation,
+      contextZh: detailsZh.context, inferenceZh: detailsZh.inference,
       x: Math.round(cluster.x + Math.cos(angle) * radius),
       y: Math.round(cluster.y + Math.sin(angle) * radius)
     };
@@ -163,9 +230,30 @@
   })[character]);
 
   const materialFieldLabels = {
-    regulated: "Tickets and vouchers",
-    commodity: "Wrappers and labels",
-    peripheral: "Other printed matter / awaiting research"
+    regulated: ["Tickets and vouchers", "票证"],
+    commodity: ["Wrappers and labels", "包装纸与标签"],
+    peripheral: ["Other printed matter / awaiting research", "其他印刷物 / 等待研究"]
+  };
+
+  const renderNodeContents = (button, item) => {
+    const title = itemText(item, "title");
+    button.setAttribute("aria-label", `${item.ref}: ${title}`);
+    if (item.kind === "object") {
+      const existingImage = button.querySelector("img");
+      const imageAttributes = existingImage
+        ? `${existingImage.dataset.src ? `data-src="${existingImage.dataset.src}"` : `src="${existingImage.src}"`}`
+        : item.scanned && !item.featured
+          ? `data-src="${thumbnailUrl(item)}"`
+          : `src="${thumbnailUrl(item)}"`;
+      button.innerHTML = `
+        <span class="archive-node-image"><img ${imageAttributes} alt="" draggable="false" loading="lazy" decoding="async" fetchpriority="low" style="object-position:${item.imagePosition}"></span>
+        <span class="archive-node-ref">${escapeHtml(item.ref)} / ${bilingual("Material record", "材料记录")}</span>
+        <strong>${escapeHtml(title)}</strong>
+        <span class="archive-node-meta">${escapeHtml(itemText(item, "date"))} · ${escapeHtml(itemText(item, "status"))}</span>
+      `;
+    } else {
+      button.innerHTML = `<strong>${escapeHtml(title)}</strong>`;
+    }
   };
 
   const makeNode = (item, index) => {
@@ -176,21 +264,7 @@
     if (item.featured) button.classList.add("archive-node-featured");
     button.dataset.id = item.id;
     button.dataset.index = String(index + 1).padStart(2, "0");
-    button.setAttribute("aria-label", `${item.ref}: ${item.title}`);
-
-    if (item.kind === "object") {
-      const imageAttributes = item.scanned && !item.featured
-        ? `data-src="${thumbnailUrl(item)}"`
-        : `src="${thumbnailUrl(item)}"`;
-      button.innerHTML = `
-        <span class="archive-node-image"><img ${imageAttributes} alt="" draggable="false" loading="lazy" decoding="async" fetchpriority="low" style="object-position:${item.imagePosition}"></span>
-        <span class="archive-node-ref">${escapeHtml(item.ref)} / Material record</span>
-        <strong>${escapeHtml(item.title)}</strong>
-        <span class="archive-node-meta">${escapeHtml(item.date)} · ${escapeHtml(item.status)}</span>
-      `;
-    } else {
-      button.innerHTML = `<strong>${escapeHtml(item.title)}</strong>`;
-    }
+    renderNodeContents(button, item);
 
     button.addEventListener("click", (event) => {
       event.stopPropagation();
@@ -293,8 +367,11 @@
       return collectionDetails[item.collection].terms.some(([, lens]) => lens === state.lens);
     }).length;
     count.textContent = state.view === "grid"
-      ? `Collection field / ${matching.length} working records visible`
-      : `Relation field / ${matching.length} records visible / ${connectedExamples} bounded examples linked`;
+      ? bilingual(`Collection field / ${matching.length} working records visible`, `材料场 / 当前可见${matching.length}条工作记录`)
+      : bilingual(
+        `Relation field / ${matching.length} records visible / ${connectedExamples} bounded examples linked`,
+        `关系场 / 当前可见${matching.length}条记录 / ${connectedExamples}件重点物件带有连线`
+      );
   };
 
   const positionNodes = () => {
@@ -384,20 +461,26 @@
       ? [...related].sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured))).slice(0, 24)
       : related;
     const relationButtons = visibleRelated.length
-      ? visibleRelated.map((entry) => `<li><button type="button" data-related-id="${entry.id}">${escapeHtml(entry.ref)} — ${escapeHtml(entry.title)}</button></li>`).join("")
-      : "<li><button type=\"button\" disabled>No relation under this lens</button></li>";
+      ? visibleRelated.map((entry) => `<li><button type="button" data-related-id="${entry.id}">${escapeHtml(entry.ref)} — ${escapeHtml(itemText(entry, "title"))}</button></li>`).join("")
+      : `<li><button type="button" disabled>${bilingual("No relation under this lens", "当前阅读关系下没有连线")}</button></li>`;
     const relationSummary = item.kind === "term" && related.length > visibleRelated.length
-      ? `<p class="archive-related-summary">${related.length} records enter this working comparison; ${visibleRelated.length} are listed here to keep the field readable.</p>`
+      ? `<p class="archive-related-summary">${bilingual(
+        `${related.length} records enter this working comparison; ${visibleRelated.length} are listed here to keep the field readable.`,
+        `${related.length}条记录进入这次工作比较；这里只列出${visibleRelated.length}条，以保持材料场可读。`
+      )}</p>`
       : "";
 
     if (item.kind === "term") {
       if (recordEvidenceControls) recordEvidenceControls.hidden = true;
       recordContent.innerHTML = `
-        <p class="archive-record-kicker">${escapeHtml(item.ref)} / Provisional term</p>
-        <h1>${escapeHtml(item.title)}</h1>
-        <span class="archive-record-state">Working term / not historical evidence</span>
-        <p>This term opens one temporary route through the material field. A line indicates a proposed comparison only; it does not prove that the objects once shared the same history or use.</p>
-        <span class="archive-related-label">Objects temporarily compared through this term</span>
+        <p class="archive-record-kicker">${escapeHtml(item.ref)} / ${bilingual("Provisional term", "暂定关系词")}</p>
+        <h1>${escapeHtml(itemText(item, "title"))}</h1>
+        <span class="archive-record-state">${bilingual("Working term / not historical evidence", "工作关系词 / 不是历史证据")}</span>
+        <p>${bilingual(
+          "This term opens one temporary route through the material field. A line indicates a proposed comparison only; it does not prove that the objects once shared the same history or use.",
+          "这个关系词只是在材料场中打开一条暂时路径。连线表示我正在提出一种比较，不证明这些物件曾经共享同一段历史或用途。"
+        )}</p>
+        <span class="archive-related-label">${bilingual("Objects temporarily compared through this term", "通过这个关系词暂时并置的物件")}</span>
         ${relationSummary}
         <ul class="archive-related-list">${relationButtons}</ul>
       `;
@@ -406,56 +489,56 @@
       const readingPanels = {
         visible: `
           <div class="archive-reading-panel" data-reading-panel="visible">
-            <span class="archive-reading-panel-label">VISIBLE / DIRECT OBSERVATION</span>
-            <p>${escapeHtml(item.observation)}</p>
+            <span class="archive-reading-panel-label">${bilingual("VISIBLE / DIRECT OBSERVATION", "可见 / 直接观察")}</span>
+            <p>${escapeHtml(itemText(item, "observation"))}</p>
             <dl class="archive-record-data">
-              <div><dt>Trace field</dt><dd>${escapeHtml(item.trace)}</dd></div>
-              <div><dt>Limit</dt><dd>A visible trace cannot by itself recover who used the object or what that use meant.</dd></div>
+              <div><dt>${bilingual("Trace field", "痕迹范围")}</dt><dd>${escapeHtml(itemText(item, "trace"))}</dd></div>
+              <div><dt>${bilingual("Limit", "边界")}</dt><dd>${bilingual("A visible trace cannot by itself recover who used the object or what that use meant.", "可见痕迹本身不能复原谁曾使用它，也不能说明那次使用对人意味着什么。")}</dd></div>
             </dl>
           </div>`,
         recorded: `
           <div class="archive-reading-panel" data-reading-panel="recorded">
-            <span class="archive-reading-panel-label">RECORDED / PRESENT ARCHIVE</span>
-            <p>Only information held by the present working archive is listed here.</p>
+            <span class="archive-reading-panel-label">${bilingual("RECORDED / PRESENT ARCHIVE", "已记录 / 当前工作档案")}</span>
+            <p>${bilingual("Only information held by the present working archive is listed here.", "这里只列出当前工作档案能够支持的信息。")}</p>
             <dl class="archive-record-data">
-              <div><dt>Material field</dt><dd>${escapeHtml(materialFieldLabels[item.materialField])}</dd></div>
-              <div><dt>Archive status</dt><dd>${escapeHtml(item.status)}</dd></div>
-              ${item.sourceFile ? `<div><dt>Scan record</dt><dd>Corpus scan · page ${escapeHtml(item.sourcePage)}</dd></div>` : ""}
+              <div><dt>${bilingual("Material field", "材料范围")}</dt><dd>${escapeHtml(materialFieldLabels[item.materialField][isZh() ? 1 : 0])}</dd></div>
+              <div><dt>${bilingual("Archive status", "档案状态")}</dt><dd>${escapeHtml(itemText(item, "status"))}</dd></div>
+              ${item.sourceFile ? `<div><dt>${bilingual("Scan record", "扫描记录")}</dt><dd>${bilingual("Corpus scan", "材料集扫描")} · ${bilingual("page", "页")} ${escapeHtml(item.sourcePage)}</dd></div>` : ""}
             </dl>
-            <p class="archive-reading-caution">Material field is a current working placement. It is not a final taxonomy.</p>
+            <p class="archive-reading-caution">${bilingual("Material field is a current working placement. It is not a final taxonomy.", "材料范围只是当前工作中的位置，不是最终分类法。")}</p>
           </div>`,
         proposed: `
           <div class="archive-reading-panel archive-reading-panel-proposed" data-reading-panel="proposed">
-            <span class="archive-reading-panel-label">PROVISIONAL / RELATION UNDER TEST</span>
-            <p>${escapeHtml(item.inference)}</p>
+            <span class="archive-reading-panel-label">${bilingual("PROVISIONAL / RELATION UNDER TEST", "暂定 / 正在测试的关系")}</span>
+            <p>${escapeHtml(itemText(item, "inference"))}</p>
             <dl class="archive-record-data">
-              <div><dt>Working route</dt><dd>${escapeHtml(item.function)}</dd></div>
-              <div><dt>Status</dt><dd>Artistic research proposition; not yet supported as object-specific historical evidence.</dd></div>
+              <div><dt>${bilingual("Working route", "工作路径")}</dt><dd>${escapeHtml(itemText(item, "function"))}</dd></div>
+              <div><dt>${bilingual("Status", "状态")}</dt><dd>${bilingual("Artistic research proposition; not yet supported as object-specific historical evidence.", "艺术研究命题；尚未获得这件物件自身的历史证据支持。")}</dd></div>
             </dl>
           </div>`,
         unresolved: `
           <div class="archive-reading-panel archive-reading-panel-unresolved" data-reading-panel="unresolved">
-            <span class="archive-reading-panel-label">UNRESOLVED / RESEARCH REQUIRED</span>
-            <p>${escapeHtml(item.context)}</p>
+            <span class="archive-reading-panel-label">${bilingual("UNRESOLVED / RESEARCH REQUIRED", "未决 / 仍需研究")}</span>
+            <p>${escapeHtml(itemText(item, "context"))}</p>
             <dl class="archive-record-data">
-              <div><dt>Date</dt><dd>${escapeHtml(item.date)}</dd></div>
-              <div><dt>Place</dt><dd>${escapeHtml(item.place)}</dd></div>
-              <div><dt>Still unknown</dt><dd>Object-specific provenance, circulation, handling, and lived relation.</dd></div>
+              <div><dt>${bilingual("Date", "日期")}</dt><dd>${escapeHtml(itemText(item, "date"))}</dd></div>
+              <div><dt>${bilingual("Place", "地点")}</dt><dd>${escapeHtml(itemText(item, "place"))}</dd></div>
+              <div><dt>${bilingual("Still unknown", "仍然未知")}</dt><dd>${bilingual("Object-specific provenance, circulation, handling, and lived relation.", "这件物件的具体来源、流通、接触方式，以及它与日常生活的关系。")}</dd></div>
             </dl>
           </div>`
       };
       recordContent.innerHTML = `
-        <p class="archive-record-kicker">${escapeHtml(item.ref)} / Material record</p>
-        <h1>${escapeHtml(item.title)}</h1>
-        <figure class="archive-record-hero"><img src="${imageUrl(item)}" alt="${escapeHtml(item.title)}" decoding="async" style="object-position:${item.imagePosition}"></figure>
-        <span class="archive-record-state">${escapeHtml(item.status)} / working record</span>
-        <p>${escapeHtml(item.note)}</p>
+        <p class="archive-record-kicker">${escapeHtml(item.ref)} / ${bilingual("Material record", "材料记录")}</p>
+        <h1>${escapeHtml(itemText(item, "title"))}</h1>
+        <figure class="archive-record-hero"><img src="${imageUrl(item)}" alt="${escapeHtml(itemText(item, "title"))}" decoding="async" style="object-position:${item.imagePosition}"></figure>
+        <span class="archive-record-state">${escapeHtml(itemText(item, "status"))} / ${bilingual("working record", "工作记录")}</span>
+        <p>${escapeHtml(itemText(item, "note"))}</p>
         <div class="archive-evidence-key" aria-label="Evidence key">
-          <span>Visible</span><span>Recorded</span><span>Provisional</span><span>Unresolved</span>
+          <span>${bilingual("Visible", "可见")}</span><span>${bilingual("Recorded", "已记录")}</span><span>${bilingual("Provisional", "暂定关系")}</span><span>${bilingual("Unresolved", "未决")}</span>
         </div>
         ${readingPanels[state.readingMode]}
-        <p class="archive-record-question">${escapeHtml(item.question)}</p>
-        <span class="archive-related-label">Working comparison terms in this view</span>
+        <p class="archive-record-question">${escapeHtml(itemText(item, "question"))}</p>
+        <span class="archive-related-label">${bilingual("Working comparison terms in this view", "当前视图中的工作比较关系词")}</span>
         <ul class="archive-related-list">${relationButtons}</ul>
       `;
     }
@@ -518,8 +601,8 @@
   const syncViewControls = () => {
     const gridMode = state.view === "grid";
     field.setAttribute("aria-label", gridMode
-      ? "Browse the candidate archive and select an object"
-      : "Pan, zoom and rearrange the provisional relation field");
+      ? bilingual("Browse the candidate archive and select an object", "浏览候选档案并选择一件物件")
+      : bilingual("Pan, zoom and rearrange the provisional relation field", "平移、缩放并重排暂定关系场"));
     const lensGroup = document.querySelector(".archive-lenses");
     lensGroup?.classList.toggle("is-inactive", gridMode);
     document.querySelectorAll("[data-lens]").forEach((button) => {
@@ -656,6 +739,18 @@
   });
   closeRecord?.addEventListener("click", clearSelection);
   window.addEventListener("resize", resetView, { passive: true });
+
+  let renderedLanguage = document.documentElement.lang;
+  const languageObserver = new MutationObserver((mutations) => {
+    if (!mutations.some((mutation) => mutation.attributeName === "lang")) return;
+    if (renderedLanguage === document.documentElement.lang) return;
+    renderedLanguage = document.documentElement.lang;
+    records.forEach((item) => renderNodeContents(elements.get(item.id), item));
+    syncViewControls();
+    positionNodes();
+    if (state.selected) renderRecord(byId.get(state.selected));
+  });
+  languageObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
 
   syncViewControls();
   positionNodes();
