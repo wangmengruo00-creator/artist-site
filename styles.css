@@ -2717,7 +2717,7 @@ body.landing-page {
 
 /* Skin of Writing: image-led book documentation with a quiet archive rhythm. */
 .skin-project {
-  max-width: 680px;
+  max-width: 620px;
 }
 
 .skin-project.section {
@@ -2729,7 +2729,7 @@ body.landing-page {
 }
 
 .skin-heading {
-  max-width: 480px;
+  max-width: 440px;
   margin: 0 0 clamp(26px, 3vw, 40px) auto;
   padding-left: clamp(26px, 3vw, 34px);
 }
@@ -2756,7 +2756,7 @@ body.landing-page {
 
 .skin-project-meta,
 .skin-project-summary {
-  max-width: 480px;
+  max-width: 440px;
   margin: 0;
   color: var(--muted);
   font-size: 14px;
@@ -2879,8 +2879,8 @@ body.landing-page {
 }
 
 .skin-image-slot-hero {
-  width: min(100%, 520px);
-  min-height: clamp(240px, 36vw, 390px);
+  width: min(100%, 460px);
+  min-height: clamp(210px, 31vw, 345px);
   margin-left: auto;
   aspect-ratio: 4 / 3;
 }
@@ -2969,7 +2969,7 @@ body.landing-page {
 }
 
 .skin-section {
-  margin-top: clamp(42px, 6vw, 64px);
+  margin-top: clamp(36px, 5vw, 54px);
 }
 
 .skin-section-heading {
@@ -3056,9 +3056,9 @@ body.landing-page {
 
 .skin-video-section {
   display: grid;
-  grid-template-columns: minmax(130px, 170px) minmax(0, 620px);
+  grid-template-columns: minmax(120px, 150px) minmax(0, 560px);
   gap: clamp(20px, 3vw, 34px);
-  margin-top: clamp(42px, 6vw, 64px);
+  margin-top: clamp(36px, 5vw, 54px);
   padding-top: 16px;
   border-top: 1px solid var(--line);
 }
@@ -3114,7 +3114,7 @@ body.landing-page {
   grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
   gap: 14px;
   align-items: center;
-  max-width: 700px;
+  max-width: 620px;
   margin: clamp(58px, 7vw, 82px) 0 0 auto;
   padding: 13px 0;
   border-top: 1px solid var(--text);
@@ -3218,7 +3218,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 }
 
 .skin-machine-content {
-  max-width: 700px;
+  max-width: 620px;
   margin-left: auto;
 }
 
@@ -4118,7 +4118,7 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 }
 
 .skin-process {
-  margin-top: clamp(42px, 6vw, 64px);
+  margin-top: clamp(36px, 5vw, 54px);
   padding-top: 16px;
   border-top: 1px solid var(--line);
 }
@@ -4167,6 +4167,19 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
 .skin-image-slot-closing.has-image {
   min-height: 0;
   aspect-ratio: auto;
+}
+
+.skin-section,
+.skin-video-section,
+.skin-process,
+.skin-machine-case,
+.skin-temporal-study,
+.skin-machine-comparison,
+.skin-machine-boundaries,
+.skin-machine-status,
+.skin-project .project-footer-nav {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 520px;
 }
 
 @media (max-width: 760px) {
@@ -4265,8 +4278,8 @@ html[lang="zh-CN"] .skin-machine-chapter h2 {
   }
 
   .skin-image-slot-hero {
-    width: min(100%, 330px);
-    min-height: 280px;
+    width: min(100%, 300px);
+    min-height: 225px;
   }
 
   .skin-interior-grid {
