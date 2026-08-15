@@ -84,7 +84,7 @@
         <figcaption><strong>${escapeHtml(record.id.replace("-", "–"))}</strong><span>${escapeHtml(record.status)}</span></figcaption>
       `;
       if (record.reviewed) {
-        item.setAttribute("aria-label", `Open diagnostic review for ${record.id}`);
+        item.setAttribute("aria-label", `Open draft comparison for ${record.id}`);
         item.addEventListener("click", () => {
           selected = records.find((candidate) => candidate.id === record.id) || selected;
           renderStage();

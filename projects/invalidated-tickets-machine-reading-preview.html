@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Machine-Assisted Diagnostic Reading — The Bureau of Invalidated Tickets</title>
-    <meta name="description" content="A bounded diagnostic comparison of machine and material readings within The Bureau of Invalidated Tickets.">
+    <meta name="description" content="A preliminary 185-record machine-reading pilot examining what computational readings preserve, alter, omit and reconstruct.">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../machine-reading-preview.css">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -14,69 +14,47 @@
       <a href="invalidated-tickets.html">← Project record</a>
       <div>
         <strong>BUREAU / MACHINE-ASSISTED DIAGNOSTIC READING</strong>
-        <span>Run 01 · Bounded review set</span>
+        <span>Run 01 · Preliminary machine-reading pilot</span>
       </div>
-      <p><i aria-hidden="true"></i>Provisional output</p>
+      <p><i aria-hidden="true"></i>Machine run complete · artist validation ongoing</p>
     </header>
 
     <main>
       <nav class="machine-reading-route" aria-label="Research layers">
-        <a href="invalidated-tickets-archive.html"><span>00</span><strong>Wider collection</strong><small>296 working records ↗</small></a>
-        <a href="#collection-field"><span>01</span><strong>Diagnostic subset</strong><small>185 source scans</small></a>
-        <a href="#diagnostic-reading"><span>02</span><strong>Human comparison</strong><small>20-record review set</small></a>
-        <a href="#operational-pilot"><span>03</span><strong>Operational pilot</strong><small>Proposed / not yet run</small></a>
+        <a href="invalidated-tickets-archive.html"><span>00</span><strong>Wider collection</strong><small>318 physical / 296 digital ↗</small></a>
+        <a href="#diagnostic-reading"><span>01</span><strong>Diagnostic comparison</strong><small>20 machine-assisted drafts</small></a>
+        <a href="#collection-field"><span>02</span><strong>Fixed source field</strong><small>185 candidate records</small></a>
+        <a href="#current-limits"><span>03</span><strong>Current limits</strong><small>Artist validation ongoing</small></a>
       </nav>
 
       <section class="machine-reading-intro">
         <div>
-          <p class="machine-reading-kicker">Contextual tracing / RQ1</p>
+          <p class="machine-reading-kicker">When one system reads another</p>
           <h1>Where readings<br>fail to coincide.</h1>
         </div>
         <div class="machine-reading-intro-copy">
           <p>
             A bounded comparison of what machine reading preserves, alters, omits or reconstructs
-            within the 185-record food-related subset drawn from the wider 296-record working collection.
+            within a fixed 185-record ticket-and-voucher subset drawn from the wider 296-record
+            candidate digital field.
           </p>
           <small>
-            Computational output is retained as diagnostic evidence of a reading process. It does
-            not establish provenance, object identity or historical fact.
+            Computational output is retained as diagnostic evidence of a reading process. The 20
+            comparisons are machine-assisted drafts awaiting artist validation; they do not
+            establish provenance, object identity or historical fact.
           </small>
         </div>
       </section>
 
       <section class="machine-reading-register" aria-label="Run register">
-        <div><span>Source field</span><strong>185 scans</strong></div>
-        <div><span>Review set</span><strong>20 records</strong></div>
+        <div><span>Source field</span><strong>185 candidate records</strong></div>
+        <div><span>Draft set</span><strong>20 comparisons</strong></div>
         <div><span>Input condition</span><strong>Fixed / V1</strong></div>
         <div><span>Non-empty OCR</span><strong>184 / 185</strong></div>
-        <div><span>Review pending</span><strong>165 / 185</strong></div>
+        <div><span>Artist validation</span><strong>Pending / ongoing</strong></div>
       </section>
 
-      <section class="machine-reading-corpus" id="collection-field" aria-labelledby="collection-field-title">
-        <div class="machine-reading-corpus-head">
-          <div>
-            <p class="machine-reading-kicker">Diagnostic subset / source register</p>
-            <h2 id="collection-field-title">The 185-record subset remains visible.</h2>
-          </div>
-          <div>
-            <p>
-              185 source scans demonstrate the accumulating material field. They are not presented
-              as 185 completed catalogue entries: some scans contain more than one physical object,
-              and object-level identification remains in progress.
-            </p>
-            <span>Scroll horizontally →</span>
-          </div>
-        </div>
-        <div class="machine-reading-corpus-window" tabindex="0" aria-label="Scrollable field of 185 source scans">
-          <div class="machine-reading-corpus-grid" data-corpus-grid></div>
-        </div>
-        <div class="machine-reading-corpus-key">
-          <span><i></i>Included in Run 01 review set</span>
-          <span><i></i>Source scan / object review pending</span>
-        </div>
-      </section>
-
-      <section class="machine-reading-stage" id="diagnostic-reading" aria-label="Human and machine comparison">
+      <section class="machine-reading-stage" id="diagnostic-reading" aria-label="Machine-assisted draft comparison">
         <div class="machine-reading-object">
           <div class="machine-reading-object-head">
             <span data-record-id>T–027</span>
@@ -96,7 +74,7 @@
 
         <article class="machine-reading-comparison">
           <div class="machine-reading-readable">
-            <p>Visible record / provisional human review</p>
+            <p>Visible record / machine-assisted draft comparison</p>
             <h2 data-record-visible>A faded, vertically oriented printed voucher.</h2>
           </div>
 
@@ -127,10 +105,10 @@
       <section class="machine-reading-index" aria-labelledby="machine-reading-index-title">
         <div class="machine-reading-index-head">
           <div>
-            <p class="machine-reading-kicker">Bounded sample / 20</p>
-            <h2 id="machine-reading-index-title">Review set</h2>
+            <p class="machine-reading-kicker">Bounded draft set / 20</p>
+            <h2 id="machine-reading-index-title">Comparisons awaiting artist validation</h2>
           </div>
-          <div class="machine-reading-filters" role="group" aria-label="Filter review set">
+          <div class="machine-reading-filters" role="group" aria-label="Filter draft comparison set">
             <button class="is-active" type="button" data-filter="all">All</button>
             <button type="button" data-filter="machine-failure">Machine failure</button>
             <button type="button" data-filter="visual-outlier">Visual outlier</button>
@@ -141,24 +119,48 @@
         <div class="machine-reading-grid" data-review-grid></div>
       </section>
 
-      <aside class="machine-reading-boundary" id="operational-pilot">
-        <p>Next research layer / RQ3</p>
+      <section class="machine-reading-corpus" id="collection-field" aria-labelledby="collection-field-title">
+        <div class="machine-reading-corpus-head">
+          <div>
+            <p class="machine-reading-kicker">Fixed subset / source register</p>
+            <h2 id="collection-field-title">The full 185-record source field remains visible.</h2>
+          </div>
+          <div>
+            <p>
+              These candidate digital records are not presented as completed catalogue entries.
+              Some crops contain more than one physical object, and object-level correspondence
+              with the 318-object physical inventory remains under reconciliation.
+            </p>
+            <span>Scroll horizontally →</span>
+          </div>
+        </div>
+        <div class="machine-reading-corpus-window" tabindex="0" aria-label="Scrollable field of 185 candidate digital records">
+          <div class="machine-reading-corpus-grid" data-corpus-grid></div>
+        </div>
+        <div class="machine-reading-corpus-key">
+          <span><i></i>Included in the 20-record draft comparison set</span>
+          <span><i></i>Candidate record / artist validation pending</span>
+        </div>
+      </section>
+
+      <aside class="machine-reading-boundary" id="current-limits">
+        <p>Current research boundary</p>
         <div>
-          <h2>The archive remains. The rule begins to operate.</h2>
+          <h2>The machine run is complete. The research comparison is not.</h2>
           <p>
-            Run 01 documents a fixed diagnostic trial under RQ1. A separate operational pilot will
-            select one relation - allocation or temporal validity - and translate it into a transparent
-            state-transition system with participant actions and a timestamped event log. The pilot
-            will not replace the collection or present OCR as the experiment itself.
+            Run 01 preserves fixed input files, raw OCR, visual features and provisional comparison
+            rules. Its 20 draft comparisons still require artist-led validation, while the remaining
+            165 records remain explicitly pending. A later participant-facing pilot may be tested
+            only if it extends the inquiry; it is not a predetermined endpoint.
           </p>
-          <span>Prototype status / not yet run</span>
+          <span>Phase 01 / machine run complete · artist validation ongoing</span>
         </div>
       </aside>
 
       <section class="machine-reading-version" aria-label="Version record">
-        <div><span>INPUT</span><p>185 fixed scan files with stable identifiers T–001–T–185.</p></div>
-        <div><span>PROCESS</span><p>OCR, measured visual features and provisional comparison rules.</p></div>
-        <div><span>RETAINED</span><p>Raw outputs, code version, review notes and uncertainty remain separately traceable.</p></div>
+        <div><span>INPUT</span><p>185 fixed candidate records with stable identifiers T–001–T–185.</p></div>
+        <div><span>PROCESS</span><p>OCR, a 38-dimensional visual feature set and machine-assisted draft comparisons.</p></div>
+        <div><span>RETAINED</span><p>Raw outputs, code version, draft notes and uncertainty remain separately traceable for artist validation.</p></div>
       </section>
     </main>
 

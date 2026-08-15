@@ -6,6 +6,7 @@
   const record = document.querySelector("[data-archive-record]");
   const recordEmpty = record?.querySelector(".archive-record-empty");
   const recordContent = record?.querySelector(".archive-record-content");
+  const recordEvidenceControls = record?.querySelector("[data-record-evidence-controls]");
   const closeRecord = document.querySelector("[data-close-record]");
 
   if (!field || !stage || !nodesLayer || !canvas || !record || !recordContent) return;
@@ -140,6 +141,22 @@
 
   const imageUrl = (item) => item.imageUrl;
   const thumbnailUrl = (item) => item.thumbnailUrl || item.imageUrl;
+
+  const loadDeferredImage = (image) => {
+    if (!image?.dataset.src) return;
+    image.src = image.dataset.src;
+    image.removeAttribute("data-src");
+  };
+
+  const imageObserver = "IntersectionObserver" in window
+    ? new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        loadDeferredImage(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { root: field, rootMargin: "520px 260px" })
+    : null;
 
   const escapeHtml = (value = "") => String(value).replace(/[&<>'"]/g, (character) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#039;", '"': "&quot;"
@@ -291,8 +308,10 @@
       element.hidden = networkHidden || gridHidden;
       const image = element.querySelector("img[data-src]");
       if (!element.hidden && image) {
-        image.src = image.dataset.src;
-        image.removeAttribute("data-src");
+        if (imageObserver) imageObserver.observe(image);
+        else loadDeferredImage(image);
+      } else if (element.hidden && image && imageObserver) {
+        imageObserver.unobserve(image);
       }
       element.style.left = `${position.x}px`;
       element.style.top = `${position.y}px`;
@@ -372,6 +391,7 @@
       : "";
 
     if (item.kind === "term") {
+      if (recordEvidenceControls) recordEvidenceControls.hidden = true;
       recordContent.innerHTML = `
         <p class="archive-record-kicker">${escapeHtml(item.ref)} / Provisional term</p>
         <h1>${escapeHtml(item.title)}</h1>
@@ -382,6 +402,7 @@
         <ul class="archive-related-list">${relationButtons}</ul>
       `;
     } else {
+      if (recordEvidenceControls) recordEvidenceControls.hidden = false;
       const readingPanels = {
         visible: `
           <div class="archive-reading-panel" data-reading-panel="visible">
@@ -458,6 +479,7 @@
     updateEmphasis();
     recordContent.hidden = true;
     recordEmpty.hidden = false;
+    if (recordEvidenceControls) recordEvidenceControls.hidden = true;
     document.body.classList.remove("is-record-open");
   };
 
@@ -495,6 +517,9 @@
 
   const syncViewControls = () => {
     const gridMode = state.view === "grid";
+    field.setAttribute("aria-label", gridMode
+      ? "Browse the candidate archive and select an object"
+      : "Pan, zoom and rearrange the provisional relation field");
     const lensGroup = document.querySelector(".archive-lenses");
     lensGroup?.classList.toggle("is-inactive", gridMode);
     document.querySelectorAll("[data-lens]").forEach((button) => {

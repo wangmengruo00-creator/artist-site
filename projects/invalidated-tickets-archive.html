@@ -6,13 +6,13 @@
     <title>Bureau Reading System — The Bureau of Invalidated Tickets</title>
     <meta
       name="description"
-      content="A working archive that keeps visible evidence, recorded information, provisional relations, and unresolved questions distinct within The Bureau of Invalidated Tickets by Mengruo Wang."
+      content="A provisional 296-record digital field drawn from an artist-led inventory of 318 physical objects within The Bureau of Invalidated Tickets."
     >
     <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="../archive-network.css">
+    <link rel="stylesheet" href="../archive-network.css?v=20260815-ui3">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   </head>
-  <body class="archive-network-page">
+  <body class="archive-network-page" data-archive-view="grid">
     <header class="archive-topbar">
       <div class="archive-title-block">
         <a class="archive-back" href="invalidated-tickets.html">← Project record</a>
@@ -23,7 +23,7 @@
       </div>
       <div class="archive-status" aria-label="Archive status">
         <span>BIT / WORKING ARCHIVE–01</span>
-        <span><i aria-hidden="true"></i> Open / accumulating / unresolved</span>
+        <span><i aria-hidden="true"></i> 318 physical objects / 296 candidate records</span>
         <a href="invalidated-tickets-machine-reading-preview.html">Run 01 / Diagnostic reading →</a>
       </div>
     </header>
@@ -31,32 +31,35 @@
     <main class="archive-interface">
       <section class="archive-reading-intro" aria-labelledby="archive-reading-title">
         <div>
-          <p>COLLECTION FIELD / 296 DIGITISED WORKING RECORDS</p>
-          <h1 id="archive-reading-title">The whole collected field remains visible.</h1>
+          <p>DIGITAL FIELD / 296 CANDIDATE WORKING RECORDS</p>
+          <h1 id="archive-reading-title">The current digital field remains visible—and provisional.</h1>
         </div>
         <p>
-          The complete working field contains 185 tickets and vouchers, 51 wrappers, 12 product
-          labels, and 48 other printed records. What is visible, recorded, proposed, and unresolved
-          remains deliberately separate as the reading lens changes.
-          <br><br><strong>Working interface model. Record labels are provisional display markers,
-          not completed catalogue entries.</strong>
+          An artist-led inventory identified 318 distinct physical objects. The present interface
+          contains 185 ticket-and-voucher image records, 51 wrapper
+          image records, 12 product-label image records, and 48 other printed-image records. What
+          is visible, recorded, proposed, and unresolved remains deliberately separate.
+          <br><br><strong>These 296 candidate digital records were produced through a mixed
+          computational and manually adjusted extraction workflow. They are not equivalent to the
+          318 physical objects or to completed catalogue entries; object–record correspondence is
+          still being reconciled.</strong>
         </p>
       </section>
 
+      <aside class="archive-authorship-note" aria-label="Interface authorship and research boundary">
+        <span>INTERFACE STATUS / ARTIST-DIRECTED · CODE-ASSISTED</span>
+        <p>
+          Grid and relation views, evidence layers, relation terms and featured examples form a
+          curated navigation system. The network is not an automatically discovered knowledge
+          graph, and its connections do not claim machine-derived historical meaning.
+        </p>
+      </aside>
+
       <section class="archive-controls" aria-label="Archive controls">
-        <div class="archive-control-group archive-reading-modes">
-          <span class="archive-control-label">Evidence layer</span>
-          <div class="archive-segmented" role="group" aria-label="Evidence layer">
-            <button class="is-active" type="button" data-reading-mode="visible" aria-pressed="true">Visible</button>
-            <button type="button" data-reading-mode="recorded" aria-pressed="false">Recorded</button>
-            <button type="button" data-reading-mode="proposed" aria-pressed="false">Provisional</button>
-            <button type="button" data-reading-mode="unresolved" aria-pressed="false">Unresolved</button>
-          </div>
-        </div>
         <div class="archive-control-group">
           <span class="archive-control-label">View</span>
           <div class="archive-segmented" role="group" aria-label="View mode">
-            <button class="is-active" type="button" data-view="grid" aria-pressed="true">All records / 296</button>
+            <button class="is-active" type="button" data-view="grid" aria-pressed="true">Candidate records / 296</button>
             <button type="button" data-view="network" aria-pressed="false">Relation field</button>
           </div>
         </div>
@@ -89,7 +92,8 @@
           </div>
           <div class="archive-field-note">
             <span data-archive-count>Working field / archive accumulating</span>
-            <span>All 296 records remain present · relation lines are limited to 12 bounded examples · select an object to inspect its evidence record</span>
+            <span class="archive-field-guide archive-field-guide-grid">Select an object to inspect its evidence record</span>
+            <span class="archive-field-guide archive-field-guide-network">12 curated examples carry relation lines · drag background to pan · drag nodes to rearrange · scroll to zoom</span>
           </div>
           <div class="archive-zoom archive-zoom-floating" role="group" aria-label="Canvas zoom">
             <button type="button" data-zoom="out" aria-label="Zoom out">−</button>
@@ -100,6 +104,15 @@
         </div>
 
         <aside class="archive-record" data-archive-record aria-live="polite">
+          <div class="archive-record-evidence-controls" data-record-evidence-controls hidden>
+            <span class="archive-control-label">Evidence layer / selected object</span>
+            <div class="archive-segmented" role="group" aria-label="Evidence layer for selected object">
+              <button class="is-active" type="button" data-reading-mode="visible" aria-pressed="true">Visible</button>
+              <button type="button" data-reading-mode="recorded" aria-pressed="false">Recorded</button>
+              <button type="button" data-reading-mode="proposed" aria-pressed="false">Provisional</button>
+              <button type="button" data-reading-mode="unresolved" aria-pressed="false">Unresolved</button>
+            </div>
+          </div>
           <div class="archive-record-empty">
             <p class="archive-record-kicker">Working archive / How to read</p>
             <h1>SELECT AN OBJECT</h1>
@@ -117,8 +130,9 @@
               <span>Visible</span><span>Recorded</span><span>Provisional</span><span>Unresolved</span>
             </div>
             <p class="archive-prototype-note">
-              This interface does not reconstruct a complete history. It makes the current limits
-              of the research visible while the material field continues to grow.
+              This interface does not reconstruct a complete history or resolve the 318-to-296
+              discrepancy. It makes the current limits of the research visible while object-level
+              reconciliation continues.
             </p>
           </div>
           <div class="archive-record-content" hidden></div>
@@ -126,8 +140,8 @@
       </section>
     </main>
 
-    <script src="../assets/invalidated-tickets/archive-items/archive-data.js"></script>
-    <script src="../archive-network.js"></script>
+    <script src="../assets/invalidated-tickets/archive-items/archive-data.js?v=20260814-296"></script>
+    <script src="../archive-network.js?v=20260815-ui1"></script>
     <script src="../language.js"></script>
   </body>
 </html>

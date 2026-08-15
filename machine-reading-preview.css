@@ -503,6 +503,10 @@ button.machine-reading-corpus-item { cursor: pointer; }
 
 .machine-reading-index { padding: 0 0 100px; }
 
+.machine-reading-index + .machine-reading-corpus {
+  margin-top: 0;
+}
+
 .machine-reading-index-head {
   display: flex;
   align-items: end;
