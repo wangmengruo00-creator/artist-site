@@ -7,7 +7,10 @@
   const resetButton = panel.querySelector("[data-study-reset]");
   const startButton = panel.querySelector("[data-study-start]");
   const markButton = panel.querySelector("[data-study-mark]");
+  const replayButton = panel.querySelector("[data-study-replay]");
   const exportButton = panel.querySelector("[data-study-export]");
+  const participantInput = panel.querySelector("[data-study-participant]");
+  const participantLabel = panel.querySelector("[data-study-participant-label]");
   const protocolOutput = panel.querySelector("[data-study-protocol]");
   const phaseOutput = panel.querySelector("[data-study-phase]");
   const timeOutput = panel.querySelector("[data-study-time]");
@@ -27,6 +30,10 @@
     : 30;
 
   const protocols = {
+    free: {
+      en: `Explore the field freely for ${runDuration} seconds. There is no correct movement and no need to produce a particular image.`,
+      zh: `自由探索场域 ${runDuration} 秒。没有正确动作，也不需要生成某种特定图像。`,
+    },
     fast: {
       en: "Make one straight pass across the field in approximately one second. The system will then switch to observation.",
       zh: "用约一秒完成一次穿过场域的直线移动；动作完成后，系统会自动进入观察阶段。",
@@ -56,6 +63,11 @@
       notStarted: "Not started",
       start: `Start ${runDuration}-second run`,
       stop: "Stop run",
+      replay: "Replay recorded paths",
+      replaying: "Replaying",
+      replayComplete: "Replay complete",
+      participantLabel: "Participant code / no names",
+      freeCondition: "Free encounter",
       waitingPhase: "Waiting for a condition",
       readyPhase: "Ready to begin",
       inputPhase: "Input phase — perform the selected action",
@@ -78,6 +90,11 @@
       notStarted: "尚未开始",
       start: `开始 ${runDuration} 秒测试`,
       stop: "停止测试",
+      replay: "重放已记录路径",
+      replaying: "正在重放",
+      replayComplete: "重放完成",
+      participantLabel: "参与者编号 / 不记录姓名",
+      freeCondition: "自由体验",
       waitingPhase: "等待选择测试条件",
       readyPhase: "已准备，可以开始",
       inputPhase: "操作阶段——完成所选动作",
@@ -104,6 +121,7 @@
     traceSamples: [],
     fieldSamples: [],
     observations: [],
+    recordedPaths: [],
     automaticMarks: new Set(),
     latestTrace: null,
     latestField: null,
@@ -112,11 +130,19 @@
     inputCompletionTrace: null,
     protocolDeviation: false,
     protocolCompliance: null,
+    replaying: false,
     statusKey: "notStarted",
   };
 
   const language = () => document.documentElement.lang === "zh-CN" ? "zh" : "en";
   const copy = () => words[language()];
+  const participantCode = () => {
+    const cleaned = String(participantInput?.value || "P00")
+      .toUpperCase()
+      .replace(/[^A-Z0-9_-]/g, "")
+      .slice(0, 12);
+    return cleaned || "P00";
+  };
   const elapsedSeconds = () => state.active
     ? Math.min(runDuration, (performance.now() - state.startedAt) / 1000)
     : Math.max(0, (state.stoppedAt - state.startedAt) / 1000 || 0);
@@ -126,6 +152,7 @@
     const remainder = seconds - minutes * 60;
     return `${String(minutes).padStart(2, "0")}:${remainder.toFixed(1).padStart(4, "0")}`;
   };
+  const clamp = (value, min = 0, max = 1) => Math.max(min, Math.min(max, value));
 
   const setMetric = (name, value) => {
     const output = metricOutputs.get(name);
@@ -167,6 +194,10 @@
     protocolOutput.textContent = state.condition ? protocols[state.condition][language()] : current.choose;
     phaseOutput.textContent = phaseLabel();
     startButton.textContent = state.active ? current.stop : current.start;
+    if (replayButton) replayButton.textContent = current.replay;
+    if (participantLabel) participantLabel.textContent = current.participantLabel;
+    const freeButton = panel.querySelector('[data-study-condition="free"]');
+    if (freeButton) freeButton.textContent = current.freeCondition;
     statusOutput.textContent = current[state.statusKey] || current.notStarted;
     if (state.active) cue.textContent = cueLabel();
     updateComplianceMetric();
@@ -223,6 +254,7 @@
     state.traceSamples = [];
     state.fieldSamples = [];
     state.observations = [];
+    state.recordedPaths = [];
     state.automaticMarks.clear();
     state.latestTrace = null;
     state.latestField = null;
@@ -231,10 +263,12 @@
     state.inputCompletionTrace = null;
     state.protocolDeviation = false;
     state.protocolCompliance = null;
+    state.replaying = false;
     state.statusKey = statusKey;
     timeOutput.textContent = "00:00.0";
     startButton.disabled = !state.condition;
     markButton.disabled = true;
+    if (replayButton) replayButton.disabled = true;
     exportButton.disabled = true;
     cue.hidden = true;
     cue.dataset.phase = state.phase;
@@ -244,6 +278,7 @@
   };
 
   const evaluateCompliance = () => {
+    if (state.condition === "free") return true;
     if (state.protocolDeviation || state.phase !== "observation") return false;
     const trace = state.inputCompletionTrace || state.traceSamples.at(-1);
     if (state.condition === "fast") return Boolean(trace && trace.durationMs <= 1800);
@@ -270,6 +305,7 @@
     statusOutput.textContent = copy()[state.statusKey];
     startButton.textContent = copy().start;
     markButton.disabled = true;
+    if (replayButton) replayButton.disabled = state.recordedPaths.length === 0;
     exportButton.disabled = state.traceSamples.length === 0 && state.fieldSamples.length === 0;
     cue.hidden = true;
     setMetric("observations", String(state.observations.length));
@@ -306,6 +342,7 @@
     statusOutput.textContent = copy().running;
     startButton.textContent = copy().stop;
     markButton.disabled = false;
+    if (replayButton) replayButton.disabled = true;
     state.frame = requestAnimationFrame(tick);
     window.setTimeout(() => document.querySelector("[data-console-close]")?.click(), 180);
   };
@@ -346,8 +383,16 @@
     setMetric("intersections", String(state.latestTrace.intersections));
     if (detail.resolved) {
       state.traceSamples.push({ atSeconds: Number(elapsedSeconds().toFixed(3)), phase: state.phase, ...state.latestTrace });
+      if (detail.trajectory?.points?.length) {
+        state.recordedPaths.push({
+          atSeconds: Number(elapsedSeconds().toFixed(3)),
+          coordinateSpace: detail.trajectory.coordinateSpace,
+          viewport: { ...(detail.trajectory.viewport || {}) },
+          points: detail.trajectory.points.map((point) => ({ ...point })),
+        });
+      }
       exportButton.disabled = false;
-      if (state.phase === "input" && state.condition !== "still") {
+      if (state.phase === "input" && !["still", "free"].includes(state.condition)) {
         const enoughTraces = state.condition === "repeat" ? state.traceSamples.length >= 3 : state.traceSamples.length >= 1;
         if (enoughTraces) setPhase("observation", `${state.traceSamples.length}-trace-input-complete`);
       }
@@ -390,11 +435,84 @@
     }
   });
 
+  const wait = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+
+  const replayRecordedPaths = async () => {
+    if (state.active || state.replaying || state.recordedPaths.length === 0) return;
+    const field = document.querySelector("[data-field-world]");
+    if (!field) return;
+
+    state.replaying = true;
+    state.statusKey = "replaying";
+    statusOutput.textContent = copy().replaying;
+    startButton.disabled = true;
+    if (replayButton) replayButton.disabled = true;
+    exportButton.disabled = true;
+
+    const paths = state.recordedPaths.map((path) => ({
+      ...path,
+      points: path.points.map((point) => ({ ...point })),
+    }));
+    const pathStarts = paths.map((path) => path.atSeconds * 1000 - Number(path.points.at(-1)?.t || 0));
+    const firstStart = Math.min(...pathStarts);
+    const events = [];
+
+    paths.forEach((path, pathIndex) => {
+      const base = Math.max(0, pathStarts[pathIndex] - firstStart);
+      path.points.forEach((point, pointIndex) => {
+        events.push({
+          at: base + Number(point.t || 0),
+          type: pointIndex === 0 ? "pointerdown" : "pointermove",
+          point,
+          pointerId: 700 + pathIndex,
+        });
+      });
+      const last = path.points.at(-1);
+      if (last) events.push({ at: base + Number(last.t || 0) + 12, type: "pointerup", point: last, pointerId: 700 + pathIndex });
+    });
+    events.sort((a, b) => a.at - b.at);
+
+    document.querySelector("[data-console-close]")?.click();
+    window.dispatchEvent(new CustomEvent("tm:study-reset"));
+    await wait(240);
+    const replayStartedAt = performance.now();
+
+    for (const replayEvent of events) {
+      const remaining = replayEvent.at - (performance.now() - replayStartedAt);
+      if (remaining > 0) await wait(remaining);
+      const rect = field.getBoundingClientRect();
+      const clientX = rect.left + clamp(Number(replayEvent.point.x || 0), 0, 1) * rect.width;
+      const clientY = rect.top + clamp(Number(replayEvent.point.y || 0), 0, 1) * rect.height;
+      field.dispatchEvent(new PointerEvent(replayEvent.type, {
+        bubbles: true,
+        cancelable: true,
+        pointerId: replayEvent.pointerId,
+        pointerType: "mouse",
+        isPrimary: true,
+        button: 0,
+        buttons: replayEvent.type === "pointerup" ? 0 : 1,
+        clientX,
+        clientY,
+      }));
+    }
+
+    state.replaying = false;
+    state.statusKey = "replayComplete";
+    statusOutput.textContent = copy().replayComplete;
+    startButton.disabled = !state.condition;
+    if (replayButton) replayButton.disabled = false;
+    exportButton.disabled = false;
+  };
+
+  replayButton?.addEventListener("click", replayRecordedPaths);
+
   exportButton.addEventListener("click", () => {
     const payload = {
-      schema: "three-metamorphoses-study-v3",
+      schema: "three-metamorphoses-study-v4",
       project: "The Three Metamorphoses",
       generatedAt: new Date().toISOString(),
+      participantCode: participantCode(),
+      privacyNote: "Anonymous pilot code only. Do not enter a participant name.",
       condition: state.condition,
       protocol: state.condition ? protocols[state.condition].en : null,
       targetDurationSeconds: runDuration,
@@ -405,6 +523,7 @@
       phaseTransitions: state.phaseTransitions,
       inputCompletionTrace: state.inputCompletionTrace,
       traceSamples: state.traceSamples,
+      recordedPaths: state.recordedPaths,
       fieldSamples: state.fieldSamples,
       observations: state.observations,
       finalTrace: state.latestTrace,
@@ -413,7 +532,7 @@
     const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }));
     const link = document.createElement("a");
     link.href = url;
-    link.download = `three-metamorphoses-${state.condition || "study"}-${Date.now()}.json`;
+    link.download = `three-metamorphoses-${participantCode()}-${state.condition || "study"}-${Date.now()}.json`;
     link.click();
     URL.revokeObjectURL(url);
   });

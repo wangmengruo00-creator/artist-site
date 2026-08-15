@@ -789,7 +789,7 @@
       .study-panel small,
       .study-metric span,
       .study-clock span { color: var(--faint); font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
-      .study-conditions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; margin-top: 17px; background: var(--line); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .study-conditions { display: grid; grid-template-columns: repeat(auto-fit, minmax(105px, 1fr)); gap: 1px; margin-top: 17px; background: var(--line); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
       .study-conditions button,
       .study-actions button { color: inherit; background: var(--panel); border: 0; font-family: var(--mono); font-size: 9px; letter-spacing: 0.06em; line-height: 1.45; text-transform: uppercase; cursor: pointer; }
       .study-conditions button { min-height: 58px; padding: 12px; text-align: left; }
@@ -797,6 +797,10 @@
       .study-conditions button:focus-visible,
       .study-actions button:focus-visible { outline: 1px solid rgba(235, 234, 227, 0.86); outline-offset: -2px; }
       .study-protocol { display: grid; grid-template-columns: minmax(96px, 0.26fr) 1fr; gap: 18px; min-height: 52px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+      .study-participant { display: grid; grid-template-columns: minmax(96px, 0.26fr) 1fr; gap: 18px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--line); }
+      .study-participant span { color: var(--faint); font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
+      .study-participant input { width: min(180px, 100%); padding: 7px 9px; color: var(--paper); background: rgba(235, 234, 227, 0.025); border: 1px solid var(--line); border-radius: 0; font: 10px/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+      .study-participant input:focus { border-color: rgba(235, 234, 227, 0.62); outline: 0; }
       .study-actions { display: flex; flex-wrap: wrap; gap: 1px; margin-top: 14px; background: transparent; }
       .study-actions button { border: 1px solid var(--line); }
       .study-actions button { min-height: 38px; padding: 9px 13px; }
@@ -1547,17 +1551,20 @@
                 <p>The condition constrains the test input, not the participant’s meaning. Each run begins from the same empty field and records operational features for 30 seconds.</p>
               </div>
               <div class="study-conditions" aria-label="Input condition">
+                <button type="button" data-study-condition="free" aria-pressed="false">Free encounter</button>
                 <button type="button" data-study-condition="fast" aria-pressed="false">Fast straight</button>
                 <button type="button" data-study-condition="slow" aria-pressed="false">Slow 5 seconds</button>
                 <button type="button" data-study-condition="still" aria-pressed="false">Still 3 seconds</button>
                 <button type="button" data-study-condition="repeat" aria-pressed="false">Repeat path</button>
               </div>
+              <label class="study-participant"><span data-study-participant-label>Participant code / no names</span><input type="text" value="P01" maxlength="12" autocomplete="off" spellcheck="false" data-study-participant aria-label="Participant code"></label>
               <div class="study-protocol"><small>Current protocol</small><p data-study-protocol>Select one condition. The field will reset before the timed run.</p></div>
               <div class="study-phase"><small>Current phase</small><strong data-study-phase>Waiting for a condition</strong></div>
               <div class="study-actions">
                 <button type="button" data-study-reset>Reset field</button>
                 <button type="button" data-study-start disabled>Start 30-second run</button>
                 <button type="button" data-study-mark disabled>Mark observation</button>
+                <button type="button" data-study-replay disabled>Replay recorded paths</button>
                 <button type="button" data-study-export disabled>Export JSON</button>
               </div>
               <div class="study-readout">
@@ -2295,9 +2302,9 @@
         window.requestAnimationFrame(render);
       })();
     </script>
-    <script src="three-metamorphoses-trace.js?v=20260814-study1"></script>
+    <script src="three-metamorphoses-trace.js?v=20260815-replay1"></script>
     <script src="three-metamorphoses-research-visuals.js?v=20260808-1"></script>
-    <script src="three-metamorphoses-study.js?v=20260814-study3"></script>
+    <script src="three-metamorphoses-study.js?v=20260815-replay1"></script>
     <script src="language.js?v=20260814-study1"></script>
   </body>
 </html>

@@ -64,6 +64,17 @@
 
   const reportForces = (path, resolved = false) => {
     if (!path?.forces) return;
+    const trajectory = resolved
+      ? {
+          coordinateSpace: "normalised-viewport",
+          viewport: { width, height },
+          points: path.points.map((point) => ({
+            x: Number(clamp(point.x / width).toFixed(6)),
+            y: Number(clamp(point.y / height).toFixed(6)),
+            t: Number(Math.max(0, point.time - path.startedAt).toFixed(3)),
+          })),
+        }
+      : null;
     window.dispatchEvent(new CustomEvent("tm:trace-forces", {
       detail: {
         traceId: path.id,
@@ -73,6 +84,7 @@
         repetition: path.repetition || 0,
         novelty: path.novelty || 0,
         features: { ...(path.features || {}) },
+        trajectory,
       },
     }));
   };
