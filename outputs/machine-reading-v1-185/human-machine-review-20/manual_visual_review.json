@@ -1,0 +1,202 @@
+[
+  {
+    "id": "T-027",
+    "visible_record": "A faded, vertically oriented printed voucher. A large vertical denomination remains visible, but the smaller issuer and date lines are not confidently legible from this scan.",
+    "preserved": "The visual model registers it as a dark, vertical, bordered object and groups it with similarly formatted vouchers.",
+    "altered": "No transcription was proposed, so the printed object is reduced to formal image properties.",
+    "omitted": "All text, the vertical reading direction, denomination, seal and signs of age are absent from the OCR record.",
+    "reconstructed": "Its relation to other records is created entirely through colour, border density and format rather than textual meaning.",
+    "assessment": "Productive omission",
+    "next_action": "Re-scan or rotate/crop for a second OCR trial; retain the failed reading as evidence of orientation and fading bias."
+  },
+  {
+    "id": "T-001",
+    "visible_record": "A brown service ticket headed by an issuer line, with 理发票 as the central object type and a printed date line at the bottom; star-like border ornaments frame the ticket.",
+    "preserved": "The OCR retains 理发票 and fragments of the issuer/date structure.",
+    "altered": "Most of the issuer and date are converted into incorrect repeated characters.",
+    "omitted": "The figurative emblem, border pattern, paper tone and the distinction between ornament and writing are not described.",
+    "reconstructed": "Decorative stars and degraded print appear to have been read as repeated language, producing text that is not visibly present.",
+    "assessment": "Core term preserved; ornament-to-text error",
+    "next_action": "Manually transcribe the issuer and date; test an OCR crop that excludes the decorative border."
+  },
+  {
+    "id": "T-024",
+    "visible_record": "A photograph of several stacked banknotes rather than one isolated object. The upper note visibly reads 中国人民银行, 壹分 and 一九五三年.",
+    "preserved": "The OCR detects three text zones and approximately retains the denomination structure.",
+    "altered": "The highly legible banknote text is substantially misrecognised.",
+    "omitted": "The presence of multiple overlapping notes and the vehicle illustration are not represented.",
+    "reconstructed": "The pipeline treats the photograph as a single archival object even though the visible material unit contains several notes.",
+    "assessment": "Segmentation failure and transcription failure",
+    "next_action": "Flag as a multi-object image and split into object-level crops before any catalogue claim."
+  },
+  {
+    "id": "T-054",
+    "visible_record": "贵州省地方粮票, 拾市斤, with 1977 printed below the denomination and an architectural image on the right.",
+    "preserved": "Province and denomination are retained.",
+    "altered": "粮票 is changed to 積票.",
+    "omitted": "The visible year 1977 and the architectural illustration are not extracted.",
+    "reconstructed": "Because the key object-type character is altered, the keyword classifier fails to propose the grain-ticket mode despite other supporting evidence.",
+    "assessment": "One-character error changes classification",
+    "next_action": "Verify the year and add a human correction without overwriting the raw OCR string."
+  },
+  {
+    "id": "T-075",
+    "visible_record": "A single photograph contains at least two separate 黑龙江省粮票 objects with different denominations, colours and dates.",
+    "preserved": "The OCR detects 黑龙江省粮票 and fragments of denominations and numbers from both objects.",
+    "altered": "Several unit and date characters are incorrect.",
+    "omitted": "The boundary between the two physical tickets and the transparent storage sleeve are not encoded.",
+    "reconstructed": "Text from distinct objects is merged into one machine record, creating false numerical combinations.",
+    "assessment": "Multi-object merge",
+    "next_action": "Create separate crops and IDs, while preserving this source image as a record of collection/storage context."
+  },
+  {
+    "id": "T-006",
+    "visible_record": "A saturated green ticket issued by 许昌市食品总厂, with 壹分 as the dominant denomination and a central food-related emblem.",
+    "preserved": "The denomination 壹分 is read correctly.",
+    "altered": "The issuer line is heavily distorted.",
+    "omitted": "The emblem and the relation between red lettering and green ground are not semantically described.",
+    "reconstructed": "It becomes the corpus's strongest visual outlier but is paired with T-007 because their format and colour structure are nearly identical.",
+    "assessment": "Useful visual pairing; weak semantic reading",
+    "next_action": "Treat T-006/T-007 as a test of visual-series detection, not proof of shared provenance."
+  },
+  {
+    "id": "T-007",
+    "visible_record": "A saturated blue ticket issued by 许昌市食品总厂, with 叁分 as the dominant denomination and the same central emblem as T-006.",
+    "preserved": "The denomination 叁分 is read correctly.",
+    "altered": "The issuer is garbled despite being visually comparable to T-006.",
+    "omitted": "The series relationship expressed through repeated layout and emblem is not named by OCR.",
+    "reconstructed": "The visual model correctly makes T-006 its nearest neighbour, while both remain outliers relative to the wider corpus.",
+    "assessment": "Strong formal relation, unverified historical relation",
+    "next_action": "Compare issuer, dimensions and reverse sides before asserting that the pair belongs to one issue."
+  },
+  {
+    "id": "T-137",
+    "visible_record": "A 工农兵晶体管收音机购货券 with a Mao quotation, radio illustration, dotted field and the instruction 盖章有效／过期作废.",
+    "preserved": "Much of the quotation, 工农兵, 收音机 and the validity instruction are detected.",
+    "altered": "晶体管 and several quotation characters are misread.",
+    "omitted": "The prominent object type 购货券 is not retained in the OCR output, and the radio illustration is not semantically recorded.",
+    "reconstructed": "The machine foregrounds ideologically prominent text while missing the small but functionally decisive classification term.",
+    "assessment": "Reading hierarchy differs from object function",
+    "next_action": "Record object function and ideological text as separate evidence layers."
+  },
+  {
+    "id": "T-089",
+    "visible_record": "淄博市细粮票, 贰仟伍佰克（2.5公斤）, dated 1991, with a train image.",
+    "preserved": "Issuer, grain-ticket type, principal denomination and year are mostly retained.",
+    "altered": "The parenthetical metric value is garbled.",
+    "omitted": "The train illustration and its possible relation to regional modernisation are outside the OCR record.",
+    "reconstructed": "It is marked as visually anomalous despite being semantically legible, showing a conflict between textual and formal similarity.",
+    "assessment": "Strong OCR; weak visual-cluster fit",
+    "next_action": "Keep semantic and visual grouping as parallel, non-collapsed classifications."
+  },
+  {
+    "id": "T-132",
+    "visible_record": "A scenic admission ticket with a four-character title arranged in an older directional layout and the clearly visible price 伍元.",
+    "preserved": "The four title characters and 票价伍元 are detected.",
+    "altered": "The OCR follows the characters' left-to-right spatial order; the intended historical reading may run right-to-left.",
+    "omitted": "Reading direction, scenic illustration and the partial neighbouring ticket visible at the top are not encoded.",
+    "reconstructed": "A spatial transcription becomes a proposed linguistic order, demonstrating that OCR directionality is interpretive rather than neutral.",
+    "assessment": "Directional reading conflict",
+    "next_action": "Verify the title historically and preserve both spatial order and interpreted reading order as separate fields."
+  },
+  {
+    "id": "T-103",
+    "visible_record": "吉林省地方粮票, 叁市斤, dated 1975, with a building and cars.",
+    "preserved": "Issuer, object type and denomination are transcribed accurately.",
+    "altered": "No major alteration in the extracted core text.",
+    "omitted": "The visible year 1975 and illustration are absent from the OCR summary.",
+    "reconstructed": "High OCR confidence could imply completion even though a clearly visible date remains missing.",
+    "assessment": "Accurate core, incomplete record",
+    "next_action": "Use it as a positive control while still requiring visual verification of omitted fields."
+  },
+  {
+    "id": "T-118",
+    "visible_record": "上海市粮食局鲜蛋饲料票, 1992年, 宝山区, 50公斤, with a year-use/expiry instruction and stamps.",
+    "preserved": "The main wording, location, date, quantity and validity instruction are accurately retained.",
+    "altered": "No major alteration is evident in the core OCR string.",
+    "omitted": "Stamped marks, illustration, paper wear and their status as later material traces are not distinguished.",
+    "reconstructed": "The OCR presents printed and stamped elements in one textual stream, flattening different moments of inscription.",
+    "assessment": "Strong transcription; temporal layers flattened",
+    "next_action": "Separate printed system record from stamps and later material traces."
+  },
+  {
+    "id": "T-120",
+    "visible_record": "梅溪区供销社煤油供应证, 一九七八年, with an unfilled month field.",
+    "preserved": "The issuer, object type and Chinese-numeral year are accurately retained and normalised to 1978.",
+    "altered": "No major character error in the core reading.",
+    "omitted": "The blank month field is not represented as an evidential absence.",
+    "reconstructed": "The machine records the label 月 but not the meaningful condition that no month was entered.",
+    "assessment": "Text preserved; blankness lost",
+    "next_action": "Add filled/unfilled field status as a material-reading annotation rather than OCR text."
+  },
+  {
+    "id": "T-122",
+    "visible_record": "A 2001 总后勤部物资油料部军用柴油票 for 壹拾升, with detachable stub, vehicle fields, serial number and stamp area.",
+    "preserved": "The object type, issuing body, quantity, year, serial number and most form fields are retained.",
+    "altered": "清票专用章 may conflate a printed/stamped area, and line order follows OCR detection rather than form hierarchy.",
+    "omitted": "The perforation, detachable-stub logic and blank vehicle fields are not represented.",
+    "reconstructed": "A structured operational form becomes a flat sequence of text lines.",
+    "assessment": "Strong OCR; form logic flattened",
+    "next_action": "Model stub/body, blank/filled fields and serial repetition as structural relations."
+  },
+  {
+    "id": "T-083",
+    "visible_record": "淄博市粗粮票, 伍佰克（壹市斤）, dated 1990, with an agricultural machinery illustration.",
+    "preserved": "Issuer, ticket type and 伍佰克 are retained.",
+    "altered": "壹市斤 is read as 壹市厅.",
+    "omitted": "The visible year 1990 and agricultural image are not extracted.",
+    "reconstructed": "A single character substitution turns a unit into a non-unit while the record remains relatively high-confidence.",
+    "assessment": "High-confidence unit error",
+    "next_action": "Require unit-vocabulary validation and compare high-confidence strings against allowed measurement forms."
+  },
+  {
+    "id": "T-012",
+    "visible_record": "北京地下铁道换乘车票, with lines 1/2 transfer use, a 五元 reimbursement value, serial 039457 and a train/station illustration.",
+    "preserved": "The main ticket type, Beijing, transfer function, value and serial number are retained.",
+    "altered": "Several small-print instruction characters are incorrect.",
+    "omitted": "The train/station illustration, stains and the distinction between main ticket and blue 副券 field are not fully described.",
+    "reconstructed": "The keyword protocol correctly proposes transport, while its visual cluster is based on pale layout rather than mobility function.",
+    "assessment": "Correct functional mode; partial small-print error",
+    "next_action": "Keep functional keyword classification separate from visual similarity."
+  },
+  {
+    "id": "T-008",
+    "visible_record": "文化宫电影院入场券, single-number format, 25排17座, number 311, 乙3, with 当场有效／残票作废 and 副券.",
+    "preserved": "The cinema, admission function, number, validity instruction and stub are mostly retained.",
+    "altered": "排 is misread inside the seat reference and one validity character is altered.",
+    "omitted": "The narrow vertical format, red/black hierarchy and torn-paper condition are not semantically recorded.",
+    "reconstructed": "The admission classification is useful, but the OCR line sequence does not reproduce how the ticket guides a reader from venue to seat to validity.",
+    "assessment": "Good object identification; reading sequence flattened",
+    "next_action": "Represent venue, seat, serial and validity as separate fields after manual confirmation."
+  },
+  {
+    "id": "T-047",
+    "visible_record": "巢湖市定点油票, 贰佰伍拾克（半市斤）, dated 一九九〇, with a cooking-oil container illustration.",
+    "preserved": "Issuer, object type, both quantity systems and Chinese-numeral year are accurately retained and normalised.",
+    "altered": "No major alteration is evident in the core reading.",
+    "omitted": "The illustration and decorative security pattern are not represented.",
+    "reconstructed": "Keyword classification proposes commodity/ration, but does not distinguish allocation rule, commodity type and redemption context.",
+    "assessment": "Strong positive control",
+    "next_action": "Use as a reference record for testing unit and date extraction across lower-quality scans."
+  },
+  {
+    "id": "T-094",
+    "visible_record": "郫县猪肉票, 贰市斤, dated 1979, with a green landscape/agricultural illustration and a red stamp.",
+    "preserved": "Object type and denomination are accurately retained.",
+    "altered": "No major alteration in the short OCR string.",
+    "omitted": "The visible year, stamp, illustration and material condition are absent.",
+    "reconstructed": "A short accurate phrase may look complete while most of the object's temporal and material evidence remains unread.",
+    "assessment": "Accurate but materially thin reading",
+    "next_action": "Add date, stamp and condition as independently reviewed evidence fields."
+  },
+  {
+    "id": "T-002",
+    "visible_record": "江苏省结婚补助棉胎专用券, 高邮, 1983, with a large central double-happiness character and an official stamp.",
+    "preserved": "The main phrase, place and year are largely retained.",
+    "altered": "Secondary repeated text is garbled into 江惹省／絮椲票／臺用華.",
+    "omitted": "The central double-happiness symbol, stamp and the social condition of marriage-linked eligibility are not captured by the current keyword protocol.",
+    "reconstructed": "Because the rules do not include 棉胎 or marriage subsidy, a relatively accurate OCR record receives no candidate mode.",
+    "assessment": "Ontology omission rather than OCR failure",
+    "next_action": "Do not merely add a new keyword; first decide whether eligibility occasion should be its own classification dimension."
+  }
+]

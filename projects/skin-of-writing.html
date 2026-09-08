@@ -8,7 +8,7 @@
       name="description"
       content="Skin of Writing grew from a calligraphy practice into a hand-bound artist book about bodily memory, discarded practice sheets, ink, paper, and time."
     >
-    <link rel="stylesheet" href="../styles.css?v=20260815-readability-1">
+    <link rel="stylesheet" href="../styles.css?v=20260907-2">
     <link rel="stylesheet" href="../skin-temporal-reader.css?v=20260815-readability-1">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   </head>
@@ -17,6 +17,7 @@
       <a class="brand" href="../index.html" aria-label="Portfolio home">Mengruo Wang</a>
       <nav class="nav">
         <a aria-current="page" href="../works.html">Works</a>
+        <a href="../practice-learning.html">Practice &amp; Learning</a>
         <a href="../about.html">About</a>
       </nav>
     </header>
@@ -69,6 +70,17 @@
           </div>
           <div class="skin-intro-copy">
             <p>
+              The project starts from ordinary practice residues: repetition, correction,
+              pressure changes, and incomplete attempts. The residue is not treated as waste
+              but as data for memory.
+            </p>
+            <p>
+              After interruption, the hand was able to recover timing, wrist relation, and
+              pressure transitions before language could recover them as clear instructions.
+              This shift from “I remember by saying it” to “the body remembers in action”
+              is the core turn of the study.
+            </p>
+            <p>
               Skin of Writing grew from a calligraphy practice begun in 2025. After pausing
               for two to three months, I returned to the brush and found that movements I
               could no longer fully explain were still present in my hand. The mind had
@@ -109,6 +121,10 @@
               <div><dt>03</dt><dd><strong>Rhythm and return</strong> — running script, a pause in practice, and the discovery of bodily memory</dd></div>
               <div><dt>04</dt><dd><strong>Translation</strong> — discarded sheets, deconstruction, ink and paper experiments, reassembly, and binding</dd></div>
             </dl>
+            <p>
+              Cutting, magnifying, layering, sequencing, and binding do not just display results;
+              they transform how movement memory is made readable through material order.
+            </p>
           </div>
         </section>
 
@@ -265,6 +281,15 @@
             </p>
           </header>
 
+          <div class="skin-machine-subchapter">
+            <p class="eyebrow">Why Machine and Video are Used</p>
+            <div>
+              <h3>Temporal separation, not replacement</h3>
+              <p>Moving-image analysis and geometric reading are added after the object exists. They separate the final surface from the writing event and help mark what is not directly visible.</p>
+              <p>They remain tools for annotation, not the sole standard of artistic or calligraphic judgment.</p>
+            </div>
+          </div>
+
           <div class="skin-section-heading skin-machine-question-heading">
             <p class="eyebrow">Research Question / Computational Translation</p>
             <div>
@@ -332,7 +357,7 @@
               <div class="skin-machine-finding" aria-label="Case 01 key comparison">
                 <span><small>Machine reports</small><strong>19</strong><em>detected endpoint clusters</em></span>
                 <b aria-hidden="true">≠</b>
-                <span><small>Artist recalls</small><strong>Almost none</strong><em>moments of hesitation</em></span>
+                <span><small>Embodied account</small><strong>Almost none</strong><em>moments of hesitation</em></span>
               </div>
 
               <div class="skin-machine-case-primary">
@@ -426,7 +451,17 @@
               <div class="skin-machine-finding" aria-label="Case 02 key comparison">
                 <span><small>Machine reports</small><strong>Dense overlap</strong><em>junction-rich image topology</em></span>
                 <b aria-hidden="true">≠</b>
-                <span><small>Artist recalls</small><strong>One</strong><em>continuous exercise</em></span>
+                <span><small>Temporal record</small><strong>One</strong><em>continuous exercise</em></span>
+              </div>
+
+              <div class="skin-machine-temporal-marks" aria-label="Temporal evidence trace">
+                <span class="eyebrow">Temporal record</span>
+                <div class="skin-machine-mini-track">
+                  <span class="skin-machine-mini-point"><small>Frame 01</small><b></b></span>
+                  <span class="skin-machine-mini-point"><small>Frame 02</small><b></b></span>
+                  <span class="skin-machine-mini-point"><small>Frame 03</small><b></b></span>
+                  <span class="skin-machine-mini-point"><small>Frame 04</small><b></b></span>
+                </div>
               </div>
 
               <div class="skin-machine-case-primary">
@@ -625,9 +660,52 @@
                 </div>
               </section>
 
-              <div class="skin-temporal-limit">
-                <span>Temporal finding</span>
-                <p><strong>A continues, B stops, and C returns.</strong> Machine-readable events do not contain their calligraphic meaning: zero motion is not broken <em>qi</em>, and detected return is not knowledge of why retracing is taboo.</p>
+            <div class="skin-temporal-limit">
+              <span>Temporal finding</span>
+              <p><strong>A continues, B stops, and C returns.</strong> Machine-readable events do not contain their calligraphic meaning: zero motion is not broken <em>qi</em>, and detected return is not knowledge of why retracing is taboo.</p>
+            </div>
+          </section>
+
+            <section class="skin-evidence-chain" aria-labelledby="skin-evidence-chain-title">
+              <div>
+                <p class="eyebrow">Evidence trail</p>
+                <h3 id="skin-evidence-chain-title">One documented chain: Take C in temporal sequence + static outcome</h3>
+              </div>
+              <div class="skin-machine-boundaries skin-evidence-chain-grid">
+                <article class="skin-evidence-step" data-step="1">
+                  <p class="eyebrow">Input</p>
+                  <h3>Recorded writing event</h3>
+                  <p>Take C was recorded in one continuous sequence. In this same sequence, the main form becomes visible around 27.01 s.</p>
+                  <p>Return starts at approximately 28.01 s and continues through final states at 31.98–40.94 s.</p>
+                  <figure class="skin-evidence-figure">
+                    <img loading="lazy" decoding="async" src="../assets/skin-of-writing/08_temporal-study/c-05-final.jpg" alt="Take C final frame after repeated return and rework.">
+                    <figcaption><span>40.94 s</span> final frame</figcaption>
+                  </figure>
+                </article>
+                <article class="skin-evidence-step" data-step="2">
+                  <p class="eyebrow">Machine step</p>
+                  <h3>Geometric extraction applied to the final frame</h3>
+                  <p>The final frame is processed through threshold, edge, skeleton, and feature mapping to isolate endpoint and junction structure.</p>
+                  <p>For this sample, the final structure reports 9 endpoint clusters and 5 junction clusters.</p>
+                </article>
+                <article class="skin-evidence-step" data-step="3">
+                  <p class="eyebrow">Machine output</p>
+                  <h3>Static trace only, time lost</h3>
+                  <p>Geometry confirms a darker, overlapping area in the finished form and the return/rework event, but it is collapsed into the same endpoint/junction structure.</p>
+                  <p>This corresponds to the <strong>A / B / C</strong> comparison row below, used as a pilot proxy for visual convergence.</p>
+                </article>
+                <article class="skin-evidence-step" data-step="4">
+                  <p class="eyebrow">Artist annotation</p>
+                  <h3>Body knowledge that remains outside the image</h3>
+                  <p>The writer reads this trajectory as “return after completion” rather than one continuous formative stroke. That shift explains why the character is experienced as heavy and rigid.</p>
+                  <p>Machine output cannot classify this as a failure of technique or a value judgment by itself.</p>
+                </article>
+                <article class="skin-evidence-step" data-step="5">
+                  <p class="eyebrow">Conclusion</p>
+                  <h3>What is shown, and what is not</h3>
+                  <p><strong>Shown in this pilot sample:</strong> the same final image surface can hide distinct temporal structures.</p>
+                  <p><strong>Not established:</strong> intention, pressure profile, or calligraphic quality ranking.</p>
+                </article>
               </div>
             </section>
 
@@ -661,21 +739,21 @@
                   </tr>
                 </tbody>
               </table>
-              <p class="skin-machine-comparison-note"><strong>Data status.</strong> The A/B/C images are crops from final video frames, not controlled scans. Their near-matching feature counts are a pilot observation about what this geometric representation fails to separate—not statistical proof about calligraphic quality.</p>
+              <p class="skin-machine-comparison-note"><strong>Data status.</strong> A / B / C figures are from final-frame crops rather than matched scan controls. This is a pilot observation only: the representation exposes a specific limitation in separating temporal action, not a claim of statistical calligraphic quality.</p>
             </section>
 
-            <div class="skin-machine-boundaries" aria-label="Limits of computational interpretation">
-              <article>
+            <div class="skin-machine-boundaries skin-interpretation-limits" aria-label="Limits of computational interpretation">
+              <article class="skin-interpretation-cell">
                 <p class="eyebrow">Observed</p>
                 <h3>What can be measured</h3>
                 <p>Edge, width, direction, curvature, junction, endpoint, greyscale, density, recorded duration, lift, and return.</p>
               </article>
-              <article>
+              <article class="skin-interpretation-cell">
                 <p class="eyebrow">Inferred</p>
                 <h3>What can only be proposed</h3>
                 <p>Possible pressure change, overlap, correction, accumulation, and deviation.</p>
               </article>
-              <article>
+              <article class="skin-interpretation-cell">
                 <p class="eyebrow">Requires context</p>
                 <h3>What pixels alone cannot establish</h3>
                 <p>The action that caused a visual quality, felt <em>qi kou</em>, intention, composure, or why the writer experiences a character as alive, heavy, or rigid.</p>
@@ -683,8 +761,9 @@
             </div>
 
             <div class="skin-machine-status">
-              <span>Current phase</span>
-              <strong>Pilot Cases 01–03 / static and moving-image evidence documented</strong>
+              <span>Current status</span>
+              <strong>The book-making process and outputs from static and temporal processing are documented on this page.</strong>
+              <p><strong>Pilot scope:</strong> one artist, one character family, and three controlled temporal instructions. Interpretive analysis remains provisional and depends on the writer’s embodied account.</p>
             </div>
           </div>
         </section>
@@ -696,6 +775,6 @@
       </article>
     </main>
     <script src="../skin-temporal-reader.js?v=20260815-abc-1"></script>
-    <script src="../language.js?v=20260815-readability-1"></script>
+    <script src="../language.js?v=20260907-2"></script>
   </body>
 </html>

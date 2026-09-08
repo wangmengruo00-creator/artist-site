@@ -8,7 +8,7 @@
       name="description"
       content="The Three Metamorphoses, an ongoing interaction and interface study by Mengruo Wang."
     >
-    <link rel="stylesheet" href="styles.css?v=20260721-1">
+    <link rel="stylesheet" href="styles.css?v=20260907-2">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <style>
       :root {
@@ -159,6 +159,17 @@
         color: rgba(239, 238, 232, 0.7);
         font-size: 14px;
         line-height: 1.8;
+      }
+
+      .tm-entry-credit {
+        max-width: 690px;
+        margin: 18px 0 0;
+        color: rgba(239, 238, 232, 0.48);
+        font-family: var(--tm-mono);
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        line-height: 1.6;
+        text-transform: uppercase;
       }
 
       .tm-entry-question {
@@ -983,6 +994,7 @@
                   illustrate. The project asks whether philosophical transformation can be
                   encountered through movement, waiting, language and response.
                 </p>
+                <p class="tm-entry-credit">Artist-directed concept, interaction and visual system · AI-assisted coding and prototyping</p>
               </div>
               <div class="tm-entry-question" aria-label="Opening philosophical prompt">
                 <span>THERE</span><span>CORNER</span><span>HERE</span><span>VOID</span>
@@ -1415,6 +1427,6 @@
       }, { rootMargin: "-25% 0px -48%", threshold: [0, 0.2, 0.5] });
       phaseSections.forEach((section) => phaseObserver.observe(section));
     </script>
-    <script src="language.js"></script>
+    <script src="language.js?v=20260907-2"></script>
   </body>
 </html>

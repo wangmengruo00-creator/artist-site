@@ -1,0 +1,110 @@
+﻿id,selection_reason,image,visible_record_provisional,machine_ocr_raw,ocr_confidence_mean,ocr_candidate_modes,ocr_year_candidates,ocr_measurement_candidates,visual_cluster,cluster_silhouette,visual_outlier_score,preserved,altered,omitted,reconstructed,assessment,next_action
+T-027,No OCR text detected,archive-items/food/t027.webp,"A faded, vertically oriented printed voucher. A large vertical denomination remains visible, but the smaller issuer and date lines are not confidently legible from this scan.",,0.0,,,,1,0.3814391025150964,1.505713543315047,"The visual model registers it as a dark, vertical, bordered object and groups it with similarly formatted vouchers.","No transcription was proposed, so the printed object is reduced to formal image properties.","All text, the vertical reading direction, denomination, seal and signs of age are absent from the OCR record.","Its relation to other records is created entirely through colour, border density and format rather than textual meaning.",Productive omission,Re-scan or rotate/crop for a second OCR trial; retain the failed reading as evidence of orientation and fading bias.
+T-001,Low-confidence OCR; possible service ticket,archive-items/food/t001.webp,"A brown service ticket headed by an issuer line, with 理发票 as the central object type and a printed date line at the bottom; star-like border ornaments frame the ticket.","井飞终产终决齐源县饮食服务公司 專决再决决
+理发票 黟
+其方青产产共产产为一九七七午的肉內肉肉肉失內肉",0.30000001192092896,service_or_payment,,,1,0.08572922224505501,3.271403350669438,The OCR retains 理发票 and fragments of the issuer/date structure.,Most of the issuer and date are converted into incorrect repeated characters.,"The figurative emblem, border pattern, paper tone and the distinction between ornament and writing are not described.","Decorative stars and degraded print appear to have been read as repeated language, producing text that is not visibly present.",Core term preserved; ornament-to-text error,Manually transcribe the issuer and date; test an OCR crop that excludes the decorative border.
+T-024,Low-confidence OCR; unresolved object type,archive-items/food/t024.webp,"A photograph of several stacked banknotes rather than one isolated object. The upper note visibly reads 中国人民银行, 壹分 and 一九五三年.","中國心民銀村
+冚入耀
+晏分",0.30000001192092896,,,,3,0.37983258180145785,2.1668451667134696,The OCR detects three text zones and approximately retains the denomination structure.,The highly legible banknote text is substantially misrecognised.,The presence of multiple overlapping notes and the vehicle illustration are not represented.,The pipeline treats the photograph as a single archival object even though the visible material unit contains several notes.,Segmentation failure and transcription failure,Flag as a multi-object image and split into object-level crops before any catalogue claim.
+T-054,Low-confidence OCR; grain-ticket candidate,archive-items/food/t054.webp,"贵州省地方粮票, 拾市斤, with 1977 printed below the denomination and an architectural image on the right.","贵州省地方積票
+拾市斤
+10",0.30000001192092896,,,拾市斤,3,0.3632318414747019,1.8235192986311222,Province and denomination are retained.,粮票 is changed to 積票.,The visible year 1977 and the architectural illustration are not extracted.,"Because the key object-type character is altered, the keyword classifier fails to propose the grain-ticket mode despite other supporting evidence.",One-character error changes classification,Verify the year and add a human correction without overwriting the raw OCR string.
+T-075,Low-confidence OCR; date and unit ambiguity,archive-items/food/t075.webp,"A single photograph contains at least two separate 黑龙江省粮票 objects with different denominations, colours and dates.","黑龙江省粮票
+飯析斤
+1097
+龙江炒
+4970
+壹市呀
+01",0.30000001192092896,grain_or_food_allocation,,,5,0.1038453336772296,2.6483977582657916,The OCR detects 黑龙江省粮票 and fragments of denominations and numbers from both objects.,Several unit and date characters are incorrect.,The boundary between the two physical tickets and the transparent storage sleeve are not encoded.,"Text from distinct objects is merged into one machine record, creating false numerical combinations.",Multi-object merge,"Create separate crops and IDs, while preserving this source image as a record of collection/storage context."
+T-006,Highest visual-outlier score,archive-items/food/t006.webp,"A saturated green ticket issued by 许昌市食品总厂, with 壹分 as the dominant denomination and a central food-related emblem.","涉最班食品越了，
+壹
+分",0.600000003973643,,,,4,0.2951793589938276,11.275921715233979,The denomination 壹分 is read correctly.,The issuer line is heavily distorted.,The emblem and the relation between red lettering and green ground are not semantically described.,It becomes the corpus's strongest visual outlier but is paired with T-007 because their format and colour structure are nearly identical.,Useful visual pairing; weak semantic reading,"Treat T-006/T-007 as a test of visual-series detection, not proof of shared provenance."
+T-007,Paired visual outlier,archive-items/food/t007.webp,"A saturated blue ticket issued by 许昌市食品总厂, with 叁分 as the dominant denomination and the same central emblem as T-006.","許區市食家总工！
+叁
+分",0.7666666706403097,,,,4,0.3225476665107512,11.275921715233979,The denomination 叁分 is read correctly.,The issuer is garbled despite being visually comparable to T-006.,The series relationship expressed through repeated layout and emblem is not named by OCR.,"The visual model correctly makes T-006 its nearest neighbour, while both remain outliers relative to the wider corpus.","Strong formal relation, unverified historical relation","Compare issuer, dimensions and reverse sides before asserting that the pair belongs to one issue."
+T-137,High visual-outlier score,archive-items/food/t137.webp,"A 工农兵晶体管收音机购货券 with a Mao quotation, radio illustration, dotted field and the instruction 盖章有效／过期作废.","工
+毛主席语录
+領导我們事
+业的核心力量受
+中国共产党。
+指尋我們是
+證的理淪基融髮
+馬克思列宁品义
+工衣兵
+GONG NONG BING
+品仲管
+收音机
+00
+北路芜熊电三广
+盖章有效
+过期作废",0.45000000670552254,,,,2,0.017082552338225667,9.93320864996862,"Much of the quotation, 工农兵, 收音机 and the validity instruction are detected.",晶体管 and several quotation characters are misread.,"The prominent object type 购货券 is not retained in the OCR output, and the radio illustration is not semantically recorded.",The machine foregrounds ideologically prominent text while missing the small but functionally decisive classification term.,Reading hierarchy differs from object function,Record object function and ideological text as separate evidence layers.
+T-089,High visual-outlier score,archive-items/food/t089.webp,"淄博市细粮票, 贰仟伍佰克（2.5公斤）, dated 1991, with a train image.","淄博市細粮票
+2500
+贰仟伍佰克
+182--公5
+2500
+1991",0.7166666686534882,grain_or_food_allocation,1991,贰仟伍佰克,2,-0.03586407931995964,7.193183690517343,"Issuer, grain-ticket type, principal denomination and year are mostly retained.",The parenthetical metric value is garbled.,The train illustration and its possible relation to regional modernisation are outside the OCR record.,"It is marked as visually anomalous despite being semantically legible, showing a conflict between textual and formal similarity.",Strong OCR; weak visual-cluster fit,"Keep semantic and visual grouping as parallel, non-collapsed classifications."
+T-132,High visual-outlier score,archive-items/food/t132.webp,A scenic admission ticket with a four-character title arranged in an older directional layout and the clearly visible price 伍元.,"雲岫古庵
+票价 伍元",0.30000001192092896,,,,2,-0.07219833900397125,6.70579055062663,The four title characters and 票价伍元 are detected.,The OCR follows the characters' left-to-right spatial order; the intended historical reading may run right-to-left.,"Reading direction, scenic illustration and the partial neighbouring ticket visible at the top are not encoded.","A spatial transcription becomes a proposed linguistic order, demonstrating that OCR directionality is interpretive rather than neutral.",Directional reading conflict,Verify the title historically and preserve both spatial order and interpreted reading order as separate fields.
+T-103,Higher-confidence grain-ticket reading,archive-items/food/t103.webp,"吉林省地方粮票, 叁市斤, dated 1975, with a building and cars.","吉林省地方粮票
+叁市斤",1.0,grain_or_food_allocation,,叁市斤,3,0.2737120377573313,2.3735803892970866,"Issuer, object type and denomination are transcribed accurately.",No major alteration in the extracted core text.,The visible year 1975 and illustration are absent from the OCR summary.,High OCR confidence could imply completion even though a clearly visible date remains missing.,"Accurate core, incomplete record",Use it as a positive control while still requiring visual verification of omitted fields.
+T-118,Higher-confidence dated allocation record,archive-items/food/t118.webp,"上海市粮食局鲜蛋饲料票, 1992年, 宝山区, 50公斤, with a year-use/expiry instruction and stamps.","上海市粮食局鲜蛋饲料票
+1992年
+宝山区
+50公斤
+年内使用 过期作废",0.9,grain_or_food_allocation,1992,50公斤,5,0.15147435275063184,2.671249605274651,"The main wording, location, date, quantity and validity instruction are accurately retained.",No major alteration is evident in the core OCR string.,"Stamped marks, illustration, paper wear and their status as later material traces are not distinguished.","The OCR presents printed and stamped elements in one textual stream, flattening different moments of inscription.",Strong transcription; temporal layers flattened,Separate printed system record from stamps and later material traces.
+T-120,Higher-confidence supply-certificate reading,archive-items/food/t120.webp,"梅溪区供销社煤油供应证, 一九七八年, with an unfilled month field.","梅溪区供销社
+煤油供应证
+一九七八年
+月",1.0,commodity_or_ration,1978,,2,-0.1633153253398626,3.109164202888464,"The issuer, object type and Chinese-numeral year are accurately retained and normalised to 1978.",No major character error in the core reading.,The blank month field is not represented as an evidential absence.,The machine records the label 月 but not the meaningful condition that no month was entered.,Text preserved; blankness lost,Add filled/unfilled field status as a material-reading annotation rather than OCR text.
+T-122,Higher-confidence fuel-ticket reading,archive-items/food/t122.webp,"A 2001 总后勤部物资油料部军用柴油票 for 壹拾升, with detachable stub, vehicle fields, serial number and stamp area.","存根
+车型
+车号
+加油员盖章
+0126666
+月/日
+柴油
+总后勤部物资油料部
+军用柴油票
+10
+清票专用章
+地方单位车辆无效
+壹拾升
+0126666
+2001",0.8400000015894572,commodity_or_ration,2001,壹拾升,2,-0.09379258805703618,3.994807671108552,"The object type, issuing body, quantity, year, serial number and most form fields are retained.","清票专用章 may conflate a printed/stamped area, and line order follows OCR detection rather than form hierarchy.","The perforation, detachable-stub logic and blank vehicle fields are not represented.",A structured operational form becomes a flat sequence of text lines.,Strong OCR; form logic flattened,"Model stub/body, blank/filled fields and serial repetition as structural relations."
+T-083,Higher-confidence grain-ticket reading,archive-items/food/t083.webp,"淄博市粗粮票, 伍佰克（壹市斤）, dated 1990, with an agricultural machinery illustration.","淄博市粗粮票
+粗
+伍佰克
+（壹市厅）",0.8250000029802322,grain_or_food_allocation,,伍佰克,2,-0.1946660371162121,3.5323640592693444,"Issuer, ticket type and 伍佰克 are retained.",壹市斤 is read as 壹市厅.,The visible year 1990 and agricultural image are not extracted.,A single character substitution turns a unit into a non-unit while the record remains relatively high-confidence.,High-confidence unit error,Require unit-vocabulary validation and compare high-confidence strings against allowed measurement forms.
+T-012,Transport-mode boundary case,archive-items/food/t012.webp,"北京地下铁道换乘车票, with lines 1/2 transfer use, a 五元 reimbursement value, serial 039457 and a train/station illustration.","北京地下铁道换乘车票
+请日觉遵可地铁现定
+定擎车票本绞
+当日换素有效
+A.358
+039457
+伍元 报销凭证
+1号线、2号线
+萊车专用",0.47777778572506374,transport,,,5,0.2028964328625239,3.2190851932576052,"The main ticket type, Beijing, transfer function, value and serial number are retained.",Several small-print instruction characters are incorrect.,"The train/station illustration, stains and the distinction between main ticket and blue 副券 field are not fully described.","The keyword protocol correctly proposes transport, while its visual cluster is based on pale layout rather than mobility function.",Correct functional mode; partial small-print error,Keep functional keyword classification separate from visual similarity.
+T-008,Admission-ticket boundary case,archive-items/food/t008.webp,"文化宫电影院入场券, single-number format, 25排17座, number 311, 乙3, with 当场有效／残票作废 and 副券.","文化宫电影院
+单号
+25拂17座
+311
+入场券
+乙
+3
+当场有效残票作废
+副券",0.6222222248713175,admission_or_event,,,2,-0.07254583964141613,3.109164202888464,"The cinema, admission function, number, validity instruction and stub are mostly retained.",排 is misread inside the seat reference and one validity character is altered.,"The narrow vertical format, red/black hierarchy and torn-paper condition are not semantically recorded.","The admission classification is useful, but the OCR line sequence does not reproduce how the ticket guides a reader from venue to seat to validity.",Good object identification; reading sequence flattened,"Represent venue, seat, serial and validity as separate fields after manual confirmation."
+T-047,Commodity/ration boundary case,archive-items/food/t047.webp,"巢湖市定点油票, 贰佰伍拾克（半市斤）, dated 一九九〇, with a cooking-oil container illustration.","250
+巢湖市定点油票
+贰佰伍拾克
+（半市斤）一九九〇
+250",0.8600000023841858,commodity_or_ration,1990,半市斤 | 贰佰伍拾克,2,-0.10432241103674891,4.393585103793741,"Issuer, object type, both quantity systems and Chinese-numeral year are accurately retained and normalised.",No major alteration is evident in the core reading.,The illustration and decorative security pattern are not represented.,"Keyword classification proposes commodity/ration, but does not distinguish allocation rule, commodity type and redemption context.",Strong positive control,Use as a reference record for testing unit and date extraction across lower-quality scans.
+T-094,Meat-ticket boundary case,archive-items/food/t094.webp,"郫县猪肉票, 贰市斤, dated 1979, with a green landscape/agricultural illustration and a red stamp.","郫县猪肉票
+贰市斤",0.30000001192092896,commodity_or_ration,,贰市斤,5,0.1414007657831546,1.8201010971006797,Object type and denomination are accurately retained.,No major alteration in the short OCR string.,"The visible year, stamp, illustration and material condition are absent.",A short accurate phrase may look complete while most of the object's temporal and material evidence remains unread.,Accurate but materially thin reading,"Add date, stamp and condition as independently reviewed evidence fields."
+T-002,Commodity/allocation boundary case,archive-items/food/t002.webp,"江苏省结婚补助棉胎专用券, 高邮, 1983, with a large central double-happiness character and an official stamp.","江苏省结婚补助棉胎
+券
+江惹省
+絮椲票
+臺用華
+高邮
+1983",0.6000000068119594,,1983,,5,0.06811311477043931,3.6761748597415846,"The main phrase, place and year are largely retained.",Secondary repeated text is garbled into 江惹省／絮椲票／臺用華.,"The central double-happiness symbol, stamp and the social condition of marriage-linked eligibility are not captured by the current keyword protocol.","Because the rules do not include 棉胎 or marriage subsidy, a relatively accurate OCR record receives no candidate mode.",Ontology omission rather than OCR failure,Do not merely add a new keyword; first decide whether eligibility occasion should be its own classification dimension.
