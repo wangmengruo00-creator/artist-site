@@ -1,0 +1,5 @@
+object,artist_confirmed_collection_status,run,input_condition,detected_regions,mean_detected_region_confidence,main_roman_name,chinese_name_examples,factory_line_summary,context_contamination
+QYH-A,collected as later reprint; not authenticated,Run 1,album sleeve with adjacent material,26,0.4500,QUNYING / HUI,群英會 / 群英舍,NANYANG CIGARETTE / FACTORY HENAN and 河南·南陽卷煙廠出品,光榮-related text and other adjacent strings entered record
+QYH-A,collected as later reprint; not authenticated,Run 2,separate photograph outside sleeve,23,0.5087,QUNYING / HUI,群宾畲 / 群美會,NANYANG CIGARETTE / FACTORY HENAN and 河南·南陽卷煙廠出品,no adjacent wrapper identified in OCR output
+QYH-B,collected as older item; not authenticated,Run 1,album sleeve with adjacent material,18,0.4500,QUNYING / HUI,群兵會 / 群巍價,English factory line fragmented; 南陽卷烟廠出品 retained,album context and reflection remain in image
+QYH-B,collected as older item; not authenticated,Run 2,separate photograph outside sleeve,20,0.4300,QUNYING / HUI,群英會 / 群英會,English factory line remains fragmented; 南陽卷烟廠出品 retained,no adjacent wrapper identified in OCR output

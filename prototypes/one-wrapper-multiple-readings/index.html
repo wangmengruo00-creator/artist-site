@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>One Wrapper Multiple Readings</title>
+    <meta name="description" content="A local viewing prototype for four documented states of one Xiaorensutang sweet wrapper.">
+    <link rel="stylesheet" href="prototype.css">
+  </head>
+  <body>
+    <main class="prototype-shell">
+      <header class="intro">
+        <div>
+          <p class="eyebrow">AFTER USE · WORKING PROTOTYPE</p>
+          <h1>One Wrapper, Multiple Readings</h1>
+        </div>
+        <p class="intro-copy">
+          One physical wrapper, photographed under four documented viewing conditions.
+          Switch the input before opening either reading.
+        </p>
+      </header>
+
+      <nav class="condition-switcher" aria-label="Viewing condition">
+        <button type="button" class="condition-button is-active" data-condition="c1" aria-pressed="true">
+          <span>C1</span> White backing
+        </button>
+        <button type="button" class="condition-button" data-condition="c2" aria-pressed="false">
+          <span>C2</span> Ordinary hand-held
+        </button>
+        <button type="button" class="condition-button" data-condition="c3" aria-pressed="false">
+          <span>C3</span> Against the hand
+        </button>
+        <button type="button" class="condition-button" data-condition="c4" aria-pressed="false">
+          <span>C4</span> Toward strong light
+        </button>
+      </nav>
+
+      <section class="viewer" aria-labelledby="condition-title">
+        <div class="image-stage" id="image-stage">
+          <img id="wrapper-image" draggable="false" alt="The wrapper photographed against a white album page">
+          <div class="zoom-controls" aria-label="Image zoom controls">
+            <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
+            <output id="zoom-level" aria-live="polite">100%</output>
+            <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+            <button type="button" id="zoom-reset">Reset</button>
+          </div>
+        </div>
+
+        <div class="condition-meta">
+          <div>
+            <p class="condition-code" id="condition-code">C1 · DOCUMENTED INPUT</p>
+            <h2 id="condition-title">White backing / album page</h2>
+          </div>
+          <p id="condition-boundary" class="condition-boundary"></p>
+        </div>
+      </section>
+
+      <section class="readings" aria-label="Readings of the current photograph">
+        <details class="reading-panel" id="machine-panel">
+          <summary>
+            <span>Machine record</span>
+            <small>Raw OCR · no correction</small>
+          </summary>
+          <div class="reading-content">
+            <p class="panel-intro" id="machine-note"></p>
+            <div id="ocr-lines" class="ocr-lines"></div>
+            <p class="omission-note">
+              No OCR output was returned for the central stylised Chinese product-name line.
+              Absence from the record does not mean absence from the object.
+            </p>
+          </div>
+        </details>
+
+        <details class="reading-panel" id="artist-panel">
+          <summary>
+            <span>Artist observation</span>
+            <small>Material encounter · not machine output</small>
+          </summary>
+          <div class="reading-content artist-content">
+            <div>
+              <h3>Current state</h3>
+              <p id="state-observation"></p>
+            </div>
+            <div>
+              <h3>Whole-object record</h3>
+              <p>
+                The wrapper feels very light. One side feels smoother than the other.
+                The final central glyph is visibly incomplete: 米 appears beside 广 rather
+                than forming a fully written 糖. These observations do not identify the paper composition.
+              </p>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <details class="reflection" id="reflection-panel">
+        <summary>Artist reflection after operating the prototype</summary>
+        <div class="reflection-grid">
+          <label>
+            <span>What did I notice first, and what appeared after switching states?</span>
+            <textarea data-note="attention" rows="4"></textarea>
+          </label>
+          <label>
+            <span>Did the machine text help me understand the material, or take attention away?</span>
+            <textarea data-note="machine-attention" rows="4"></textarea>
+          </label>
+          <label>
+            <span>What should change to come closer to holding the wrapper?</span>
+            <textarea data-note="change-needed" rows="4"></textarea>
+          </label>
+          <label>
+            <span>One concrete design revision to test next</span>
+            <textarea data-note="design-revision" rows="3"></textarea>
+          </label>
+        </div>
+        <p class="local-note">Notes are saved only in this browser on this device.</p>
+      </details>
+
+      <footer>
+        <p>Prototype status · Four real photographs · Four OCR records · No simulated states · No viewer study</p>
+      </footer>
+    </main>
+
+    <script src="prototype.js"></script>
+  </body>
+</html>

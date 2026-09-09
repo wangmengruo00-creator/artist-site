@@ -1,0 +1,57 @@
+{
+  "date_run": "2026-09-09",
+  "condition": "objects photographed separately outside the album sleeve, against the same wall background",
+  "normalisation": "manual four-corner perspective correction to 1280 x 800 pixels",
+  "identity_boundary": "The artist confirmed that A was collected as a later reprint and B as an older item. These are acquisition descriptions, not authentication or dating conclusions.",
+  "comparison_boundary": "The photographs are more isolated than Run 1 but remain ordinary phone captures rather than calibrated colour or surface measurements.",
+  "samples": [
+    {
+      "id": "QYH-A",
+      "visible_state_label": "cleaner and whiter captured object",
+      "collection_status": "collected as a later reprint (artist-confirmed mapping; not authenticated)",
+      "source": "QYH-A-run2-source.jpg",
+      "corners": [
+        [
+          180,
+          253
+        ],
+        [
+          1450,
+          247
+        ],
+        [
+          1470,
+          1028
+        ],
+        [
+          263,
+          1088
+        ]
+      ]
+    },
+    {
+      "id": "QYH-B",
+      "visible_state_label": "worn and stained captured object",
+      "collection_status": "collected as an older item (artist-confirmed mapping; not authenticated)",
+      "source": "QYH-B-run2-source.jpg",
+      "corners": [
+        [
+          187,
+          226
+        ],
+        [
+          1433,
+          211
+        ],
+        [
+          1464,
+          1013
+        ],
+        [
+          283,
+          1107
+        ]
+      ]
+    }
+  ]
+}

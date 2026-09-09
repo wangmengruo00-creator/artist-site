@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Experiments &amp; Iterations — AFTER USE</title>
+    <meta name="description" content="A growing evidence register for AFTER USE, separating methods, computational and material experiments, case validation and prototype iteration.">
+    <link rel="stylesheet" href="../styles.css?v=20260907-2">
+    <link rel="stylesheet" href="../after-use-experiments.css?v=20260909-1">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  </head>
+  <body class="after-use-experiments-page">
+    <header class="site-header" aria-label="Primary navigation">
+      <a class="brand" href="../index.html" aria-label="Portfolio home">Mengruo Wang</a>
+      <nav class="nav">
+        <a aria-current="page" href="../works.html">Works</a>
+        <a href="../practice-learning.html">Practice &amp; Learning</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </header>
+
+    <main class="aue-index">
+      <a class="aue-back" href="invalidated-tickets.html">← AFTER USE project record</a>
+
+      <header class="aue-hero">
+        <div>
+          <p class="aue-kicker">AFTER USE / GROWING EVIDENCE REGISTER</p>
+          <h1>Experiments<br>&amp; Iterations</h1>
+        </div>
+        <div class="aue-hero-copy">
+          <p>Not every record is an experiment. Methods, machine runs, artist validation and interface decisions are kept separate so that each claim remains traceable.</p>
+          <small>This index grows by adding a standardised record. It does not require a new project-level navigation item for every future test.</small>
+        </div>
+      </header>
+
+      <section class="aue-controls" aria-label="Filter evidence register">
+        <span class="aue-filter-label">Filter by record type</span>
+        <div class="aue-filters" data-aue-filters role="group" aria-label="Record type">
+          <button class="aue-filter is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="aue-filter" type="button" data-filter="method" aria-pressed="false">Method</button>
+          <button class="aue-filter" type="button" data-filter="computational" aria-pressed="false">Computational</button>
+          <button class="aue-filter" type="button" data-filter="validation" aria-pressed="false">Validation</button>
+          <button class="aue-filter" type="button" data-filter="material" aria-pressed="false">Material</button>
+          <button class="aue-filter" type="button" data-filter="prototype" aria-pressed="false">Prototype</button>
+        </div>
+      </section>
+
+      <div class="aue-register-summary">
+        <span data-aue-count>7 records shown</span>
+        <span>Method · Experiment · Validation · Prototype</span>
+      </div>
+
+      <section class="aue-record-list" data-aue-records aria-live="polite"></section>
+
+      <aside class="aue-boundary">
+        <span class="aue-filter-label">Register boundary</span>
+        <p>A completed machine run is not the same as an artist-confirmed conclusion. Acquisition descriptions are not authentication. Image measurements describe captures rather than paper composition. Planned work enters this register only when it is clearly labelled as planned.</p>
+      </aside>
+    </main>
+
+    <script src="../assets/after-use/experiment-registry.js?v=20260909-1"></script>
+    <script src="../after-use-experiments.js?v=20260909-1"></script>
+  </body>
+</html>

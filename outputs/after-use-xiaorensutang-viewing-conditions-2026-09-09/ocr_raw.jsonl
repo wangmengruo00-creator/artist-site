@@ -1,0 +1,4 @@
+{"id":"XST-C1","condition":"white backing / album page","status":"ok","observations":[{"text":"XIAORENSUTANG","confidence":0.30000001192092896},{"text":"长春市第一食品厂","confidence":0.5}]}
+{"id":"XST-C2","condition":"hand-held / ordinary indoor light","status":"ok","observations":[{"text":"XIAORENSUTANE","confidence":0.5},{"text":"长春市第一後品厂","confidence":0.5}]}
+{"id":"XST-C3","condition":"held against the hand","status":"ok","observations":[{"text":"XIAORENSUTANE","confidence":0.5},{"text":"长春市第一食品厂","confidence":1.0}]}
+{"id":"XST-C4","condition":"held toward strong light","status":"ok","observations":[{"text":"XIADRENSUTTAME","confidence":0.30000001192092896},{"text":"长春市第一食品厂","confidence":0.30000001192092896}]}

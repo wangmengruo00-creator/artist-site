@@ -7574,6 +7574,14 @@ html[lang="zh-CN"] .publication-title-en {
   grid-template-columns: minmax(180px, 0.72fr) repeat(2, minmax(260px, 1fr));
 }
 
+.tickets-surface-nav:has(.tickets-surface-studies) {
+  grid-template-columns: minmax(165px, 0.68fr) repeat(3, minmax(210px, 1fr));
+}
+
+.tickets-surface-studies {
+  border-left-color: var(--tickets-blue);
+}
+
 .tickets-surface-experiment {
   border-left: 1px solid rgba(246, 240, 228, 0.28);
   background: #87372d;
@@ -9181,6 +9189,10 @@ html[lang="zh-CN"] .publication-title-en {
 
 @media (max-width: 900px) {
   .tickets-surface-nav:has(.tickets-surface-experiment) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tickets-surface-nav:has(.tickets-surface-studies) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 

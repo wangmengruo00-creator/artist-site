@@ -1,0 +1,89 @@
+{
+  "object": "Sweet wrapper referred to in V7 as Xiaorensutang; exact central Chinese lettering includes an incomplete/nonstandard final glyph",
+  "artist_measured_size_cm": [
+    9.5,
+    6.5
+  ],
+  "date_run": "2026-09-09",
+  "conditions_confirmed_by_artist": true,
+  "normalisation": "C1-C3: manual four-corner perspective correction to 1170 x 800 px. C4: qualitative source photograph retained because two wrapper corners extend beyond the frame.",
+  "boundary": "Observed handling sequence, not a calibrated single-variable material test. C1-C3 metrics describe the captured images after perspective correction and do not identify paper composition or causal effects. C4 is excluded from quantitative comparison.",
+  "samples": [
+    {
+      "id": "XST-C1",
+      "condition": "white backing / album page",
+      "source": "XST-C1-source.jpg",
+      "corners": [
+        [
+          151,
+          279
+        ],
+        [
+          1297,
+          272
+        ],
+        [
+          1261,
+          1060
+        ],
+        [
+          158,
+          1058
+        ]
+      ]
+    },
+    {
+      "id": "XST-C2",
+      "condition": "hand-held / ordinary indoor light",
+      "source": "XST-C2-source.jpg",
+      "corners": [
+        [
+          102,
+          437
+        ],
+        [
+          834,
+          408
+        ],
+        [
+          837,
+          934
+        ],
+        [
+          113,
+          969
+        ]
+      ]
+    },
+    {
+      "id": "XST-C3",
+      "condition": "held against the hand",
+      "source": "XST-C3-source.jpg",
+      "corners": [
+        [
+          132,
+          103
+        ],
+        [
+          1088,
+          113
+        ],
+        [
+          1088,
+          819
+        ],
+        [
+          136,
+          876
+        ]
+      ]
+    },
+    {
+      "id": "XST-C4",
+      "condition": "held toward strong light",
+      "source": "XST-C4-source.jpg",
+      "corners": null,
+      "comparison_note": "Qualitative evidence only: two wrapper corners extend beyond the photograph, so a full-boundary perspective correction is not supportable."
+    }
+  ]
+}
