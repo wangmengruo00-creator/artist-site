@@ -14,7 +14,7 @@
       href="../assets/invalidated-tickets/curated/bureau-material-field.webp"
       fetchpriority="high"
     >
-    <link rel="stylesheet" href="../styles.css?v=20260907-2">
+    <link rel="stylesheet" href="../styles.css?v=20260909-5">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../research-navigation.css">
   </head>
@@ -125,6 +125,110 @@
             <b aria-hidden="true">↗</b>
           </a>
         </nav>
+
+        <section class="tickets-concept-map" aria-labelledby="tickets-concept-map-title">
+          <header class="tickets-loop-heading">
+            <p class="eyebrow">AFTER USE / SYSTEM OVERVIEW</p>
+            <h2 id="tickets-concept-map-title">Artist-guided reading &amp; reorganisation</h2>
+            <p>Material evidence · machine suggestions · artist judgement</p>
+          </header>
+
+          <div class="tickets-loop-counts" aria-label="Verified workflow scope">
+            <span><b>318</b>physical objects</span>
+            <span><b>296</b>candidate digital records</span>
+            <span><b>185</b>fixed computational subset</span>
+            <span><b>184 / 185</b>non-empty OCR</span>
+            <span><b>20</b>draft review records</span>
+          </div>
+
+          <div class="tickets-loop-diagram" role="img" aria-label="Material and digital records enter machine reading and a provisional review record. The artist compares selected cases with physical evidence, then confirms, corrects or leaves them pending. Artist instructions may lead to an assisted update and controlled rerun. Selected relations may enter a viewing prototype and proposed material reorganisation.">
+            <aside class="tickets-loop-checks">
+              <span>Selected evidence checks</span>
+              <strong>Physical cross-check · viewing conditions</strong>
+              <small>Applied to selected cases</small>
+            </aside>
+
+            <div class="tickets-loop-core">
+              <article class="tickets-loop-step is-material">
+                <span>01</span>
+                <h3>Material &amp; digital records</h3>
+                <p>Objects · images · identifiers · source context</p>
+              </article>
+              <i aria-hidden="true">→</i>
+              <article class="tickets-loop-step is-machine">
+                <span>02</span>
+                <h3>Machine reading</h3>
+                <p>OCR · 38-dimensional visual features · provisional grouping</p>
+              </article>
+              <i aria-hidden="true">→</i>
+              <article class="tickets-loop-step is-record">
+                <span>03</span>
+                <h3>Review record</h3>
+                <p>Transcription · grouping · uncertainty</p>
+              </article>
+              <i aria-hidden="true">→</i>
+              <article class="tickets-loop-step is-artist">
+                <span>04 / ARTIST DECISION POINT</span>
+                <h3>Artist review</h3>
+                <p>Compare with the physical object and documented sources. Confirm, correct or leave pending.</p>
+              </article>
+            </div>
+
+            <div class="tickets-loop-scope">
+              <b>Workflow scope</b>
+              <span>Machine operations require verification against the run records.</span>
+            </div>
+
+            <div class="tickets-loop-branches" aria-label="Artist review outcomes">
+              <article class="tickets-loop-branch is-correct">
+                <header><b aria-hidden="true">✎</b><span>Correct</span></header>
+                <div><strong>Artist instruction</strong></div>
+                <i aria-hidden="true">↓</i>
+                <div>
+                  <strong>Codex-assisted update</strong>
+                  <small>Implement an artist-specified change to the record, code or interface</small>
+                </div>
+                <i aria-hidden="true">↓</i>
+                <div class="tickets-loop-gate">
+                  <strong>Artist decides:<br>rerun needed?</strong>
+                </div>
+              </article>
+
+              <article class="tickets-loop-branch is-pending">
+                <header><b aria-hidden="true">?</b><span>Leave pending</span></header>
+                <div>
+                  <strong>Uncertainty retained</strong>
+                  <small>Missing or unverified information is not converted into fact</small>
+                </div>
+              </article>
+
+              <article class="tickets-loop-branch is-confirm">
+                <header><b aria-hidden="true">✓</b><span>Confirm</span></header>
+                <div><strong>Selected working record or relation</strong></div>
+                <i aria-hidden="true">↓</i>
+                <div>
+                  <strong>Viewing prototype</strong>
+                  <small>Ongoing · when selected by the artist</small>
+                </div>
+                <i class="is-proposed-arrow" aria-hidden="true">↓</i>
+                <div class="is-proposed">
+                  <strong>Further material reorganisation</strong>
+                  <small>Proposed · making · publication · spatial presentation</small>
+                </div>
+              </article>
+            </div>
+
+            <div class="tickets-loop-feedback">
+              <p><b>↶ Yes / controlled rerun</b><span>Return one artist-selected parameter to machine reading</span></p>
+              <p><b>↻ No / review updated record</b><span>Return to artist review; inspect and reconsider</span></p>
+            </div>
+          </div>
+
+          <footer class="tickets-loop-boundary">
+            <p><b>System boundary</b> Human-mediated workflow, not a single automated system. Further material reorganisation remains proposed.</p>
+            <p><b>Review status</b> Selected cases confirmed; full validation of the 20-record draft comparison set remains pending.</p>
+          </footer>
+        </section>
 
         <section class="tickets-section tickets-origin" aria-labelledby="tickets-origin-title">
           <div class="tickets-section-heading">
