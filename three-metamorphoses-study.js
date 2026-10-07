@@ -35,20 +35,28 @@
       zh: `自由探索场域 ${runDuration} 秒。没有正确动作，也不需要生成某种特定图像。`,
     },
     fast: {
-      en: "Make one straight pass across the field in approximately one second. The system will then switch to observation.",
-      zh: "用约一秒完成一次穿过场域的直线移动；动作完成后，系统会自动进入观察阶段。",
+      en: "Make one straight pass across the field in approximately one second, then release immediately. Do not continue drawing for the full timer; the remaining time is for observation.",
+      zh: "用约一秒完成一次穿过场域的直线移动，然后立刻松开。不要持续画满倒计时；剩余时间用于观察。",
     },
     slow: {
-      en: "Follow one continuous path for approximately five seconds, keeping the direction as stable as possible.",
-      zh: "用约五秒完成一条连续路径，并尽量保持方向稳定；完成后系统会自动进入观察阶段。",
+      en: "Draw one continuous path for approximately five seconds, keeping the direction stable, then release immediately. The remaining time is for observation.",
+      zh: "用约五秒完成一条连续路径并尽量保持方向稳定，然后立刻松开。剩余时间用于观察。",
     },
     still: {
       en: "Move once to establish a position, then keep the pointer still. After three seconds the system will switch to observation.",
       zh: "先移动一次以建立位置，随后保持指针静止；三秒后系统会自动进入观察阶段。",
     },
     repeat: {
-      en: "Traverse the same path exactly three times. Release after the third path; when the message changes, stop moving and observe.",
-      zh: "沿同一路径恰好移动三次。第三条路径完成后松开；提示变化时停止移动，只进行观察。",
+      en: "Within this single timed run, record three separate paths along the same route: press-drag A→B and release; press-drag B→A and release; then press-drag A→B and release. After the third release, stop moving and observe.",
+      zh: "在同一次计时中，沿同一路线记录三条独立路径：按住从 A→B 拖动后松开；按住沿原路从 B→A 拖回后松开；再按住沿原路从 A→B 拖动后松开。第三次松开后停止移动，只进行观察。",
+    },
+    turn: {
+      en: "Draw one shape only: hold while making at least five sharp turns and one crossing, then release as soon as the shape is complete. Do not draw for the full timer; the remaining time is for observation.",
+      zh: "只绘制一条完整路径：按住并完成至少五次明显转向和一次自交，形状完成后立刻松开。不要持续画满倒计时；剩余时间用于观察。",
+    },
+    explore: {
+      en: "Draw one long continuous path through unused areas for approximately four seconds, then release immediately. Avoid crossing or retracing; the remaining time is for observation.",
+      zh: "用约四秒绘制一条经过未使用区域的连续长路径，然后立刻松开。避免自交或重复已有路径；剩余时间用于观察。",
     },
   };
 
@@ -73,6 +81,7 @@
       inputPhase: "Input phase — perform the selected action",
       observationPhase: "Observation phase — do not add movement",
       inputCue: "Input phase — follow the selected action now",
+      singlePathCue: "One path only — release as soon as the action is complete; do not draw until the timer ends",
       observationCue: "Action complete — observe only; please do not move the pointer",
       repeatObservationCue: "Three paths recorded — stop moving now and observe the field",
       compliant: "Followed",
@@ -100,12 +109,34 @@
       inputPhase: "操作阶段——完成所选动作",
       observationPhase: "观察阶段——请不要继续移动",
       inputCue: "操作阶段——现在完成所选动作",
+      singlePathCue: "只画一条路径——动作完成后立刻松开，不需要持续画到倒计时结束",
       observationCue: "动作完成——只需观察，请不要再移动指针",
       repeatObservationCue: "已记录三条路径——现在停止移动，只观察场域",
       compliant: "已按流程完成",
       deviated: "操作后仍有移动",
       incomplete: "操作未完成",
       pending: "等待判断",
+    },
+  };
+
+  const conditionNames = {
+    en: {
+      free: "FREE",
+      fast: "FAST",
+      slow: "SLOW",
+      still: "STILL",
+      repeat: "REPEAT",
+      turn: "TURN",
+      explore: "EXPLORE",
+    },
+    zh: {
+      free: "自由体验",
+      fast: "快速 FAST",
+      slow: "缓慢 SLOW",
+      still: "停留 STILL",
+      repeat: "重复 REPEAT",
+      turn: "转向 TURN",
+      explore: "探索 EXPLORE",
     },
   };
 
@@ -136,6 +167,8 @@
 
   const language = () => document.documentElement.lang === "zh-CN" ? "zh" : "en";
   const copy = () => words[language()];
+  const conditionLabel = () => state.condition ? conditionNames[language()][state.condition] : "";
+  const startLabel = () => state.condition ? `${conditionLabel()} · ${copy().start}` : copy().start;
   const participantCode = () => {
     const cleaned = String(participantInput?.value || "P00")
       .toUpperCase()
@@ -167,9 +200,29 @@
     return current.waitingPhase;
   };
 
+  const repeatInputCue = () => {
+    const recorded = Math.min(2, state.traceSamples.length);
+    const instructions = language() === "zh"
+      ? [
+          "第 1/3 条：按住从 A 拖到 B，然后松开",
+          "已记录 1/3。第 2/3 条：按住沿原路从 B 拖回 A，然后松开",
+          "已记录 2/3。第 3/3 条：按住沿原路从 A 拖到 B，然后松开",
+        ]
+      : [
+          "Path 1/3: press and drag from A to B, then release",
+          "Recorded 1/3. Path 2/3: press and drag back from B to A, then release",
+          "Recorded 2/3. Path 3/3: press and drag from A to B, then release",
+        ];
+    return instructions[recorded];
+  };
+
   const cueLabel = () => {
     const current = copy();
-    if (state.phase !== "observation") return current.inputCue;
+    if (state.phase !== "observation") {
+      if (state.condition === "repeat") return `${conditionLabel()} — ${repeatInputCue()}`;
+      if (["fast", "slow", "turn", "explore"].includes(state.condition)) return `${conditionLabel()} — ${current.singlePathCue}`;
+      return current.inputCue;
+    }
     return state.condition === "repeat" ? current.repeatObservationCue : current.observationCue;
   };
 
@@ -181,7 +234,7 @@
   };
 
   const clearMetrics = () => {
-    ["speed", "curvature", "repetition", "duration", "intersections", "density", "directionStrength"].forEach((name) => setMetric(name, "—"));
+    ["speed", "curvature", "repetition", "novelty", "duration", "intersections", "density", "directionStrength"].forEach((name) => setMetric(name, "—"));
     setMetric("residueCount", "0");
     setMetric("observations", String(state.observations.length));
     setMetric("pointerDistance", "0 px");
@@ -191,9 +244,9 @@
 
   const updateLanguage = () => {
     const current = copy();
-    protocolOutput.textContent = state.condition ? protocols[state.condition][language()] : current.choose;
+    protocolOutput.textContent = state.condition ? `${conditionLabel()} — ${protocols[state.condition][language()]}` : current.choose;
     phaseOutput.textContent = phaseLabel();
-    startButton.textContent = state.active ? current.stop : current.start;
+    startButton.textContent = state.active ? current.stop : startLabel();
     if (replayButton) replayButton.textContent = current.replay;
     if (participantLabel) participantLabel.textContent = current.participantLabel;
     const freeButton = panel.querySelector('[data-study-condition="free"]');
@@ -285,6 +338,8 @@
     if (state.condition === "slow") return Boolean(trace && trace.durationMs >= 3000 && trace.durationMs <= 8000);
     if (state.condition === "still") return Number(state.latestField?.longestStillnessMs || 0) >= 3000;
     if (state.condition === "repeat") return state.traceSamples.length >= 3 && Number(trace?.repetition || 0) >= 0.35;
+    if (state.condition === "turn") return Boolean(trace && (trace.curvature >= 0.28 || trace.peakTurn >= 1.2) && trace.intersections >= 1);
+    if (state.condition === "explore") return Boolean(trace && trace.durationMs >= 2500 && trace.novelty >= 0.7 && trace.repetition <= 0.2);
     return false;
   };
 
@@ -303,13 +358,21 @@
     }
     timeOutput.textContent = formatTime(completed ? runDuration : elapsedSeconds());
     statusOutput.textContent = copy()[state.statusKey];
-    startButton.textContent = copy().start;
+    startButton.textContent = startLabel();
     markButton.disabled = true;
     if (replayButton) replayButton.disabled = state.recordedPaths.length === 0;
     exportButton.disabled = state.traceSamples.length === 0 && state.fieldSamples.length === 0;
     cue.hidden = true;
     setMetric("observations", String(state.observations.length));
     updateComplianceMetric();
+    window.dispatchEvent(new CustomEvent("tm:study-stop", {
+      detail: {
+        participantCode: participantCode(),
+        condition: state.condition,
+        completed,
+        durationSeconds: Number(elapsedSeconds().toFixed(3)),
+      },
+    }));
   };
 
   const tick = () => {
@@ -344,6 +407,13 @@
     markButton.disabled = false;
     if (replayButton) replayButton.disabled = true;
     state.frame = requestAnimationFrame(tick);
+    window.dispatchEvent(new CustomEvent("tm:study-start", {
+      detail: {
+        participantCode: participantCode(),
+        condition: state.condition,
+        durationSeconds: runDuration,
+      },
+    }));
     window.setTimeout(() => document.querySelector("[data-console-close]")?.click(), 180);
   };
 
@@ -379,6 +449,7 @@
     setMetric("speed", `${state.latestTrace.speed.toFixed(3)} px/ms`);
     setMetric("curvature", state.latestTrace.curvature.toFixed(3));
     setMetric("repetition", `${(state.latestTrace.repetition * 100).toFixed(1)}%`);
+    setMetric("novelty", `${(state.latestTrace.novelty * 100).toFixed(1)}%`);
     setMetric("duration", `${(state.latestTrace.durationMs / 1000).toFixed(2)} s`);
     setMetric("intersections", String(state.latestTrace.intersections));
     if (detail.resolved) {
@@ -391,6 +462,7 @@
           points: detail.trajectory.points.map((point) => ({ ...point })),
         });
       }
+      cue.textContent = cueLabel();
       exportButton.disabled = false;
       if (state.phase === "input" && !["still", "free"].includes(state.condition)) {
         const enoughTraces = state.condition === "repeat" ? state.traceSamples.length >= 3 : state.traceSamples.length >= 1;
@@ -410,12 +482,24 @@
       longestStillnessMs: Number(detail.longestStillnessMs || 0),
       pointerMoveCount: Number(detail.pointerMoveCount || 0),
       pointerDistance: Number(detail.pointerDistance || 0),
+      localRelations: {
+        sampleCount: Number(detail.localRelations?.sampleCount || 0),
+        weightMean: Number(detail.localRelations?.weightMean || 0),
+        frictionMean: Number(detail.localRelations?.frictionMean || 0),
+        playMean: Number(detail.localRelations?.playMean || 0),
+        weightMax: Number(detail.localRelations?.weightMax || 0),
+        frictionMax: Number(detail.localRelations?.frictionMax || 0),
+        playMax: Number(detail.localRelations?.playMax || 0),
+      },
     };
     setMetric("density", state.latestField.density.toFixed(4));
     setMetric("directionStrength", state.latestField.directionStrength.toFixed(4));
     setMetric("residueCount", String(state.latestField.residueCount));
     setMetric("pointerDistance", `${Math.round(state.latestField.pointerDistance)} px`);
     setMetric("longestStillness", `${(state.latestField.longestStillnessMs / 1000).toFixed(1)} s`);
+    setMetric("localWeight", state.latestField.localRelations.weightMean.toFixed(3));
+    setMetric("localFriction", state.latestField.localRelations.frictionMean.toFixed(3));
+    setMetric("localPlay", state.latestField.localRelations.playMean.toFixed(3));
     state.fieldSamples.push({ atSeconds: Number(elapsedSeconds().toFixed(3)), phase: state.phase, ...state.latestField });
     if (state.phase === "input" && state.condition === "still" && state.latestField.pointerMoveCount > 0 && state.latestField.idleForMs >= 3000) {
       setPhase("observation", "three-seconds-still");
@@ -508,7 +592,7 @@
 
   exportButton.addEventListener("click", () => {
     const payload = {
-      schema: "three-metamorphoses-study-v4",
+      schema: "three-metamorphoses-study-v5",
       project: "The Three Metamorphoses",
       generatedAt: new Date().toISOString(),
       participantCode: participantCode(),
@@ -520,6 +604,10 @@
       protocolFollowed: state.protocolCompliance,
       protocolDeviation: state.protocolDeviation,
       conceptualBoundary: "The condition constrains the test input, not the participant's meaning or identity.",
+      temporalScales: {
+        trajectory: "Completed gesture features mapped to Weight, Friction and Play.",
+        field: "Continuous local accumulation, rupture and emergence mapped to residue and flow.",
+      },
       phaseTransitions: state.phaseTransitions,
       inputCompletionTrace: state.inputCompletionTrace,
       traceSamples: state.traceSamples,

@@ -164,12 +164,20 @@
     const fastMovement = clamp(speed / 1.45);
     const longDuration = clamp(duration / 6500);
     const directionalContinuity = clamp(1 - curvature / 0.9);
+    const spatialReach = clamp(distance / Math.max(width, height));
+    const exploratoryDuration = clamp(duration / 6500);
 
     // The three relations remain independent: one does not need to diminish for
     // another to become present. They describe the path-field relation, not a person.
     const weight = clamp(0.08 + slowMovement * 0.44 + repetition * 0.5 + longDuration * 0.22);
     const friction = clamp(0.05 + fastMovement * 0.2 + clamp(curvature / 0.72) * 0.5 + clamp(peakTurn / 2.3) * 0.24 + intersectionSignal * 0.22);
-    const play = clamp(0.08 + novelty * 0.7 + directionalContinuity * 0.16 + clamp(distance / Math.max(width, height)) * 0.12);
+    const play = clamp(
+      0.06
+      + novelty * 0.48
+      + directionalContinuity * 0.1
+      + spatialReach * 0.1
+      + exploratoryDuration * 0.12,
+    );
 
     path.distance = distance;
     path.duration = duration;

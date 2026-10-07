@@ -31,6 +31,15 @@
   let studyPointerDistance = 0;
   let studyLongestStillness = 0;
   let studyHasMovement = false;
+  let studyLocalRelations = {
+    sampleCount: 0,
+    weightSum: 0,
+    frictionSum: 0,
+    playSum: 0,
+    weightMax: 0,
+    frictionMax: 0,
+    playMax: 0,
+  };
   let hideUiTimer = 0;
   let pagePhase = document.body?.dataset.tmPhase || "origin";
 
@@ -219,6 +228,15 @@
     studyPointerDistance = 0;
     studyLongestStillness = 0;
     studyHasMovement = false;
+    studyLocalRelations = {
+      sampleCount: 0,
+      weightSum: 0,
+      frictionSum: 0,
+      playSum: 0,
+      weightMax: 0,
+      frictionMax: 0,
+      playMax: 0,
+    };
     breath.inhale = 0;
     breath.hold = 0;
     breath.exhale = 0.45;
@@ -239,6 +257,7 @@
       strength += flowField.strength[index];
     }
     const divisor = Math.max(1, flowField.density.length);
+    const relationDivisor = Math.max(1, studyLocalRelations.sampleCount);
     window.dispatchEvent(new CustomEvent("tm:field-state", {
       detail: {
         density: density / divisor,
@@ -248,6 +267,15 @@
         longestStillnessMs: studyLongestStillness,
         pointerMoveCount: studyMoveCount,
         pointerDistance: studyPointerDistance,
+        localRelations: {
+          sampleCount: studyLocalRelations.sampleCount,
+          weightMean: studyLocalRelations.weightSum / relationDivisor,
+          frictionMean: studyLocalRelations.frictionSum / relationDivisor,
+          playMean: studyLocalRelations.playSum / relationDivisor,
+          weightMax: studyLocalRelations.weightMax,
+          frictionMax: studyLocalRelations.frictionMax,
+          playMax: studyLocalRelations.playMax,
+        },
       },
     }));
   };
@@ -322,18 +350,18 @@
     cameraPresence.video = null;
     cameraPresence.canvas = null;
     cameraPresence.context = null;
-    updateCameraToggle("Camera: off");
+    updateCameraToggle("Camera test: off");
   };
 
   const initCameraPresence = async () => {
     if (!navigator.mediaDevices?.getUserMedia) {
-      updateCameraToggle("Camera: unavailable", false, true);
+      updateCameraToggle("Camera test: unavailable", false, true);
       return;
     }
 
     cameraPresence.available = true;
     cameraPresence.denied = false;
-    updateCameraToggle("Camera: asking", false, true);
+    updateCameraToggle("Camera test: asking", false, true);
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -360,11 +388,11 @@
       cameraPresence.video = video;
       cameraPresence.canvas = sampleCanvas;
       cameraPresence.context = sampleCanvas.getContext("2d", { willReadFrequently: true });
-      updateCameraToggle("Camera: on", true);
+      updateCameraToggle("Camera test: on", true);
     } catch {
       cameraPresence.active = false;
       cameraPresence.denied = true;
-      updateCameraToggle("Camera: blocked");
+      updateCameraToggle("Camera test: blocked");
     }
   };
 
@@ -582,6 +610,18 @@
       studyHasMovement = true;
     }
     const relation = depositFlow(point, lastPoint);
+    if (studyEnabled && movementDistance >= 0.45) {
+      const localWeight = Number(relation?.weight || 0);
+      const localFriction = Number(relation?.rupture || 0);
+      const localPlay = Number(relation?.emergence || 0);
+      studyLocalRelations.sampleCount += 1;
+      studyLocalRelations.weightSum += localWeight;
+      studyLocalRelations.frictionSum += localFriction;
+      studyLocalRelations.playSum += localPlay;
+      studyLocalRelations.weightMax = Math.max(studyLocalRelations.weightMax, localWeight);
+      studyLocalRelations.frictionMax = Math.max(studyLocalRelations.frictionMax, localFriction);
+      studyLocalRelations.playMax = Math.max(studyLocalRelations.playMax, localPlay);
+    }
     emitResidue(point, lastPoint, relation);
     lastPoint = point;
     lastMoveAt = point.t;
@@ -872,7 +912,7 @@
   }
   showFieldExit();
   if (cameraToggle) {
-    updateCameraToggle("Camera: off");
+    updateCameraToggle("Camera test: off");
     cameraToggle.addEventListener("click", () => {
       if (cameraPresence.active) stopCameraPresence();
       else initCameraPresence();
