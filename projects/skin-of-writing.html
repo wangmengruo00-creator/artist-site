@@ -8,8 +8,8 @@
       name="description"
       content="Skin of Writing grew from a calligraphy practice into a hand-bound artist book about bodily memory, discarded practice sheets, ink, paper, and time."
     >
-    <link rel="stylesheet" href="../styles.css?v=20260907-2">
-    <link rel="stylesheet" href="../skin-temporal-reader.css?v=20260815-readability-1">
+    <link rel="stylesheet" href="../styles.css?v=20260916-1">
+    <link rel="stylesheet" href="../skin-temporal-reader.css?v=20261028-phase2-4">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   </head>
   <body>
@@ -27,7 +27,7 @@
         <a class="back-link" href="../works.html">Back to Works</a>
 
         <header class="skin-heading">
-          <p class="eyebrow">Artistic Research / Material + Computational Study</p>
+          <p class="eyebrow">Current Practice / 02 · Artistic Research</p>
           <h1 id="skin-title">Skin of Writing</h1>
           <p class="skin-english-title">Embodied Writing as Material Trace</p>
           <p class="skin-project-meta">2025–present / 31.5 × 16 cm</p>
@@ -43,6 +43,13 @@
             <img fetchpriority="high" decoding="async" width="1200" height="900" src="../assets/skin-of-writing/01_hero/hero_01_cover_angle.webp" alt="Skin of Writing hand-bound book shown from an angled cover view.">
           </div>
         </figure>
+
+        <aside class="project-quick-read" aria-label="Project at a glance">
+          <div><span>Focus</span><p>How embodied writing persists through pressure, correction, rhythm and material residue.</p></div>
+          <div><span>Existing work</span><p>A completed hand-bound artist book with documented source material, process and a full reading.</p></div>
+          <div><span>Method</span><p>Material translation is compared with static image processing and three controlled moving-image records.</p></div>
+          <div><span>Status</span><p>The book is complete; the computational and temporal comparison remains a bounded pilot study.</p></div>
+        </aside>
 
         <nav class="skin-experiment-nav" aria-label="Skin of Writing experiments">
           <a class="skin-experiment-door skin-experiment-door-book" href="#experiment-01">
@@ -760,21 +767,225 @@
               </article>
             </div>
 
+            <section class="skin-phase-two" aria-labelledby="skin-phase-two-title">
+              <header class="skin-phase-two-heading">
+                <div>
+                  <p class="eyebrow">04 / Phase 2 Prototype</p>
+                  <span class="skin-phase-two-status">In progress</span>
+                  <h3 id="skin-phase-two-title">Making return visible in the trace</h3>
+                </div>
+                <div>
+                  <p>
+                    Phase 1 showed that similar static descriptions can conceal different writing
+                    histories. Phase 2 tests one response: instead of asking the final image to
+                    reveal time retrospectively, color is introduced while writing so that a later
+                    return remains visible in the finished trace.
+                  </p>
+                  <p class="skin-phase-two-scope">One artist / the same character / three exploratory traces.</p>
+                </div>
+              </header>
+
+              <div class="skin-phase-two-bridge" aria-label="Transition from Phase 1 to Phase 2">
+                <div>
+                  <span>Phase 1 / limit</span>
+                  <strong>(11, 3) = (11, 3)</strong>
+                  <p>Matching endpoint and junction counts did not establish matching writing histories.</p>
+                </div>
+                <b aria-hidden="true">→</b>
+                <div>
+                  <span>Phase 2 / question</span>
+                  <strong>What if time is embedded in the trace itself?</strong>
+                  <p>The intervention changes the record, not the past event.</p>
+                </div>
+              </div>
+
+              <section class="skin-phase-one-ledger" aria-labelledby="skin-phase-one-ledger-title">
+                <header>
+                  <div>
+                    <p class="eyebrow">Phase 1 / Recorded evidence</p>
+                    <h4 id="skin-phase-one-ledger-title">Same static counts can hold different histories</h4>
+                  </div>
+                  <p>Durations, final-frame geometry, and the action record are kept together before the project moves into color-coded writing.</p>
+                </header>
+                <div class="skin-phase-one-data-grid">
+                  <article>
+                    <div class="skin-phase-one-data-title"><b>A</b><strong>Natural continuity</strong></div>
+                    <dl>
+                      <div><dt>Recording</dt><dd>22.108 s</dd></div>
+                      <div><dt>Static output</dt><dd>11 endpoints / 3 junctions</dd></div>
+                      <div><dt>Action record</dt><dd>No instructed interruption</dd></div>
+                    </dl>
+                  </article>
+                  <article>
+                    <div class="skin-phase-one-data-title"><b>B</b><strong>Forced interruption</strong></div>
+                    <dl>
+                      <div><dt>Recording</dt><dd>32.682 s</dd></div>
+                      <div><dt>Static output</dt><dd>11 endpoints / 3 junctions</dd></div>
+                      <div><dt>Manual observation</dt><dd>Low motion around 9.5–10.8, 14.0–16.5, and 26.0–28.5 s</dd></div>
+                    </dl>
+                  </article>
+                  <article>
+                    <div class="skin-phase-one-data-title"><b>C</b><strong>Deliberate retracing</strong></div>
+                    <dl>
+                      <div><dt>Recording</dt><dd>41.635 s</dd></div>
+                      <div><dt>Static output</dt><dd>9 endpoints / 5 junctions</dd></div>
+                      <div><dt>Manual observation</dt><dd>Main form at 27.01 s; return and rework around 28.0–39.9 s</dd></div>
+                    </dl>
+                  </article>
+                </div>
+                <p class="skin-phase-one-provenance"><strong>Evidence note.</strong> Durations and static counts come from saved metadata. B/C time windows are manually encoded observations, not automatically detected events. The archived frame-change curve is not used here because its generation method cannot be recovered from the project record.</p>
+              </section>
+
+              <section class="skin-phase-two-method" aria-labelledby="skin-phase-two-method-title">
+                <header>
+                  <div>
+                    <p class="eyebrow">HCI framing / staged evidence audit</p>
+                    <h4 id="skin-phase-two-method-title">What changes when another form of evidence is added?</h4>
+                  </div>
+                  <p>This is a within-case progressive-disclosure study of interpretation. It records how claims are retained, revised, or downgraded as the available evidence changes; it is not a blind benchmark or an accuracy test.</p>
+                </header>
+                <ol class="skin-phase-two-stages">
+                  <li>
+                    <b>01</b>
+                    <span>Final trace only</span>
+                    <p>Supports visible appearance: color, width, edge, overlap, and final geometry. Chronology and intention remain unavailable.</p>
+                  </li>
+                  <li>
+                    <b>02</b>
+                    <span>Add the action recording</span>
+                    <p>Adds observable sequence, tool change, interruption, return, and over-writing. It still cannot establish felt experience or purpose.</p>
+                  </li>
+                  <li>
+                    <b>03</b>
+                    <span>Add the creator's immediate account</span>
+                    <p>Adds situated evidence of feeling and intention. The account is attributed to the maker rather than presented as a machine inference.</p>
+                  </li>
+                </ol>
+                <div class="skin-phase-two-method-notes">
+                  <p><span>Variable</span><strong>Evidence available to the reader</strong><small>trace → trace + video → trace + video + creator account</small></p>
+                  <p><span>Unit of analysis</span><strong>Individual claims and revisions</strong><small>observation / inference / unsupported attribution</small></p>
+                  <p><span>Current validity</span><strong>Exploratory and non-blind</strong><small>three cases, fixed order, one conversation; model identity was not captured</small></p>
+                </div>
+              </section>
+
+              <div class="skin-phase-two-dataset-note">
+                <span>Dataset boundary</span>
+                <strong>P2-01 / P2-02 / P2-03 are new recordings—not the earlier Phase 1 A / B / C takes.</strong>
+                <p>P2-02 combines interruption and brush change. P2-03 combines interruption, brush change, color change, and return. These co-varying factors are documented rather than treated as isolated causes.</p>
+              </div>
+
+              <div class="skin-phase-two-grid" aria-label="Phase 2 writing traces 001, 002, and 003">
+                <article class="skin-phase-two-trial skin-phase-two-trial-blue">
+                  <header>
+                    <span>001</span>
+                    <div>
+                      <p class="eyebrow">P2-01 / Monochrome baseline</p>
+                      <h4>Natural completion</h4>
+                    </div>
+                  </header>
+                  <figure class="skin-phase-two-video">
+                    <video controls playsinline preload="metadata" poster="../assets/skin-of-writing/09_phase2/video/001-poster.jpg">
+                      <source src="../assets/skin-of-writing/09_phase2/video/001-phase2.mp4" type="video/mp4">
+                      Your browser does not support embedded video.
+                    </video>
+                    <figcaption>Action record / approximately 45 s</figcaption>
+                  </figure>
+                  <figure>
+                    <img loading="lazy" decoding="async" src="../assets/skin-of-writing/09_phase2/001-natural-completion-centered.png" alt="Phase 2 trace 001: the character ding written in blue as a monochrome baseline.">
+                    <figcaption>Final trace / all blue</figcaption>
+                  </figure>
+                  <div class="skin-phase-two-evidence">
+                    <p><span>Video observation</span>One larger brush is visible throughout; the right arc is written at approximately 00:30–00:38.</p>
+                    <p><span>Creator account</span>The separated roof and crossing felt stuck; the overall action did not feel smooth.</p>
+                  </div>
+                </article>
+
+                <article class="skin-phase-two-trial skin-phase-two-trial-blue">
+                  <header>
+                    <span>002</span>
+                    <div>
+                      <p class="eyebrow">P2-02 / Coupled condition</p>
+                      <h4>Interruption + brush change</h4>
+                    </div>
+                  </header>
+                  <figure class="skin-phase-two-video">
+                    <video controls playsinline preload="metadata" poster="../assets/skin-of-writing/09_phase2/video/002-poster.jpg">
+                      <source src="../assets/skin-of-writing/09_phase2/video/002-phase2.mp4" type="video/mp4">
+                      Your browser does not support embedded video.
+                    </video>
+                    <figcaption>Action record / approximately 57 s</figcaption>
+                  </figure>
+                  <figure>
+                    <img loading="lazy" decoding="async" src="../assets/skin-of-writing/09_phase2/002-monochrome-interruption-centered.png" alt="Phase 2 trace 002: a second blue rendering of the character ding made under an interrupted condition.">
+                    <figcaption>Final trace / all blue</figcaption>
+                  </figure>
+                  <div class="skin-phase-two-evidence">
+                    <p><span>Video observation</span>The larger brush leaves the paper around 00:22; a smaller brush is taken around 00:24–00:30 and completes the inner strokes and right arc.</p>
+                    <p><span>Creator account</span>The structure, roof, and the brush-change process felt not smooth.</p>
+                  </div>
+                </article>
+
+                <article class="skin-phase-two-trial skin-phase-two-trial-return">
+                  <header>
+                    <span>003</span>
+                    <div>
+                      <p class="eyebrow">P2-03 / Time-coded return</p>
+                      <h4>Blue first pass + brown return</h4>
+                    </div>
+                  </header>
+                  <figure class="skin-phase-two-video">
+                    <video controls playsinline preload="metadata" poster="../assets/skin-of-writing/09_phase2/video/003-poster.jpg">
+                      <source src="../assets/skin-of-writing/09_phase2/video/003-phase2.mp4" type="video/mp4">
+                      Your browser does not support embedded video.
+                    </video>
+                    <figcaption>Action record / approximately 62 s</figcaption>
+                  </figure>
+                  <figure>
+                    <img loading="lazy" decoding="async" src="../assets/skin-of-writing/09_phase2/003-time-coded-return-centered.png" alt="Phase 2 trace 003: the character ding with a blue first pass and a brown return layered over part of the character.">
+                    <figcaption><i class="skin-phase-two-blue" aria-hidden="true"></i>Blue / first pass <i class="skin-phase-two-brown" aria-hidden="true"></i>Brown / return</figcaption>
+                  </figure>
+                  <div class="skin-phase-two-evidence">
+                    <p><span>Video observation</span>A complete blue form is visible around 00:40–00:44; brush and color change around 00:42–00:46; brown return occurs around 00:48–00:58.</p>
+                    <p><span>Creator account</span>This trial felt smoother than 001 and 002; during the color change, the maker intended to keep the new trace aligned with the earlier one.</p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="skin-phase-two-boundary" aria-label="What time-coded color adds and does not add">
+                <article>
+                  <span>What color adds</span>
+                  <strong>A visible distinction between passes</strong>
+                  <p>The final trace can show where first-pass blue and later brown occupy the same surface.</p>
+                </article>
+                <article>
+                  <span>What color does not add</span>
+                  <strong>A complete reconstruction of the writing event</strong>
+                  <p>Exact timing, sequence detail, intention, pressure, and felt experience remain outside the image.</p>
+                </article>
+              </div>
+
+              <aside class="skin-phase-two-next" aria-labelledby="skin-phase-two-next-title">
+                <p class="eyebrow">Next / Controlled reader study</p>
+                <h4 id="skin-phase-two-next-title">Can readers identify what each evidence layer supports—and what still remains uncertain?</h4>
+                <p>The next protocol will use independent sessions or readers, collect claim-level confidence and evidence attribution, and add repeated traces so that tool, interruption, and color can be varied separately. No audience-response result is reported at this stage.</p>
+              </aside>
+            </section>
+
             <div class="skin-machine-status">
               <span>Current status</span>
-              <strong>The book-making process and outputs from static and temporal processing are documented on this page.</strong>
-              <p><strong>Pilot scope:</strong> one artist, one character family, and three controlled temporal instructions. Interpretive analysis remains provisional and depends on the writer’s embodied account.</p>
+              <strong>The book-making process, Phase 1 static and temporal processing, and the current Phase 2 time-coded prototype are documented on this page.</strong>
+              <p><strong>Pilot scope:</strong> one artist, one character family, and exploratory instructed trials. The Phase 2 reading test remains in development; interpretive analysis is provisional and depends on the writer’s embodied account.</p>
             </div>
           </div>
         </section>
 
         <nav class="project-footer-nav" aria-label="Related projects">
-          <a href="beijing-order-longlin-binding.html"><span>Previous project / 03</span><strong>← Beijing Orders</strong></a>
-          <a href="../works.html"><span>Project index</span><strong>All Works →</strong></a>
+          <a href="invalidated-tickets.html"><span>Previous project / 01</span><strong>← AFTER USE</strong></a>
+          <a href="../three-metamorphoses-rule-field-preview.html"><span>Next project / 03</span><strong>The Three Metamorphoses →</strong></a>
         </nav>
       </article>
     </main>
     <script src="../skin-temporal-reader.js?v=20260815-abc-1"></script>
-    <script src="../language.js?v=20260907-2"></script>
+    <script src="../language.js?v=20261027-phase2-3"></script>
   </body>
 </html>

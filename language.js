@@ -256,6 +256,96 @@
     ", intention, composure, why a pause occurred, or why a character feels alive, heavy, or rigid.": "、书写意图、定，以及一次停顿为何会成为气脉断裂，或一个字为什么显得有气、沉重或僵硬。",
     "Current phase": "当前阶段",
     "Pilot Cases 01–03 / static and moving-image evidence documented": "试验案例01–03已完成：静态机器图、动作录像与身体自述均已记录",
+    "04 / Phase 2 Prototype": "04 / 第二阶段原型",
+    "In progress": "推进中",
+    "Making return visible in the trace": "让回笔在最终痕迹中保持可见",
+    "Phase 1 showed that similar static descriptions can conceal different writing histories. Phase 2 tests one response: instead of asking the final image to reveal time retrospectively, color is introduced while writing so that a later return remains visible in the finished trace.": "第一阶段表明，相近的静态描述可能遮蔽不同的书写历史。第二阶段尝试一种回应：不再要求完成后的图像事后还原时间，而是在书写过程中引入颜色，让之后发生的回笔继续留在最终痕迹中。",
+    "One artist / the same character / three exploratory traces.": "同一位书写者 / 同一个字 / 三次探索性书写。",
+    "Phase 1 / limit": "第一阶段 / 局限",
+    "Matching endpoint and junction counts did not establish matching writing histories.": "端点与交点计数相同，并不能证明书写历史相同。",
+    "Phase 2 / question": "第二阶段 / 新问题",
+    "What if time is embedded in the trace itself?": "如果时间直接被写进痕迹本身呢？",
+    "The intervention changes the record, not the past event.": "这一干预改变的是记录方式，而不是事后重建已经发生的事件。",
+    "Phase 1 / Recorded evidence": "第一阶段 / 已记录证据",
+    "Same static counts can hold different histories": "相同静态计数，可以容纳不同的书写历史",
+    "Durations, final-frame geometry, and the action record are kept together before the project moves into color-coded writing.": "在进入颜色编码书写之前，录像时长、最终帧几何与动作记录被并置保留。",
+    "Natural continuity": "自然连续书写",
+    "Deliberate retracing": "完成后回笔重描",
+    "Recording": "录像时长",
+    "Static output": "静态输出",
+    "Action record": "动作记录",
+    "22.108 s": "22.108秒",
+    "32.682 s": "32.682秒",
+    "41.635 s": "41.635秒",
+    "11 endpoints / 3 junctions": "11组端点 / 3组交点",
+    "9 endpoints / 5 junctions": "9组端点 / 5组交点",
+    "No instructed interruption": "没有外部指令造成的中断",
+    "Manual observation": "人工观察",
+    "Low motion around 9.5–10.8, 14.0–16.5, and 26.0–28.5 s": "低运动区间约为9.5–10.8、14.0–16.5与26.0–28.5秒",
+    "Main form at 27.01 s; return and rework around 28.0–39.9 s": "约27.01秒主体完成；约28.0–39.9秒发生返回与重描",
+    "Evidence note.": "证据说明。",
+    "Durations and static counts come from saved metadata. B/C time windows are manually encoded observations, not automatically detected events. The archived frame-change curve is not used here because its generation method cannot be recovered from the project record.": "录像时长与静态计数来自已保存的元数据；B/C时间段是人工编码的观察标记，并非自动检测事件。由于归档中的帧变化曲线无法从项目记录中恢复其生成方法，本处不将其作为证据使用。",
+    "HCI framing / staged evidence audit": "HCI框架 / 分阶段证据审计",
+    "What changes when another form of evidence is added?": "当另一种证据被加入时，解释会怎样改变？",
+    "This is a within-case progressive-disclosure study of interpretation. It records how claims are retained, revised, or downgraded as the available evidence changes; it is not a blind benchmark or an accuracy test.": "这是一项案例内部的渐进式证据披露研究，用来记录当可用证据改变时，一项判断如何被保留、修订或降格；它不是盲测基准，也不是准确率测试。",
+    "Final trace only": "只看最终痕迹",
+    "Supports visible appearance: color, width, edge, overlap, and final geometry. Chronology and intention remain unavailable.": "支持描述颜色、宽度、边缘、覆盖与最终几何等可见外观；时间先后与意图仍不可获得。",
+    "Add the action recording": "加入动作录像",
+    "Adds observable sequence, tool change, interruption, return, and over-writing. It still cannot establish felt experience or purpose.": "补充可观察的动作次序、换笔、中断、返回与覆写；但仍不能确立身体感受或行为目的。",
+    "Add the creator's immediate account": "加入创作者即时记录",
+    "Adds situated evidence of feeling and intention. The account is attributed to the maker rather than presented as a machine inference.": "补充关于感受与意图的情境性证据；这些内容明确归属于创作者，而不是被表述成机器推断。",
+    "Variable": "变量",
+    "Evidence available to the reader": "阅读者可获得的证据",
+    "trace → trace + video → trace + video + creator account": "痕迹 → 痕迹 + 录像 → 痕迹 + 录像 + 创作者记录",
+    "Unit of analysis": "分析单位",
+    "Individual claims and revisions": "单条判断及其修订",
+    "observation / inference / unsupported attribution": "观察 / 推测 / 无依据归因",
+    "Current validity": "当前效度边界",
+    "Exploratory and non-blind": "探索性、非盲测",
+    "three cases, fixed order, one conversation; model identity was not captured": "三个案例、固定顺序、同一对话；当时未记录模型名称",
+    "Dataset boundary": "数据集边界",
+    "P2-01 / P2-02 / P2-03 are new recordings—not the earlier Phase 1 A / B / C takes.": "P2-01 / P2-02 / P2-03是新录制的三次书写，并非第一阶段较早的A / B / C录像。",
+    "P2-02 combines interruption and brush change. P2-03 combines interruption, brush change, color change, and return. These co-varying factors are documented rather than treated as isolated causes.": "P2-02同时包含中断与换笔；P2-03同时包含中断、换笔、换色和返回。这些共同变化的因素只被记录，不会被当成可以单独归因的原因。",
+    "P2-01 / Monochrome baseline": "P2-01 / 单色基线",
+    "Action record / approximately 45 s": "动作录像 / 约45秒",
+    "Video observation": "录像观察",
+    "One larger brush is visible throughout; the right arc is written at approximately 00:30–00:38.": "录像中始终可见同一支较大毛笔；右侧长弧约在00:30–00:38写成。",
+    "Creator account": "创作者即时记录",
+    "The separated roof and crossing felt stuck; the overall action did not feel smooth.": "宝盖头分开处及交叉部分主观感觉比较卡，整体动作感觉不太顺。",
+    "P2-02 / Coupled condition": "P2-02 / 复合条件",
+    "Interruption + brush change": "中断 + 换笔",
+    "Action record / approximately 57 s": "动作录像 / 约57秒",
+    "The larger brush leaves the paper around 00:22; a smaller brush is taken around 00:24–00:30 and completes the inner strokes and right arc.": "约00:22较大毛笔离开纸面；约00:24–00:30换取较小毛笔，并用它完成内部笔画与右侧长弧。",
+    "The structure, roof, and the brush-change process felt not smooth.": "字的结构、宝盖头和整个换笔过程主观感觉不太顺。",
+    "P2-03 / Time-coded return": "P2-03 / 时间编码回笔",
+    "Blue first pass + brown return": "蓝色第一遍 + 棕色回笔",
+    "Action record / approximately 62 s": "动作录像 / 约62秒",
+    "A complete blue form is visible around 00:40–00:44; brush and color change around 00:42–00:46; brown return occurs around 00:48–00:58.": "约00:40–00:44可见完整蓝色字形；约00:42–00:46换笔并换色；约00:48–00:58发生棕色返回覆写。",
+    "This trial felt smoother than 001 and 002; during the color change, the maker intended to keep the new trace aligned with the earlier one.": "这次主观感觉比001和002更顺；换颜色描写时，创作者刻意想让新痕迹与先前痕迹保持一致。",
+    "Monochrome baseline": "单色基线",
+    "Natural completion": "自然完成",
+    "Final trace / all blue": "最终痕迹 / 全蓝",
+    "The finished surface does not mark a separate later pass. Continuity still depends on the action record.": "完成后的表面没有标出另一次后续经过；是否连续，仍需依赖动作记录。",
+    "Monochrome variant": "单色变化条件",
+    "Interrupted condition": "中断条件",
+    "The surface changes, but monochrome ink still does not identify the interruption by itself.": "最终表面有所变化，但单色墨迹本身仍无法指出中断发生在哪里。",
+    "Time-coded return": "以颜色编码回笔时间",
+    "First pass + reworking": "第一遍书写 + 回笔重描",
+    "Blue / first pass": "蓝色 / 第一遍",
+    "Brown / return": "棕色 / 回笔",
+    "A later pass remains materially distinguishable, although its timing and meaning still require context.": "后一次经过在材料上保持可区分，但它发生的具体时间与书法意义仍需其他语境说明。",
+    "What color adds": "颜色增加了什么",
+    "A visible distinction between passes": "让不同遍次在最终表面中可见",
+    "The final trace can show where first-pass blue and later brown occupy the same surface.": "最终痕迹能够显示第一遍蓝色与后续棕色如何共同占据同一表面。",
+    "What color does not add": "颜色没有增加什么",
+    "A complete reconstruction of the writing event": "它仍不能完整重建书写事件",
+    "Exact timing, sequence detail, intention, pressure, and felt experience remain outside the image.": "准确时间、动作次序细节、意图、压力与身体感受，仍然位于图像之外。",
+    "Next / Controlled reader study": "下一步 / 受控阅读者研究",
+    "Can readers identify what each evidence layer supports—and what still remains uncertain?": "阅读者能否分辨每一层证据支持什么，以及哪些内容仍然无法确定？",
+    "The next protocol will use independent sessions or readers, collect claim-level confidence and evidence attribution, and add repeated traces so that tool, interruption, and color can be varied separately. No audience-response result is reported at this stage.": "下一步将使用彼此独立的会话或阅读者，记录单条判断的置信度与证据归属，并增加重复书写，使工具、中断和颜色能够分别变化。现阶段尚未报告任何观看者反馈结果。",
+    "The book-making process, Phase 1 static and temporal processing, and the current Phase 2 time-coded prototype are documented on this page.": "本页记录了艺术家书的制作过程、第一阶段的静态与时间分析，以及目前正在推进的第二阶段时间编码原型。",
+    "Pilot scope:": "试验范围：",
+    "one artist, one character family, and exploratory instructed trials. The Phase 2 reading test remains in development; interpretive analysis is provisional and depends on the writer’s embodied account.": "一位书写者、一个文字结构系列与探索性指令实验。第二阶段阅读测试仍在设计中；所有解释均为阶段性判断，并依赖书写者的身体自述。",
     "All Works →": "全部作品 →"
   } : {};
 
@@ -545,6 +635,7 @@
   const translations = new Map(Object.entries({
     ...(window.mengruoAutoTranslations || {}),
     "Works": "作品",
+    "Research": "研究",
     "Practice & Learning": "实践与学习",
     "& Learning": "与学习",
     "About": "关于",
@@ -621,6 +712,34 @@
     "Pilot scope: one artist, one character family, and three controlled temporal instructions. Interpretive analysis remains provisional and depends on the writer’s embodied account.": "试验范围：一位艺术家、一个文字系列与三组受控时间指令。解释性分析仍为暂定，并依赖书写者的身体经验陈述。",
 
     "Artist and Designer": "艺术家与设计师",
+    "Working across material practice, artists’ books, collected printed matter and interactive systems, I explore how traces, structures and forms of participation shape different ways of reading and experiencing a work.": "我的实践横跨材料创作、艺术家书、收集的印刷物与互动系统，探索痕迹、结构和参与形式如何塑造阅读与体验作品的不同方式。",
+    "View current practice": "查看当前实践",
+    "Selected works": "精选作品",
+    "Documents": "文档",
+    "Practice resources": "实践资料",
+    "Read the research statement": "阅读研究陈述",
+    "CV": "履历",
+    "Download CV (PDF)": "下载履历（PDF）",
+    "Current Practice / 02 · Artistic Research": "当前实践 / 02 · 艺术研究",
+    "← AFTER USE": "←《使用之后》",
+    "Focus": "关注重点",
+    "Existing work": "现有成果",
+    "Current direction": "当前方向",
+    "Status": "状态",
+    "Method": "方法",
+    "Speculative work": "推演部分",
+    "How collected commercial paper can become contemporary material practice without being treated as complete historical evidence.": "收集所得的商业纸本如何在不被视为完整历史证据的前提下，转化为当代材料实践。",
+    "A physical working collection, material studies, a documented archive pilot and a bounded machine-reading record.": "实体工作收藏、材料研究、已记录的档案试验，以及边界明确的机器阅读记录。",
+    "Artist-book and spatial remaking led by material comparison, source research and explicit evidence boundaries.": "由材料比较、来源研究与清晰的证据边界引导艺术家书和空间再制作。",
+    "Research ongoing. Completed tests, provisional readings and future proposals remain clearly separated.": "研究持续进行中；已完成测试、暂定解读与未来提案保持清晰区分。",
+    "How embodied writing persists through pressure, correction, rhythm and material residue.": "具身书写如何通过压力、修正、节奏与材料残留持续存在。",
+    "A completed hand-bound artist book with documented source material, process and a full reading.": "一本已完成的手工装订艺术家书，并完整记录来源材料、制作过程与翻阅过程。",
+    "Material translation is compared with static image processing and three controlled moving-image records.": "将材料转译与静态图像处理及三组受控动态影像记录进行比较。",
+    "The book is complete; the computational and temporal comparison remains a bounded pilot study.": "书籍已经完成；计算与时间性比较仍是一项边界明确的试验研究。",
+    "How bodily encounters with historical order can become a material and temporal structure of reading.": "身体与历史秩序的相遇如何转化为材料性与时间性的阅读结构。",
+    "One completed hand-bound dragon-scale prototype and an interactive study of its reading structure.": "一件已完成的手工龙鳞装原型，以及针对其阅读结构的互动研究。",
+    "Two AI-assisted visual studies extend the physical system without being presented as completed objects.": "两项 AI 辅助视觉研究扩展实体系统，但不被呈现为已完成的物件。",
+    "The material prototype is complete; further fabrication and audience testing remain future stages.": "材料原型已经完成；进一步制作与观众测试仍属于未来阶段。",
     "I am an artist and designer working across materials, images and interaction. My practice includes making artworks, developing interactive experiments, and teaching and mentoring in art and design.": "我是一名艺术家与设计师，实践横跨材料、图像与互动。我从事艺术创作、互动实验，也参与艺术与设计教学及项目指导。",
     "I am an artist and designer based in Shenzhen and Hong Kong. My work moves across drawing, collected printed matter, artists’ books and interactive forms. I use materials, images, page structures and digital tools to explore different ways of reading, handling and participating in a work.": "我是一名常驻深圳与香港的艺术家和设计师。我的创作横跨绘画、收集的印刷物、艺术家书与互动形式。我运用材料、图像、页面结构和数字工具，探索阅读、拿取与参与作品的不同方式。",
     "Alongside my own practice, I have worked in art and design teaching, project mentoring and educational programme development. These experiences have shaped my interest in how people explore possibilities, respond to feedback and develop their own judgements. I am also interested in how teaching can support initiative and experimentation while leaving room for learners to take a project in an unexpected direction.": "在个人实践之外，我也从事艺术与设计教学、项目指导及教育课程开发。这些经历促使我关注人们如何探索可能性、回应反馈并形成自己的判断。我也在思考教学如何支持主动性与实验，同时为学习者将项目带往意外方向保留空间。",
@@ -1607,6 +1726,21 @@
     }
   }
 
+  function addResearchNavigation() {
+    const navigation = document.querySelector(".landing-nav, .site-header .nav");
+    if (!navigation || navigation.querySelector('a[href$="research.html"]')) return;
+
+    const worksLink = [...navigation.querySelectorAll("a")].find((link) =>
+      normaliseText(link.textContent) === "Works"
+    );
+    if (!worksLink) return;
+
+    const researchLink = document.createElement("a");
+    researchLink.href = location.pathname.includes("/projects/") ? "../research.html" : "research.html";
+    researchLink.textContent = "Research";
+    worksLink.insertAdjacentElement("afterend", researchLink);
+  }
+
   function addMobileMenu() {
     const header = document.querySelector(".landing-header, .site-header");
     const navigation = header?.querySelector(".landing-nav, .nav");
@@ -1689,6 +1823,7 @@
   `;
   document.head.append(style);
 
+  addResearchNavigation();
   addToggle();
   addMobileMenu();
   applyLanguage("en");
