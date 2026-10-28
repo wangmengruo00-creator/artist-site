@@ -1098,6 +1098,61 @@
   line-height: 1.6;
 }
 
+.skin-phase-two-materials {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) repeat(2, minmax(0, 0.95fr));
+  gap: 18px;
+  margin-top: 24px;
+  padding: 18px 0 20px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.skin-phase-two-materials > div {
+  padding-right: 14px;
+}
+
+.skin-phase-two-materials .eyebrow {
+  margin: 0 0 9px;
+  color: #294766;
+}
+
+.skin-phase-two-materials h5 {
+  margin: 0;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 520;
+  line-height: 1.45;
+}
+
+.skin-phase-two-materials p:last-child {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 9.5px;
+  line-height: 1.65;
+}
+
+.skin-phase-two-materials figure {
+  margin: 0;
+}
+
+.skin-phase-two-materials img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--soft);
+}
+
+.skin-phase-two-materials figcaption {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: 0.045em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
 .skin-phase-two-blue,
 .skin-phase-two-brown {
   display: inline-block;
@@ -1229,6 +1284,7 @@
   .skin-phase-two-method > header,
   .skin-phase-two-controlled > header,
   .skin-phase-two-controlled-reading,
+  .skin-phase-two-materials,
   .skin-phase-two-stages,
   .skin-phase-two-method-notes,
   .skin-phase-two-dataset-note {
@@ -1267,6 +1323,10 @@
 
   .skin-phase-two-controlled-reading article + article {
     border-top: 1px solid var(--line);
+  }
+
+  .skin-phase-two-materials > div {
+    padding-right: 0;
   }
 
   .skin-phase-one-data-grid > article,
