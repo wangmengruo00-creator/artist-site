@@ -198,6 +198,26 @@
         display: inline-block;
       }
 
+      .review-purpose.review-synthesis {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 12px;
+      }
+
+      .review-purpose.review-synthesis strong {
+        display: block;
+        margin-bottom: 4px;
+        font-family: var(--display);
+        font-size: 19px;
+        font-weight: 400;
+      }
+
+      .review-purpose.review-synthesis small {
+        display: block;
+        margin-top: 8px;
+        color: var(--mr-muted);
+        font: 8px/1.45 var(--mr-mono);
+      }
+
       .review-item-head {
         display: grid;
         grid-template-columns: auto 1fr auto;
@@ -385,7 +405,7 @@
       <a href="invalidated-tickets-machine-reading-preview.html">← Machine Reading Study</a>
       <div>
         <strong>BUREAU / HUMAN MACHINE REVIEW SHEET</strong>
-        <span>20-item review complete · synthesis pending</span>
+        <span>20-item review complete · provisional synthesis drafted</span>
       </div>
       <p><i aria-hidden="true"></i>No parameter decisions made here</p>
     </header>
@@ -397,8 +417,8 @@
         <p class="lead">
           This sheet contains the 20 records selected for manual comparison. The saved artist decisions
           are prefilled and remain editable. The judgement field evaluates the current diagnostic assessment,
-          not whether the raw OCR is error-free. Run 03 remains paused until the recorded trigger reasons are
-          synthesised into one controlled intervention.
+          not whether the raw OCR is error-free. The trigger reasons are now provisionally grouped; Run 03
+          remains paused until one controlled intervention is approved.
         </p>
         <p class="lead" style="margin-top: 10px;">Current saved result: 18 diagnostic assessments confirmed, 2 rejected, and 20 cases retained as possible intervention triggers.</p>
         <div class="review-purpose">
@@ -427,6 +447,42 @@
               20 objects from the fixed 185-item source field. Each card shows the original ticket, machine
               result / relation, and machine-visible features used in the current pipeline.
             </p>
+          </div>
+        </section>
+
+        <p class="machine-reading-kicker" style="margin-top: 28px;">Provisional Synthesis / Researcher Affinity Grouping</p>
+        <div class="review-purpose review-synthesis" aria-label="Four provisional trigger categories">
+          <div>
+            <span class="step">07 CASES</span>
+            <strong>OCR and text recognition</strong>
+            <p>Missing, corrupted or misclassified text weakens identity, quantity and series relations.</p>
+            <small>T-027 · T-001 · T-054 · T-006 · T-007 · T-089 · T-083</small>
+          </div>
+          <div>
+            <span class="step">04 CASES</span>
+            <strong>Object and image boundary</strong>
+            <p>Merged objects, incomplete crops or low-resolution inputs destabilise the unit of analysis.</p>
+            <small>T-024 · T-075 · T-008 · T-047</small>
+          </div>
+          <div>
+            <span class="step">04 CASES</span>
+            <strong>Layout, sequence and structure</strong>
+            <p>Linear text output flattens historical reading direction, graphic layers and form structure.</p>
+            <small>T-132 · T-118 · T-122 · T-012</small>
+          </div>
+          <div>
+            <span class="step">05 CASES</span>
+            <strong>Semantic and ontology omission</strong>
+            <p>Function, date, explicit absence, material context or institutional class remains outside the current representation.</p>
+            <small>T-137 · T-103 · T-120 · T-094 · T-002</small>
+          </div>
+        </div>
+
+        <section class="machine-reading-version" aria-label="Candidate controlled intervention">
+          <div>
+            <span>RUN 03 CANDIDATE / NOT YET TESTED</span>
+            <p><strong>Evidence sufficiency gate.</strong> Keep the same 185 inputs and the existing OCR, segmentation and relation metrics. Change only the output decision layer: when a relation lacks a readable or internally consistent core semantic anchor, return <em>pending / insufficient evidence</em> instead of a resolved relation.</p>
+            <p>This tests whether uncertainty becomes more legible; it does not claim to improve raw OCR accuracy. <a href="../outputs/machine-reading-v1-185/human-machine-review-20/trigger-synthesis-20.json">Open the structured synthesis data →</a></p>
           </div>
         </section>
       </section>

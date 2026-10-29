@@ -226,7 +226,7 @@
 
           <footer class="tickets-loop-boundary">
             <p><b>System boundary</b> Human-mediated workflow, not a single automated system. Further material reorganisation remains proposed.</p>
-            <p><b>Review status</b> 20/20 artist decisions recorded: 18 confirm the current diagnostic assessment and 2 reject it. All 20 remain trigger candidates; intervention synthesis is pending.</p>
+            <p><b>Review status</b> 20/20 artist decisions recorded: 18 confirm the current diagnostic assessment and 2 reject it. A provisional four-category synthesis and one Run 03 candidate are documented; neither is a participant-derived result.</p>
           </footer>
         </section>
 
@@ -484,7 +484,7 @@
               </li>
               <li>
                 <span>03</span>
-                Paused: synthesise the 20 trigger reasons, then select at most one controlled change.
+                Paused: review the provisional trigger synthesis, then approve at most one controlled change.
               </li>
             </ol>
           </div>
@@ -529,9 +529,28 @@
               </article>
             </div>
             <p>
-              Run 02 is complete (fixed-k=6). Before any Run 03, keep this same 185-input set,
-              synthesise the 20 reviewed trigger reasons, and select at most one new variable to change.
+              Run 02 is complete (fixed-k=6). The 20 reviewed trigger reasons are provisionally grouped into
+              four categories. Before any Run 03, keep this same 185-input set and approve at most one new variable.
             </p>
+          </div>
+        </section>
+
+        <section class="tickets-section tickets-run-guide" aria-labelledby="tickets-trigger-synthesis-title">
+          <div class="tickets-section-heading">
+            <p class="eyebrow">REVIEW SYNTHESIS / PROVISIONAL</p>
+            <h2 id="tickets-trigger-synthesis-title">Twenty trigger notes become four analytic categories.</h2>
+            <p class="tickets-heading-note">Researcher affinity grouping<br>Not a participant finding</p>
+          </div>
+          <div class="tickets-section-copy">
+            <p class="tickets-section-lede">The grouping identifies where the present representation becomes unreliable; it does not score the model or validate the full collection.</p>
+            <ol class="tickets-open-questions">
+              <li><span>07</span><strong>OCR and text recognition</strong> — missing, corrupted or misclassified text.</li>
+              <li><span>04</span><strong>Object and image boundary</strong> — merged objects, incomplete crops or low-resolution input.</li>
+              <li><span>04</span><strong>Layout, sequence and structure</strong> — reading direction, layers and form relations flattened into text.</li>
+              <li><span>05</span><strong>Semantic and ontology omission</strong> — function, dates, explicit absence, material context or institutional class not represented.</li>
+            </ol>
+            <p><strong>Candidate controlled change / not yet tested:</strong> add an evidence-sufficiency gate to the output decision layer. If a relation lacks a readable or internally consistent core semantic anchor, return <em>pending / insufficient evidence</em> rather than a resolved relation. OCR, segmentation and relation metrics remain unchanged.</p>
+            <p><a href="../outputs/machine-reading-v1-185/human-machine-review-20/trigger-synthesis-20.json">Read the structured 20-case synthesis →</a></p>
           </div>
         </section>
 
@@ -608,9 +627,9 @@
             </p>
           <ol class="tickets-open-questions">
             <li><span>01</span>Reconcile 318 distinct physical objects with 296 candidate digital records.</li>
-            <li><span>02</span>Synthesise the 20 completed artist reviews into recurring intervention categories.</li>
+            <li><span>02</span>Audit the provisional four-category synthesis against all 20 saved reason notes.</li>
             <li><span>03</span>Keep remaining records in both Run 01 and Run 02 explicitly pending rather than implying completed human review.</li>
-            <li><span>04</span>Define at most one controlled change before Run 03; do not treat 20 trigger candidates as 20 separate interventions.</li>
+            <li><span>04</span>Approve, revise or reject the proposed evidence-sufficiency gate before Run 03.</li>
             <li><span>05</span>Keep Run 01, Run 02 and Run 03 comparison criteria identical so differences are attributable.</li>
           </ol>
         </div>

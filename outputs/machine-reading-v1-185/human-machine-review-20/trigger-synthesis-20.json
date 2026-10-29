@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "project": "The Bureau of Invalidated Tickets / AFTER USE",
+  "source_decisions": "human-review-decisions.js",
+  "status": "researcher-generated provisional synthesis",
+  "sample_size": 20,
+  "judgement_summary": {
+    "confirm_diagnostic_assessment": 18,
+    "reject_diagnostic_assessment": 2
+  },
+  "trigger_summary": {
+    "yes": 20,
+    "no": 0
+  },
+  "synthesis_method": "Affinity grouping of the artist-researcher's 20 saved reason notes. The four categories are analytic groupings, not participant-derived findings or model-performance scores.",
+  "categories": [
+    {
+      "id": "text_recognition",
+      "label": "OCR and text recognition",
+      "count": 7,
+      "case_ids": ["T-027", "T-001", "T-054", "T-006", "T-007", "T-089", "T-083"],
+      "interpretation": "Missing, corrupted or misclassified text weakens identity, quantity and series relations."
+    },
+    {
+      "id": "object_image_boundary",
+      "label": "Object and image boundary",
+      "count": 4,
+      "case_ids": ["T-024", "T-075", "T-008", "T-047"],
+      "interpretation": "Merged objects, incomplete crops or low-resolution inputs destabilise the unit of analysis."
+    },
+    {
+      "id": "layout_sequence_structure",
+      "label": "Layout, sequence and structure",
+      "count": 4,
+      "case_ids": ["T-132", "T-118", "T-122", "T-012"],
+      "interpretation": "Linear text output flattens historical reading direction, graphic layers and form structure."
+    },
+    {
+      "id": "semantic_ontology_omission",
+      "label": "Semantic and ontology omission",
+      "count": 5,
+      "case_ids": ["T-137", "T-103", "T-120", "T-094", "T-002"],
+      "interpretation": "Function, date, explicit absence, material context or institutional class remains outside the current representation."
+    }
+  ],
+  "candidate_intervention": {
+    "name": "Evidence sufficiency gate",
+    "status": "proposed, not implemented or tested",
+    "scope": "Change only the output decision layer; keep the same 185 inputs, OCR, segmentation and relation metrics.",
+    "rule": "When a relation lacks a readable or internally consistent core semantic anchor, return pending / insufficient evidence instead of a resolved relation.",
+    "hypothesis": "The gate may reduce overconfident relations without claiming to improve raw OCR accuracy.",
+    "evaluation": [
+      "Compare resolved versus deferred relations on the same fixed input set.",
+      "Re-review the same 20 cases using the existing diagnostic criteria.",
+      "Record false deferrals as well as cases where uncertainty becomes more legible."
+    ]
+  },
+  "boundary": "This synthesis organises one artist-researcher's bounded review. It is not a participant study, population-level validation or completed Run 03 result."
+}
