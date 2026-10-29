@@ -46,8 +46,8 @@
   const mapJudgment = (value) => {
     const raw = safe(value).trim().toLowerCase();
     if (!raw) return 'Unfilled';
-    if (raw.includes('agree') || raw.includes('同意')) return 'Agree';
     if (raw.includes('disagree') || raw.includes('不同意')) return 'Disagree';
+    if (raw.includes('agree') || raw.includes('同意')) return 'Agree';
     if (raw.includes('uncertain') || raw.includes('不确定')) return 'Uncertain';
     return 'Unclear';
   };

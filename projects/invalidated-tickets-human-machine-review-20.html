@@ -377,7 +377,7 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="../research-navigation.css">
+    <link rel="stylesheet" href="../research-navigation.css?v=20261029-1">
   </head>
 
   <body class="machine-reading-review-page">
@@ -385,25 +385,26 @@
       <a href="invalidated-tickets-machine-reading-preview.html">← Machine Reading Study</a>
       <div>
         <strong>BUREAU / HUMAN MACHINE REVIEW SHEET</strong>
-        <span>Active 20-item queue · machine output only</span>
+        <span>20-item review complete · synthesis pending</span>
       </div>
       <p><i aria-hidden="true"></i>No parameter decisions made here</p>
     </header>
 
     <main>
       <section class="review-intro">
-        <p class="machine-reading-kicker">Current Task / Researcher Trigger Audit</p>
-        <h1>20-case review for the next intervention decision</h1>
+        <p class="machine-reading-kicker">Completed Review / Researcher Trigger Synthesis</p>
+        <h1>20-case artist review for the next intervention decision</h1>
         <p class="lead">
-          This sheet contains the 20 records selected for manual comparison. It is an evidence-first
-          interface only: machine fields are shown for reference, and all judgement lines are left empty
-          for you to fill in before any next run parameter change.
+          This sheet contains the 20 records selected for manual comparison. The saved artist decisions
+          are prefilled and remain editable. The judgement field evaluates the current diagnostic assessment,
+          not whether the raw OCR is error-free. Run 03 remains paused until the recorded trigger reasons are
+          synthesised into one controlled intervention.
         </p>
-        <p class="lead" style="margin-top: 10px;">Previous completed cases remain in the main Machine Reading Study page under Previous Evidence / Selected Cases.</p>
+        <p class="lead" style="margin-top: 10px;">Current saved result: 18 diagnostic assessments confirmed, 2 rejected, and 20 cases retained as possible intervention triggers.</p>
         <div class="review-purpose">
           <div>
             <span class="step">FIELD DEFINITION</span>
-            <p><strong>human_judgment</strong> = “Do I accept this machine relation/output for this case?”</p>
+            <p><strong>human_judgment</strong> = “Do I accept the current diagnostic assessment of what the machine preserved, altered, omitted or reconstructed in this case?”</p>
             <p><strong>human_trigger</strong> = “Does this case provide a concrete reason to alter, test, or extend the system in Run 03?”</p>
           </div>
           <div>
@@ -412,11 +413,11 @@
           </div>
           <div>
             <span class="step">STEP 02</span>
-            <p>Choose both <strong>human_judgment</strong> and <strong>human_trigger</strong> for each case and add a short reason note.</p>
+            <p>Review the saved <strong>human_judgment</strong>, <strong>human_trigger</strong> and reason note for each case; revise only when the evidence requires it.</p>
           </div>
           <div>
             <span class="step">STEP 03</span>
-            <p>Only after this set is done should the next model intervention be defined.</p>
+            <p>Group the 20 trigger reasons into recurring failure categories, then select at most one controlled change for any future Run 03.</p>
           </div>
         </div>
         <section class="machine-reading-version" aria-label="Review scope">
@@ -451,6 +452,6 @@
     <script src="../assets/invalidated-tickets/machine-reading-review-20-data.js"></script>
     <script src="../outputs/machine-reading-v1-185/human-machine-review-20/human-review-decisions.js"></script>
     <script src="../machine-reading-review-20.js"></script>
-    <script src="../machine-reading-review-20-actions.js"></script>
+    <script src="../machine-reading-review-20-actions.js?v=20261029-1"></script>
   </body>
 </html>

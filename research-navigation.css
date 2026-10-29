@@ -41,7 +41,7 @@ a[href="invalidated-tickets-human-machine-review-20.html"] {
 }
 
 a[href="invalidated-tickets-human-machine-review-20.html"]::after {
-  content: "20/20 judgments recorded · trigger audit pending";
+  content: "20/20 judgments recorded · trigger synthesis pending";
   font-size: 7px;
   font-weight: 400;
   letter-spacing: 0.045em;
